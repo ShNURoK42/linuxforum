@@ -70,6 +70,30 @@ AppAsset::register($this);
             </div>
         </div>
     </div>
+    <?php if (Yii::$app->getUser()->getIsGuest()): ?>
+    <div class="ads-box" style="overflow: hidden; margin-top: 10px; color: #566579; padding: 0;">
+        <div style="float: left">
+            <?php require Yii::$app->basePath . '/ads/slibs/csKeysDb.php' ?>
+            <?= csKeysDb::getBlock($_SERVER["REQUEST_URI"], 2) ?>
+        </div>
+        <div style="float: right; border-radius: 10px; color: #566579; border: 1px solid #cad7e1;">
+            <ul style="margin: 15px; padding: 0 10px 0 0; line-height: 1; font-size: 11px;">
+                <?php if (Yii::$app->controller->route == 'site/index'): ?>
+                <li><a href=http://www.zapravkairemont.ru>заправка картриджей hp</a></li>
+                <li>Профессиональная <a href=http://pchlp.ru/>компьютерная помощь на дому</a> в Москве</li>
+                <li><a href=http://www.bergab.ru>подшипники</a> для пользователей linux</li>
+                <li>Недорогие <a href=http://www.saletur.ru>горящие туры</a> на сайте SaleTur.ru</li>
+                <?php else: ?>
+                <li>Продаем <a href=http://www.realxenon.ru/modules/shop/cat_188.html>камеры заднего вида</a> на все марки автомобилей</li>
+                <li><a href=http://www.bergab.ru>Подшипники</a> для пользователей linux</li>
+                <li>Купить <a href=http://elitpack.ru/>полиэтиленовые пакеты</a> с логотипом, производство пакетов</li>
+                <li>Мегаполис <a href=http://www.megapolistaxi.ru/>такси москва</a> - заказ такси дешево и быстро!</li>
+                <li>Недорогие <a href=http://www.saletur.ru>горящие туры</a> на сайте SaleTur.ru </li>
+                <?php endif; ?>
+            </ul>
+        </div>
+    </div>
+    <?php endif; ?>
 </div>
 </body>
 <?php $this->endBody() ?>

@@ -11,6 +11,7 @@ class AppAsset extends \yii\web\AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/Air.css',
+        'css/sotmarket.css',
     ];
     public $js = [
         //'js/app.js',
