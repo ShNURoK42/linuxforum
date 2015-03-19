@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'id' => 'aplication',
+    'id' => 'app',
     'basePath' => dirname(__DIR__),
     'name' => 'SCV System',
 
