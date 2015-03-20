@@ -30,7 +30,7 @@ class ForumController extends \yii\web\Controller
         $query = Topic::find()
             ->where(['forum_id' => $id])
             ->orderBy(['sticked' => SORT_DESC])
-            ->addOrderBy(['first_post_created_at' => SORT_DESC]);
+            ->addOrderBy(['last_post_created_at' => SORT_DESC]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
