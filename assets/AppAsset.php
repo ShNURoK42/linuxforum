@@ -14,9 +14,9 @@ class AppAsset extends \yii\web\AssetBundle
         'css/sotmarket.css',
     ];
     public $js = [
-        //'js/app.js',
+        'js/common.js',
     ];
     public $depends = [
-        //'yii\web\YiiAsset',
+        'yii\web\YiiAsset',
     ];
 }
