@@ -275,12 +275,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/erusev/parsedown.git",
-                "reference": "65116c3cb0953447eac742aa4ea5fc4aaaa22db9"
+                "reference": "468d1e3da8bde049debee7f484a4f9c4b26b41ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/erusev/parsedown/zipball/65116c3cb0953447eac742aa4ea5fc4aaaa22db9",
-                "reference": "65116c3cb0953447eac742aa4ea5fc4aaaa22db9",
+                "url": "https://api.github.com/repos/erusev/parsedown/zipball/468d1e3da8bde049debee7f484a4f9c4b26b41ba",
+                "reference": "468d1e3da8bde049debee7f484a4f9c4b26b41ba",
                 "shasum": ""
             },
             "type": "library",
@@ -306,7 +306,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2015-02-08 23:04:08"
+            "time": "2015-03-18 18:44:57"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -410,12 +410,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "0dc97c82cc4c5c9427695030575d9fcfe4bd5f9d"
+                "reference": "2960b6c0b744ece7aa8532f9182f0f7e72bde8f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/0dc97c82cc4c5c9427695030575d9fcfe4bd5f9d",
-                "reference": "0dc97c82cc4c5c9427695030575d9fcfe4bd5f9d",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/2960b6c0b744ece7aa8532f9182f0f7e72bde8f1",
+                "reference": "2960b6c0b744ece7aa8532f9182f0f7e72bde8f1",
                 "shasum": ""
             },
             "require": {
@@ -490,7 +490,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-03-15 05:26:06"
+            "time": "2015-03-19 11:59:05"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -756,12 +756,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
-                "reference": "52ee8e7f8b70ab7fb80b0cec147f3bc222d2f607"
+                "reference": "383d37581af0e07d131b1ec601de5111af3ba6bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/52ee8e7f8b70ab7fb80b0cec147f3bc222d2f607",
-                "reference": "52ee8e7f8b70ab7fb80b0cec147f3bc222d2f607",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/383d37581af0e07d131b1ec601de5111af3ba6bd",
+                "reference": "383d37581af0e07d131b1ec601de5111af3ba6bd",
                 "shasum": ""
             },
             "require": {
@@ -795,7 +795,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2015-03-01 06:24:14"
+            "time": "2015-03-18 12:13:20"
         },
         {
             "name": "yiisoft/yii2-gii",
