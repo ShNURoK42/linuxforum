@@ -17,6 +17,7 @@ $item = [
     'forum_count' => 0,
     'category_count' => 0,
 ];
+
 $formatter = Yii::$app->formatter;
 ?>
 <?php if (count($categories) == 0): ?>
