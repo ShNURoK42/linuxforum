@@ -25,10 +25,37 @@ use yii\db\ActiveRecord;
  * @property integer $sticked
  *
  * @property Post[] $posts
+ * @property Post $post
  * @property Forum $forum
  */
 class Topic extends \yii\db\ActiveRecord
 {
+    /** @var Post */
+    private $_post;
+    /**
+     * @inheritdoc
+     */
+    public function beforeSave($insert)
+    {
+        if ($this->isNewRecord) {
+            $user = Yii::$app->getUser()->getIdentity();
+
+            $this->first_post_created_at = time();
+            $this->first_post_username = $user->username;
+            $this->first_post_user_id = $user->id;
+            $this->last_post_created_at = time();
+            $this->last_post_username = $user->username;
+            $this->last_post_user_id = $user->id;
+            $this->number_posts = 1;
+            $this->number_views = 0;
+            $this->first_post_id = $this->_post->id;
+            $this->last_post_id = $this->_post->id;
+
+        }
+
+        return parent::beforeSave($insert);
+    }
+
     /**
      * @inheritdoc
      */
@@ -52,6 +79,16 @@ class Topic extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Post::className(), ['topic_id' => 'id'])
             ->inverseOf('topic');
+    }
+
+    /**
+     * @param Post $post
+     */
+    public function setPost($post)
+    {
+        $this->_post = $post;
+
+        return $this;
     }
 
     public function incrementView()

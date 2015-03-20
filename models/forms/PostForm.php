@@ -41,10 +41,7 @@ class PostForm extends \yii\base\Model
 
             $post = new Post();
             $post->topic_id = $topic->id;
-            $post->user_id = $user->id;
-            $post->user_ip = ip2long(Yii::$app->getRequest()->getUserIP());
             $post->message = $this->message;
-            $post->created_at = time();
             $post->save();
             $this->post = $post;
 

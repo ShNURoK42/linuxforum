@@ -60,35 +60,28 @@ class TopicForm extends \yii\base\Model
         if ($this->validate()) {
             $user = Yii::$app->getUser()->getIdentity();
 
+            // create post
             $post = new Post();
             $post->topic_id = 0;
-            $post->user_id = $user->id;
-            $post->user_ip = ip2long(Yii::$app->getRequest()->getUserIP());
             $post->message = $this->message;
-            $post->created_at = time();
             $post->save();
 
+            // create topic
             $topic = new Topic();
             $topic->forum_id = $forum->id;
             $topic->subject = $this->subject;
-            $topic->first_post_username = $user->username;
-            $topic->first_post_created_at = time();
-            $topic->first_post_id = $post->id;
-            $topic->first_post_user_id = $user->id;
-            $topic->last_post_username = $user->username;
-            $topic->last_post_created_at = time();
-            $topic->last_post_id = $post->id;
-            $topic->last_post_user_id = $user->id;
-            $topic->number_posts = 1;
-            $topic->number_views = 0;
+            $topic->post = $post;
             $topic->save();
 
+            // update post.topic_id
             $post->link('topic', $topic);
             $post->save();
 
+            // update user.number_posts
             $user->incrementPost();
             $user->save();
 
+            // update forum information
             $forum->num_topics += 1;
             $forum->last_post = time();
             $forum->last_post_id = $post->id;
