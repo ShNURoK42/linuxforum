@@ -10,7 +10,6 @@ class m150320_104201_fix_topic extends Migration
     public function up()
     {
         $this->renameTable('{{%topics}}', $this->table);
-        $this->execute('ALTER TABLE topic ENGINE = InnoDB;');
 
         $this->dropColumn($this->table, 'moved_to');
 
@@ -41,6 +40,8 @@ class m150320_104201_fix_topic extends Migration
 
         $this->rebuildFirstPosterColumn();
         $this->rebuildLastPosterColumn();
+
+        $this->execute('ALTER TABLE topic ENGINE = InnoDB;');
     }
 
     protected function rebuildFirstPosterColumn()
