@@ -14,14 +14,15 @@ class m150320_093522_fix_post extends Migration
         $this->dropColumn($this->table, 'poster');
         $this->dropColumn($this->table, 'poster_email');
         $this->dropColumn($this->table, 'hide_smilies');
+        $this->dropColumn($this->table, 'edited');
+        $this->dropColumn($this->table, 'edited_by');
 
         $this->renameColumn($this->table, 'poster_id', 'user_id');
         $this->renameColumn($this->table, 'poster_ip', 'user_ip');
         $this->renameColumn($this->table, 'posted', 'created_at');
-        $this->renameColumn($this->table, 'edited', 'edited_at');
-        $this->renameColumn($this->table, 'edited_by', 'edited_by2');
 
         $this->addColumn($this->table, 'status', Schema::TYPE_INTEGER . '(1) NOT NULL');
+        $this->addColumn($this->table, 'edited_at', Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT 0');
         $this->addColumn($this->table, 'edited_by', Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT 0');
 
         $this->alterColumn($this->table, 'message', Schema::TYPE_TEXT . ' CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL');
@@ -30,23 +31,9 @@ class m150320_093522_fix_post extends Migration
         $this->alterColumn($this->table, 'created_at', Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL');
         $this->alterColumn($this->table, 'edited_at', Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL DEFAULT 0');
 
-        $this->rebuildEditedBy();
         $this->rebuildUserIP();
 
         $this->execute('ALTER TABLE post ENGINE = InnoDB;');
-    }
-
-    protected function rebuildEditedBy()
-    {
-        $this->execute('
-            UPDATE post p, (
-                SELECT id, username FROM users
-            ) u
-            SET p.edited_by = u.id
-            WHERE p.edited_by2 = u.username AND p.edited_by2 IS NOT NULL
-        ');
-
-        $this->alterColumn($this->table, 'edited_by', Schema::TYPE_INTEGER . ' UNSIGNED NOT NULL');
     }
 
     protected function rebuildUserIP()
