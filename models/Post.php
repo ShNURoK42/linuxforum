@@ -3,27 +3,24 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use app\helpers\MarkdownParser;
 
 /**
- * This is the model class for table "posts".
- *
- * @property string $id
- * @property string $poster
- * @property string $poster_id
- * @property string $poster_ip
- * @property string $poster_email
+ * @property integer $id
+ * @property integer $topic_id
+ * @property integer $user_id
+ * @property integer $user_ip
  * @property string $message
- * @property integer $hde_smilies
- * @property string $posted
- * @property string $edited
- * @property string $edited_by
- * @property string $topic_id
+ * @property integer $created_at
+ * @property integer $edited_at
+ * @property integer $edited_by
+ * @property integer $status
  *
  * @property User $user
  * @property Topic $topic
- * @property string $parsedMessage
+ * @property string $dysplayMessage
  */
 class Post extends \yii\db\ActiveRecord
 {
@@ -32,7 +29,7 @@ class Post extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%posts}}';
+        return '{{%post}}';
     }
 
     /**
@@ -40,7 +37,7 @@ class Post extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'poster_id'])
+        return $this->hasOne(User::className(), ['id' => 'user_id'])
             ->inverseOf('posts');
     }
 
@@ -55,10 +52,11 @@ class Post extends \yii\db\ActiveRecord
     /**
      * @return string
      */
-    public function getParsedMessage()
+    public function getDisplayMessage()
     {
         $parsedown = new MarkdownParser();
+        $text = $parsedown->text($this->text);
 
-        return $parsedown->text($this->message);
+        return $text;
     }
 }

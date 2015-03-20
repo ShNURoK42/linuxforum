@@ -41,7 +41,7 @@ use yii\db\ActiveQuery;
  * @property double $timezone
  * @property string $language
  * @property string $style
- * @property string $num_posts
+ * @property integer $num_posts
  * @property string $last_post
  * @property string $last_search
  * @property string $last_email_sent
@@ -193,5 +193,15 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         }
 
         return $this->timezone;
+    }
+
+    public function incrementPost()
+    {
+        $this->num_posts = $this->num_posts + 1;
+    }
+
+    public function decrementPost()
+    {
+        $this->num_posts = $this->num_posts - 1;
     }
 }

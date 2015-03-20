@@ -57,13 +57,13 @@ $item['topic_count'] = 0;
                         <div class="icon"><div class="nosize">1</div></div>
                         <div class="tclcon">
                             <div>
-                                <a href="<?= Url::toRoute(['topic/view', 'id' => $topic->id])?>"><?= $formatter->asText($topic->subject) ?></a> <span class="byuser"><?= $formatter->asText($topic->poster) ?></span>
+                                <a href="<?= Url::toRoute(['topic/view', 'id' => $topic->id])?>"><?= $formatter->asText($topic->subject) ?></a> <span class="byuser"><?= $formatter->asText($topic->first_post_username) ?></span>
                             </div>
                         </div>
                     </td>
                     <td class="tc2"><a href="<?= Url::toRoute(['forum/view', 'id' => $topic->forum->id])?>"><?= $topic->forum->forum_name ?></a></td>
-                    <td class="tc3"><?= $formatter->asInteger($topic->num_replies) ?></td>
-                    <td class="tcr"><a href="<?= Url::toRoute(['post/view', 'id' => $topic->last_post_id, '#' => 'p' . $topic->last_post_id])?>"><?= Yii::$app->formatter->asDatetime($topic->last_post) ?></a> <span class="byuser"><?= $formatter->asText($topic->last_poster) ?></span></td>
+                    <td class="tc3"><?= $formatter->asInteger($topic->number_posts) ?></td>
+                    <td class="tcr"><a href="<?= Url::toRoute(['post/view', 'id' => $topic->last_post_id, '#' => 'p' . $topic->last_post_id])?>"><?= Yii::$app->formatter->asDatetime($topic->last_post_id) ?></a> <span class="byuser"><?= $formatter->asText($topic->last_post_username) ?></span></td>
                 </tr>
                 <?php endforeach; ?>
                 </tbody>

@@ -61,33 +61,32 @@ class TopicForm extends \yii\base\Model
             $user = Yii::$app->getUser()->getIdentity();
 
             $post = new Post();
-            $post->poster = $user->username;
-            $post->poster_id = $user->id;
-            $post->poster_ip = Yii::$app->getRequest()->getUserIP();
-            $post->poster_email = $user->email;
-            $post->message = $this->message;
-            $post->posted = time();
             $post->topic_id = 0;
+            $post->user_id = $user->id;
+            $post->user_ip = ip2long(Yii::$app->getRequest()->getUserIP());
+            $post->message = $this->message;
+            $post->created_at = time();
             $post->save();
 
-
             $topic = new Topic();
-            $topic->poster = $user->username;
-            $topic->subject = $this->subject;
-            $topic->posted = time();
-            $topic->first_post_id = $post->primaryKey;
-            $topic->last_post = time();
-            $topic->last_post_id = $post->primaryKey;
-            $topic->last_poster = $user->username;
-            $topic->num_views = 0;
-            $topic->num_replies = 0;
             $topic->forum_id = $forum->id;
+            $topic->subject = $this->subject;
+            $topic->first_post_username = $user->username;
+            $topic->first_post_created_at = time();
+            $topic->first_post_id = $post->id;
+            $topic->first_post_user_id = $user->id;
+            $topic->last_post_username = $user->username;
+            $topic->last_post_created_at = time();
+            $topic->last_post_id = $post->id;
+            $topic->last_post_user_id = $user->id;
+            $topic->number_posts = 1;
+            $topic->number_views = 0;
             $topic->save();
 
             $post->link('topic', $topic);
             $post->save();
 
-            $user->num_posts += 1;
+            $user->incrementPost();
             $user->save();
 
             $forum->num_topics += 1;

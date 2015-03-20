@@ -40,23 +40,22 @@ class PostForm extends \yii\base\Model
             $user = Yii::$app->getUser()->getIdentity();
 
             $post = new Post();
-            $post->poster = $user->username;
-            $post->poster_id = $user->id;
-            $post->poster_ip = Yii::$app->getRequest()->getUserIP();
-            $post->poster_email = $user->email;
-            $post->message = $this->message;
-            $post->posted = time();
             $post->topic_id = $topic->id;
+            $post->user_id = $user->id;
+            $post->user_ip = ip2long(Yii::$app->getRequest()->getUserIP());
+            $post->message = $this->message;
+            $post->created_at = time();
             $post->save();
             $this->post = $post;
 
-            $user->num_posts += 1;
+            $user->incrementPost();
             $user->save();
 
-            $topic->num_replies += 1;
-            $topic->last_poster = $user->username;
-            $topic->last_post = time();
+            $topic->incrementPost();
+            $topic->last_post_username = $user->username;
+            $topic->last_post_created_at = time();
             $topic->last_post_id = $post->id;
+            $topic->last_post_user_id = $user->id;
             $topic->save();
 
             $forum = $topic->forum;

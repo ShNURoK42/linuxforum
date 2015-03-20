@@ -37,10 +37,8 @@ class PostController extends \yii\web\Controller
 
         $query = Post::find()
             ->where(['topic_id' => $post->topic_id])
-            ->orderBy(['posted' => SORT_ASC])
-            ->with('user', 'user.group');
-
-        $page = $this->getPostPage($post);
+            ->with('user', 'user.group')
+            ->orderBy(['created_at' => SORT_ASC]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -48,7 +46,7 @@ class PostController extends \yii\web\Controller
                 'route' => 'topic/view',
                 'params' => [
                     'id' => $topic->id,
-                    'page' => $page,
+                    'page' => $this->getPostPage($post),
                 ],
                 'forcePageParam' => false,
                 'pageSizeLimit' => false,
@@ -109,10 +107,6 @@ class PostController extends \yii\web\Controller
                 break;
             }
             $index++;
-        }
-
-        if ($index > count($rows)) {
-            throw new InvalidParamException();
         }
 
         $page = ceil($index / Yii::$app->config->get('o_disp_posts_default'));

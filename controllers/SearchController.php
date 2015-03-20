@@ -16,9 +16,9 @@ class SearchController extends \yii\web\Controller
         $time = time() - 86400;
 
         $query = Topic::find()
-            ->where('last_post > :time', [':time' => $time])
+            ->where('last_post_created_at > :time', [':time' => $time])
             ->with('forum')
-            ->addOrderBy(['last_post' => SORT_DESC]);
+            ->orderBy(['last_post_created_at' => SORT_DESC]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

@@ -20,9 +20,8 @@ class ForumController extends \yii\web\Controller
      */
     public function actionView($id)
     {
-        $forum = Forum::find()
-            ->where(['id' => $id])
-            ->one();
+        /** @var Forum $forum */
+        $forum = Forum::findOne(['id' => $id]);
 
         if (!$forum || !AccessHelper::canReadForum($forum)) {
             throw new NotFoundHttpException();
@@ -30,8 +29,8 @@ class ForumController extends \yii\web\Controller
 
         $query = Topic::find()
             ->where(['forum_id' => $id])
-            ->orderBy(['sticky' => SORT_DESC])
-            ->addOrderBy(['last_post' => SORT_DESC]);
+            ->orderBy(['sticked' => SORT_DESC])
+            ->addOrderBy(['first_post_created_at' => SORT_DESC]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

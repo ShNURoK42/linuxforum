@@ -23,8 +23,9 @@ class TopicController extends \yii\web\Controller
      */
     public function actionView($id)
     {
+        /** @var Topic $topic */
         $topic = Topic::find()
-            ->where(['id' => $id, 'moved_to' => null])
+            ->where(['id' => $id])
             ->with('forum')
             ->one();
 
@@ -32,13 +33,13 @@ class TopicController extends \yii\web\Controller
             throw new NotFoundHttpException();
         }
 
-        $topic->num_views += 1;
+        $topic->incrementView();
         $topic->save();
 
         $query = Post::find()
             ->where(['topic_id' => $id])
-            ->orderBy(['posted' => SORT_ASC])
-            ->with('user', 'user.group');
+            ->with('user', 'user.group')
+            ->orderBy(['created_at' => SORT_ASC]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
