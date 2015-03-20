@@ -75,7 +75,7 @@ $item['post_count'] = $dataProvider->pagination->offset;
                             </div>
                             <div class="postright">
                                 <h3><?= $formatter->asText($topic->subject) ?></h3>
-                                <div class="postmsg"><?= $post->message ?></div>
+                                <div class="postmsg"><?= $post->displayMessage ?></div>
                             </div>
                         </div>
                     </div>

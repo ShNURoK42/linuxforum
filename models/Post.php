@@ -16,11 +16,10 @@ use app\helpers\MarkdownParser;
  * @property integer $created_at
  * @property integer $edited_at
  * @property integer $edited_by
- * @property integer $status
  *
  * @property User $user
  * @property Topic $topic
- * @property string $dysplayMessage
+ * @property string $displayMessage
  */
 class Post extends \yii\db\ActiveRecord
 {
@@ -69,7 +68,7 @@ class Post extends \yii\db\ActiveRecord
     public function getDisplayMessage()
     {
         $parsedown = new MarkdownParser();
-        $text = $parsedown->text($this->text);
+        $text = $parsedown->text($this->message);
 
         return $text;
     }
