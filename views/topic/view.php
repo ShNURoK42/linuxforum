@@ -103,9 +103,4 @@ $item['post_count'] = $dataProvider->pagination->offset;
     </div>
     <?php endif; ?>
 </div>
-
-<?php $options = [
-    'text' => $model->message,
-];
-$options = empty($options) ? '' : \yii\helpers\Json::encode($options);
-$this->registerJs("jQuery('#quickpostform').post();"); ?>
+<?php $this->registerJs("jQuery('#quickpostform').post();") ?>
