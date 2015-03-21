@@ -94,7 +94,7 @@ $item['post_count'] = $dataProvider->pagination->offset;
                     <li>Поддержка: <a onclick="window.open(this.href); return false;" href="http://rukeba.com/by-the-way/markdown-sintaksis-po-russki/">markdown</a></li>
                 </ul>
             </fieldset>
-            <div class="post-preview">Preview</div>
+            <div class="post-preview postmsg">Preview</div>
         </div>
         <p class="buttons">
             <?= Html::submitButton(\Yii::t('app/topic', 'Submit')) ?>
