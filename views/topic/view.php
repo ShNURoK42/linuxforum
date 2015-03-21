@@ -38,99 +38,91 @@ $this->params = [
 
 $item['post_count'] = $dataProvider->pagination->offset;
 ?>
-    <div id="brdmain">
-        <div class="linkst">
-            <div class="inbox crumbsplus">
-                <?= Breadcrumbs::widget() ?>
-                <div class="pagepost">
-                    <div class="pagelink conl">
-                        <?= LinkPager::widget(['pagination' => $dataProvider->pagination]) ?>
-                    </div>
+<div id="brdmain">
+    <div class="linkst">
+        <div class="inbox crumbsplus">
+            <?= Breadcrumbs::widget() ?>
+            <div class="pagepost">
+                <div class="pagelink conl">
+                    <?= LinkPager::widget(['pagination' => $dataProvider->pagination]) ?>
                 </div>
-                <div class="clearer"></div>
             </div>
+            <div class="clearer"></div>
         </div>
-        <?php foreach($posts as $post): ?>
-            <?php $item['post_count']++ ?>
-            <div class="blockpost <?= ($item['post_count'] % 2 == 0) ? 'roweven' : 'rowodd' ?><?= ($item['post_count'] == 1) ? ' firstpost' : '' ?>" id="p<?= $post->id ?>">
-                <h2><span><span class="conr"><?= ($topic->first_post_user_id == $post->user->id) ? '<span class="post-author-label">Автор темы</span>' : '' ?> <a href="<?= Url::toRoute(['post/view', 'id' => $post->id, '#' => 'p' . $post->id]) ?>">#<?= $item['post_count'] ?></a></span><?= $formatter->asDatetime($post->created_at) ?></span></h2>
-                <div class="box">
-                    <div class="inbox">
-                        <div class="postbody">
-                            <div class="postleft">
-                                <dl>
-                                    <dt><strong><a href="<?= Url::toRoute(['user/view', 'id' => $post->user_id])?>"><?= $post->user->username ?></a></strong></dt>
-                                    <dd class="usertitle"><strong><?= $formatter->asText($post->user->displayTitle) ?></strong></dd>
-                                    <dd class="postavatar"><?php echo Gravatar::widget([
-                                            'email' => $post->user->email,
-                                            'options' => [
-                                                'alt' => $post->user->username,
-                                            ],
-                                            'defaultImage' => 'retro',
-                                            'size' => 80
-                                        ]); ?></dd>
-                                    <dd><span><strong>Дата регистрации:</strong> <?= $formatter->asDate($post->user->registered) ?></span></dd>
-                                    <dd><span><strong>Сообщений:</strong> <?= Yii::$app->formatter->asInteger($post->user->num_posts) ?></span></dd>
-                                </dl>
-                            </div>
-                            <div class="postright">
-                                <h3><?= $formatter->asText($topic->subject) ?></h3>
-                                <div class="postmsg"><?= $post->displayMessage ?></div>
-                            </div>
-                        </div>
+    </div>
+    <?php foreach($posts as $post): ?>
+    <?php $item['post_count']++ ?>
+    <div class="blockpost <?= ($item['post_count'] % 2 == 0) ? 'roweven' : 'rowodd' ?><?= ($item['post_count'] == 1) ? ' firstpost' : '' ?>" id="p<?= $post->id ?>">
+        <h2><span><span class="conr"><?= ($topic->first_post_user_id == $post->user->id) ? '<span class="post-author-label">Автор темы</span>' : '' ?> <a href="<?= Url::toRoute(['post/view', 'id' => $post->id, '#' => 'p' . $post->id]) ?>">#<?= $item['post_count'] ?></a></span><?= $formatter->asDatetime($post->created_at) ?></span></h2>
+        <div class="box">
+            <div class="inbox">
+                <div class="postbody">
+                    <div class="postleft">
+                        <dl>
+                            <dt><strong><a href="<?= Url::toRoute(['user/view', 'id' => $post->user_id])?>"><?= $post->user->username ?></a></strong></dt>
+                            <dd class="usertitle"><strong><?= $formatter->asText($post->user->displayTitle) ?></strong></dd>
+                            <dd class="postavatar"><?php echo Gravatar::widget([
+                                    'email' => $post->user->email,
+                                    'options' => [
+                                        'alt' => $post->user->username,
+                                    ],
+                                    'defaultImage' => 'retro',
+                                    'size' => 80
+                                ]); ?></dd>
+                            <dd><span><strong>Дата регистрации:</strong> <?= $formatter->asDate($post->user->registered) ?></span></dd>
+                            <dd><span><strong>Сообщений:</strong> <?= Yii::$app->formatter->asInteger($post->user->num_posts) ?></span></dd>
+                        </dl>
+                    </div>
+                    <div class="postright">
+                        <h3><?= $formatter->asText($topic->subject) ?></h3>
+                        <div class="postmsg"><?= $post->displayMessage ?></div>
                     </div>
                 </div>
-            </div>
-        <?php endforeach; ?>
-        <div class="linksb">
-            <div class="inbox crumbsplus">
-                <div class="pagepost">
-                    <div class="pagelink conl">
-                        <?= LinkPager::widget(['pagination' => $dataProvider->pagination]) ?>
-                    </div>
-                </div>
-                <?= Breadcrumbs::widget() ?>
-                <div class="clearer"></div>
             </div>
         </div>
     </div>
+    <?php endforeach; ?>
+    <div class="linksb">
+        <div class="inbox crumbsplus">
+            <div class="pagepost">
+                <div class="pagelink conl">
+                    <?= LinkPager::widget(['pagination' => $dataProvider->pagination]) ?>
+                </div>
+            </div>
+            <?= Breadcrumbs::widget() ?>
+            <div class="clearer"></div>
+        </div>
+    </div>
 
-<?php if (AccessHelper::canPostReplyInTopic($topic)): ?>
-<?php if ($model->hasErrors()): ?>
-    <?= Html::errorSummary($model, [
-        'class' => 'callout callout-danger',
-        'header' => '<h2>' . \Yii::t('app/register', 'Error summary') . '</h2>',
-    ]) ?>
-<?php endif; ?>
-<div class="blockform" id="quickpost">
-    <h2><span>Быстрое сообщение</span></h2>
-    <div class="box">
+    <?php if (AccessHelper::canPostReplyInTopic($topic)): ?>
+    <?php if ($model->hasErrors()): ?>
+        <?= Html::errorSummary($model, [
+            'class' => 'callout callout-danger',
+            'header' => '<h2>' . \Yii::t('app/register', 'Error summary') . '</h2>',
+        ]) ?>
+    <?php endif; ?>
+    <div class="blockform" id="quickpost">
         <?php $form = ActiveForm::begin([
             'action' => ['topic/view', 'id' => $topic->id, '#' => 'quickpostform'],
             'options' => ['id' => 'quickpostform'],
             'enableClientValidation' => false,
             'enableClientScript' => false,
         ]) ?>
-        <div class="inform">
-            <fieldset>
-                <legend>Введите сообщение и нажмите Отправить</legend>
-                <div class="infldset txtarea">
-                    <?= $form->field($model, 'message', [
-                        'template' => "{label}\n{input}",
-                    ])->textarea([
-                        'cols' => 105,
-                        'rows' => 10,
-                    ])->label(\Yii::t('app/topic', 'Message')) ?>
-                    <ul class="bblinks">
-                        <li>Поддержка: <a onclick="window.open(this.href); return false;" href="http://rukeba.com/by-the-way/markdown-sintaksis-po-russki/">markdown</a></li>
-                    </ul>
-                </div>
-            </fieldset>
-        </div>
+        <fieldset>
+            <div class="infldset txtarea">
+                <?= $form->field($model, 'message', [
+                    'template' => "{label}\n{input}",
+                ])->textarea()
+                    ->label(\Yii::t('app/topic', 'Message')) ?>
+                <ul class="bblinks">
+                    <li>Поддержка: <a onclick="window.open(this.href); return false;" href="http://rukeba.com/by-the-way/markdown-sintaksis-po-russki/">markdown</a></li>
+                </ul>
+            </div>
+        </fieldset>
         <p class="buttons">
             <?= Html::submitButton(\Yii::t('app/topic', 'Submit')) ?>
         </p>
         <?php ActiveForm::end() ?>
     </div>
+    <?php endif; ?>
 </div>
-<?php endif; ?>

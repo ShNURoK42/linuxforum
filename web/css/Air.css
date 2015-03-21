@@ -106,7 +106,6 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 .pun .actions span {
     padding-left: 16px;
     padding-right: 8px;
-    background: url(/img/bull.png) center left no-repeat;
     display: inline-block;
     line-height: normal;
 }
@@ -289,7 +288,6 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 }
 
 #brdwelcome li span {
-    background: url(/img/bull.png) center left no-repeat;
     padding-left: 18px;
     margin-right: 3px;
     display: inline-block;
@@ -340,7 +338,6 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 }
 
 .pun #brdfooter #modcontrols dd span {
-    background: url(/img/bull.png) center left no-repeat;
     display: inline-block;
     line-height: normal;
     padding-left: 18px;
@@ -373,7 +370,6 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 }
 
 .pun #brdfooter #searchlinks dd span {
-    background: url(/img/bull.png) center left no-repeat;
     display: inline-block;
     line-height: normal;
     padding-left: 18px;
@@ -385,7 +381,6 @@ html, body, .pun table, .pun div, .pun form, .pun p, .pun h1, .pun h2, .pun h3, 
 }
 
 .pun #brdfooter #feedlinks span {
-    background: url(/img/feed.png) center left no-repeat;
     display: inline-block;
     padding-left: 18px;
     white-space: nowrap;
@@ -860,7 +855,6 @@ MAIN POSTS
     padding-left: 16px;
     margin-left: 8px;
     line-height: normal;
-    background: url(/img/bull.png) center left no-repeat;
 }
 
 .pun .blockpost .usercontacts {
@@ -868,7 +862,6 @@ MAIN POSTS
 }
 
 .pun .blockpost .usercontacts .email {
-    background: url(/img/email.png) left 65% no-repeat;
     margin-right: 5px;
     padding-left: 21px;
     display: inline-block;
@@ -876,7 +869,6 @@ MAIN POSTS
 }
 
 .pun .blockpost .usercontacts .website {
-    background: url(/img/ext.png) left 65% no-repeat;
     padding-left: 18px;
     display: inline-block;
     line-height: normal;
@@ -1044,12 +1036,6 @@ MAIN FORMS
     white-space: nowrap;
 }
 
-.pun .blockform .box {
-    border-style: solid;
-    border-width: 1px;
-    padding-bottom: 12px;
-}
-
 .pun #posterror {
     border-style: solid;
     border-width: 1px;
@@ -1057,10 +1043,6 @@ MAIN FORMS
 
 .pun #posterror .box {
     padding: 0 18px 12px 18px;
-}
-
-* html .pun .blockform .box, * html .pun #posterror {
-    display: inline-block;
 }
 
 .pun .blockform .forminfo {
@@ -1118,6 +1100,9 @@ MAIN FORMS
 
 .pun .form-group {
     padding: 0 12px 7px 0;
+}
+
+.pun .form-group.inline {
     display: inline-block;
 }
 
@@ -1187,7 +1172,9 @@ MAIN FORMS
 }
 
 .pun .txtarea textarea, .pun input.longinput {
-    width: 98%;
+    width: 100%;
+    max-height: 500px;
+    min-height: 200px;
 }
 
 .pun textarea {
@@ -1208,7 +1195,6 @@ MAIN FORMS
 }
 
 .pun .blockform .bblinks li span {
-    background: url(/img/help.png) center left no-repeat;
     margin-right: 8px;
     padding-left: 20px;
     display: inline-block;
@@ -1253,7 +1239,6 @@ MAIN FORMS
 }
 
 .pun span.email {
-    background: url(/img/email.png) left 65% no-repeat;
     margin-right: 5px;
     padding-left: 21px;
     display: inline-block;
@@ -1261,7 +1246,6 @@ MAIN FORMS
 }
 
 .pun span.website {
-    background: url(/img/ext.png) left 65% no-repeat;
     padding-left: 18px;
     display: inline-block;
     line-height: normal;
@@ -1385,7 +1369,6 @@ PROFILES (+ ADMIN MENU)
     padding-left: 16px;
     margin-left: 8px;
     line-height: normal;
-    background: url(/img/bull.png) center left no-repeat;
 }
 
 #adstats .inbox, #adintro .inbox, #adalerts p {
@@ -1557,11 +1540,6 @@ html, body, .pun {
 /* Main Forms + Profile
 ----------------------------------------------------------------*/
 
-.pun .blockform .box, #adstats, #adintro, #adalerts, #postpreview, #posterror {
-    border-color: #b9c5ce #d9e1e7;
-    background: #ebf1f5;
-}
-
 #punmisc #rules .box, #punhelp .box {
     border-color: #b9c5ce #d9e1e7;
     background: #f6f9fc;
@@ -1665,10 +1643,6 @@ html, body, .pun {
 
 /* Admin Console
 ----------------------------------------------------------------*/
-
-#adminconsole .blockform .box {
-    padding-bottom: 12px;
-}
 
 #adminconsole fieldset .infldset {
     position: relative;

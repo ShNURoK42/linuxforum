@@ -31,12 +31,14 @@ $this->params['page'] = 'login';
                 <div class="infldset">
                     <?= $form->field($model, 'email', [
                         'template' => "{label}\n{input}",
+                        'options' => ['class' => 'form-group inline'],
                     ])->textInput([
                         'size' => 25,
                         'maxlength' => 80,
                     ])->label(\Yii::t('app/login', 'Email')) ?>
                     <?= $form->field($model, 'password', [
                         'template' => "{label}\n{input}",
+                        'options' => ['class' => 'form-group inline'],
                     ])->passwordInput([
                         'size' => 25,
                     ])->label(\Yii::t('app/login', 'Password')) ?>

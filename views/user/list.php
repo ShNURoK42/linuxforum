@@ -38,6 +38,7 @@ $formatter = Yii::$app->formatter;
                     <div class="infldset">
                         <?= $form->field($model, 'username', [
                             'template' => "{label}\n{input}",
+                            'options' => ['class' => 'form-group inline'],
                         ])->textInput([
                             'size' => 25,
                             'maxlength' => 25,
@@ -45,16 +46,19 @@ $formatter = Yii::$app->formatter;
 
                         <?= $form->field($model, 'group_id', [
                             'template' => "{label}\n{input}",
+                            'options' => ['class' => 'form-group inline'],
                         ])->dropDownList($model->groupItems, [
                         ])->label(\Yii::t('app/userlist', 'User group search')) ?>
 
                         <?= $form->field($model, 'sort_by', [
                             'template' => "{label}\n{input}",
+                            'options' => ['class' => 'form-group inline'],
                         ])->dropDownList($model->sortItems, [
                         ])->label(\Yii::t('app/userlist', 'Sort by search')) ?>
 
                         <?= $form->field($model, 'sort_dir', [
                             'template' => "{label}\n{input}",
+                            'options' => ['class' => 'form-group inline'],
                         ])->dropDownList([
                             'ASC' => \Yii::t('app/userlist', 'Ascending'),
                             'DESC' => \Yii::t('app/userlist', 'Descending'),
