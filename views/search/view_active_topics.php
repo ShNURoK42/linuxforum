@@ -58,6 +58,7 @@ $item['topic_count'] = 0;
                         <div class="tclcon">
                             <div>
                                 <a href="<?= Url::toRoute(['topic/view', 'id' => $topic->id])?>"><?= $formatter->asText($topic->subject) ?></a> <span class="byuser"><?= $formatter->asText($topic->first_post_username) ?></span>
+                                <?= TopicPager::widget(['topic' => $topic]) ?>
                             </div>
                         </div>
                     </td>
