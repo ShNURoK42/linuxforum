@@ -1895,6 +1895,10 @@ html, body, .pun {
     margin-bottom: -1px;
 }
 
+.pun .tabnav-tabs a {
+    font-size: 12px;
+}
+
 .pun .post-preview {
     display: none;
 }
