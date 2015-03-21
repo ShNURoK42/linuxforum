@@ -1075,7 +1075,7 @@ MAIN FORMS
 }
 
 .pun .infldset {
-    border-style: solid;
+    border-style: none solid solid;
     border-width: 1px;
     padding: 12px 18px;
 }
@@ -1864,4 +1864,43 @@ html, body, .pun {
     font-size: 12px;
     margin: 4px 5px 0 10px;
     padding: 3px 8px;
+}
+
+
+.pun .tabnav-tab {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #dfe6ee;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 1px 0;
+    color: #666;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 8px 12px;
+    text-decoration: none;
+}
+
+.pun .tabnav-tab.selected {
+    background-color: #f6f9fc;
+    border-color: #ddd;
+    border-radius: 3px 3px 0 0;
+    color: #333;
+}
+
+.pun .tabnav-tabs {
+    margin-bottom: -1px;
+}
+
+.pun .post-preview {
+    display: none;
+}
+
+.pun .post-form-head {
+    border-bottom: 1px solid #ddd;
+    border-radius: 3px 3px 0 0;
+    padding: 6px 10px 0;
 }

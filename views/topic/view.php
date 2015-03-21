@@ -7,6 +7,7 @@ use yii\widgets\ActiveForm;
 use app\helpers\AccessHelper;
 use app\models\Post;
 use app\models\Topic;
+use app\models\forms\PostForm;
 use app\widgets\Breadcrumbs;
 use app\widgets\LinkPager;
 
@@ -15,6 +16,7 @@ use app\widgets\LinkPager;
 /* @var ActiveRecord[] $posts */
 /* @var Topic $topic */
 /* @var Post $post */
+/* @var PostForm $model */
 
 $users = ArrayHelper::getColumn($posts, 'user');
 $usernames = ArrayHelper::getColumn($users, 'username');
@@ -76,8 +78,14 @@ $item['post_count'] = $dataProvider->pagination->offset;
             'enableClientValidation' => false,
             'enableClientScript' => false,
         ]) ?>
-        <fieldset>
-            <div class="infldset txtarea">
+        <div class="post-form-head">
+            <nav class="tabnav-tabs">
+                <a class="tabnav-tab write-tab js-write-tab selected" href="#">Набор сообщения</a>
+                <a class="tabnav-tab preview-tab js-preview-tab" href="#">Предпросмотр</a>
+            </nav>
+        </div>
+        <div class="infldset txtarea">
+            <fieldset>
                 <?= $form->field($model, 'message', [
                     'template' => "{label}\n{input}",
                 ])->textarea()
@@ -85,8 +93,9 @@ $item['post_count'] = $dataProvider->pagination->offset;
                 <ul class="bblinks">
                     <li>Поддержка: <a onclick="window.open(this.href); return false;" href="http://rukeba.com/by-the-way/markdown-sintaksis-po-russki/">markdown</a></li>
                 </ul>
-            </div>
-        </fieldset>
+            </fieldset>
+            <div class="post-preview">Preview</div>
+        </div>
         <p class="buttons">
             <?= Html::submitButton(\Yii::t('app/topic', 'Submit')) ?>
         </p>
@@ -94,3 +103,9 @@ $item['post_count'] = $dataProvider->pagination->offset;
     </div>
     <?php endif; ?>
 </div>
+
+<?php $options = [
+    'text' => $model->message,
+];
+$options = empty($options) ? '' : \yii\helpers\Json::encode($options);
+$this->registerJs("jQuery('#quickpostform').post();"); ?>

@@ -67,6 +67,28 @@ class PostController extends \yii\web\Controller
     }
 
     /**
+     * @return string
+     */
+    public function actionPreview()
+    {
+        if (Yii::$app->getRequest()->getIsAjax()) {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            $text = Yii::$app->getRequest()->post('text');
+            if ($text == '') {
+                return 'Пустое сообщение';
+            }
+
+            $parsedown = new \app\helpers\MarkdownParser();
+            $text = $parsedown->text($_POST['text']);
+
+            return $text;
+        }
+
+        throw new NotFoundHttpException();
+    }
+
+    /**
      * @param $id topic identificator
      * @return string
      */
