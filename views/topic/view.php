@@ -2,10 +2,8 @@
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use cebe\gravatar\Gravatar;
 use app\helpers\AccessHelper;
 use app\models\Post;
 use app\models\Topic;
@@ -25,8 +23,6 @@ $author = implode(', ', array_unique($usernames));
 $this->title = $topic->subject;
 $this->description = $topic->subject;
 $this->author = $author;
-
-$formatter = Yii::$app->formatter;
 
 $this->params = [
     'page' => 'viewforum',
@@ -51,36 +47,8 @@ $item['post_count'] = $dataProvider->pagination->offset;
         </div>
     </div>
     <?php foreach($posts as $post): ?>
-    <?php $item['post_count']++ ?>
-    <div class="blockpost <?= ($item['post_count'] % 2 == 0) ? 'roweven' : 'rowodd' ?><?= ($item['post_count'] == 1) ? ' firstpost' : '' ?>" id="p<?= $post->id ?>">
-        <h2><span><span class="conr"><?= ($topic->first_post_user_id == $post->user->id) ? '<span class="post-author-label">Автор темы</span>' : '' ?> <a href="<?= Url::toRoute(['post/view', 'id' => $post->id, '#' => 'p' . $post->id]) ?>">#<?= $item['post_count'] ?></a></span><?= $formatter->asDatetime($post->created_at) ?></span></h2>
-        <div class="box">
-            <div class="inbox">
-                <div class="postbody">
-                    <div class="postleft">
-                        <dl>
-                            <dt><strong><a href="<?= Url::toRoute(['user/view', 'id' => $post->user_id])?>"><?= $post->user->username ?></a></strong></dt>
-                            <dd class="usertitle"><strong><?= $formatter->asText($post->user->displayTitle) ?></strong></dd>
-                            <dd class="postavatar"><?php echo Gravatar::widget([
-                                    'email' => $post->user->email,
-                                    'options' => [
-                                        'alt' => $post->user->username,
-                                    ],
-                                    'defaultImage' => 'retro',
-                                    'size' => 80
-                                ]); ?></dd>
-                            <dd><span><strong>Дата регистрации:</strong> <?= $formatter->asDate($post->user->registered) ?></span></dd>
-                            <dd><span><strong>Сообщений:</strong> <?= Yii::$app->formatter->asInteger($post->user->num_posts) ?></span></dd>
-                        </dl>
-                    </div>
-                    <div class="postright">
-                        <h3><?= $formatter->asText($topic->subject) ?></h3>
-                        <div class="postmsg"><?= $post->displayMessage ?></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        <?php $item['post_count']++ ?>
+        <?= $this->render('/post/view', ['topic' => $topic, 'post' => $post, 'count' => $item['post_count']])?>
     <?php endforeach; ?>
     <div class="linksb">
         <div class="inbox crumbsplus">
