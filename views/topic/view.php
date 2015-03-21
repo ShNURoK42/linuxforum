@@ -87,9 +87,8 @@ $item['post_count'] = $dataProvider->pagination->offset;
         <div class="infldset txtarea">
             <fieldset>
                 <?= $form->field($model, 'message', [
-                    'template' => "{label}\n{input}",
-                ])->textarea()
-                    ->label(\Yii::t('app/topic', 'Message')) ?>
+                    'template' => "{input}",
+                ])->textarea() ?>
                 <ul class="bblinks">
                     <li>Поддержка: <a onclick="window.open(this.href); return false;" href="http://rukeba.com/by-the-way/markdown-sintaksis-po-russki/">markdown</a></li>
                 </ul>
