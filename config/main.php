@@ -9,6 +9,8 @@ return [
     'language' => 'ru-RU',
     //'language' => 'en-US',
 
+    'bootstrap' => ['log'],
+
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -102,6 +104,28 @@ return [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
+        ],
+        'log' => [
+            'targets' => [
+                [
+                    'class' => 'yii\log\DbTarget',
+                    'levels' => ['error', 'warning'],
+                ],
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['error', 'warning'],
+                ],
+                [
+                    'class' => 'yii\log\EmailTarget',
+                    'levels' => ['error'],
+                    'categories' => ['yii\db\*'],
+                    'message' => [
+                        'from' => ['log@linuxforum.ru'],
+                        'to' => ['support@linuxforum.ru'],
+                        'subject' => 'Database errors at linuxforum.ru',
+                    ],
+                ],
+            ],
         ],
     ],
 ];
