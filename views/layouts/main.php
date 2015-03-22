@@ -3,6 +3,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 use app\assets\AppAsset;
+use app\assets\GoogleAsset;
 use app\widgets\Menu;
 use app\widgets\Welcome;
 

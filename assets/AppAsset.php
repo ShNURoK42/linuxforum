@@ -18,6 +18,7 @@ class AppAsset extends \yii\web\AssetBundle
         'js/post.js',
     ];
     public $depends = [
+        'app\assets\GoogleAssets',
         'yii\web\YiiAsset',
     ];
 }
