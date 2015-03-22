@@ -29,37 +29,33 @@ $this->params = [
     'header' => '<h2>' . \Yii::t('app/register', 'Error summary') . '</h2>',
 ]) ?>
 <?php endif; ?>
+<h2><span><?= $this->title ?></span></h2>
 <div class="blockform" id="postform">
-    <h2><span><?= $this->title ?></span></h2>
     <div class="box">
         <?php $form = ActiveForm::begin([
             'options' => ['id' => 'post'],
             'enableClientValidation' => false,
             'enableClientScript' => false,
         ]) ?>
-            <div class="inform">
-                <fieldset>
-                    <legend>Введите сообщение и нажмите Отправить</legend>
-                    <div class="infldset txtarea">
-                        <?= $form->field($model, 'subject', [
-                            'template' => "{label}\n{input}",
-                        ])->textInput([
-                            'size' => 70,
-                            'maxlength' => 255,
-                        ])->label(\Yii::t('app/topic', 'Subject')) ?>
-                        <?= $form->field($model, 'message', [
-                            'template' => "{label}\n{input}",
-                        ])->textarea([
-                            'cols' => 95,
-                            'rows' => 20,
-                        ])->label(\Yii::t('app/topic', 'Message')) ?>
-                        <ul class="bblinks">
-                            <li>Поддержка: <a onclick="window.open(this.href); return false;" href="http://rukeba.com/by-the-way/markdown-sintaksis-po-russki/">markdown</a></li>
-                        </ul>
-                    </div>
-                </fieldset>
-            </div>
+        <div class="infldset txtarea">
+            <?= $form->field($model, 'subject', [
+                'template' => "{label}\n{input}",
+            ])
+            ->textInput([
+                'size' => 70,
+                'maxlength' => 255,
+            ])
+            ->label(\Yii::t('app/topic', 'Subject')) ?>
+            <?= $form->field($model, 'message', [
+                'template' => "{label}\n{input}",
+            ])
+            ->textarea()
+            ->label(\Yii::t('app/topic', 'Message')) ?>
+            <ul class="bblinks">
+                <li>Поддержка: <a onclick="window.open(this.href); return false;" href="http://rukeba.com/by-the-way/markdown-sintaksis-po-russki/">markdown</a></li>
+            </ul>
             <p class="buttons"><?= Html::submitButton(\Yii::t('app/topic', 'Submit')) ?></p>
+        </div>
         <?php ActiveForm::end() ?>
     </div>
 </div>

@@ -1,7 +1,6 @@
 <?php
 use yii\helpers\Url;
 use cebe\gravatar\Gravatar;
-use yii\data\ActiveDataProvider;
 use app\models\Post;
 use app\models\Topic;
 
@@ -19,17 +18,18 @@ $formatter = Yii::$app->formatter;
                 <div class="postleft">
                     <dl>
                         <dt><strong><a href="<?= Url::toRoute(['user/view', 'id' => $post->user_id])?>"><?= $post->user->username ?></a></strong></dt>
-                        <dd class="usertitle"><strong><?= $formatter->asText($post->user->displayTitle) ?></strong></dd>
+                        <dd class="usertitle"></dd>
                         <dd class="postavatar"><?php echo Gravatar::widget([
                                 'email' => $post->user->email,
                                 'options' => [
                                     'alt' => $post->user->username,
                                 ],
                                 'defaultImage' => 'retro',
-                                'size' => 80
+                                'size' => 92
                             ]); ?></dd>
-                        <dd><span><strong>Дата регистрации:</strong> <?= $formatter->asDate($post->user->registered) ?></span></dd>
-                        <dd><span><strong>Сообщений:</strong> <?= Yii::$app->formatter->asInteger($post->user->num_posts) ?></span></dd>
+                        <dd><span><strong>Сообщений:</strong> <?= Yii::$app->formatter->asInteger($post->user->number_posts) ?></span></dd>
+                        <p></p>
+                        <dd><span><strong>Зарегистрирован:</strong> <?= $formatter->asDate($post->user->created_at) ?></span></dd>
                     </dl>
                 </div>
                 <div class="postright">

@@ -43,9 +43,9 @@ class UserController extends \yii\web\Controller
      */
     public function actionView($id)
     {
-        $model = User::findOne(['id' => $id]);
+        $user = User::findOne(['id' => $id]);
 
-        return $this->render('view', ['model' => $model]);
+        return $this->render('view', ['user' => $user]);
     }
 
     /**

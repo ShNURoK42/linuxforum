@@ -6,8 +6,6 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\data\Pagination;
-use yii\helpers\ArrayHelper;
-use app\models\Group;
 use app\models\User;
 
 /**
@@ -71,11 +69,7 @@ class SearchUsers extends Model
     {
         // create ActiveQuery
         $query = User::find()
-            ->select(['id', 'group_id', 'username', 'title', 'num_posts', 'registered'])
-            ->with('group');
-
-        // exclude guest row from userlist
-        $query->where(['NOT IN', 'id', 1]);
+            ->select(['id', 'username', 'number_posts', 'created_at']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -89,7 +83,7 @@ class SearchUsers extends Model
 
         if (!($this->load($params) && $this->validate())) {
             $query->addOrderBy([
-                'registered' => SORT_ASC,
+                'created_at' => SORT_ASC,
             ]);
 
             return $dataProvider;
@@ -97,15 +91,11 @@ class SearchUsers extends Model
 
         $query->andFilterWhere(['like', 'username', $this->username]);
 
-        if ($this->group_id != -1) {
-            $query->andFilterWhere(['group_id' => $this->group_id]);
-        }
-
-        $colomn = 'registered';
+        $colomn = 'created_at';
         if (strcasecmp($this->sort_by, 'username') == 0) {
             $colomn = 'username';
-        } elseif (strcasecmp($this->sort_by, 'number_posts') == 0 && Yii::$app->config->get('o_show_post_count') == '1') {
-            $colomn = 'num_posts';
+        } elseif (strcasecmp($this->sort_by, 'number_posts') == 0) {
+            $colomn = 'number_posts';
         }
 
         if (strcasecmp($this->sort_dir, 'ASC') == 0) {
@@ -115,18 +105,6 @@ class SearchUsers extends Model
         }
 
         return $dataProvider;
-    }
-
-    /**
-     * Prepare data for `User group` dropdown list on userlist page.
-     * @return array
-     */
-    public function getGroupItems()
-    {
-        $items =  Group::getDropDownItems();
-        $items = ArrayHelper::merge(['-1' => Yii::t('app/userlist', 'All')], $items);
-
-        return $items;
     }
 
     /**

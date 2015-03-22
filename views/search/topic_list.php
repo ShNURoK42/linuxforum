@@ -3,9 +3,6 @@
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
 use yii\helpers\Url;
-
-use app\helpers\AccessHelper;
-use app\models\Forum;
 use app\models\Topic;
 use app\widgets\Breadcrumbs;
 use app\widgets\LinkPager;
@@ -25,6 +22,8 @@ $this->params['breadcrumbs'] = [$this->title];
 $formatter = Yii::$app->formatter;
 
 $item['topic_count'] = 0;
+
+// ToDo: if null
 ?>
 <div class="linkst">
     <div class="inbox crumbsplus">

@@ -1,50 +1,50 @@
 <?php
+use cebe\gravatar\Gravatar;
 
 /* @var \app\components\View $this */
-/* @var \app\models\User $model */
+/* @var \app\models\User $user */
 
-$this->title = $model->username;
+$this->title = $user->username;
 $this->params['page'] = 'login';
 
 $formatter = Yii::$app->formatter;
 ?>
 <div id="viewprofile" class="block">
-    <h2><span><?= $model->username ?></span></h2>
-    <div class="box">
-        <div class="fakeform">
-            <div class="inform">
-                <fieldset>
-                    <legend><?= \Yii::t('app/profile', 'Section personal') ?></legend>
-                    <div class="infldset">
-                        <dl>
-                            <dt><?= \Yii::t('app/profile', 'Username') ?></dt><dd><?= $formatter->asText($model->username) ?></dd>
-                            <dt><?= \Yii::t('app/profile', 'User title') ?></dt><dd><?= $formatter->asText($model->displayTitle) ?></dd>
-                        </dl>
-                        <div class="clearer"></div>
-                    </div>
-                </fieldset>
-            </div>
-            <div class="inform">
-                <fieldset>
-                    <legend><?= \Yii::t('app/profile', 'User activity') ?></legend>
-                    <div class="infldset">
-                        <dl>
-                            <dt><?= \Yii::t('app/profile', 'Posts') ?></dt>
-                            <?php if ($model->num_posts > 0): ?>
-                            <dd><?= $formatter->asInteger($model->num_posts) ?></dd>
-                            <?php else: ?>
-                            <dd><?= \Yii::t('app/profile', 'No posts') ?></dd>
-                            <?php endif; ?>
-                            <?php if ($model->last_post): ?>
-                            <dt><?= \Yii::t('app/profile', 'Last post') ?></dt>
-                            <dd><?= $formatter->asDatetime($model->last_post) ?></dd>
-                            <?php endif; ?>
-                            <dt><?= \Yii::t('app/profile', 'Registered') ?></dt>
-                            <dd><?= $formatter->asDate($model->registered) ?></dd>
-                        </dl>
-                    </div>
-                </fieldset>
-            </div>
-        </div>
+    <h2><span><?= $user->username ?></span></h2>
+    <div class="infldset">
+        <dl>
+            <dt><?php echo Gravatar::widget([
+                    'email' => $user->email,
+                    'options' => [
+                        'alt' => $user->username,
+                    ],
+                    'defaultImage' => 'retro',
+                    'size' => 150
+                ]); ?></dt>
+            <dd style="min-height: 152px">
+                <?php if ($user->about): ?>
+                <div class="postsignature postmsg" style="min-height: 80px"><?= $user->displayAbout ?></div>
+                <?php else: ?>
+                <div class="postsignature postmsg" style="min-height: 80px">Пользователь не оставил информации о себе</div>
+                <?php endif; ?>
+            </dd>
+            <dl>
+                <dt>Статус</dt>
+                <dd>Пользователь</dd>
+                <dt><?= \Yii::t('app/profile', 'Posts') ?></dt>
+                <?php if ($user->number_posts > 0): ?>
+                    <dd><?= $formatter->asInteger($user->number_posts) ?></dd>
+                <?php else: ?>
+                    <dd><?= \Yii::t('app/profile', 'No posts') ?></dd>
+                <?php endif; ?>
+                <dt><?= \Yii::t('app/profile', 'Registered') ?></dt>
+                <dd><?= $formatter->asDate($user->created_at) ?></dd>
+                <?php if ($user->last_posted_at): ?>
+                    <dt><?= \Yii::t('app/profile', 'Last post') ?></dt>
+                    <dd><?= $formatter->asDatetime($user->last_posted_at) ?></dd>
+                <?php endif; ?>
+            </dl>
+        </dl>
+        <div class="clearer"></div>
     </div>
 </div>

@@ -24,33 +24,23 @@ $this->params['page'] = 'register';
             'enableClientValidation' => false,
             'enableClientScript' => false,
         ]) ?>
-        <div class="inform">
-                <fieldset>
-                    <legend><?= \Yii::t('app/register', 'Email legend') ?></legend>
-                    <div class="infldset">
-                        <?= $form->field($model, 'email', [
-                            'template' => "{label}\n{input}",
-                        ])->textInput([
-                            'size' => 50,
-                            'maxlength' => 80,
-                        ])->label(\Yii::t('app/register', 'Email')) ?>
-                    </div>
-                </fieldset>
+        <fieldset>
+            <div class="infldset">
+                <?= $form->field($model, 'email', [
+                    'template' => "{label}\n{input}",
+                ])->textInput([
+                    'size' => 32,
+                    'maxlength' => 80,
+                ])->label(\Yii::t('app/register', 'Email')) ?>
+                <?= $form->field($model, 'username', [
+                    'template' => "{label}\n{input}",
+                ])->textInput([
+                    'size' => 32,
+                    'maxlength' => 25,
+                ])->label(\Yii::t('app/register', 'Username')) ?>
+                <p class="buttons"><?= Html::submitButton(\Yii::t('app/register', 'Submit')) ?></p>
             </div>
-            <div class="inform">
-                <fieldset>
-                    <legend><?= \Yii::t('app/register', 'Username legend') ?></legend>
-                    <div class="infldset">
-                        <?= $form->field($model, 'username', [
-                            'template' => "{label}\n{input}",
-                        ])->textInput([
-                            'size' => 25,
-                            'maxlength' => 25,
-                        ])->label(\Yii::t('app/register', 'Username')) ?>
-                    </div>
-                </fieldset>
-            </div>
-        <p class="buttons"><?= Html::submitButton(\Yii::t('app/register', 'Submit')) ?></p>
+        </fieldset>
         <?php ActiveForm::end() ?>
     </div>
 </div>

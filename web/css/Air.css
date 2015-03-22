@@ -1057,10 +1057,6 @@ MAIN FORMS
     padding-bottom: 0;
 }
 
-.pun .inform {
-    padding: 0 18px;
-}
-
 .pun legend {
     font-weight: bold;
     padding: 10px 19px 4px 19px;
@@ -1075,13 +1071,8 @@ MAIN FORMS
 }
 
 .pun .infldset {
-    border-style: none solid solid;
-    border-width: 1px;
+    border: solid 1px;
     padding: 12px 18px;
-}
-
-#punregister #rules .infldset {
-    padding: 5px 18px;
 }
 
 .pun fieldset p {
@@ -1134,7 +1125,7 @@ MAIN FORMS
  }
 
 .pun form .buttons {
-    padding: 8px 19px 8px 34px;
+    padding: 8px 19px 8px 0;
     margin-bottom: -12px;
 }
 
@@ -1201,19 +1192,21 @@ MAIN FORMS
 }
 
 .pun #quickpost .bblinks {
+    float: right;
     padding-top: 0;
+    padding-right: 10px;
 }
 
-.pun #quickpost .bblinks li {
-    display: inline;
-}
-
-.pun #login p.clearb {
+.pun .login_actions {
     border-top-style: dotted;
     border-top-width: 1px;
     margin-top: 7px;
-    padding-bottom: 3px;
+    padding-bottom: 10px;
     padding-top: 7px;
+}
+
+.pun .login_actions a {
+    padding-right: 15px;
 }
 
 .pun #postreview {
@@ -1691,10 +1684,6 @@ html, body, .pun {
     padding-top: 3px;
 }
 
-#adminconsole .inform {
-    padding-bottom: 0;
-}
-
 #adminconsole .infldset {
     padding-bottom: 0;
     padding-top: 0;
@@ -1901,10 +1890,15 @@ html, body, .pun {
 
 .pun .post-preview {
     display: none;
+    min-height: 244px;
 }
 
 .pun .post-form-head {
     border-bottom: 1px solid #ddd;
     border-radius: 3px 3px 0 0;
     padding: 6px 10px 0;
+}
+
+.pun .clearer {
+    clear: both;
 }

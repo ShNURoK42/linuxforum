@@ -27,22 +27,17 @@ $this->params['page'] = 'register';
                 'name' => 'agree',
                 'value' => true,
             ]) ?>
-            <div class="inform">
-                <fieldset>
-                    <legend><?= \Yii::t('app/register', 'Rules legend') ?></legend>
-                    <div class="infldset">
-                        <div class="usercontent">
-                            <?= Yii::$app->config->get('o_rules_message') ?>
-                        </div>
-                    </div>
-                </fieldset>
+            <div class="infldset">
+                <div class="usercontent">
+                    <?= Yii::$app->config->get('o_rules_message') ?>
+                </div>
+                <div class="buttons">
+                    <?= Html::submitButton(\Yii::t('app/register', 'Rules agree')) ?>
+                    <?= Html::submitButton(\Yii::t('app/register', 'Rules cancel'), [
+                        'onclick' => "window.location='" . Url::toRoute('site/index') . "';return false;"
+                    ]) ?>
+                </div>
             </div>
-            <p class="buttons">
-                <?= Html::submitButton(\Yii::t('app/register', 'Rules agree')) ?>
-                <?= Html::submitButton(\Yii::t('app/register', 'Rules cancel'), [
-                    'onclick' => "window.location='" . Url::toRoute('site/index') . "';return false;"
-                ]) ?>
-            </p>
         <?php ActiveForm::end() ?>
     </div>
 </div>

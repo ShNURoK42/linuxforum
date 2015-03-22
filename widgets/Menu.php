@@ -42,12 +42,7 @@ class Menu extends \yii\base\Widget
             $items[] = $links['login'];
         } else {
             $items[] = $links['profile'];
-            if (AccessHelper::isAdmMod()) {
-                $items[] = $links['search'];
-                //$items[] = $links['admin'];
-            } elseif (AccessHelper::can('read_board') && AccessHelper::can('search')) {
-                $items[] = $links['search'];
-            }
+            $items[] = $links['search'];
             $items[] = $links['logout'];
         }
 

@@ -15,15 +15,6 @@ use app\models\ForumPermission;
 class AccessHelper
 {
     /**
-     * Checks having user permission to access to administration panel.
-     * return boolean
-     */
-    public static function isAdmMod()
-    {
-        return (Yii::$app->getUser()->getGroupID() == Group::GROUP_ADMIN || static::can('moderator'));
-    }
-
-    /**
      * @param Forum $forum
      * @return boolean
      */
@@ -38,7 +29,7 @@ class AccessHelper
      */
     public static function canCreateTopic($forum)
     {
-        return ((ForumPermission::canCreateTopic($forum->id) && static::can('post_topics')) || static::isAdmMod());
+        return (ForumPermission::canCreateTopic($forum->id) && static::can('post_topics')) ;
     }
 
     /**

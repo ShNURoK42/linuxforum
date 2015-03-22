@@ -78,7 +78,7 @@ AppAsset::register($this);
             <?= csKeysDb::getBlock($_SERVER["REQUEST_URI"], 2) ?>
         </div>
         <div style="float: right; border-radius: 10px; color: #566579; border: 1px solid #cad7e1;">
-            <ul style="margin: 15px; padding: 0 10px 0 0; line-height: 1; font-size: 11px;">
+            <ul style="margin: 10px; padding: 0; line-height: 1; font-size: 11px;">
                 <?php if (Yii::$app->controller->route == 'site/index'): ?>
                 <li><a href=http://www.zapravkairemont.ru>заправка картриджей hp</a></li>
                 <li>Профессиональная <a href=http://pchlp.ru/>компьютерная помощь на дому</a> в Москве</li>

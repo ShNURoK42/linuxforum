@@ -25,36 +25,30 @@ $this->params['page'] = 'login';
             'enableClientValidation' => false,
             'enableClientScript' => false,
         ]) ?>
-        <div class="inform">
-            <fieldset>
-                <legend><?= \Yii::t('app/login', 'Legend') ?></legend>
-                <div class="infldset">
-                    <?= $form->field($model, 'email', [
-                        'template' => "{label}\n{input}",
-                        'options' => ['class' => 'form-group inline'],
-                    ])->textInput([
-                        'size' => 25,
-                        'maxlength' => 80,
-                    ])->label(\Yii::t('app/login', 'Email')) ?>
-                    <?= $form->field($model, 'password', [
-                        'template' => "{label}\n{input}",
-                        'options' => ['class' => 'form-group inline'],
-                    ])->passwordInput([
-                        'size' => 25,
-                    ])->label(\Yii::t('app/login', 'Password')) ?>
-                    <div class="rbox clearb">
-                        <?= $form->field($model, 'remember')
-                            ->checkbox(['label' => \Yii::t('app/login', 'Remember')]) ?>
-                    </div>
-                    <p class="clearb"></p>
-                    <p class="actions">
-                        <span><a href="<?= Url::toRoute('user/register') ?>"><?= \Yii::t('app/login', 'Not registered') ?></a></span>
-                        <span><a href="<?= Url::toRoute('user/forget') ?>"><?= \Yii::t('app/login', 'Forgotten password') ?></a></span>
-                    </p>
-                </div>
-            </fieldset>
+        <div class="infldset">
+            <?= $form->field($model, 'email', [
+                'template' => "{label}\n{input}",
+                'options' => ['class' => 'form-group inline'],
+            ])->textInput([
+                'size' => 25,
+                'maxlength' => 80,
+            ])->label(\Yii::t('app/login', 'Email')) ?>
+            <?= $form->field($model, 'password', [
+                'template' => "{label}\n{input}",
+                'options' => ['class' => 'form-group inline'],
+            ])->passwordInput([
+                'size' => 25,
+            ])->label(\Yii::t('app/login', 'Password')) ?>
+            <div class="rbox clearb">
+                <?= $form->field($model, 'remember')
+                    ->checkbox(['label' => \Yii::t('app/login', 'Remember')]) ?>
+            </div>
+            <p class="login_actions">
+                <a href="<?= Url::toRoute('user/register') ?>"><?= \Yii::t('app/login', 'Not registered') ?></a>
+                <a href="<?= Url::toRoute('user/forget') ?>"><?= \Yii::t('app/login', 'Forgotten password') ?></a>
+            </p>
+            <div class="buttons"><?= Html::submitButton(\Yii::t('app/login', 'Submit')) ?></div>
         </div>
-        <p class="buttons"><?= Html::submitButton(\Yii::t('app/login', 'Submit')) ?></p>
         <?php ActiveForm::end() ?>
     </div>
 </div>

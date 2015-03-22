@@ -72,14 +72,14 @@ class RegisterForm extends \yii\base\Model
             $user = new User();
             $password = Yii::$app->security->generateRandomString(12);
 
-            $user->group_id = Group::GROUP_UNVERIFIED;
+            $user->role_id = Group::GROUP_UNVERIFIED;
             $user->username = $this->username;
             $user->email = $this->email;
             $user->salt = Yii::$app->security->generateSalt();
             $user->password = Yii::$app->security->generatePasswordHashForum($password, $user->salt);
-            $user->registered = time();
+            $user->created_at = time();
             $user->registration_ip = Yii::$app->request->userIP;
-            $user->last_visit = time();
+            $user->last_visited_at = time();
 
             if ($this->sendMail($user, $password)) {
                 return $user->save();

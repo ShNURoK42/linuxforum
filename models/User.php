@@ -4,76 +4,52 @@ namespace app\models;
 
 use Yii;
 use yii\base\NotSupportedException;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
+use app\helpers\MarkdownParser;
 
 /**
  * This is the model class for table "users".
  *
- * @property string $id user identificator.
- * @property string $group_id user group.
+ * @property integer $id
+ * @property integer $role_id
  * @property string $username
  * @property string $password
  * @property string $salt
  * @property string $email
- * @property string $title
- * @property string $realname
- * @property string $url
- * @property string $facebook
- * @property string $twitter
- * @property string $linkedin
- * @property string $skype
- * @property string $jabber
- * @property string $icq
- * @property string $msn
- * @property string $aim
- * @property string $yahoo
- * @property string $location
- * @property string $signature
- * @property integer $email_setting
- * @property integer $notify_with_post
- * @property integer $auto_notify
- * @property integer $show_smilies
- * @property integer $show_img
- * @property integer $show_img_sig
- * @property integer $show_avatars
- * @property integer $show_sig
- * @property integer $access_keys
- * @property double $timezone
- * @property string $language
- * @property string $style
- * @property integer $num_posts
- * @property string $last_post
- * @property string $last_search
- * @property string $last_email_sent
- * @property string $registered
  * @property string $registration_ip
- * @property string $last_visit
+ * @property string $about
+ * @property float $timezone
+ * @property integer $number_posts
+ * @property integer $last_posted_at
+ * @property integer $last_email_sent
+ * @property integer $created_at
+ * @property integer $last_visited_at
  * @property string $activate_string
  * @property string $activate_key
- * @property integer $pun_pm_new_messages
- * @property integer $pun_pm_long_subject
- * @property integer $avatar
- * @property integer $avatar_width
- * @property integer $avatar_height
- * @property integer $stick_favorites
- * @property integer $enable_pm_email
- * @property string $birthday
- * @property integer $bday_email
+ * @property integer $updated_at
  *
  * @property Group $group
  * @property Post[] $posts
- *
- * @property string $displayTitle
- * @property integer $commonTimezone
+ * @property string $displayAbout
  */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+            ],
+        ];
+    }
+
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return '{{%users}}';
+        return '{{%user}}';
     }
 
     /**
@@ -164,44 +140,24 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return $this->getAuthKey() === $authKey;
     }
 
-    /**
-     * @return string
-     */
-    public function getDisplayTitle()
-    {
-        $formatter = Yii::$app->formatter;
-        if (isset($this->title)) {
-            $title = $formatter->asText($this->title);
-        } elseif (isset($this->group->g_user_title)) {
-            $title = $formatter->asText($this->group->g_user_title);
-        } elseif ($this->group_id == 2) {
-            $title = Yii::t('app/common', 'Guest');
-        } else {
-            $title = Yii::t('app/common', 'Member');
-        }
-
-        return $title;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getCommonTimezone()
-    {
-        if (!isset($this->timezone)) {
-            return Yii::$app->config->get('o_default_timezone');
-        }
-
-        return $this->timezone;
-    }
-
     public function incrementPost()
     {
-        $this->num_posts = $this->num_posts + 1;
+        $this->number_posts = $this->number_posts + 1;
     }
 
     public function decrementPost()
     {
-        $this->num_posts = $this->num_posts - 1;
+        $this->number_posts = $this->number_posts - 1;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDisplayAbout()
+    {
+        $parsedown = new MarkdownParser();
+        $text = $parsedown->text($this->about);
+
+        return $text;
     }
 }

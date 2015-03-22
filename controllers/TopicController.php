@@ -36,20 +36,7 @@ class TopicController extends \yii\web\Controller
         $topic->incrementView();
         $topic->save();
 
-        $query = Post::find()
-            ->where(['topic_id' => $id])
-            ->with('user', 'user.group')
-            ->orderBy(['created_at' => SORT_ASC]);
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => [
-                'forcePageParam' => false,
-                'pageSizeLimit' => false,
-                'defaultPageSize' => Yii::$app->config->get('o_disp_posts_default'),
-            ],
-        ]);
-
+        $dataProvider = Post::getDataProviderByTopic($topic->id);
         $posts = $dataProvider->getModels();
 
         if (AccessHelper::canPostReplyInTopic($topic)) {

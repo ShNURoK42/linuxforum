@@ -85,19 +85,17 @@ $item['post_count'] = $dataProvider->pagination->offset;
             </nav>
         </div>
         <div class="infldset txtarea">
-            <fieldset>
-                <?= $form->field($model, 'message', [
-                    'template' => "{input}",
-                ])->textarea() ?>
-                <ul class="bblinks">
-                    <li>Поддержка: <a onclick="window.open(this.href); return false;" href="http://rukeba.com/by-the-way/markdown-sintaksis-po-russki/">markdown</a></li>
-                </ul>
-            </fieldset>
-            <div class="post-preview postmsg">Preview</div>
+            <ul class="bblinks">
+                <li>Поддержка: <a onclick="window.open(this.href); return false;" href="http://rukeba.com/by-the-way/markdown-sintaksis-po-russki/">markdown</a></li>
+            </ul>
+            <?= $form->field($model, 'message', [
+                'template' => "{input}",
+            ])->textarea() ?>
+            <div class="post-preview postmsg"></div>
+            <p class="buttons">
+                <?= Html::submitButton(\Yii::t('app/topic', 'Submit')) ?>
+            </p>
         </div>
-        <p class="buttons">
-            <?= Html::submitButton(\Yii::t('app/topic', 'Submit')) ?>
-        </p>
         <?php ActiveForm::end() ?>
     </div>
     <?php endif; ?>

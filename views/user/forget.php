@@ -23,20 +23,17 @@ $this->params['page'] = 'login';
             'enableClientValidation' => false,
             'enableClientScript' => false,
         ]) ?>
-        <div class="inform">
-            <fieldset>
-                <legend><?= \Yii::t('app/forget', 'Legend') ?></legend>
-                <div class="infldset">
-                    <?= $form->field($model, 'email', [
-                        'template' => "{label}\n{input}\n<p>" . \Yii::t('app/forget', 'Email info') . "</p>",
-                    ])->textInput([
-                        'size' => 50,
-                        'maxlength' => 255,
-                    ])->label(\Yii::t('app/forget', 'Email')) ?>
-                </div>
-            </fieldset>
+        <div class="infldset">
+            <?= $form->field($model, 'email', [
+                'template' => "{label}\n{input}\n<p>" . \Yii::t('app/forget', 'Email info') . "</p>",
+            ])
+            ->textInput([
+                'size' => 50,
+                'maxlength' => 255,
+            ])
+            ->label(\Yii::t('app/forget', 'Email')) ?>
+            <p class="buttons"><?= Html::submitButton(\Yii::t('app/forget', 'Submit')) ?></p>
         </div>
-        <p class="buttons"><?= Html::submitButton(\Yii::t('app/forget', 'Submit')) ?></p>
         <?php ActiveForm::end() ?>
     </div>
 </div>

@@ -35,24 +35,12 @@ class PostController extends \yii\web\Controller
             throw new NotFoundHttpException();
         }
 
-        $query = Post::find()
-            ->where(['topic_id' => $post->topic_id])
-            ->with('user', 'user.group')
-            ->orderBy(['created_at' => SORT_ASC]);
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => [
-                'route' => 'topic/view',
-                'params' => [
-                    'id' => $topic->id,
-                    'page' => $this->getPostPage($post),
-                ],
-                'forcePageParam' => false,
-                'pageSizeLimit' => false,
-                'defaultPageSize' => Yii::$app->config->get('o_disp_posts_default'),
-            ],
-        ]);
+        $dataProvider = Post::getDataProviderByTopic($topic->id);
+        $dataProvider->pagination->route = 'topic/view';
+        $dataProvider->pagination->params = [
+            'id' => $topic->id,
+            'page' => $this->getPostPage($post),
+        ];
 
         $posts = $dataProvider->getModels();
 
@@ -76,7 +64,7 @@ class PostController extends \yii\web\Controller
 
             $text = Yii::$app->getRequest()->post('text');
             if ($text == '') {
-                return 'Пустое сообщение';
+                return 'Пустое сообщение.';
             }
 
             $parsedown = new \app\helpers\MarkdownParser();

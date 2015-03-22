@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-use yii\behaviors\TimestampBehavior;
+use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
 use app\helpers\MarkdownParser;
 
@@ -20,6 +20,7 @@ use app\helpers\MarkdownParser;
  * @property User $user
  * @property Topic $topic
  * @property string $displayMessage
+ * @property ActiveDataProvider $dataProvider
  */
 class Post extends \yii\db\ActiveRecord
 {
@@ -60,6 +61,29 @@ class Post extends \yii\db\ActiveRecord
     public function getTopic()
     {
         return $this->hasOne(Topic::className(), ['id' => 'topic_id']);
+    }
+
+    /**
+     * @param $id
+     * @return ActiveDataProvider
+     */
+    public static function getDataProviderByTopic($id)
+    {
+        $query = static::find()
+            ->where(['topic_id' => $id])
+            ->with('user')
+            ->orderBy(['created_at' => SORT_ASC]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'forcePageParam' => false,
+                'pageSizeLimit' => false,
+                'defaultPageSize' => Yii::$app->config->get('o_disp_posts_default'),
+            ],
+        ]);
+
+        return $dataProvider;
     }
 
     /**

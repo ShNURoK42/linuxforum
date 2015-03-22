@@ -50,7 +50,6 @@ class Topic extends \yii\db\ActiveRecord
             $this->number_views = 0;
             $this->first_post_id = $this->_post->id;
             $this->last_post_id = $this->_post->id;
-
         }
 
         return parent::beforeSave($insert);
@@ -83,6 +82,7 @@ class Topic extends \yii\db\ActiveRecord
 
     /**
      * @param Post $post
+     * @return self
      */
     public function setPost($post)
     {
