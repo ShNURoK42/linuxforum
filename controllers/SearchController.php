@@ -31,7 +31,7 @@ class SearchController extends \yii\web\Controller
 
         $topics = $dataProvider->getModels();
 
-        return $this->render('view_active_topics', [
+        return $this->render('topic_list', [
             'dataProvider' => $dataProvider,
             'topics' => $topics,
         ]);
