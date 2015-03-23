@@ -17,7 +17,6 @@ use app\helpers\MarkdownParser;
  * @property string $password
  * @property string $salt
  * @property string $email
- * @property string $registration_ip
  * @property string $about
  * @property float $timezone
  * @property integer $number_posts

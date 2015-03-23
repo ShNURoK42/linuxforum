@@ -61,7 +61,7 @@ class m150322_194512_fix_user extends Migration
         $this->dropColumn($this->table, 'language');
         $this->dropColumn($this->table, 'style');
         $this->dropColumn($this->table, 'last_search');
-        $this->dropColumn($this->table, 'admin_note');
+        $this->dropColumn($this->table, 'registration_ip');
 
         $this->dropColumn($this->table, 'avatar');
         $this->dropColumn($this->table, 'avatar_width');

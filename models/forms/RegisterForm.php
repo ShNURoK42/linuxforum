@@ -78,7 +78,6 @@ class RegisterForm extends \yii\base\Model
             $user->salt = Yii::$app->security->generateSalt();
             $user->password = Yii::$app->security->generatePasswordHashForum($password, $user->salt);
             $user->created_at = time();
-            $user->registration_ip = Yii::$app->request->userIP;
             $user->last_visited_at = time();
 
             if ($this->sendMail($user, $password)) {
