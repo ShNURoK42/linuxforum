@@ -46,7 +46,7 @@ class Topic extends \yii\db\ActiveRecord
             $this->last_post_created_at = time();
             $this->last_post_username = $user->username;
             $this->last_post_user_id = $user->id;
-            $this->number_posts = 1;
+            $this->number_posts = 0;
             $this->number_views = 0;
             $this->first_post_id = $this->_post->id;
             $this->last_post_id = $this->_post->id;

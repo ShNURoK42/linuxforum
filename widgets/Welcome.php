@@ -24,7 +24,13 @@ class Welcome extends \yii\base\Widget
             $content .= Html::tag('div', '', ['class' => 'clearer']);
         } else {
             $content .= Html::tag('p', 'Вы вошли как: ' . Yii::$app->getUser()->getIdentity()->username, ['class' => 'conl']);
-            $content .= Html::tag('p', Html::a('Активные темы', Url::toRoute('search/view-active-topics')), ['class' => 'conr']);
+
+            $items[] = Html::a('Активные темы', Url::toRoute('search/view-active-topics'));
+            $items[] = '|';
+            $items[] =  Html::a('Темы без ответов', Url::toRoute('search/view-active-topics'));
+
+            $content .= Html::ul($items, ['class' => 'conr', 'encode' => false]);
+
             $content .= Html::tag('div', '', ['class' => 'clearer']);
         }
 
