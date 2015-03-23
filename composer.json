@@ -4,11 +4,13 @@
         "yiisoft/yii2": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "erusev/parsedown": "*",
-        "cebe/yii2-gravatar": "*"
+        "cebe/yii2-gravatar": "*",
+        "bower-asset/normalize.css": "*",
+        "bower-asset/jgrowl": "*"
     },
     "require-dev": {
-      "yiisoft/yii2-gii": "*",
-      "yiisoft/yii2-debug": "*"
+        "yiisoft/yii2-gii": "*",
+        "yiisoft/yii2-debug": "*"
     },
     "scripts": {
         "post-create-project-cmd": [
