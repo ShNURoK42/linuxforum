@@ -15,7 +15,7 @@ use app\models\forms\TopicForm;
 /**
  * Class TopicController
  */
-class TopicController extends \yii\web\Controller
+class TopicController extends \app\components\BaseController
 {
     /**
      * @param $id topic identificator.

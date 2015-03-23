@@ -12,7 +12,7 @@ use app\models\Topic;
 /**
  * Class ForumController
  */
-class ForumController extends \yii\web\Controller
+class ForumController extends \app\components\BaseController
 {
     /**
      * @param $id

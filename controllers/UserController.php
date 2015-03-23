@@ -15,7 +15,7 @@ use app\models\search\SearchUsers;
 /**
  * Class UserController
  */
-class UserController extends \yii\web\Controller
+class UserController extends \app\components\BaseController
 {
     /**
      * @inheritdoc

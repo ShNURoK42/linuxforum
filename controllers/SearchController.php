@@ -9,7 +9,7 @@ use yii\web\NotFoundHttpException;
 use app\models\Post;
 use app\models\Topic;
 
-class SearchController extends \yii\web\Controller
+class SearchController extends \app\components\BaseController
 {
     public function actionViewActiveTopics()
     {

@@ -4,6 +4,7 @@ use yii\db\ActiveRecord;
 use yii\helpers\Url;
 use app\models\Category;
 use app\models\Forum;
+use app\models\Online;
 
 /**
  * @var \app\components\View $this
@@ -75,3 +76,23 @@ $formatter = Yii::$app->formatter;
 </div>
 <?php endforeach; ?>
 <?php endif; ?>
+<div class="block" id="brdstats">
+    <div class="box">
+        <div class="inbox">
+            <dl class="conr">
+                <dd><span>Тем: <strong><?= $formatter->asInteger(\app\models\Topic::find()->count()) ?></strong></span></dd>
+                <dd><span>Сообщений: <strong><?= $formatter->asInteger(\app\models\Post::find()->count()) ?></strong></span></dd>
+            </dl>
+            <dl class="conl">
+                <dd><span>Количество пользователей: <strong><?= $formatter->asInteger(\app\models\User::find()->count()) ?></strong></span></dd>
+                <dd style="display: none"><span>Последним зарегистрировался: <a href="profile.php?id=60868">JessieMTran</a></span></dd>
+            </dl>
+            <dl class="clearb" id="onlinelist">
+                <dt><strong>Сейчас на форуме: </strong></dt>
+                <dd><?= Online::countGuests() ?> гостей,</dd>
+                <dd><?= Online::countUsers() ?> пользователей,</dd>
+                <dd><?= implode(', ', \yii\helpers\ArrayHelper::getColumn(Online::getActiveUsers(), 'username')) ?></dd>
+            </dl>
+        </div>
+    </div>
+</div>

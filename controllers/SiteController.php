@@ -11,7 +11,7 @@ use app\models\ForumPermission;
 /**
  * Class SiteController
  */
-class SiteController extends \yii\web\Controller
+class SiteController extends \app\components\BaseController
 {
     /**
      * @return string

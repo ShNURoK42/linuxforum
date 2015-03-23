@@ -945,11 +945,16 @@ MAIN POSTS
     font-size: 0.923em;
 }
 
+.pun pre {
+    padding: 7px;
+}
+
 .pun code {
+    display: block;
     border-style: solid;
     border-width: 1px;
-    margin: 0.75em 1em;
-    padding: 0;
+    margin: 0;
+    padding: 5px;
 }
 
 .pun blockquote {

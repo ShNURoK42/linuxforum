@@ -14,7 +14,7 @@ use app\models\Topic;
 /**
  * Class PostController
  */
-class PostController extends \yii\web\Controller
+class PostController extends \app\components\BaseController
 {
     /**
      * @param $id
