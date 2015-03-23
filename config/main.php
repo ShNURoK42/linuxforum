@@ -59,6 +59,7 @@ return [
                 // SearchController
                 'search/active_topics' => 'search/view-active-topics',
                 'search/unanswered_topics' => 'search/view-unanswered-topics',
+                'search/ownpost_topics' => 'search/view-ownpost-topics',
 
                 // Admin
                 'admin' => 'admin-index/index',
