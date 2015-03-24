@@ -7,6 +7,7 @@ use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
 use app\helpers\MarkdownParser;
 
+
 /**
  * @property integer $id
  * @property integer $topic_id
@@ -92,7 +93,9 @@ class Post extends \yii\db\ActiveRecord
     public function getDisplayMessage()
     {
         $parsedown = new MarkdownParser();
-        $text = $parsedown->text($this->message);
+        $text = $parsedown
+            ->setMarkupEscaped(true)
+            ->text($this->message);
 
         return $text;
     }

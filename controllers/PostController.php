@@ -4,8 +4,7 @@ namespace app\controllers;
 
 use app\models\forms\PostForm;
 use Yii;
-use yii\data\ActiveDataProvider;
-use yii\base\InvalidParamException;
+use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 use app\helpers\AccessHelper;
 use app\models\Post;
@@ -68,7 +67,9 @@ class PostController extends \app\components\BaseController
             }
 
             $parsedown = new \app\helpers\MarkdownParser();
-            $text = $parsedown->text($_POST['text']);
+            $text = $parsedown
+                ->setMarkupEscaped(true)
+                ->text($_POST['text']);
 
             return $text;
         }
