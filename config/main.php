@@ -12,6 +12,9 @@ return [
     'bootstrap' => ['log'],
 
     'components' => [
+        'authManager' => [
+            'class' => 'app\components\auth\AuthManager',
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

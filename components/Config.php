@@ -22,7 +22,7 @@ class Config extends \yii\base\Component
     /**
      * @var string config table name.
      */
-    public $configTable = 'config';
+    public $configTable = '{{%config}}';
     /**
      * @var Cache|string the cache object or the application component ID of the cache object.
      */
@@ -73,7 +73,7 @@ class Config extends \yii\base\Component
     {
         $rows = (new Query)
             ->select('*')
-            ->from('{{%' . $this->configTable . '}}')
+            ->from($this->configTable)
             ->all($this->db);
 
         return ArrayHelper::map($rows, 'conf_name', 'conf_value');

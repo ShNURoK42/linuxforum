@@ -6,6 +6,9 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',
     'components' => [
+        'authManager' => [
+            'class' => 'app\components\auth\AuthManager',
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

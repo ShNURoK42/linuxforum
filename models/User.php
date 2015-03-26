@@ -12,6 +12,7 @@ use app\helpers\MarkdownParser;
  * This is the model class for table "users".
  *
  * @property integer $id
+ * @property string $role
  * @property integer $role_id
  * @property string $username
  * @property string $password

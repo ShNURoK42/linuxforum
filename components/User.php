@@ -6,9 +6,8 @@ use Yii;
 use app\models\Group;
 
 /**
- * @property \app\models\User|\yii\web\IdentityInterface|null $identity
  * @property integer $groupID current user group identificator.
- * @property boolean $isAdmMod
+ * @property \app\models\User|\yii\web\IdentityInterface|null $identity
  *
  * @method \app\models\User|\yii\web\IdentityInterface|null getIdentity()
  */
@@ -36,5 +35,28 @@ class User extends \yii\web\User
     public function getGroupID()
     {
         return $this->isGuest ? Group::GROUP_GUEST : $this->getIdentity()->role_id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->getIsGuest() ? Yii::$app->authManager->defaultRole : $this->getIdentity()->role;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function can($permissionName, $params = [], $allowCaching = true)
+    {
+        if (!$this->getIsGuest()) {
+            $auth = Yii::$app->getAuthManager();
+            $role = $this->getIdentity()->role;
+
+            return $auth->checkAccess($role, $permissionName, $params);
+        }
+
+        return false;
     }
 }
