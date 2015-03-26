@@ -121,6 +121,7 @@
 #postform-message {
   background-color: #fafafa;
   min-height: 200px;
+  resize: vertical;
 }
 #postform-message:focus {
   background-color: #fff;
@@ -132,6 +133,9 @@
   padding: 5px 5px 15px 15px;
   margin-bottom: 10px;
   min-height: 200px;
+}
+.tabnav-tabs a {
+  font-size: 12px;
 }
 
 
