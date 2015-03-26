@@ -9,42 +9,42 @@ $this->params['page'] = 'login';
 
 $formatter = Yii::$app->formatter;
 ?>
-<div id="viewprofile" class="block">
-    <h2><span><?= $user->username ?></span></h2>
-    <div class="infldset">
-        <dl>
-            <dt><?php echo Gravatar::widget([
-                    'email' => $user->email,
-                    'options' => [
-                        'alt' => $user->username,
-                    ],
-                    'defaultImage' => 'retro',
-                    'size' => 150
-                ]); ?></dt>
-            <dd style="min-height: 152px">
-                <?php if ($user->about): ?>
-                <div class="postsignature postmsg" style="min-height: 30px"><?= $user->displayAbout ?></div>
-                <?php else: ?>
-                <div class="postsignature postmsg" style="min-height: 30px">Пользователь не оставил информации о себе</div>
-                <?php endif; ?>
-                <dl>
-                    <dt>Статус</dt>
-                    <dd>Пользователь</dd>
-                    <dt><?= \Yii::t('app/profile', 'Posts') ?></dt>
-                    <?php if ($user->number_posts > 0): ?>
-                        <dd><?= $formatter->asInteger($user->number_posts) ?></dd>
-                    <?php else: ?>
-                        <dd><?= \Yii::t('app/profile', 'No posts') ?></dd>
-                    <?php endif; ?>
-                    <dt><?= \Yii::t('app/profile', 'Registered') ?></dt>
-                    <dd><?= $formatter->asDate($user->created_at) ?></dd>
-                    <?php if ($user->last_posted_at): ?>
-                        <dt><?= \Yii::t('app/profile', 'Last post') ?></dt>
-                        <dd><?= $formatter->asDatetime($user->last_posted_at) ?></dd>
-                    <?php endif; ?>
-                </dl>
-            </dd>
-        </dl>
-        <div class="clearer"></div>
+<div class="page-profile">
+    <?php echo Gravatar::widget([
+        'email' => $user->email,
+        'options' => [
+            'alt' => $user->username,
+            'class' => 'avatar',
+            'width' => 150,
+            'height' => 150,
+        ],
+        'defaultImage' => 'retro',
+        'size' => 150
+    ]); ?>
+    <div class="profile-box">
+        <h2>about</h2>
+        <?php if ($user->about): ?>
+        <?= $user->displayAbout ?>
+        <?php else: ?>
+        <p>Пользователь не оставил информации о себе.</p>
+        <?php endif; ?>
+    </div>
+    <div class="profile-box">
+        <h2>information</h2>
+        <p><strong>Статус:</strong> Пользователь</p>
+        <p><strong>Количество сообщений:</strong>
+        <?php if ($user->number_posts > 0): ?>
+        <?= $formatter->asInteger($user->number_posts) ?>
+        <?php else: ?>
+        <?= \Yii::t('app/profile', 'No posts') ?>
+        <?php endif; ?></p>
+        <p><strong>Дата регистрации:</strong> <?= $formatter->asDate($user->created_at) ?></p>
+        <?php if ($user->last_posted_at): ?>
+            <p><strong>Последнее сообщение:</strong> <?= $formatter->asDatetime($user->last_posted_at) ?></p>
+        <?php endif; ?>
+    </div>
+    <div class="profile-box">
+        <h2>contact</h2>
+        <p>Почта.</p>
     </div>
 </div>

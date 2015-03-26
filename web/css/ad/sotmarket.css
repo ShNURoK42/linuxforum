@@ -1,13 +1,13 @@
-.pun .b-sotmarket-banner .space_none {
+.b-sotmarket-banner .space_none {
     padding: 0;
     margin: 0;
 }
-.pun .b-sotmarket-banner {
+.b-sotmarket-banner {
     width: 310px; /* здесь задается ширина баннера*/
     position: relative;
     font: 13px/16px Arial, sans-serif;
 }
-.pun .b-sotmarket-banner-head {
+.b-sotmarket-banner-head {
     height: 32px;
     background: url(/img/b-logo.png) 50% 50% no-repeat #000;  /* #000 это дефолтный цвет баннера */
     -webkit-border-radius: 7px 7px 0 0;
@@ -24,24 +24,24 @@
     }
 */
 /* MOD: color style */
-.pun .b-sotmarket-banner.mod_red .b-sotmarket-banner-head{
+.b-sotmarket-banner.mod_red .b-sotmarket-banner-head{
     background-color: #e71c27;
 }
-.pun .b-sotmarket-banner.mod_green .b-sotmarket-banner-head{
+.b-sotmarket-banner.mod_green .b-sotmarket-banner-head{
     /* background-color: #3ab448; */
     background-color: #1f6ebc;
 }
-.pun .b-sotmarket-banner.mod_gray .b-sotmarket-banner-head{
+.b-sotmarket-banner.mod_gray .b-sotmarket-banner-head{
     background-color: #464646;
 }
-.pun .b-sotmarket-banner.mod_blue .b-sotmarket-banner-head{
+.b-sotmarket-banner.mod_blue .b-sotmarket-banner-head{
     background-color: #1f6ebc;
 }
-.pun .b-sotmarket-banner.mod_pink .b-sotmarket-banner-head{
+.b-sotmarket-banner.mod_pink .b-sotmarket-banner-head{
     background-color: #c1529b;
 }
 /* b-sotmarket-banner-content */
-.pun .b-sotmarket-banner-content {
+.b-sotmarket-banner-content {
     border: 1px solid #c6c6c6;
     padding: 15px 20px;
     position: relative;
@@ -49,17 +49,17 @@
     -moz-border-radius: 0 0 7px 7px;
     border-radius: 0 0 7px 7px;
 }
-.pun .b-sotmarket-banner-product {
+.b-sotmarket-banner-product {
     overflow: hidden;
     display: block;
 }
-.pun .b-sotmarket-banner-product-image {
+.b-sotmarket-banner-product-image {
     float: left;
     padding-right: 10px;
     border: none;
     vertical-align: middle;
 }
-.pun .b-sotmarket-banner-product-text {
+.b-sotmarket-banner-product-text {
     color: #2d5898;
     text-decoration: underline;
     min-width: 100px;
@@ -69,7 +69,7 @@
     zoom:1;
 }
 /* b-sotmarket-banner-main-link */
-.pun .b-sotmarket-banner-main-link {
+.b-sotmarket-banner-main-link {
     position: absolute;
     z-index: 2;
     width: 100%;

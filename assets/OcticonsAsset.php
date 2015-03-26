@@ -2,16 +2,16 @@
 
 namespace app\assets;
 
-class NormalizeAsset extends \yii\web\AssetBundle
+class OcticonsAsset extends \yii\web\AssetBundle
 {
     /**
      * @inheritdoc
      */
-    public $sourcePath = '@bower/normalize.css';
+    public $sourcePath = '@bower/octicons/octicons';
     /**
      * @inheritdoc
      */
     public $css = [
-        'normalize.css',
+        'octicons.css',
     ];
 }

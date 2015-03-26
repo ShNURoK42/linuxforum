@@ -10,7 +10,6 @@ $this->title = $params['name'];
 $this->params['page'] = 'info';
 ?>
 <div class="callout callout-info">
-    <h2><span><?= $this->title ?></span></h2>
     <div class="box">
         <div class="inbox">
             <p><?= $params['message'] ?></p>

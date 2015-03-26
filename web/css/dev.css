@@ -1,0 +1,451 @@
+/* TOPIC */
+#topicform-message {
+  min-height: 200px;
+}
+
+/* POST */
+.post-box {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #b9c5ce;
+  margin-bottom: -1px;
+  overflow: hidden;
+  position: relative;
+}
+.post-body {
+  background: none repeat scroll 0 0 #fcfdfe;
+  border-color: #dfe6ee;
+  border-style: none solid;
+  border-width: 1px;
+
+  float: right;
+  margin-right: -218px;
+  position: relative;
+  text-align: left;
+  width: 100%;
+}
+.inbox {
+  float: right;
+  position: relative;
+  width: 100%;
+  background-color: #f2f8fa;
+
+}
+.post-left {
+  background-color: #f2f8fa;
+  border-color: #dfe6ee;
+  border-right-style: solid;
+  border-right-width: 1px;
+  float: left;
+  margin-left: -218px;
+  padding: 7px 12px;
+  position: relative;
+  width: 218px;
+}
+.post-right {
+  padding: 10px 230px 7px 18px;
+  position: relative;
+}
+.post-right-header {
+  position: relative;
+  padding: 3px 230px 3px 18px;
+  line-height: 24px;
+  background-color: #f2f8fa;
+  border-color: #dfe6ee;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  color: #8e9597;
+}
+.post-username {
+  font-weight: bold;
+  font-size: 14px;
+  padding-bottom: 5px;
+}
+.post-avatar {
+  padding-bottom: 30px;
+}
+.post-number-posts {
+  padding-bottom: 0;
+}
+.post-header-time {
+  font-size: 12px;
+}
+.post-header-owner {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  float: right;
+  font-size: 12px;
+  margin: 2px 0 0 10px;
+  padding: 4px 8px;
+  line-height: 1;
+}
+.post-header-count {
+  float: right;
+  padding-top: 2px;
+  padding-left: 10px;
+}
+.post-header-edit {
+  float: right;
+  margin-top: 2px;
+}
+.octicon-btn {
+  color: #777;
+}
+.octicon-btn:hover {
+  color: #4183c4;
+}
+
+/* QUICK POST */
+.quickpost {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin-top: 30px;
+}
+.quickpost .form-actions {
+  padding: 10px;
+}
+.quickpost-header {
+  background: none repeat scroll 0 0 #f7f7f7;
+  border-radius: 3px 3px 0 0;
+  padding: 6px 10px 0;
+  margin-bottom: 10px;
+}
+.field-postform-message {
+  margin: 10px;
+}
+.tabnav {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+#postform-message {
+  background-color: #fafafa;
+  min-height: 200px;
+}
+#postform-message:focus {
+  background-color: #fff;
+}
+.post-preview {
+  display: none;
+  background-color: transparent;
+  border-bottom: 1px solid #eee;
+  padding: 5px 5px 15px 15px;
+  margin-bottom: 10px;
+  min-height: 200px;
+}
+
+
+
+
+.search-links {
+  padding-bottom: 20px;
+}
+.search-links-list {
+  list-style: outside none none;
+}
+.search-links-list > li {
+  display: inline;
+}
+
+
+
+
+
+.new-topic-btn {
+  padding-bottom: 10px;
+}
+
+
+/* TABLE */
+.fifteenth {
+  width: 15%;
+}
+.tens {
+  width: 10%;
+}
+.table-column-title {
+  font-size: 14px;
+}
+.stickytext,
+.closedtext {
+  font-size: 12px;
+  font-weight: bold;
+}
+.byuser {
+  font-size: 12px;
+  color: #888;
+}
+
+table {
+  background-color: transparent;
+}
+caption {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: #999999;
+  text-align: left;
+}
+thead {
+  background-color: #e6f1f6;
+}
+th {
+  text-align: left;
+}
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid #dddddd;
+}
+.table > thead > tr > th {
+  vertical-align: bottom;
+}
+.table > caption + thead > tr:first-child > th,
+.table > colgroup + thead > tr:first-child > th,
+.table > thead:first-child > tr:first-child > th,
+.table > caption + thead > tr:first-child > td,
+.table > colgroup + thead > tr:first-child > td,
+.table > thead:first-child > tr:first-child > td {
+  border-top: 0;
+}
+.table > tbody + tbody {
+  border-top: 2px solid #dddddd;
+}
+.table .table {
+  background-color: #ffffff;
+}
+.table-condensed > thead > tr > th,
+.table-condensed > tbody > tr > th,
+.table-condensed > tfoot > tr > th,
+.table-condensed > thead > tr > td,
+.table-condensed > tbody > tr > td,
+.table-condensed > tfoot > tr > td {
+  padding: 5px;
+}
+.table-bordered {
+  border: 1px solid #dddddd;
+}
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+  border: 1px solid #dddddd;
+}
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td {
+  border-bottom-width: 2px;
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+.table-hover > tbody > tr:hover {
+  background-color: #f5f5f5;
+}
+table col[class*="col-"] {
+  position: static;
+  float: none;
+  display: table-column;
+}
+table td[class*="col-"],
+table th[class*="col-"] {
+  position: static;
+  float: none;
+  display: table-cell;
+}
+.table > thead > tr > td.active,
+.table > tbody > tr > td.active,
+.table > tfoot > tr > td.active,
+.table > thead > tr > th.active,
+.table > tbody > tr > th.active,
+.table > tfoot > tr > th.active,
+.table > thead > tr.active > td,
+.table > tbody > tr.active > td,
+.table > tfoot > tr.active > td,
+.table > thead > tr.active > th,
+.table > tbody > tr.active > th,
+.table > tfoot > tr.active > th {
+  background-color: #f5f5f5;
+}
+.table-hover > tbody > tr > td.active:hover,
+.table-hover > tbody > tr > th.active:hover,
+.table-hover > tbody > tr.active:hover > td,
+.table-hover > tbody > tr:hover > .active,
+.table-hover > tbody > tr.active:hover > th {
+  background-color: #e8e8e8;
+}
+.table > thead > tr > td.success,
+.table > tbody > tr > td.success,
+.table > tfoot > tr > td.success,
+.table > thead > tr > th.success,
+.table > tbody > tr > th.success,
+.table > tfoot > tr > th.success,
+.table > thead > tr.success > td,
+.table > tbody > tr.success > td,
+.table > tfoot > tr.success > td,
+.table > thead > tr.success > th,
+.table > tbody > tr.success > th,
+.table > tfoot > tr.success > th {
+  background-color: #dff0d8;
+}
+.table-hover > tbody > tr > td.success:hover,
+.table-hover > tbody > tr > th.success:hover,
+.table-hover > tbody > tr.success:hover > td,
+.table-hover > tbody > tr:hover > .success,
+.table-hover > tbody > tr.success:hover > th {
+  background-color: #d0e9c6;
+}
+.table > thead > tr > td.info,
+.table > tbody > tr > td.info,
+.table > tfoot > tr > td.info,
+.table > thead > tr > th.info,
+.table > tbody > tr > th.info,
+.table > tfoot > tr > th.info,
+.table > thead > tr.info > td,
+.table > tbody > tr.info > td,
+.table > tfoot > tr.info > td,
+.table > thead > tr.info > th,
+.table > tbody > tr.info > th,
+.table > tfoot > tr.info > th {
+  background-color: #d9edf7;
+}
+.table-hover > tbody > tr > td.info:hover,
+.table-hover > tbody > tr > th.info:hover,
+.table-hover > tbody > tr.info:hover > td,
+.table-hover > tbody > tr:hover > .info,
+.table-hover > tbody > tr.info:hover > th {
+  background-color: #c4e3f3;
+}
+.table > thead > tr > td.warning,
+.table > tbody > tr > td.warning,
+.table > tfoot > tr > td.warning,
+.table > thead > tr > th.warning,
+.table > tbody > tr > th.warning,
+.table > tfoot > tr > th.warning,
+.table > thead > tr.warning > td,
+.table > tbody > tr.warning > td,
+.table > tfoot > tr.warning > td,
+.table > thead > tr.warning > th,
+.table > tbody > tr.warning > th,
+.table > tfoot > tr.warning > th {
+  background-color: #fcf8e3;
+}
+.table-hover > tbody > tr > td.warning:hover,
+.table-hover > tbody > tr > th.warning:hover,
+.table-hover > tbody > tr.warning:hover > td,
+.table-hover > tbody > tr:hover > .warning,
+.table-hover > tbody > tr.warning:hover > th {
+  background-color: #faf2cc;
+}
+.table > thead > tr > td.danger,
+.table > tbody > tr > td.danger,
+.table > tfoot > tr > td.danger,
+.table > thead > tr > th.danger,
+.table > tbody > tr > th.danger,
+.table > tfoot > tr > th.danger,
+.table > thead > tr.danger > td,
+.table > tbody > tr.danger > td,
+.table > tfoot > tr.danger > td,
+.table > thead > tr.danger > th,
+.table > tbody > tr.danger > th,
+.table > tfoot > tr.danger > th {
+  background-color: #f2dede;
+}
+.table-hover > tbody > tr > td.danger:hover,
+.table-hover > tbody > tr > th.danger:hover,
+.table-hover > tbody > tr.danger:hover > td,
+.table-hover > tbody > tr:hover > .danger,
+.table-hover > tbody > tr.danger:hover > th {
+  background-color: #ebcccc;
+}
+.table-responsive {
+  overflow-x: auto;
+  min-height: 0.01%;
+}
+
+/* page-terms */
+.page-terms {
+  font-size: 90%;
+}
+
+.page-terms ul {
+  padding: 0;
+}
+
+.page-terms li {
+  list-style-type: none;
+}
+
+.page-terms ul li > ul li {
+  padding-left: 20px;
+}
+
+.page-terms ul li > ul li > ul li {
+  padding-left: 30px;
+}
+
+.page-terms ul li > ul li > ul li > ul {
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.page-terms ul li > ul li > ul li > ul li {
+  list-style-type: disc;
+  padding-left: 5px;
+  margin-left: 50px;
+}
+
+/* page-userlist */
+
+.page-userlist form {
+  margin-bottom: 30px;
+}
+
+.page-userlist fieldset {
+  margin-bottom: 15px;
+}
+
+.page-userlist .form-group {
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+.page-userlist .form-group {
+  width: 33%;
+}
+
+
+
+
+.page-profile .avatar {
+  float: left;
+  margin-right: 30px;
+}
+
+.profile-box {
+  margin-bottom: 15px;
+}
+.profile-box h2::before {
+  content: "/";
+  margin-right: 5px;
+}
+.profile-box h2 {
+  color: #ec7263;
+  font-size: 1.6em;
+  margin: 0;
+}
+.profile-box p {
+  margin: 5px 0 10px;
+}

@@ -2,17 +2,16 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-use app\assets\AppAsset;
-use app\assets\GoogleAsset;
-use app\widgets\Menu;
-use app\widgets\Welcome;
+use app\assets\MainAsset;
+use app\widgets\Navigation;
+use app\widgets\PageHead;
 
 /**
  * @var \app\components\View $this
  * @var $content string
  */
 
-AppAsset::register($this);
+MainAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -39,46 +38,48 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<div id="pun<?= $this->params['page'] ?>" class="pun">
-    <div class="punwrap">
-        <div id="brdheader" class="block">
-            <div class="box">
-                <div id="brdtitle" class="inbox">
-                    <h1><a href="<?= Url::home() ?>"><?= Yii::$app->config->get('o_board_title') ?></a></h1>
-                </div>
-                <?php if (Yii::$app->config->get('o_board_desc')): ?>
-                <?php endif; ?>
-                <?= Menu::widget() ?>
-                <?= Welcome::widget() ?>
-            </div>
+<header class="header">
+    <div class="container">
+        <div class="navbar-brand">
+            <? if (Yii::$app->controller->route == 'site/index'): ?>
+                <span><?= Yii::$app->config->get('o_board_title') ?></span>
+            <? else: ?>
+                <a href="<?= Yii::$app->urlManager->createUrl('site/index') ?>"><?= Yii::$app->config->get('o_board_title') ?></a>
+            <? endif; ?>
         </div>
-        <div id="brdmain">
-            <?= $content ?>
-        </div>
-        <div id="brdfooter" class="block">
-            <h2><span>Board footer</span></h2>
-            <div class="box">
-                <div id="brdfooternav" class="inbox">
-                    <div class="conl">
-
-                    </div>
-                    <div class="conr">
-                        <p id="copyright" style="display: block">
-                            <span>&copy;&nbsp;<a href="<?= Url::home() ?>"><?= Yii::$app->config->get('o_board_title') ?></a>,&nbsp;<?= date('Y') ?></span>
-                        </p>
-                    </div>
-                </div>
-            </div>
+        <?= Navigation::widget(['position' => 'header']); ?>
+    </div>
+</header>
+<section class="content">
+    <?= PageHead::widget(['title' => $this->title, 'subtitle' => $this->subtitle]) ?>
+    <div class="pagecontent">
+        <div class="container">
+            <?= $content; ?>
         </div>
     </div>
-    <?php if (Yii::$app->getUser()->getIsGuest()): ?>
-    <div class="ads-box" style="overflow: hidden; margin-top: 10px; color: #566579; padding: 0;">
-        <div style="float: left">
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="copyright">
+            <h6>&copy;&nbsp;<?= Yii::$app->config->get('o_board_title') ?>,&nbsp;<?= date('Y') ?></h6>
+        </div>
+        <div class="footbar">
+            <?= Navigation::widget(['position' => 'footer']); ?>
+        </div>
+    </div>
+</footer>
+
+
+
+<?php if (Yii::$app->getUser()->getIsGuest()): ?>
+<div class="container">
+    <div class="ads-box clearfix" style="margin: 10px 0 30px; color: #566579; padding: 0;">
+        <div class="pull-left">
             <?php require Yii::$app->basePath . '/ads/slibs/csKeysDb.php' ?>
             <?= csKeysDb::getBlock($_SERVER["REQUEST_URI"], 2) ?>
         </div>
-        <div style="float: right; border-radius: 10px; color: #566579; border: 1px solid #cad7e1;">
-            <ul style="margin: 10px; padding: 0; line-height: 1; font-size: 11px;">
+        <div class="pull-right" style="border-radius: 10px; color: #566579; border: 1px solid #cad7e1;">
+            <ul style="margin: 10px; padding: 0; line-height: 1; font-size: 11px; list-style: outside none none;">
                 <?php if (Yii::$app->controller->route == 'site/index'): ?>
                 <li><a href=http://www.zapravkairemont.ru>заправка картриджей hp</a></li>
                 <li>Профессиональная <a href=http://pchlp.ru/>компьютерная помощь на дому</a> в Москве</li>
@@ -94,9 +95,9 @@ AppAsset::register($this);
             </ul>
         </div>
     </div>
-    <?php endif; ?>
-</div>
-</body>
+<div class="container">
+<?php endif; ?>
 <?php $this->endBody() ?>
+</body>
 </html>
 <?php $this->endPage() ?>

@@ -3,12 +3,12 @@ use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\helpers\Url;
+use app\widgets\ActiveForm;
 use app\helpers\AccessHelper;
 use app\models\Post;
 use app\models\Topic;
 use app\models\forms\PostForm;
-use app\widgets\Breadcrumbs;
 use app\widgets\LinkPager;
 
 /* @var \app\components\View $this */
@@ -23,78 +23,42 @@ $usernames = ArrayHelper::getColumn($users, 'username');
 $author = implode(', ', array_unique($usernames));
 
 $this->title = $topic->subject;
+$this->subtitle = 'вернуться в раздел <a href="' . Url::to(['forum/view', 'id' => $topic->forum->id]) . '">' . $topic->forum->forum_name . '</a>';
 $this->description = $topic->subject;
 $this->author = $author;
 
-$this->params = [
-    'page' => 'viewforum',
-    'breadcrumbs' => [
-        ['label' => $topic->forum->forum_name, 'url' => ['forum/view', 'id' => $topic->forum->id]],
-        ['label' => $topic->subject]
-    ],
-];
-
 $item['post_count'] = $dataProvider->pagination->offset;
 ?>
-<div id="brdmain">
-    <div class="linkst">
-        <div class="inbox crumbsplus">
-            <?= Breadcrumbs::widget() ?>
-            <div class="pagepost">
-                <div class="pagelink conl">
-                    <?= LinkPager::widget(['pagination' => $dataProvider->pagination]) ?>
-                </div>
-            </div>
-            <div class="clearer"></div>
-        </div>
-    </div>
+<div class="view-topic">
     <?php foreach($posts as $post): ?>
         <?php $item['post_count']++ ?>
         <?= $this->render('/post/view', ['topic' => $topic, 'post' => $post, 'count' => $item['post_count']])?>
     <?php endforeach; ?>
-    <div class="linksb">
-        <div class="inbox crumbsplus">
-            <div class="pagepost">
-                <div class="pagelink conl">
-                    <?= LinkPager::widget(['pagination' => $dataProvider->pagination]) ?>
-                </div>
-            </div>
-            <?= Breadcrumbs::widget() ?>
-            <div class="clearer"></div>
-        </div>
+    <div class="text-center">
+        <?= LinkPager::widget(['pagination' => $dataProvider->pagination]) ?>
     </div>
 
     <?php if (AccessHelper::canPostReplyInTopic($topic)): ?>
-    <?php if ($model->hasErrors()): ?>
-        <?= Html::errorSummary($model, [
-            'class' => 'callout callout-danger',
-            'header' => '<h2>' . \Yii::t('app/register', 'Error summary') . '</h2>',
-        ]) ?>
-    <?php endif; ?>
-    <div class="blockform" id="quickpost">
+    <div class="quickpost" id="quickpostform">
         <?php $form = ActiveForm::begin([
             'action' => ['topic/view', 'id' => $topic->id, '#' => 'quickpostform'],
             'options' => ['id' => 'quickpostform'],
-            'enableClientValidation' => false,
-            'enableClientScript' => false,
         ]) ?>
-        <div class="post-form-head">
+        <div class="quickpost-header tabnav">
+            <div class="right">
+                <a class="tabnav-extra" target="_blank" href="http://linuxforum.ru/topic/38070"><span class="octicon octicon-markdown"></span>Поддержка markdown</a>
+            </div>
             <nav class="tabnav-tabs">
-                <a class="tabnav-tab write-tab js-write-tab selected" href="#">Набор сообщения</a>
-                <a class="tabnav-tab preview-tab js-preview-tab" href="#">Предпросмотр</a>
+                <a href="#" class="tabnav-tab js-write-tab selected">Набор сообщения</a>
+                <a href="#" class="tabnav-tab js-preview-tab">Предпросмотр</a>
             </nav>
         </div>
-        <div class="infldset txtarea">
-            <ul class="bblinks">
-                <li>Поддержка: <a onclick="window.open(this.href); return false;" href="http://rukeba.com/by-the-way/markdown-sintaksis-po-russki/">markdown</a></li>
-            </ul>
-            <?= $form->field($model, 'message', [
-                'template' => "{input}",
-            ])->textarea() ?>
-            <div class="post-preview postmsg"></div>
-            <p class="buttons">
-                <?= Html::submitButton(\Yii::t('app/topic', 'Submit')) ?>
-            </p>
+        <?= $form->field($model, 'message', [
+            'template' => "{input}",
+        ])->textarea() ?>
+        <div class="post-preview postmsg markdown-body"></div>
+        <div class="form-actions">
+            <?= Html::submitButton('Отправить сообщение', ['class' => 'btn btn-primary']) ?>
         </div>
         <?php ActiveForm::end() ?>
     </div>

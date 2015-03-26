@@ -36,7 +36,6 @@
             $this.find('.js-preview-tab').removeClass('selected');
             $this.find('.js-write-tab').addClass('selected');
             $this.find('.field-postform-message').show();
-            $this.find('.bblinks').show();
             $this.find('.post-preview').hide();
         },
 
@@ -55,7 +54,6 @@
                     $this.find('.js-write-tab').removeClass('selected');
                     $this.find('.js-preview-tab').addClass('selected');
                     $this.find('.field-postform-message').hide();
-                    $this.find('.bblinks').hide();
 
                     $this.find('.post-preview').show().html(data);
                 }

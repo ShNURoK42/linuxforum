@@ -45,11 +45,9 @@ class SiteController extends \app\components\BaseController
      * This action render the rule page.
      * @return string
      */
-    public function actionRules()
+    public function actionTerms()
     {
-        $rules = Yii::$app->config->get('o_rules_message');
-
-        return $this->render('rules', ['rules' => $rules]);
+        return $this->render('terms');
     }
 
     /**

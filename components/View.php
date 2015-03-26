@@ -12,11 +12,15 @@ use yii\data\Pagination;
 class View extends \yii\web\View
 {
     /**
-     * @var string the page description
+     * @var string the page subtitle.
+     */
+    public $subtitle;
+    /**
+     * @var string the page description.
      */
     public $description;
     /**
-     * @var string the page keywords
+     * @var string the page keywords.
      */
     public $keywords;
     /**

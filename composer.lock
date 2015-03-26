@@ -4,53 +4,8 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4825a23f70b7c03e33f4b34f4573ee07",
+    "hash": "d53867c5fc254272d7e6d14a7b054095",
     "packages": [
-        {
-            "name": "bower-asset/jgrowl",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/stanlemon/jGrowl.git",
-                "reference": "253f3d7f2aba93c958d6d14a7a2be1584bae81ee"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/stanlemon/jGrowl/zipball/253f3d7f2aba93c958d6d14a7a2be1584bae81ee",
-                "reference": "253f3d7f2aba93c958d6d14a7a2be1584bae81ee",
-                "shasum": ""
-            },
-            "require": {
-                "bower-asset/jquery": ">=1.4"
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": "jquery.jgrowl.js",
-                "bower-asset-ignore": [
-                    "**/.*",
-                    "node_modules",
-                    "bower_components",
-                    "test",
-                    "tests"
-                ],
-                "branch-alias": {
-                    "dev-master": "1.4.2-dev"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "jGrowl is an unobtrusive notification system for web applications.",
-            "keywords": [
-                "growl",
-                "jgrowl",
-                "jquery",
-                "message",
-                "notification",
-                "toaster"
-            ],
-            "time": "2015-03-05 13:11:03"
-        },
         {
             "name": "bower-asset/jquery",
             "version": "2.1.3",
@@ -147,34 +102,118 @@
             ]
         },
         {
-            "name": "bower-asset/normalize.css",
+            "name": "bower-asset/octicons",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/necolas/normalize.css.git",
-                "reference": "0c31dada5189a577f16fc61cbd8680e7f35bcca3"
+                "url": "https://github.com/github/octicons.git",
+                "reference": "681229fad90b19f2b68fb7fbd0ce409bf9d4178a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/necolas/normalize.css/zipball/0c31dada5189a577f16fc61cbd8680e7f35bcca3",
-                "reference": "0c31dada5189a577f16fc61cbd8680e7f35bcca3",
+                "url": "https://api.github.com/repos/github/octicons/zipball/681229fad90b19f2b68fb7fbd0ce409bf9d4178a",
+                "reference": "681229fad90b19f2b68fb7fbd0ce409bf9d4178a",
                 "shasum": ""
             },
             "type": "bower-asset-library",
             "extra": {
-                "bower-asset-main": "normalize.css",
+                "bower-asset-main": [
+                    "octicons/sprockets-octicons.scss",
+                    "octicons/octicons.eot",
+                    "octicons/octicons.svg",
+                    "octicons/octicons.ttf",
+                    "octicons/octicons.woff"
+                ],
                 "bower-asset-ignore": [
-                    "CHANGELOG.md",
-                    "CONTRIBUTING.md",
-                    "component.json",
-                    "package.json",
-                    "test.html"
+                    "**/.*",
+                    "bower_components"
+                ]
+            },
+            "license": [
+                "SIL OFL 1.1, MIT"
+            ],
+            "description": "GitHub's icon font",
+            "keywords": [
+                "GitHub",
+                "font",
+                "icon font",
+                "icons",
+                "web font"
+            ],
+            "time": "2015-02-20 18:58:21"
+        },
+        {
+            "name": "bower-asset/primer-css",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/primer/primer.git",
+                "reference": "e4ed1234fbb5c7066215da06e9d2d5312313146d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/primer/primer/zipball/e4ed1234fbb5c7066215da06e9d2d5312313146d",
+                "reference": "e4ed1234fbb5c7066215da06e9d2d5312313146d",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/octicons": "*",
+                "bower-asset/primer-markdown": "2.1.7"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "scss/primer.scss"
+                ],
+                "bower-asset-ignore": [
+                    "docs/",
+                    "script/",
+                    ".gitignore",
+                    ".scss-lint.yml",
+                    "_config.yml",
+                    "Gemfile",
+                    "Gemfile.lock",
+                    "Rakefile"
                 ],
                 "branch-alias": {
-                    "dev-master": "3.0.2-dev"
+                    "dev-master": "2.0.2-dev"
                 }
             },
-            "time": "2015-03-17 18:52:17"
+            "time": "2015-03-24 17:46:10"
+        },
+        {
+            "name": "bower-asset/primer-markdown",
+            "version": "v2.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/primer/markdown.git",
+                "reference": "66c71cd395676b58fe3de587fb643eb0c11509d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/primer/markdown/zipball/66c71cd395676b58fe3de587fb643eb0c11509d8",
+                "reference": "66c71cd395676b58fe3de587fb643eb0c11509d8",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "dist/github-markdown.css"
+                ],
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "*.js",
+                    "README.md",
+                    "Gruntfile.js",
+                    "package.json",
+                    "render-test.md"
+                ]
+            },
+            "keywords": [
+                "css",
+                "github",
+                "markdown"
+            ]
         },
         {
             "name": "bower-asset/punycode",
@@ -345,111 +384,6 @@
             "time": "2014-03-09 20:08:32"
         },
         {
-            "name": "doctrine/lexer",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/lexer.git",
-                "reference": "83893c552fd2045dd78aef794c31e694c37c0b8c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/lexer/zipball/83893c552fd2045dd78aef794c31e694c37c0b8c",
-                "reference": "83893c552fd2045dd78aef794c31e694c37c0b8c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Doctrine\\Common\\Lexer\\": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Roman Borschel",
-                    "email": "roman@code-factory.org"
-                },
-                {
-                    "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com"
-                },
-                {
-                    "name": "Johannes Schmitt",
-                    "email": "schmittjoh@gmail.com"
-                }
-            ],
-            "description": "Base library for a lexer that can be used in Top-Down, Recursive Descent Parsers.",
-            "homepage": "http://www.doctrine-project.org",
-            "keywords": [
-                "lexer",
-                "parser"
-            ],
-            "time": "2014-09-09 13:34:57"
-        },
-        {
-            "name": "egulias/email-validator",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "0a26375a7a1b25567604d666e1f13123ce636542"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/0a26375a7a1b25567604d666e1f13123ce636542",
-                "reference": "0a26375a7a1b25567604d666e1f13123ce636542",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/lexer": "~1.0,>=1.0.1",
-                "php": ">= 5.3.3"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.4",
-                "satooshi/php-coveralls": "dev-master"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.3.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Egulias\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Eduardo Gulias Davis"
-                }
-            ],
-            "description": "A library for validating emails",
-            "homepage": "https://github.com/egulias/EmailValidator",
-            "keywords": [
-                "email",
-                "validation",
-                "validator"
-            ],
-            "time": "2015-03-08 00:24:16"
-        },
-        {
             "name": "erusev/parsedown",
             "version": "dev-master",
             "source": {
@@ -534,21 +468,20 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "dev-master",
+            "version": "5.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "e7cf4bd807b44be83d8922b3a1abe4d11a3fb15a"
+                "reference": "048be6f7c19944d604e321347990543bc2bbe10b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/e7cf4bd807b44be83d8922b3a1abe4d11a3fb15a",
-                "reference": "e7cf4bd807b44be83d8922b3a1abe4d11a3fb15a",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/048be6f7c19944d604e321347990543bc2bbe10b",
+                "reference": "048be6f7c19944d604e321347990543bc2bbe10b",
                 "shasum": ""
             },
             "require": {
-                "egulias/email-validator": "~1.2",
-                "php": ">=5.5.0"
+                "php": ">=5.3.3"
             },
             "require-dev": {
                 "mockery/mockery": "~0.9.1"
@@ -556,7 +489,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.0-dev"
+                    "dev-master": "5.4-dev"
                 }
             },
             "autoload": {
@@ -583,7 +516,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2015-03-23 09:56:17"
+            "time": "2015-03-14 06:07:26"
         },
         {
             "name": "yiisoft/yii2",
@@ -591,12 +524,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "bcb9117115bf5e3f2fd3bb25fcf38f5c3a937f7a"
+                "reference": "50425fb9af782517684ba1b6d1595d8f795e6c57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/bcb9117115bf5e3f2fd3bb25fcf38f5c3a937f7a",
-                "reference": "bcb9117115bf5e3f2fd3bb25fcf38f5c3a937f7a",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/50425fb9af782517684ba1b6d1595d8f795e6c57",
+                "reference": "50425fb9af782517684ba1b6d1595d8f795e6c57",
                 "shasum": ""
             },
             "require": {
@@ -671,7 +604,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-03-21 12:52:44"
+            "time": "2015-03-26 01:54:06"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -679,12 +612,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-composer.git",
-                "reference": "6769727e41dabb5e98a83842b776333317815e3e"
+                "reference": "24f53b745b6517258aedcff4f7dda7459aae503b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-composer/zipball/6769727e41dabb5e98a83842b776333317815e3e",
-                "reference": "6769727e41dabb5e98a83842b776333317815e3e",
+                "url": "https://api.github.com/repos/yiisoft/yii2-composer/zipball/24f53b745b6517258aedcff4f7dda7459aae503b",
+                "reference": "24f53b745b6517258aedcff4f7dda7459aae503b",
                 "shasum": ""
             },
             "require": {
@@ -718,7 +651,7 @@
                 "extension installer",
                 "yii2"
             ],
-            "time": "2015-03-22 22:14:44"
+            "time": "2015-03-23 18:34:13"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
@@ -726,16 +659,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-swiftmailer.git",
-                "reference": "5d5e9de8ea963b128380ab4d11d3a7be1a8e82fe"
+                "reference": "e204c9920deb730f0a53b05ebacfa18c7a9ac0b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-swiftmailer/zipball/5d5e9de8ea963b128380ab4d11d3a7be1a8e82fe",
-                "reference": "5d5e9de8ea963b128380ab4d11d3a7be1a8e82fe",
+                "url": "https://api.github.com/repos/yiisoft/yii2-swiftmailer/zipball/e204c9920deb730f0a53b05ebacfa18c7a9ac0b7",
+                "reference": "e204c9920deb730f0a53b05ebacfa18c7a9ac0b7",
                 "shasum": ""
             },
             "require": {
-                "swiftmailer/swiftmailer": "*",
+                "swiftmailer/swiftmailer": "~5.0",
                 "yiisoft/yii2": "*"
             },
             "type": "yii2-extension",
@@ -768,7 +701,7 @@
                 "swiftmailer",
                 "yii2"
             ],
-            "time": "2015-03-22 20:25:57"
+            "time": "2015-03-25 09:26:59"
         }
     ],
     "packages-dev": [
@@ -891,12 +824,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "137ccf75fbe9d0dec9ab6078909d8259c289a40e"
+                "reference": "90e3df6da4f642c3e6f505856c5f98c7bfee51c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/137ccf75fbe9d0dec9ab6078909d8259c289a40e",
-                "reference": "137ccf75fbe9d0dec9ab6078909d8259c289a40e",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/90e3df6da4f642c3e6f505856c5f98c7bfee51c1",
+                "reference": "90e3df6da4f642c3e6f505856c5f98c7bfee51c1",
                 "shasum": ""
             },
             "require": {
@@ -907,6 +840,10 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "2.0.x-dev"
+                },
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
                 }
             },
             "autoload": {
@@ -929,7 +866,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2015-03-22 21:13:31"
+            "time": "2015-03-23 15:47:34"
         },
         {
             "name": "yiisoft/yii2-debug",
@@ -937,12 +874,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
-                "reference": "f95d6801897db3461e036fa5b8ffdc289c8cdb00"
+                "reference": "11f46389c9818a0638555902ce5ad2e9e10ec3ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/f95d6801897db3461e036fa5b8ffdc289c8cdb00",
-                "reference": "f95d6801897db3461e036fa5b8ffdc289c8cdb00",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/11f46389c9818a0638555902ce5ad2e9e10ec3ed",
+                "reference": "11f46389c9818a0638555902ce5ad2e9e10ec3ed",
                 "shasum": ""
             },
             "require": {
@@ -976,7 +913,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2015-03-22 22:19:54"
+            "time": "2015-03-23 18:34:58"
         },
         {
             "name": "yiisoft/yii2-gii",
@@ -984,12 +921,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-gii.git",
-                "reference": "2b6cf3cb138101935e97b29d8317179d90aa6606"
+                "reference": "6db607dffc8605bd9d212e9a83bebbcf7f5b99d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/2b6cf3cb138101935e97b29d8317179d90aa6606",
-                "reference": "2b6cf3cb138101935e97b29d8317179d90aa6606",
+                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/6db607dffc8605bd9d212e9a83bebbcf7f5b99d6",
+                "reference": "6db607dffc8605bd9d212e9a83bebbcf7f5b99d6",
                 "shasum": ""
             },
             "require": {
@@ -1002,6 +939,10 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "2.0.x-dev"
+                },
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
                 }
             },
             "autoload": {
@@ -1025,7 +966,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2015-03-22 22:04:35"
+            "time": "2015-03-23 18:28:16"
         }
     ],
     "aliases": [],

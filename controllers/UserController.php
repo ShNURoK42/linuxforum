@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 use app\models\User;
 use app\models\forms\ForgetForm;
-use app\models\forms\RegisterForm;
+use app\models\forms\RegistrationForm;
 use app\models\forms\LoginForm;
 use app\models\search\SearchUsers;
 
@@ -66,22 +66,12 @@ class UserController extends \app\components\BaseController
     /**
      * @return string
      */
-    public function actionRegister()
+    public function actionRegistration()
     {
-        $model = new RegisterForm();
+        $model = new RegistrationForm();
+        $model->setScenario('registration');
 
-        // Rules page
-        if (Yii::$app->config->get('o_rules') == '1') {
-            $model->setScenario('rules');
-
-            if (!$model->load(Yii::$app->request->get(), '') || !$model->validate()) {
-                return $this->render('register_rules', ['model' => $model]);
-            }
-        }
-
-        $model->setScenario('register');
-
-        if ($model->load(Yii::$app->request->post()) && $model->register()) {
+        if ($model->load(Yii::$app->request->post()) && $model->registration()) {
             return $this->render('/site/info', [
                 'params' => [
                     'name' => Yii::t('app/common', 'Info'),
@@ -90,7 +80,7 @@ class UserController extends \app\components\BaseController
             ]);
         }
 
-        return $this->render('register', ['model' => $model]);
+        return $this->render('registration', ['model' => $model]);
     }
 
     /**

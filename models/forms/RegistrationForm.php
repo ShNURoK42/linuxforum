@@ -9,7 +9,7 @@ use app\models\User;
 /**
  * Model of user registration form.
  */
-class RegisterForm extends \yii\base\Model
+class RegistrationForm extends \yii\base\Model
 {
     /**
      * @var string user email given by form.
@@ -31,7 +31,7 @@ class RegisterForm extends \yii\base\Model
     public function scenarios()
     {
         return [
-            'register' => ['email', 'username'],
+            'registration' => ['email', 'username'],
             'rules' => ['agree'],
         ];
     }
@@ -66,7 +66,7 @@ class RegisterForm extends \yii\base\Model
      *
      * @return boolean
      */
-    public function register()
+    public function registration()
     {
         if ($this->validate()) {
             $user = new User();

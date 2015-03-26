@@ -2,60 +2,34 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\widgets\ActiveForm;
-use app\widgets\Breadcrumbs;
+use app\widgets\ActiveForm;
 use app\models\Forum;
 
 /** @var \app\components\View $this */
 /** @var Forum $forum */
 
-$this->title = Yii::t('app/topic', 'Title');
-$this->params = [
-    'page' => 'post',
-    'breadcrumbs' => [
-        ['label' => $forum->forum_name, 'url' => ['forum/view', 'id' => $forum->id]],
-        ['label' => $this->title]
-    ],
-];
+$this->title = Yii::t('app/topic', 'Title') . ' в разделе ' . $forum->forum_name;
+$this->subtitle = 'вернуться в раздел <a href="' . Url::to(['forum/view', 'id' => $forum->id]) . '">' . $forum->forum_name . '</a>';
+
 ?>
-<div class="linkst">
-    <div class="inbox">
-        <?= Breadcrumbs::widget() ?>
-    </div>
-</div>
-<?php if ($model->hasErrors()): ?>
-<?= Html::errorSummary($model, [
-    'class' => 'callout callout-danger',
-    'header' => '<h2>' . \Yii::t('app/register', 'Error summary') . '</h2>',
-]) ?>
-<?php endif; ?>
-<h2><span><?= $this->title ?></span></h2>
-<div class="blockform" id="postform">
-    <div class="box">
-        <?php $form = ActiveForm::begin([
-            'options' => ['id' => 'post'],
-            'enableClientValidation' => false,
-            'enableClientScript' => false,
-        ]) ?>
-        <div class="infldset txtarea">
-            <?= $form->field($model, 'subject', [
-                'template' => "{label}\n{input}",
-            ])
-            ->textInput([
-                'size' => 70,
-                'maxlength' => 255,
-            ])
+<div class="page-create-topic">
+    <div class="formbox formbox-center">
+        <div class="formbox-content">
+            <?php $form = ActiveForm::begin([
+                'options' => ['id' => 'post'],
+            ]) ?>
+            <?= $form->errorSummary($model, [
+                'header' => '<p><strong>Исправьте следующие ошибки:</strong></p>',
+                'class' => 'form-warning',
+            ]) ?>
+            <?= $form->field($model, 'subject')
+            ->textInput()
             ->label(\Yii::t('app/topic', 'Subject')) ?>
-            <?= $form->field($model, 'message', [
-                'template' => "{label}\n{input}",
-            ])
+            <?= $form->field($model, 'message')
             ->textarea()
             ->label(\Yii::t('app/topic', 'Message')) ?>
-            <ul class="bblinks">
-                <li>Поддержка: <a onclick="window.open(this.href); return false;" href="http://rukeba.com/by-the-way/markdown-sintaksis-po-russki/">markdown</a></li>
-            </ul>
-            <p class="buttons"><?= Html::submitButton(\Yii::t('app/topic', 'Submit')) ?></p>
+            <?= Html::submitButton('Создать новую тему', ['class' => 'btn btn-primary']) ?>
+            <?php ActiveForm::end() ?>
         </div>
-        <?php ActiveForm::end() ?>
     </div>
 </div>

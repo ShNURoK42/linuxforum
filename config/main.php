@@ -29,12 +29,12 @@ return [
             'rules' => [
                 // SiteController
                 '/' => 'site/index',
-                'rules' => 'site/rules',
+                'terms' => 'site/terms',
 
                 // UserController
                 'login' => 'user/login',
                 'logout' => 'user/logout',
-                'register' => 'user/register',
+                'registration' => 'user/registration',
                 'forget' => 'user/forget',
                 'forget/change' => 'user/forget-change',
                 'users/page/<page:\d+>' => 'user/list',
@@ -91,7 +91,7 @@ return [
                         'app/index' => 'index.php',
                         'app/login' => 'login.php',
                         'app/profile' => 'profile.php',
-                        'app/register' => 'register.php',
+                        'app/register' => 'registration.php',
                         'app/topic' => 'topic.php',
                         'app/userlist' => 'userlist.php',
                     ],

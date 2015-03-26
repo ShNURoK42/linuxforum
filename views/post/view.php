@@ -10,31 +10,52 @@ use app\models\Topic;
 
 $formatter = Yii::$app->formatter;
 ?>
-<div class="blockpost <?= ($count % 2 == 0) ? 'roweven' : 'rowodd' ?><?= ($count == 1) ? ' firstpost' : '' ?>" id="p<?= $post->id ?>">
-    <h2><span><span class="conr"><?= ($topic->first_post_user_id == $post->user->id) ? '<span class="post-author-label">Автор темы</span>' : '' ?> <a href="<?= Url::toRoute(['post/view', 'id' => $post->id, '#' => 'p' . $post->id]) ?>">#<?= $count ?></a></span><?= $formatter->asDatetime($post->created_at) ?></span></h2>
-    <div class="box">
+<div class="page-view-post">
+    <div class="post-box <?= ($count % 2 == 0) ? 'roweven' : 'rowodd' ?><?= ($count == 1) ? ' firstpost' : '' ?>" id="p<?= $post->id ?>">
         <div class="inbox">
-            <div class="postbody">
-                <div class="postleft">
-                    <dl>
-                        <dt><strong><a href="<?= Url::toRoute(['user/view', 'id' => $post->user_id])?>"><?= $post->user->username ?></a></strong></dt>
-                        <dd class="usertitle"></dd>
-                        <dd class="postavatar"><?php echo Gravatar::widget([
-                                'email' => $post->user->email,
-                                'options' => [
-                                    'alt' => $post->user->username,
-                                ],
-                                'defaultImage' => 'retro',
-                                'size' => 92
-                            ]); ?></dd>
-                        <dd><span><strong>Сообщений:</strong> <?= Yii::$app->formatter->asInteger($post->user->number_posts) ?></span></dd>
-                        <p></p>
-                        <dd><span><strong>Зарегистрирован:</strong> <?= $formatter->asDate($post->user->created_at) ?></span></dd>
-                    </dl>
+            <div class="post-body">
+                <div class="post-left">
+                    <?php if ($post->user->username): ?>
+                    <div class="post-username"><a href="<?= Url::toRoute(['user/view', 'id' => $post->user_id])?>"><?= $post->user->username ?></a></div>
+                    <?php else: ?>
+                    <div class="post-username">Автор неизвестен</div>
+                    <?php endif; ?>
+                    <div class="post-avatar">
+                        <?php if ($post->user->email): ?>
+                        <?php echo Gravatar::widget([
+                            'email' => $post->user->email,
+                            'options' => [
+                                'alt' => $post->user->username,
+                                'class' => 'avatar',
+                                'width' => 92,
+                                'height' => 92,
+                            ],
+                            'defaultImage' => 'retro',
+                            'size' => 92
+                        ]); ?>
+                        <?php endif; ?>
+                    </div>
+                    <?php if ($post->user->number_posts): ?>
+                    <div class="post-number-posts"><strong>Сообщений:</strong> <?= Yii::$app->formatter->asInteger($post->user->number_posts) ?></div>
+                    <?php endif; ?>
+                    <?php if ($post->user->created_at): ?>
+                    <div class="post-registered"><span><strong>Зарегистрирован:</strong> <?= $formatter->asDate($post->user->created_at) ?></div>
+                    <?php endif; ?>
                 </div>
-                <div class="postright">
-                    <h3><?= $formatter->asText($topic->subject) ?></h3>
-                    <div class="postmsg"><?= $post->displayMessage ?></div>
+                <div class="post-right-header">
+                    <span class="post-header-time"><?= $formatter->asDatetime($post->created_at) ?></span>
+                    <span class="post-header-count"><a href="<?= Url::toRoute(['post/view', 'id' => $post->id, '#' => 'p' . $post->id]) ?>">#<?= $count ?></a></span>
+                    <?php if ($topic->first_post_user_id == $post->user->id): ?>
+                    <span class="post-header-owner">Автор</span>
+                    <?php endif; ?>
+                    <?php if (Yii::$app->getUser()->getIdentity()->getId() == $post->user->id): ?>
+                    <a class="post-header-edit" href="#"><span class="octicon octicon-pencil octicon-btn"></span></a>
+                    <?php endif; ?>
+                </div>
+                <div class="post-right">
+                    <div class="post-message markdown-body">
+                        <?= $post->displayMessage ?>
+                    </div>
                 </div>
             </div>
         </div>

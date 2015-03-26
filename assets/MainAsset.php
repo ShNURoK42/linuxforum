@@ -5,7 +5,7 @@ namespace app\assets;
 /**
  * AppAsset represents a collection of asset files, such as CSS, JS, images.
  */
-class AppAsset extends \yii\web\AssetBundle
+class MainAsset extends \yii\web\AssetBundle
 {
     /**
      * @inheritdoc
@@ -19,8 +19,9 @@ class AppAsset extends \yii\web\AssetBundle
      * @inheritdoc
      */
     public $css = [
-        'css/Air.css',
-        'css/sotmarket.css',
+        'css/main.css',
+        'css/markdown.css',
+        'css/dev.css',
     ];
     /**
      * @inheritdoc
@@ -33,7 +34,10 @@ class AppAsset extends \yii\web\AssetBundle
      * @inheritdoc
      */
     public $depends = [
-        'app\assets\GoogleAsset',
         'yii\web\YiiAsset',
+        'app\assets\OcticonsAsset',
+        'app\assets\PrimerAsset',
+        'app\assets\GoogleAsset',
+        'app\assets\SotmarketAsset',
     ];
 }
