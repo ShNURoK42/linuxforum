@@ -51,16 +51,16 @@
         },
         {
             "name": "bower-asset/jquery.inputmask",
-            "version": "3.1.61",
+            "version": "3.1.62",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RobinHerbots/jquery.inputmask.git",
-                "reference": "f2c086411d2557fc485c47afb3cecfa6c1de9ee2"
+                "reference": "da1a274cefa18a52a0519ac7ffe8e8d31e950eae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/f2c086411d2557fc485c47afb3cecfa6c1de9ee2",
-                "reference": "f2c086411d2557fc485c47afb3cecfa6c1de9ee2",
+                "url": "https://api.github.com/repos/RobinHerbots/jquery.inputmask/zipball/da1a274cefa18a52a0519ac7ffe8e8d31e950eae",
+                "reference": "da1a274cefa18a52a0519ac7ffe8e8d31e950eae",
                 "shasum": ""
             },
             "require": {
@@ -524,12 +524,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "50425fb9af782517684ba1b6d1595d8f795e6c57"
+                "reference": "5bded07e4a3c23ebc6d8eef7dfe6288f512dcbd8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/50425fb9af782517684ba1b6d1595d8f795e6c57",
-                "reference": "50425fb9af782517684ba1b6d1595d8f795e6c57",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/5bded07e4a3c23ebc6d8eef7dfe6288f512dcbd8",
+                "reference": "5bded07e4a3c23ebc6d8eef7dfe6288f512dcbd8",
                 "shasum": ""
             },
             "require": {
@@ -604,7 +604,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-03-26 01:54:06"
+            "time": "2015-03-26 12:24:59"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -659,12 +659,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-swiftmailer.git",
-                "reference": "e204c9920deb730f0a53b05ebacfa18c7a9ac0b7"
+                "reference": "8d5d9c9782ba28e6b47c65270eed6a238c781abd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-swiftmailer/zipball/e204c9920deb730f0a53b05ebacfa18c7a9ac0b7",
-                "reference": "e204c9920deb730f0a53b05ebacfa18c7a9ac0b7",
+                "url": "https://api.github.com/repos/yiisoft/yii2-swiftmailer/zipball/8d5d9c9782ba28e6b47c65270eed6a238c781abd",
+                "reference": "8d5d9c9782ba28e6b47c65270eed6a238c781abd",
                 "shasum": ""
             },
             "require": {
@@ -701,7 +701,7 @@
                 "swiftmailer",
                 "yii2"
             ],
-            "time": "2015-03-25 09:26:59"
+            "time": "2015-03-25 12:25:47"
         }
     ],
     "packages-dev": [
