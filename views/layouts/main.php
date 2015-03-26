@@ -41,11 +41,11 @@ MainAsset::register($this);
 <header class="header">
     <div class="container">
         <div class="navbar-brand">
-            <? if (Yii::$app->controller->route == 'site/index'): ?>
+            <?php if (Yii::$app->controller->route == 'site/index'): ?>
                 <span><?= Yii::$app->config->get('o_board_title') ?></span>
-            <? else: ?>
+            <?php else: ?>
                 <a href="<?= Yii::$app->urlManager->createUrl('site/index') ?>"><?= Yii::$app->config->get('o_board_title') ?></a>
-            <? endif; ?>
+            <?php endif; ?>
         </div>
         <?= Navigation::widget(['position' => 'header']); ?>
     </div>
