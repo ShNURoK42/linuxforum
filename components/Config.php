@@ -4,6 +4,7 @@ namespace app\components;
 
 use Yii;
 use yii\base\InvalidConfigException;
+use yii\caching\Cache;
 use yii\db\Connection;
 use yii\db\Query;
 use yii\di\Instance;
@@ -15,13 +16,17 @@ use yii\helpers\ArrayHelper;
 class Config extends \yii\base\Component
 {
     /**
-     * @var @var Connection|array|string the DB connection object or the application component ID of the DB connection.
+     * @var Connection|array|string the DB connection object or the application component ID of the DB connection.
      */
     public $db = 'db';
     /**
      * @var string config table name.
      */
-    public $configTable = '{{%config}}';
+    public $configTable = 'config';
+    /**
+     * @var Cache|string the cache object or the application component ID of the cache object.
+     */
+    public $cache = 'cache';
 
     /**
      * @inheritdoc
@@ -30,24 +35,27 @@ class Config extends \yii\base\Component
     {
         parent::init();
         $this->db = Instance::ensure($this->db, Connection::className());
+
+        if (is_string($this->cache)) {
+            $this->cache = Yii::$app->get($this->cache, false);
+        }
     }
 
     /**
      * Returns configuration value.
      * @param string $name name of the key config data.
      * @return string value of configuration
-     * @throws InvalidConfigException
      */
     public function get($name)
     {
-        $data = Yii::$app->cache->get('config');
-
-        if ($data === false) {
-            $rows = (new Query)->select('*')
-                ->from($this->configTable)
-                ->all($this->db);
-            $data = ArrayHelper::map($rows, 'conf_name', 'conf_value');
-            Yii::$app->cache->set('config', $data);
+        if ($this->cache instanceof Cache) {
+            $key = __CLASS__;
+            if (($data = $this->cache->get($key)) == false ) {
+                $data = $this->getData();
+                $this->cache->set($key, $data);
+            }
+        } else {
+            $data = $this->getData();
         }
 
         if (empty($data[$name])) {
@@ -55,5 +63,19 @@ class Config extends \yii\base\Component
         }
 
         return $data[$name];
+    }
+
+    /**
+     * Returns configuration data.
+     * @return array
+     */
+    protected function getData()
+    {
+        $rows = (new Query)
+            ->select('*')
+            ->from('{{%' . $this->configTable . '}}')
+            ->all($this->db);
+
+        return ArrayHelper::map($rows, 'conf_name', 'conf_value');
     }
 }
