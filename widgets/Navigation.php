@@ -34,8 +34,6 @@ class Navigation extends Widget
                 $items[] = ['label' => $label . Yii::$app->user->identity->username, 'url' => ['user/view', 'id' => Yii::$app->user->id]];
             }
 
-            $items[] = ['label' => 'Поиск', 'url' => ['user/list']];
-
             $items[] = ['label' => 'Пользователи', 'url' => ['user/list']];
 
             if (Yii::$app->user->isGuest) {
