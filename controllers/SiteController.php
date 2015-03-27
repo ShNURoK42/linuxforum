@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Post;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\web\HttpException;
@@ -57,6 +58,17 @@ class SiteController extends \app\components\BaseController
     public function actionSearch()
     {
         return $this->render('search');
+    }
+
+    /**
+     * This action render the markdown helper page.
+     * @return string
+     */
+    public function actionMarkdown()
+    {
+        $post = Post::findOne(['id' => 450994]);
+
+        return $this->render('markdown', ['post' => $post]);
     }
 
     /**

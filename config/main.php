@@ -32,6 +32,7 @@ return [
             'rules' => [
                 // SiteController
                 '/' => 'site/index',
+                'markdown' => 'site/markdown',
                 'terms' => 'site/terms',
 
                 // UserController

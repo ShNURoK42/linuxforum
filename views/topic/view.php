@@ -44,7 +44,7 @@ $item['post_count'] = $dataProvider->pagination->offset;
         ]) ?>
         <div class="quickpost-header tabnav">
             <div class="right">
-                <a class="tabnav-extra" target="_blank" href="http://linuxforum.ru/topic/38070"><span class="octicon octicon-markdown"></span>Поддержка markdown</a>
+                <a class="tabnav-extra" target="_blank" href="<?= Url::toRoute('site/markdown') ?>"><span class="octicon octicon-markdown"></span>Поддержка markdown</a>
             </div>
             <nav class="tabnav-tabs">
                 <a href="#" class="tabnav-tab js-write-tab selected">Набор сообщения</a>
