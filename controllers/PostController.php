@@ -91,6 +91,10 @@ class PostController extends \app\components\BaseController
             /** @var Post $post */
             $post = Post::findOne(['id' => $id]);
 
+            if (!Yii::$app->getUser()->can('updatePost', ['post' => $post])) {
+                throw new NotFoundHttpException();
+            }
+
             if (!$post) {
                 throw new NotFoundHttpException();
             }
