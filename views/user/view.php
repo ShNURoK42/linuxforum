@@ -48,21 +48,3 @@ $formatter = Yii::$app->formatter;
         <p>Почта.</p>
     </div>
 </div>
-
-
-<div style="overflow: hidden; background-color: #f5f5f5;">
-    <div style="width: 25%;float: left;">column 1 dfgdfgdfgdfgdf
-        <?php echo Gravatar::widget([
-            'email' => $user->email,
-            'options' => [
-                'alt' => $user->username,
-                'class' => 'avatar',
-                'width' => 150,
-                'height' => 150,
-            ],
-            'defaultImage' => 'retro',
-            'size' => 150
-        ]); ?>
-    </div>
-    <div style="width: 75%;float: right;">column 2</div>
-</div>
