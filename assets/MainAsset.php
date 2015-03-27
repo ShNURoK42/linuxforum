@@ -19,8 +19,8 @@ class MainAsset extends \yii\web\AssetBundle
      * @inheritdoc
      */
     public $css = [
-        'css/main.css',
-        'css/markdown.css',
+        'css/main/main.css',
+        'css/main/markdown.css',
         'css/dev.css',
     ];
     /**

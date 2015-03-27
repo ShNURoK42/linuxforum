@@ -1,74 +1,72 @@
-/* TOPIC */
-#topicform-message {
-  min-height: 200px;
-}
-
 /* POST */
-.post-box {
-  border-style: solid;
-  border-width: 1px;
-  border-color: #b9c5ce;
-  margin-bottom: -1px;
+.post {
   overflow: hidden;
-  position: relative;
+  padding-bottom: 20px;
 }
-.post-body {
-  background: none repeat scroll 0 0 #fcfdfe;
-  border-color: #dfe6ee;
-  border-style: none solid;
-  border-width: 1px;
-
-  float: right;
-  margin-right: -218px;
+.post-container {
+  margin-left: 80px;
   position: relative;
-  text-align: left;
-  width: 100%;
-}
-.inbox {
-  float: right;
-  position: relative;
-  width: 100%;
-  background-color: #f2f8fa;
-
-}
-.post-left {
-  background-color: #f2f8fa;
-  border-color: #dfe6ee;
-  border-right-style: solid;
-  border-right-width: 1px;
-  float: left;
-  margin-left: -218px;
-  padding: 7px 12px;
-  position: relative;
-  width: 218px;
-}
-.post-right {
-  padding: 10px 230px 7px 18px;
-  position: relative;
-}
-.post-right-header {
-  position: relative;
-  padding: 3px 230px 3px 18px;
-  line-height: 24px;
-  background-color: #f2f8fa;
-  border-color: #dfe6ee;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  color: #8e9597;
-}
-.post-username {
-  font-weight: bold;
-  font-size: 14px;
-  padding-bottom: 5px;
 }
 .post-avatar {
-  padding-bottom: 30px;
+  float: left;
 }
-.post-number-posts {
-  padding-bottom: 0;
+.post-content {
+  border: 1px solid #dfe6ee;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  position: relative;
+  width: 870px;
 }
-.post-header-time {
-  font-size: 12px;
+.post-content:after,
+.post-content:before {
+  border-color: transparent;
+  border-style: solid solid outset;
+  content: " ";
+  display: block;
+  height: 0;
+  left: -16px;
+  pointer-events: none;
+  position: absolute;
+  right: 100%;
+  top: 10px;
+  width: 0;
+}
+.post-content:after {
+  border-right-color: #f7f7f7;
+  border-width: 7px;
+  margin-left: 2px;
+  margin-top: 1px;
+}
+.post-content:before {
+  border-right-color: #ddd;
+  border-width: 8px;
+}
+
+.post-header {
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #dfe6ee;
+  color: #999;
+  line-height: 24px;
+  padding: 5px 10px;
+}
+.post-message {
+  background-color: #fff;
+  padding: 10px;
+}
+.post-user {
+  border-right: 1px solid #dfe6ee;
+  padding: 10px;
+}
+.post-header-user {
+  font-weight: bold;
+}
+.post-header-user a {
+  color: #555;
+}
+.post-header-count {
+  float: right;
+  padding-top: 2px;
+  padding-left: 10px;
 }
 .post-header-owner {
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -79,24 +77,86 @@
   padding: 4px 8px;
   line-height: 1;
 }
-.post-header-count {
+.post-update {
+  display: none;
+  background-color: #fff;
+  padding: 10px;
+}
+.post-update .form-actions {
+  margin-top: 10px;
+}
+.post-update-message {
+  background-color: #fafafa;
+  min-height: 150px;
+  resize: vertical;
+}
+
+
+/* TOPIC */
+.topic-discussion {
+  float: left;
+  position: relative;
+}
+
+.topic-discussion::before {
+  background-color: #f3f3f3;
+  bottom: 0;
+  content: "";
+  display: block;
+  left: 95px;
+  position: absolute;
+  top: 0;
+  width: 2px;
+  z-index: -1;
+}
+
+
+
+
+
+
+
+
+
+/* TOPIC */
+#topicform-message {
+  min-height: 200px;
+}
+
+
+
+
+
+
+
+/* POST EDIT*/
+.post-header-actions {
   float: right;
-  padding-top: 2px;
-  padding-left: 10px;
+  margin-left: 10px;
+  margin-right: -5px;
 }
-.post-header-edit {
-  float: right;
-  margin-top: 2px;
+.post-header-action {
+  color: inherit;
+  display: inline-block;
+  opacity: 0.5;
+  padding: 2px 5px;
 }
-.octicon-btn {
-  color: #777;
-}
-.octicon-btn:hover {
+
+.post-header-action:hover {
   color: #4183c4;
+  opacity: 1;
+  text-decoration: none;
 }
+.post-right-update {
+  display: none;
+}
+
+
 
 /* QUICK POST */
 .quickpost {
+  overflow: hidden;
+  clear: both;
   border: 1px solid #ddd;
   border-radius: 3px;
   margin-top: 30px;
@@ -110,8 +170,11 @@
   padding: 6px 10px 0;
   margin-bottom: 10px;
 }
-.field-postform-message {
+.create-post-message {
   margin: 10px;
+}
+.update-post-message {
+  margin: 10px 0;
 }
 .tabnav {
   border-bottom: 1px solid #ddd;

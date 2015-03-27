@@ -13,22 +13,68 @@
     var methods = {
         init: function () {
             return this.each(function () {
-                var $this = $(this);
+                var $form = $('#quickpostform'),
+                    $post = $('.post');
 
-                $this.on('click', '.js-preview-tab', function (e) {
+                $form.on('click', '.js-preview-tab', function (e) {
                     e.preventDefault();
-                    methods.preview.apply($this);
+                    methods.preview.apply($form);
                 });
 
-                $this.on('click', '.js-write-tab', function (e) {
+                $form.on('click', '.js-write-tab', function (e) {
                     e.preventDefault();
-                    methods.write.apply($this);
+                    methods.write.apply($form);
+                });
+
+                $post.on('click', '.js-post-update-pencil', function (e) {
+                    e.preventDefault();
+                    var $this = $(this);
+
+                    $this.closest('.post-content').find('.post-update').show();
+                    $this.closest('.post-content').find('.post-message').hide();
+                    $this.hide();
+                });
+
+                $post.on('click', '.js-post-update-button', function (e) {
+                    e.preventDefault();
+
+                    var $this = $(this).closest('.post');
+
+                    methods.update.apply($this);
+                });
+
+                $post.on('click', '.js-post-cancel-button', function (e) {
+                    e.preventDefault();
+                    var $this = $(this);
+
+                    $this.closest('.post-content').find('.post-update').hide();
+                    $this.closest('.post-content').find('.js-post-update-pencil').show();
+                    $this.closest('.post-content').find('.post-message').show();
                 });
             });
         },
 
-        data: function () {
-            return this.data('post');
+        update: function() {
+            var $this = this;
+                var text = $(this).find('.post-update-message').val();
+                var id = $(this).attr("id");
+
+            console.log(id);
+
+            $.ajax({
+                url: '/post/update',
+                type: 'POST',
+                dataType: 'json',
+                data: {text: text, id: id},
+                cache: false,
+                success: function (data) {
+                    console.log(data);
+
+                    $this.find('.post-update').hide();
+                    $this.find('.js-post-update-pencil').show();
+                    $this.find('.post-message').show().html(data);
+                }
+            });
         },
 
         write: function() {
@@ -41,7 +87,7 @@
 
         preview: function() {
             var $this = this,
-                text = $('textarea').val();
+                text = $('.create-post-message textarea').val();
 
             $.ajax({
                 url: '/post/preview',
@@ -50,7 +96,6 @@
                 data: {text: text},
                 cache: false,
                 success: function (data) {
-                    console.log(data);
                     $this.find('.js-write-tab').removeClass('selected');
                     $this.find('.js-preview-tab').addClass('selected');
                     $this.find('.field-postform-message').hide();

@@ -30,14 +30,12 @@ $this->author = $author;
 $item['post_count'] = $dataProvider->pagination->offset;
 ?>
 <div class="view-topic">
-    <?php foreach($posts as $post): ?>
-        <?php $item['post_count']++ ?>
-        <?= $this->render('/post/view', ['topic' => $topic, 'post' => $post, 'count' => $item['post_count']])?>
-    <?php endforeach; ?>
-    <div class="text-center">
-        <?= LinkPager::widget(['pagination' => $dataProvider->pagination]) ?>
+    <div class="topic-discussion">
+        <?php foreach($posts as $post): ?>
+            <?php $item['post_count']++ ?>
+            <?= $this->render('/post/view', ['topic' => $topic, 'post' => $post, 'count' => $item['post_count']])?>
+        <?php endforeach; ?>
     </div>
-
     <?php if (AccessHelper::canPostReplyInTopic($topic)): ?>
     <div class="quickpost" id="quickpostform">
         <?php $form = ActiveForm::begin([
@@ -53,9 +51,18 @@ $item['post_count'] = $dataProvider->pagination->offset;
                 <a href="#" class="tabnav-tab js-preview-tab">Предпросмотр</a>
             </nav>
         </div>
+        <?= $form->errorSummary($model, [
+            'header' => '<p><strong>Исправьте следующие ошибки:</strong></p>',
+            'class' => 'form-warning',
+        ]) ?>
         <?= $form->field($model, 'message', [
             'template' => "{input}",
-        ])->textarea() ?>
+            'options' => [
+                'class' => 'create-post-message',
+            ],
+        ])->textarea([
+            'placeholder' => 'Напишите сообщение',
+        ]) ?>
         <div class="post-preview postmsg markdown-body"></div>
         <div class="form-actions">
             <?= Html::submitButton('Отправить сообщение', ['class' => 'btn btn-primary']) ?>
@@ -63,5 +70,6 @@ $item['post_count'] = $dataProvider->pagination->offset;
         <?php ActiveForm::end() ?>
     </div>
     <?php endif; ?>
+    <?= LinkPager::widget(['pagination' => $dataProvider->pagination]) ?>
 </div>
-<?php $this->registerJs("jQuery('#quickpostform').post();") ?>
+<?php $this->registerJs("jQuery(document).post();") ?>

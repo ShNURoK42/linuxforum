@@ -20,14 +20,16 @@ $item = [
 $formatter = Yii::$app->formatter;
 ?>
 <div class="page-index">
-    <div class="search-links right">
-        <ul class="search-links-list">
-            <li><a title="Темы в которых вы отвечали." href="/search/ownpost_topics">Ваши</a></li>
-            <li>|</li>
-            <li><a title="Темы с активностью в последние 24 часа." href="/search/active_topics">Активные темы</a></li>
-            <li>|</li>
-            <li><a title="Темы без ответов." href="/search/unanswered_topics">Темы без ответов</a></li>
-        </ul>
+    <div class="clearfix">
+        <div class="search-links right">
+            <ul class="search-links-list">
+                <li><a title="Темы в которых вы отвечали." href="/search/ownpost_topics">Ваши</a></li>
+                <li>|</li>
+                <li><a title="Темы с активностью в последние 24 часа." href="/search/active_topics">Активные темы</a></li>
+                <li>|</li>
+                <li><a title="Темы без ответов." href="/search/unanswered_topics">Темы без ответов</a></li>
+            </ul>
+        </div>
     </div>
     <?php foreach($categories as $category): ?>
     <?php $item['category_count']++ ?>

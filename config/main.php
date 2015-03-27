@@ -56,6 +56,7 @@ return [
                 // PostController
                 'post/<id:\d+>' => 'post/view',
                 'post/preview' => 'post/preview',
+                'post/update' => 'post/update',
                 'topic/<id:\d+>/post/new' => 'post/create',
                 'post/delete/<id:\d+>' => 'post/delete',
 

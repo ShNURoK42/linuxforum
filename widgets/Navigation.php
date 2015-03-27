@@ -52,11 +52,11 @@ class Navigation extends Widget
             ]);
         } elseif (strtolower($this->position) == 'footer') {
             $items = [
-                ['label' => 'О сайте', 'url' => ['site/about']],
-                ['label' => '&bull;'],
+                //['label' => 'О сайте', 'url' => ['site/about']],
+                //['label' => '&bull;'],
                 ['label' => 'Правила пользования', 'url' => ['site/terms']],
-                ['label' => '&bull;'],
-                ['label' => 'Обратная связь', 'url' => ['site/contact']],
+                //['label' => '&bull;'],
+                //['label' => 'Обратная связь', 'url' => ['site/contact']],
             ];
 
             return Menu::widget(['encodeLabels' => false, 'items' => $items]);

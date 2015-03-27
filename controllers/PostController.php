@@ -78,6 +78,39 @@ class PostController extends \app\components\BaseController
     }
 
     /**
+     * @return string
+     */
+    public function actionUpdate()
+    {
+        if (Yii::$app->getRequest()->getIsAjax()) {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            $text = Yii::$app->getRequest()->post('text');
+            $id = substr(Yii::$app->getRequest()->post('id'), 1);
+
+            /** @var Post $post */
+            $post = Post::findOne(['id' => $id]);
+
+            if (!$post) {
+                throw new NotFoundHttpException();
+            }
+
+            $model = new PostForm();
+            $model->message = $text;
+            if ($model->validate()) {
+                $post->message = $text;
+                $post->edited_at = time();
+                $post->edited_by = Yii::$app->getUser()->getIdentity()->getId();
+                $post->save();
+            }
+
+            return $post->displayMessage;
+        }
+
+        throw new NotFoundHttpException();
+    }
+
+    /**
      * @param $id topic identificator
      * @return string
      */

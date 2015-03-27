@@ -1,5 +1,9 @@
 /* Common
    ========================================================================== */
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
 .text-center {
   text-align: center;
 }
@@ -47,7 +51,7 @@
 .navbar-brand {
   float: left;
   font-size: 18px;
-  line-height: 25px;
+  line-height: 16px;
 }
 
 .navbar-brand a,
@@ -69,7 +73,6 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  line-height: 25px;
 }
 
 .navbar-nav > li {
