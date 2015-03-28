@@ -5,7 +5,6 @@ use yii\helpers\Html;
 use app\models\Post;
 use app\models\Topic;
 use app\models\forms\PostForm;
-use app\widgets\ActiveForm;
 
 /* @var \app\components\View $this */
 /* @var Topic $topic */
@@ -18,17 +17,17 @@ $formatter = Yii::$app->formatter;
 <div class="post <?= ($count % 2 == 0) ? 'roweven' : 'rowodd' ?><?= ($count == 1) ? ' firstpost' : '' ?>" id="p<?= $post->id ?>">
     <div class="post-avatar">
         <?php if ($post->user->email): ?>
-            <?= Gravatar::widget([
-                'email' => $post->user->email,
-                'options' => [
-                    'alt' => $post->user->username,
-                    'class' => 'avatar',
-                    'width' => 64,
-                    'height' => 64,
-                ],
-                'defaultImage' => 'retro',
-                'size' => 64
-            ]); ?>
+        <?= Gravatar::widget([
+            'email' => $post->user->email,
+            'options' => [
+                'alt' => $post->user->username,
+                'class' => 'avatar',
+                'width' => 64,
+                'height' => 64,
+            ],
+            'defaultImage' => 'retro',
+            'size' => 64
+        ]); ?>
         <?php endif; ?>
     </div>
     <div class="post-container">

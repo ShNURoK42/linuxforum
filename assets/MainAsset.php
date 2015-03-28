@@ -35,6 +35,7 @@ class MainAsset extends \yii\web\AssetBundle
      */
     public $depends = [
         'yii\web\YiiAsset',
+        'app\assets\NormalizeAsset',
         'app\assets\OcticonsAsset',
         'app\assets\PrimerAsset',
         'app\assets\GoogleAsset',

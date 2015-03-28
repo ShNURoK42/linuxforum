@@ -7,17 +7,15 @@ class PrimerAsset extends \yii\web\AssetBundle
     /**
      * @inheritdoc
      */
-    public $sourcePath = '@bower/primer-css/css';
+    public $basePath = '@webroot';
+    /**
+     * @inheritdoc
+     */
+    public $baseUrl = '@web';
     /**
      * @inheritdoc
      */
     public $css = [
-        'primer.css',
-    ];
-    /**
-     * @inheritdoc
-     */
-    public $depends = [
-        //'app\assets\ОcticonsAsset',
+        'css/main/primer.css',
     ];
 }

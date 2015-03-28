@@ -6,6 +6,7 @@
 .post-container {
   margin-left: 80px;
   position: relative;
+  width: 870px;
 }
 .post-avatar {
   float: left;
@@ -15,7 +16,6 @@
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
   position: relative;
-  width: 870px;
 }
 .post-content:after,
 .post-content:before {
@@ -154,12 +154,50 @@
 
 
 /* QUICK POST */
+
+#quickpostform {
+  position: relative;
+}
+#quickpostform:after,
+#quickpostform:before {
+  border-color: transparent;
+  border-style: solid solid outset;
+  content: " ";
+  display: block;
+  height: 0;
+  left: -16px;
+  pointer-events: none;
+  position: absolute;
+  right: 100%;
+  top: 14px;
+  width: 0;
+}
+#quickpostform:after {
+  border-right-color: #f7f7f7;
+  border-width: 7px;
+  margin-left: 2px;
+  margin-top: 1px;
+}
+#quickpostform:before {
+  border-right-color: #ddd;
+  border-width: 8px;
+}
+
+
+
+
+
+
+
+
+
 .quickpost {
-  overflow: hidden;
-  clear: both;
   border: 1px solid #ddd;
   border-radius: 3px;
   margin-top: 30px;
+  margin-left: 80px;
+  position: relative;
+  width: 870px;
 }
 .quickpost .form-actions {
   padding: 10px;
@@ -171,7 +209,7 @@
   margin-bottom: 10px;
 }
 .create-post-message {
-  margin: 10px;
+  margin: 10px 10px 0 10px;
 }
 .update-post-message {
   margin: 10px 0;
@@ -194,7 +232,6 @@
   background-color: transparent;
   border-bottom: 1px solid #eee;
   padding: 5px 5px 15px 15px;
-  margin-bottom: 10px;
   min-height: 200px;
   font-size: 13px;
 }

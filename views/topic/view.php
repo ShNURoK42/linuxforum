@@ -1,4 +1,5 @@
 <?php
+use cebe\gravatar\Gravatar;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
@@ -37,37 +38,52 @@ $item['post_count'] = $dataProvider->pagination->offset;
         <?php endforeach; ?>
     </div>
     <?php if (AccessHelper::canPostReplyInTopic($topic)): ?>
-    <div class="quickpost" id="quickpostform">
-        <?php $form = ActiveForm::begin([
-            'action' => ['topic/view', 'id' => $topic->id, '#' => 'quickpostform'],
-            'options' => ['id' => 'quickpostform'],
-        ]) ?>
-        <div class="quickpost-header tabnav">
-            <div class="right">
-                <a class="tabnav-extra" target="_blank" href="<?= Url::toRoute('site/markdown') ?>"><span class="octicon octicon-markdown"></span>Поддержка markdown</a>
+    <div style="clear: both">
+        <div class="post-avatar">
+            <?= Gravatar::widget([
+                'email' => Yii::$app->getUser()->getIdentity()->email,
+                'options' => [
+                    'alt' => Yii::$app->getUser()->getIdentity()->username,
+                    'class' => 'avatar',
+                    'width' => 64,
+                    'height' => 64,
+                ],
+                'defaultImage' => 'retro',
+                'size' => 64
+            ]); ?>
+        </div>
+        <div class="quickpost" id="quickpostform">
+            <?php $form = ActiveForm::begin([
+                'action' => ['topic/view', 'id' => $topic->id, '#' => 'quickpostform'],
+                'options' => ['id' => 'quickpostform'],
+            ]) ?>
+            <div class="quickpost-header tabnav">
+                <div class="right">
+                    <a class="tabnav-extra" target="_blank" href="<?= Url::toRoute('site/markdown') ?>"><span class="octicon octicon-markdown"></span>Поддержка markdown</a>
+                </div>
+                <nav class="tabnav-tabs">
+                    <a href="#" class="tabnav-tab js-write-tab selected">Набор сообщения</a>
+                    <a href="#" class="tabnav-tab js-preview-tab">Предпросмотр</a>
+                </nav>
             </div>
-            <nav class="tabnav-tabs">
-                <a href="#" class="tabnav-tab js-write-tab selected">Набор сообщения</a>
-                <a href="#" class="tabnav-tab js-preview-tab">Предпросмотр</a>
-            </nav>
+            <?= $form->errorSummary($model, [
+                'header' => '<p><strong>Исправьте следующие ошибки:</strong></p>',
+                'class' => 'form-warning',
+            ]) ?>
+            <?= $form->field($model, 'message', [
+                'template' => "{input}",
+                'options' => [
+                    'class' => 'create-post-message',
+                ],
+            ])->textarea([
+                'placeholder' => 'Напишите сообщение',
+            ]) ?>
+            <div class="post-preview postmsg markdown-body"></div>
+            <div class="form-actions">
+                <?= Html::submitButton('Отправить сообщение', ['class' => 'btn btn-primary']) ?>
+            </div>
+            <?php ActiveForm::end() ?>
         </div>
-        <?= $form->errorSummary($model, [
-            'header' => '<p><strong>Исправьте следующие ошибки:</strong></p>',
-            'class' => 'form-warning',
-        ]) ?>
-        <?= $form->field($model, 'message', [
-            'template' => "{input}",
-            'options' => [
-                'class' => 'create-post-message',
-            ],
-        ])->textarea([
-            'placeholder' => 'Напишите сообщение',
-        ]) ?>
-        <div class="post-preview postmsg markdown-body"></div>
-        <div class="form-actions">
-            <?= Html::submitButton('Отправить сообщение', ['class' => 'btn btn-primary']) ?>
-        </div>
-        <?php ActiveForm::end() ?>
     </div>
     <?php endif; ?>
     <?= LinkPager::widget(['pagination' => $dataProvider->pagination]) ?>
