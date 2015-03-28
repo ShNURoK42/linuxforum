@@ -33,4 +33,16 @@ class Rules extends \yii\base\Object
 
         return $post->user_id === $this->user->id;
     }
+
+    public function updateProfileRule($item, $params)
+    {
+        if ($this->role == 'administrator') {
+            return true;
+        }
+
+        /** @var \app\models\User $user */
+        $user = $params['user'];
+
+        return $user->id === $this->user->id;
+    }
 }
