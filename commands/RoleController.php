@@ -25,16 +25,22 @@ class RoleController extends \yii\console\Controller
         /**
          * Описание привилегий.
          */
-        // Редактирование своего сообщения
+        // Редактирование сообщения
         $updatePost = $authManager->createPermission('updatePost');
         $updatePost->ruleName = 'updatePost';
         $authManager->addPermission($updatePost);
+        // Редактирование профиля
+        $updateProfile = $authManager->createPermission('updateProfile');
+        $updateProfile->ruleName = 'updateProfile';
+        $authManager->addPermission($updateProfile);
 
         /**
          * Связывание привилегий с ролями.
          */
         // Привилегии пользователя.
         $authManager->assign($user, $updatePost);
+        $authManager->assign($user, $updateProfile);
         $authManager->assign($administrator, $updatePost);
+        $authManager->assign($administrator, $updateProfile);
     }
 }
