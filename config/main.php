@@ -5,7 +5,6 @@ return [
     'basePath' => dirname(__DIR__),
     'name' => 'SCV System',
 
-    'timeZone' => 'Europe/Moscow',
     'language' => 'ru-RU',
     //'language' => 'en-US',
 

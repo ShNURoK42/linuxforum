@@ -15,6 +15,7 @@ class Formatter extends \yii\i18n\Formatter
         $this->dateFormat = 'php:' . Yii::$app->config->get('o_date_format');
         $this->timeFormat = 'php:' . Yii::$app->config->get('o_time_format');
         $this->thousandSeparator = ' ';
+        $this->timeZone = 'Europe/Moscow';
     }
 
     public function asTimeAgo($time)
