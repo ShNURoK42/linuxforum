@@ -28,7 +28,9 @@ $formatter = Yii::$app->formatter;
         <?php if (Yii::$app->getUser()->can('updateProfile', ['user' => $user])): ?>
         <a class="btn profile-edit-btn" href="<?= Url::toRoute(['user-profile/index', 'id' => $user->id]) ?>"><span class="octicon octicon-pencil"></span> Редактировать профиль</a>
         <?php endif; ?>
-        <div class="profile-box">
+    </div>
+    <div class="profile-info">
+        <div class="profile-info-box">
             <h2>about</h2>
             <?php if ($user->about): ?>
                 <?= $user->displayAbout ?>
@@ -36,7 +38,7 @@ $formatter = Yii::$app->formatter;
                 <p>Пользователь не оставил информации о себе.</p>
             <?php endif; ?>
         </div>
-        <div class="profile-box">
+        <div class="profile-info-box">
             <h2>info</h2>
             <p><strong>Статус:</strong> Пользователь</p>
             <p><strong>Количество сообщений:</strong>
@@ -50,12 +52,9 @@ $formatter = Yii::$app->formatter;
                 <p><strong>Последнее сообщение:</strong> <?= $formatter->asDatetime($user->last_posted_at) ?></p>
             <?php endif; ?>
         </div>
-        <div class="profile-box">
+        <div class="profile-info-box">
             <h2>contact</h2>
             <p>Почта.</p>
         </div>
-    </div>
-    <div class="column two-thirds">
-
     </div>
 </div>

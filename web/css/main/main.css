@@ -7,6 +7,12 @@ body {
   color: #333;
   background-color: #ffffff;
 }
+.markdown-body {
+  font-family: "Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
 
 /* Header
    ========================================================================== */
@@ -538,9 +544,6 @@ body {
 }
 .postform-create textarea:focus {
   background-color: #fff;
-}
-.post-formbox-avatar {
-  float: left;
 }
 .post-formbox-tabnav {
   background: none repeat scroll 0 0 #f7f7f7;

@@ -27,7 +27,7 @@ $item['topic_count'] = 0;
 <div class="page-view-forum">
     <?php if (AccessHelper::canCreateTopic($forum)): ?>
     <div class="new-topic-btn clearfix">
-        <a class="btn btn-primary pull-right" href="<?= Url::toRoute(['topic/create', 'id' => $forum->id]) ?>"><?= Yii::t('app/forum', 'Create topic') ?></a>
+        <a class="btn btn-primary right" href="<?= Url::toRoute(['topic/create', 'id' => $forum->id]) ?>"><?= Yii::t('app/forum', 'Create topic') ?></a>
     </div>
     <?php endif; ?>
     <table class="table table-hover">
@@ -61,7 +61,7 @@ $item['topic_count'] = 0;
         </tbody>
     </table>
 
-    <div class="text-center">
+    <div class="pagination-center">
         <?= LinkPager::widget(['pagination' => $dataProvider->pagination]) ?>
     </div>
 </div>

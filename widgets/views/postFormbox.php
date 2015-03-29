@@ -12,7 +12,8 @@ use app\widgets\ActiveForm;
 ?>
 
 <div class="post-formbox">
-    <div class="post-formbox-avatar">
+    <div class="post-avatar">
+        <?php if ($user->email): ?>
         <a href="<?= Url::toRoute(['user/view', 'id' => $user->id])?>"><?= Gravatar::widget([
             'email' => $user->email,
             'options' => [
@@ -24,6 +25,7 @@ use app\widgets\ActiveForm;
             'defaultImage' => 'retro',
             'size' => 64
         ]); ?></a>
+        <?php endif; ?>
     </div>
     <div class="post-formbox-content">
         <?php $form = ActiveForm::begin($activeFormOptions) ?>

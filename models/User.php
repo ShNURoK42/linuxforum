@@ -155,8 +155,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function getDisplayAbout()
     {
-        $parsedown = new MarkdownParser();
-        $text = $parsedown->text($this->about);
+        $text = Yii::$app->formatter->asNtext($this->about);
 
         return $text;
     }
