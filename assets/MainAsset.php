@@ -19,7 +19,6 @@ class MainAsset extends \yii\web\AssetBundle
      * @inheritdoc
      */
     public $css = [
-        'css/main/markdown.css',
         'css/main/main.css',
         'css/dev.css',
     ];
@@ -36,9 +35,9 @@ class MainAsset extends \yii\web\AssetBundle
      */
     public $depends = [
         'yii\web\YiiAsset',
-        'app\assets\NormalizeAsset',
-        'app\assets\OcticonsAsset',
         'app\assets\PrimerAsset',
+        'app\assets\PrimerOcticonsAsset',
+        'app\assets\PrimerMarkdownAsset',
         'app\assets\GoogleAsset',
         'app\assets\SotmarketAsset',
     ];

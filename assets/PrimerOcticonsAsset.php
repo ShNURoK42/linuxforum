@@ -2,7 +2,7 @@
 
 namespace app\assets;
 
-class OcticonsAsset extends \yii\web\AssetBundle
+class PrimerOcticonsAsset extends \yii\web\AssetBundle
 {
     /**
      * @inheritdoc
