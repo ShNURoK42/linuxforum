@@ -16,7 +16,7 @@ $formatter = Yii::$app->formatter;
 ?>
 <div class="post <?= ($count % 2 == 0) ? 'roweven' : 'rowodd' ?><?= ($count == 1) ? ' firstpost' : '' ?>" id="p<?= $post->id ?>">
     <div class="post-avatar">
-        <?php if ($post->user->email): ?>
+        <?php if (isset($post->user->email)): ?>
         <?= Gravatar::widget([
             'email' => $post->user->email,
             'options' => [
@@ -33,10 +33,10 @@ $formatter = Yii::$app->formatter;
     <div class="post-container">
         <div class="post-content">
             <div class="post-header">
-                <span class="post-header-user"><a href="<?= Url::toRoute(['user/view', 'id' => $post->user_id])?>"><?= $post->user->username ?></a></span> написал
+                <span class="post-header-user"><a href="<?= Url::toRoute(['user/view', 'id' => $post->user_id])?>"><?= (isset($post->user->username)) ? $post->user->username : '' ?></a></span> написал
                 <span class="post-header-time"><?= $formatter->asDatetime($post->created_at) ?></span>
                 <span class="post-header-count"><a href="<?= Url::toRoute(['post/view', 'id' => $post->id, '#' => 'p' . $post->id]) ?>">#<?= $count ?></a></span>
-                    <?php if ($topic->first_post_user_id == $post->user->id): ?>
+                    <?php if (isset($post->user->id) && ($topic->first_post_user_id == $post->user->id)): ?>
                     <span class="post-header-owner">Автор</span>
                     <?php endif; ?>
                     <?php if (Yii::$app->getUser()->can('updatePost', ['post' => $post])): ?>
