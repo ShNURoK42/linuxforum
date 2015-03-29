@@ -44,6 +44,9 @@ return [
                 'users' => 'user/list',
                 'user/<id:\d+>' => 'user/view',
 
+                // UserProfileController
+                'user/<id:\d+>/settings' => 'user-profile/index',
+
                 // ForumController
                 'forum/<id:\d+>/page/<page:\d+>' => 'forum/view',
                 'forum/<id:\d+>' => 'forum/view',

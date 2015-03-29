@@ -16,16 +16,6 @@
                 var $form = $('#quickpostform'),
                     $post = $('.post');
 
-                $form.on('click', '.js-preview-tab', function (e) {
-                    e.preventDefault();
-                    methods.preview.apply($form);
-                });
-
-                $form.on('click', '.js-write-tab', function (e) {
-                    e.preventDefault();
-                    methods.write.apply($form);
-                });
-
                 $post.on('click', '.js-post-update-pencil', function (e) {
                     e.preventDefault();
                     var $this = $(this);
@@ -73,34 +63,6 @@
                     $this.find('.post-update').hide();
                     $this.find('.js-post-update-pencil').show();
                     $this.find('.post-message').show().html(data);
-                }
-            });
-        },
-
-        write: function() {
-            var $this = this;
-            $this.find('.js-preview-tab').removeClass('selected');
-            $this.find('.js-write-tab').addClass('selected');
-            $this.find('.field-postform-message').show();
-            $this.find('.post-preview').hide();
-        },
-
-        preview: function() {
-            var $this = this,
-                text = $('.create-post-message textarea').val();
-
-            $.ajax({
-                url: '/post/preview',
-                type: 'POST',
-                dataType: 'json',
-                data: {text: text},
-                cache: false,
-                success: function (data) {
-                    $this.find('.js-write-tab').removeClass('selected');
-                    $this.find('.js-preview-tab').addClass('selected');
-                    $this.find('.field-postform-message').hide();
-
-                    $this.find('.post-preview').show().html(data);
                 }
             });
         }
