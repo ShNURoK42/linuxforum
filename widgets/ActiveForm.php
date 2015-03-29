@@ -2,9 +2,7 @@
 
 namespace app\widgets;
 
-use yii\widgets\ActiveForm as YiiActiveForm;
-
-class ActiveForm extends YiiActiveForm
+class ActiveForm extends \yii\widgets\ActiveForm
 {
     /**
      * @inheritdoc

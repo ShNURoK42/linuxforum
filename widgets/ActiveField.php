@@ -2,9 +2,7 @@
 
 namespace app\widgets;
 
-use yii\widgets\ActiveField as YiiActiveField;
-
-class ActiveField extends YiiActiveField
+class ActiveField extends \yii\widgets\ActiveField
 {
     /**
      * @inheritdoc
