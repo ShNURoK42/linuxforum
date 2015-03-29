@@ -74,11 +74,11 @@ MainAsset::register($this);
 <?php if (Yii::$app->getUser()->getIsGuest()): ?>
 <div class="container">
     <div class="ads-box clearfix" style="margin: 10px 0 30px; color: #566579; padding: 0;">
-        <div class="pull-left">
+        <div class="left">
             <?php require Yii::$app->basePath . '/ads/slibs/csKeysDb.php' ?>
             <?= csKeysDb::getBlock($_SERVER["REQUEST_URI"], 2) ?>
         </div>
-        <div class="pull-right" style="border-radius: 10px; color: #566579; border: 1px solid #cad7e1;">
+        <div class="right" style="border-radius: 10px; color: #566579; border: 1px solid #cad7e1;">
             <ul style="margin: 10px; padding: 0; line-height: 1; font-size: 11px; list-style: outside none none;">
                 <?php if (Yii::$app->controller->route == 'site/index'): ?>
                 <li><a href=http://www.zapravkairemont.ru>заправка картриджей hp</a></li>
