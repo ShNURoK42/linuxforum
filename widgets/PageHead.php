@@ -33,7 +33,7 @@ class PageHead extends Widget
             $options['class'] = 'pagehead pagehead-error';
         }
 
-        return $this->render('pageHead', [
+        echo $this->render('pageHead', [
             'title' => $this->title,
             'subtitle' => $this->subtitle,
             'options' => $options

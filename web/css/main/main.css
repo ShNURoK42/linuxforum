@@ -353,40 +353,8 @@ body {
   border-color: #ddd;
 }
 
-.pagination-lg > li > a,
-.pagination-lg > li > span {
-  padding: 10px 16px;
-  font-size: 18px;
-}
-
-.pagination-lg > li:first-child > a,
-.pagination-lg > li:first-child > span {
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
-}
-
-.pagination-lg > li:last-child > a,
-.pagination-lg > li:last-child > span {
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-}
-
-.pagination-sm > li > a,
-.pagination-sm > li > span {
-  padding: 5px 10px;
-  font-size: 12px;
-}
-
-.pagination-sm > li:first-child > a,
-.pagination-sm > li:first-child > span {
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-
-.pagination-sm > li:last-child > a,
-.pagination-sm > li:last-child > span {
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
+.pagination-center {
+  text-align: center;
 }
 
 /* Statistic
@@ -418,7 +386,7 @@ body {
 .post-container {
   margin-left: 80px;
   position: relative;
-  width: 870px;
+  width: 900px;
 }
 .post-avatar {
   float: left;
@@ -501,4 +469,85 @@ body {
   background-color: #fafafa;
   min-height: 150px;
   resize: vertical;
+}
+
+/* Post Formbox
+   ========================================================================== */
+.post-formbox {
+  padding-top: 20px;
+}
+.post-formbox-content {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin-left: 80px;
+  position: relative;
+  width: 900px;
+}
+.post-formbox-content:after,
+.post-formbox-content:before {
+  border-color: transparent;
+  border-style: solid solid outset;
+  content: " ";
+  display: block;
+  height: 0;
+  left: -16px;
+  pointer-events: none;
+  position: absolute;
+  right: 100%;
+  top: 14px;
+  width: 0;
+}
+.post-formbox-content:after {
+  border-right-color: #f7f7f7;
+  border-width: 7px;
+  margin-left: 2px;
+  margin-top: 1px;
+}
+.post-formbox-content:before {
+  border-right-color: #ddd;
+  border-width: 8px;
+}
+.post-formbox-content .form-actions {
+  padding: 10px;
+}
+.post-formbox-content .error-summary {
+  color: #bd2c00;
+  font-weight: bold;
+  margin: 0 0 10px;
+}
+.post-formbox-content .error-summary ul {
+  list-style: none;
+  padding: 0;
+}
+.post-formbox-preview {
+  background-color: transparent;
+  border-bottom: 1px solid #eee;
+  display: none;
+  font-size: 13px;
+  min-height: 200px;
+  padding: 7px 5px 15px 19px;
+}
+.postform-create .form-group {
+  margin: 0 10px;
+}
+.postform-create textarea {
+  background-color: #fafafa;
+  min-height: 200px;
+  resize: vertical;
+  max-width: 100%;
+}
+.postform-create textarea:focus {
+  background-color: #fff;
+}
+.post-formbox-avatar {
+  float: left;
+}
+.post-formbox-tabnav {
+  background: none repeat scroll 0 0 #f7f7f7;
+  border-radius: 3px 3px 0 0;
+  margin-bottom: 10px;
+  padding: 6px 10px 0;
+}
+.post-formbox-tabnav > nav > a {
+  font-size: 13px;
 }

@@ -1,23 +1,16 @@
 <?php
-use cebe\gravatar\Gravatar;
-use yii\data\ActiveDataProvider;
-use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
 use yii\helpers\Url;
-use app\widgets\ActiveForm;
 use app\helpers\AccessHelper;
-use app\models\Post;
-use app\models\Topic;
-use app\models\forms\PostForm;
+use app\widgets\PostFormbox;
 use app\widgets\LinkPager;
 
 /* @var \app\components\View $this */
-/* @var ActiveDataProvider $dataProvider */
-/* @var ActiveRecord[] $posts */
-/* @var Topic $topic */
-/* @var Post $post */
-/* @var PostForm $model */
+/* @var \yii\data\ActiveDataProvider $dataProvider */
+/* @var \yii\db\ActiveRecord[] $posts */
+/* @var \app\models\Topic $topic */
+/* @var \app\models\Post $post */
+/* @var \app\models\forms\PostForm $model */
 
 $users = ArrayHelper::getColumn($posts, 'user');
 $usernames = ArrayHelper::getColumn($users, 'username');
@@ -37,55 +30,17 @@ $item['post_count'] = $dataProvider->pagination->offset;
             <?= $this->render('/post/view', ['topic' => $topic, 'post' => $post, 'count' => $item['post_count']])?>
         <?php endforeach; ?>
     </div>
+    <div class="topic-discussion-end"></div>
     <?php if (AccessHelper::canPostReplyInTopic($topic)): ?>
-    <div style="clear: both">
-        <div class="post-avatar">
-            <?= Gravatar::widget([
-                'email' => Yii::$app->getUser()->getIdentity()->email,
-                'options' => [
-                    'alt' => Yii::$app->getUser()->getIdentity()->username,
-                    'class' => 'avatar',
-                    'width' => 64,
-                    'height' => 64,
-                ],
-                'defaultImage' => 'retro',
-                'size' => 64
-            ]); ?>
-        </div>
-        <div class="quickpost" id="quickpostform">
-            <?php $form = ActiveForm::begin([
-                'action' => ['topic/view', 'id' => $topic->id, '#' => 'quickpostform'],
-                'options' => ['id' => 'quickpostform'],
-            ]) ?>
-            <div class="quickpost-header tabnav">
-                <div class="right">
-                    <a class="tabnav-extra" target="_blank" href="<?= Url::toRoute('site/markdown') ?>"><span class="octicon octicon-markdown"></span>Поддержка markdown</a>
-                </div>
-                <nav class="tabnav-tabs">
-                    <a href="#" class="tabnav-tab js-write-tab selected">Набор сообщения</a>
-                    <a href="#" class="tabnav-tab js-preview-tab">Предпросмотр</a>
-                </nav>
-            </div>
-            <?= $form->errorSummary($model, [
-                'header' => '<p><strong>Исправьте следующие ошибки:</strong></p>',
-                'class' => 'form-warning',
-            ]) ?>
-            <?= $form->field($model, 'message', [
-                'template' => "{input}",
-                'options' => [
-                    'class' => 'create-post-message',
-                ],
-            ])->textarea([
-                'placeholder' => 'Напишите сообщение',
-            ]) ?>
-            <div class="post-preview postmsg markdown-body"></div>
-            <div class="form-actions">
-                <?= Html::submitButton('Отправить сообщение', ['class' => 'btn btn-primary']) ?>
-            </div>
-            <?php ActiveForm::end() ?>
-        </div>
-    </div>
+        <?= PostFormbox::widget([
+            'model' => $model,
+            'messageAttribute' => 'message',
+            'activeFormOptions' => [
+                'action' => ['topic/view', 'id' => $topic->id, '#' => 'postform'],
+            ],
+        ]) ?>
     <?php endif; ?>
-    <?= LinkPager::widget(['pagination' => $dataProvider->pagination]) ?>
-</div>
+    <div class="pagination-center">
+        <?= LinkPager::widget(['pagination' => $dataProvider->pagination]) ?>
+    </div>
 <?php $this->registerJs("jQuery(document).post();") ?>

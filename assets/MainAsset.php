@@ -19,8 +19,8 @@ class MainAsset extends \yii\web\AssetBundle
      * @inheritdoc
      */
     public $css = [
-        'css/main/main.css',
         'css/main/markdown.css',
+        'css/main/main.css',
         'css/dev.css',
     ];
     /**
@@ -29,6 +29,7 @@ class MainAsset extends \yii\web\AssetBundle
     public $js = [
         'js/common.js',
         'js/post.js',
+        'js/postPreview.js',
     ];
     /**
      * @inheritdoc

@@ -6,8 +6,8 @@
 <div class="<?= $options['class'] ?>">
     <div class="container">
         <h2><?= $title ?></h2>
-        <? if (isset($subtitle)): ?>
+        <?php if (isset($subtitle)): ?>
         <p><?= $subtitle ?></p>
-        <? endif; ?>
+        <?php endif; ?>
     </div>
 </div>

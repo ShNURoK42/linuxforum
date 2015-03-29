@@ -7,6 +7,7 @@ use Yii;
 use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 use app\helpers\AccessHelper;
+use app\helpers\MarkdownParser;
 use app\models\Post;
 use app\models\Topic;
 
@@ -61,15 +62,15 @@ class PostController extends \app\components\BaseController
         if (Yii::$app->getRequest()->getIsAjax()) {
             Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
-            $text = Yii::$app->getRequest()->post('text');
+            $text = Yii::$app->getRequest()->post('message');
             if ($text == '') {
                 return 'Пустое сообщение.';
             }
 
-            $parsedown = new \app\helpers\MarkdownParser();
+            $parsedown = new MarkdownParser();
             $text = $parsedown
                 ->setMarkupEscaped(true)
-                ->text($_POST['text']);
+                ->text($text);
 
             return $text;
         }
