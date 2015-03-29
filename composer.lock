@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4a0ad1b5f1d6487c5a6978a4cd32b09c",
+    "hash": "d53867c5fc254272d7e6d14a7b054095",
     "packages": [
         {
             "name": "bower-asset/jquery",
@@ -102,36 +102,6 @@
             ]
         },
         {
-            "name": "bower-asset/normalize.css",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/necolas/normalize.css.git",
-                "reference": "0c31dada5189a577f16fc61cbd8680e7f35bcca3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/necolas/normalize.css/zipball/0c31dada5189a577f16fc61cbd8680e7f35bcca3",
-                "reference": "0c31dada5189a577f16fc61cbd8680e7f35bcca3",
-                "shasum": ""
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": "normalize.css",
-                "bower-asset-ignore": [
-                    "CHANGELOG.md",
-                    "CONTRIBUTING.md",
-                    "component.json",
-                    "package.json",
-                    "test.html"
-                ],
-                "branch-alias": {
-                    "dev-master": "3.0.2-dev"
-                }
-            },
-            "time": "2015-03-17 18:52:17"
-        },
-        {
             "name": "bower-asset/octicons",
             "version": "dev-master",
             "source": {
@@ -171,6 +141,79 @@
                 "web font"
             ],
             "time": "2015-02-20 18:58:21"
+        },
+        {
+            "name": "bower-asset/primer-css",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/primer/primer.git",
+                "reference": "2e8ebef408deb9fb722d1ca1e0670092ec16d805"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/primer/primer/zipball/2e8ebef408deb9fb722d1ca1e0670092ec16d805",
+                "reference": "2e8ebef408deb9fb722d1ca1e0670092ec16d805",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/octicons": "*",
+                "bower-asset/primer-markdown": "2.1.7"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "scss/primer.scss"
+                ],
+                "bower-asset-ignore": [
+                    "docs/",
+                    "script/",
+                    ".gitignore",
+                    ".scss-lint.yml",
+                    "_config.yml",
+                    "Gemfile",
+                    "Gemfile.lock",
+                    "Rakefile"
+                ],
+                "branch-alias": {
+                    "dev-master": "2.0.2-dev"
+                }
+            },
+            "time": "2015-03-29 19:02:20"
+        },
+        {
+            "name": "bower-asset/primer-markdown",
+            "version": "v2.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/primer/markdown.git",
+                "reference": "66c71cd395676b58fe3de587fb643eb0c11509d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/primer/markdown/zipball/66c71cd395676b58fe3de587fb643eb0c11509d8",
+                "reference": "66c71cd395676b58fe3de587fb643eb0c11509d8",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "dist/github-markdown.css"
+                ],
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "*.js",
+                    "README.md",
+                    "Gruntfile.js",
+                    "package.json",
+                    "render-test.md"
+                ]
+            },
+            "keywords": [
+                "css",
+                "github",
+                "markdown"
+            ]
         },
         {
             "name": "bower-asset/punycode",
@@ -481,12 +524,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "14da7cbf6f6ee367340836053234d95a902db427"
+                "reference": "c4e5f240ca69eca722d2a8b3f74bfa12af36c735"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/14da7cbf6f6ee367340836053234d95a902db427",
-                "reference": "14da7cbf6f6ee367340836053234d95a902db427",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/c4e5f240ca69eca722d2a8b3f74bfa12af36c735",
+                "reference": "c4e5f240ca69eca722d2a8b3f74bfa12af36c735",
                 "shasum": ""
             },
             "require": {
@@ -561,7 +604,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-03-28 02:52:01"
+            "time": "2015-03-29 16:01:24"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -781,12 +824,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "5dfc3ac6745137c878e4aefd1108e844851f5b3b"
+                "reference": "a163a1301885c3116733e5bc3c138128388e18fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/5dfc3ac6745137c878e4aefd1108e844851f5b3b",
-                "reference": "5dfc3ac6745137c878e4aefd1108e844851f5b3b",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/a163a1301885c3116733e5bc3c138128388e18fa",
+                "reference": "a163a1301885c3116733e5bc3c138128388e18fa",
                 "shasum": ""
             },
             "require": {
@@ -823,7 +866,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2015-03-28 13:35:49"
+            "time": "2015-03-29 13:37:34"
         },
         {
             "name": "yiisoft/yii2-debug",
@@ -831,12 +874,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
-                "reference": "11f46389c9818a0638555902ce5ad2e9e10ec3ed"
+                "reference": "edb42627d91abae3294748309e147f473acb2398"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/11f46389c9818a0638555902ce5ad2e9e10ec3ed",
-                "reference": "11f46389c9818a0638555902ce5ad2e9e10ec3ed",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/edb42627d91abae3294748309e147f473acb2398",
+                "reference": "edb42627d91abae3294748309e147f473acb2398",
                 "shasum": ""
             },
             "require": {
@@ -870,7 +913,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2015-03-23 18:34:58"
+            "time": "2015-03-29 13:47:04"
         },
         {
             "name": "yiisoft/yii2-gii",
@@ -878,12 +921,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-gii.git",
-                "reference": "6db607dffc8605bd9d212e9a83bebbcf7f5b99d6"
+                "reference": "04aaa7a97d866f286f04ef829ea56c31148e403f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/6db607dffc8605bd9d212e9a83bebbcf7f5b99d6",
-                "reference": "6db607dffc8605bd9d212e9a83bebbcf7f5b99d6",
+                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/04aaa7a97d866f286f04ef829ea56c31148e403f",
+                "reference": "04aaa7a97d866f286f04ef829ea56c31148e403f",
                 "shasum": ""
             },
             "require": {
@@ -923,7 +966,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2015-03-23 18:28:16"
+            "time": "2015-03-29 13:45:41"
         }
     ],
     "aliases": [],
