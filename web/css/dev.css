@@ -1,29 +1,58 @@
-.field-topicform-subject {
-  padding: 10px 0;
-}
-
-
 /* TOPIC */
-.topic-discussion {
+.topic-create-btn {
+  float: right;
+  padding: 5px 10px;
+}
+.topic-list-header {
+  background-color: #f8f8f8;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px 3px 0 0;
+  margin-top: 20px;
+  position: relative;
+}
+.topic-list-header-info {
+}
+.topic-list-header-info .btn-link {
+  display: inline-block;
+  font-weight: normal;
+  padding-bottom: 13px;
+  padding-top: 13px;
   position: relative;
 }
 
-.topic-discussion::before {
-  background-color: #f3f3f3;
-  bottom: 0;
-  content: "";
-  display: block;
-  left: 95px;
-  position: absolute;
-  top: 0;
-  width: 2px;
-  z-index: -1;
+.topics-list {
 }
-.topic-discussion-end {
-  border-top: 2px solid #f3f3f3;
+.topic-row {
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
   overflow: hidden;
-  clear: both;
+  padding: 10px;
 }
+.topic-row-icon {
+  float: left;
+  padding-right: 5px;
+}
+.topic-row-icon .octicon {
+  color: #6cc644;
+  font-weight: bold;
+}
+.topic-row-link {
+  color: #333;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.2;
+}
+.topic-row-link:hover {
+  color: #4183c4;
+  text-decoration: none;
+}
+.topic-row-meta {
+  color: #777;
+}
+
+
+
 
 /* POST EDIT*/
 .post-header-actions {

@@ -554,3 +554,6 @@ body {
 .post-formbox-tabnav > nav > a {
   font-size: 13px;
 }
+.field-topicform-subject {
+  padding: 10px 0;
+}

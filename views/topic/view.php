@@ -23,7 +23,7 @@ $this->author = $author;
 
 $item['post_count'] = $dataProvider->pagination->offset;
 ?>
-<div class="view-topic">
+<div class="page-viewtopic">
     <div class="topic-discussion">
         <?php foreach($posts as $post): ?>
             <?php $item['post_count']++ ?>
