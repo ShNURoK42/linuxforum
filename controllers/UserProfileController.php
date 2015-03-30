@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use yii\web\NotFoundHttpException;
 use app\models\forms\ProfileForm;
 use app\models\User;
 
@@ -12,6 +13,10 @@ class UserProfileController extends \app\components\BaseController
     {
         /** @var User $user */
         $user = User::findOne(['id' => $id]);
+
+        if (!Yii::$app->getUser()->can('updateProfile', ['user' => $user])) {
+            throw new NotFoundHttpException;
+        }
 
         $model = new ProfileForm();
         if ($model->load(Yii::$app->request->post())) {
