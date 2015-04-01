@@ -76,6 +76,6 @@ class Config extends \yii\base\Component
             ->from($this->configTable)
             ->all($this->db);
 
-        return ArrayHelper::map($rows, 'conf_name', 'conf_value');
+        return ArrayHelper::map($rows, 'name', 'value');
     }
 }
