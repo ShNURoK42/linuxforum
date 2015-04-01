@@ -2,7 +2,7 @@
 
 /* @var string $terms HTML текст правил */
 
-$this->title = 'Правила пользования сайтом ' . Yii::$app->config->get('o_board_title');
+$this->title = 'Правила пользования сайтом ' . Yii::$app->config->get('site_title');
 ?>
 <div class="page-terms">
     <ul>

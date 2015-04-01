@@ -80,7 +80,7 @@ class Post extends \yii\db\ActiveRecord
             'pagination' => [
                 'forcePageParam' => false,
                 'pageSizeLimit' => false,
-                'defaultPageSize' => Yii::$app->config->get('o_disp_posts_default'),
+                'defaultPageSize' => Yii::$app->config->get('display_posts_count'),
             ],
         ]);
 

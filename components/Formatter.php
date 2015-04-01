@@ -11,11 +11,11 @@ class Formatter extends \yii\i18n\Formatter
      */
     public function init()
     {
-        $this->datetimeFormat = 'php:' . Yii::$app->config->get('o_date_format') . ' ' . Yii::$app->config->get('o_time_format');
-        $this->dateFormat = 'php:' . Yii::$app->config->get('o_date_format');
-        $this->timeFormat = 'php:' . Yii::$app->config->get('o_time_format');
-        $this->thousandSeparator = ' ';
         $this->timeZone = 'Europe/Moscow';
+        $this->datetimeFormat = 'php:d.m.Y H:i:s';
+        $this->dateFormat = 'php:d.m.Y';
+        $this->timeFormat = 'php:H:i:s';
+        $this->thousandSeparator = ' ';
     }
 
     public function asTimeAgo($time)

@@ -30,9 +30,9 @@ MainAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <link rel="shortcut icon" href="<?= Url::to('@web/favicon.ico') ?>" />
     <?php if (!$this->title): ?>
-    <title><?= Yii::$app->config->get('o_board_title') ?></title>
+    <title><?= Yii::$app->config->get('site_title') ?></title>
     <?php else: ?>
-    <title><?= Html::encode($this->title) ?> / <?= Yii::$app->config->get('o_board_title') ?></title>
+    <title><?= Html::encode($this->title) ?> / <?= Yii::$app->config->get('site_title') ?></title>
     <?php endif; ?>
     <?php $this->head() ?>
 </head>
@@ -42,9 +42,9 @@ MainAsset::register($this);
     <div class="container">
         <div class="navbar-brand">
             <?php if (Yii::$app->controller->route == 'site/index'): ?>
-                <span><?= Yii::$app->config->get('o_board_title') ?></span>
+                <span><?= Yii::$app->config->get('site_title') ?></span>
             <?php else: ?>
-                <a href="<?= Yii::$app->urlManager->createUrl('site/index') ?>"><?= Yii::$app->config->get('o_board_title') ?></a>
+                <a href="<?= Yii::$app->urlManager->createUrl('site/index') ?>"><?= Yii::$app->config->get('site_title') ?></a>
             <?php endif; ?>
         </div>
         <?= Navigation::widget(['position' => 'header']); ?>
@@ -61,7 +61,7 @@ MainAsset::register($this);
 <footer class="footer">
     <div class="container">
         <div class="copyright">
-            <h6>&copy;&nbsp;<?= Yii::$app->config->get('o_board_title') ?>,&nbsp;<?= date('Y') ?></h6>
+            <h6>&copy;&nbsp;<?= Yii::$app->config->get('site_title') ?>,&nbsp;<?= date('Y') ?></h6>
         </div>
         <div class="footbar">
             <?= Navigation::widget(['position' => 'footer']); ?>

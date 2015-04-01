@@ -116,9 +116,9 @@ class ForgetForm extends \yii\base\Model
         $user = $this->user;
 
         return \Yii::$app->mailer->compose(['text' => 'forget'], ['user' => $user, 'password' => $password, 'token' => $token])
-            ->setFrom([Yii::$app->config->get('o_webmaster_email') => Yii::$app->config->get('o_board_title')])
+            ->setFrom([Yii::$app->config->get('support_email') => Yii::$app->config->get('site_title')])
             ->setTo([$this->email => $user->username])
-            ->setSubject('[' . Yii::$app->config->get('o_board_title') . '] Запрос на смену пароля')
+            ->setSubject('[' . Yii::$app->config->get('site_title') . '] Запрос на смену пароля')
             ->send();
     }
 

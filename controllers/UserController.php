@@ -75,7 +75,7 @@ class UserController extends \app\components\BaseController
             return $this->render('/site/info', [
                 'params' => [
                     'name' => Yii::t('app/common', 'Info'),
-                    'message' => Yii::t('app/register', 'Success info') . ' ' . Html::a(Yii::$app->config->get('o_webmaster_email'), null, ['href' => 'mailto:' . Yii::$app->config->get('o_webmaster_email')]) . '.',
+                    'message' => Yii::t('app/register', 'Success info') . ' ' . Html::a(Yii::$app->config->get('support_email'), null, ['href' => 'mailto:' . Yii::$app->config->get('support_email')]) . '.',
                 ]
             ]);
         }
@@ -105,7 +105,7 @@ class UserController extends \app\components\BaseController
                 return $this->render('/site/info', [
                     'params' => [
                         'name' => Yii::t('app/common', 'Info'),
-                        'message' => Yii::t('app/forget', 'Email sent message') . ' ' . Html::a(Yii::$app->config->get('o_webmaster_email'), null, ['href' => 'mailto:' . Yii::$app->config->get('o_webmaster_email')]) . '.',
+                        'message' => Yii::t('app/forget', 'Email sent message') . ' ' . Html::a(Yii::$app->config->get('support_email'), null, ['href' => 'mailto:' . Yii::$app->config->get('support_email')]) . '.',
                     ]
                 ]);
             }
@@ -136,7 +136,7 @@ class UserController extends \app\components\BaseController
         } else {
             $params = [
                 'name' => Yii::t('app/common', 'Info'),
-                'message' => Yii::t('app/forget', 'Key expired') . ' ' . Html::a(Yii::$app->config->get('o_webmaster_email'), null, ['href' => 'mailto:' . Yii::$app->config->get('o_webmaster_email')]) . '.',
+                'message' => Yii::t('app/forget', 'Key expired') . ' ' . Html::a(Yii::$app->config->get('support_email'), null, ['href' => 'mailto:' . Yii::$app->config->get('support_email')]) . '.',
             ];
 
             return $this->render('/site/info', ['params' => $params]);

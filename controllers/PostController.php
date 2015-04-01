@@ -148,7 +148,7 @@ class PostController extends \app\components\BaseController
             $index++;
         }
 
-        $page = ceil($index / Yii::$app->config->get('o_disp_posts_default'));
+        $page = ceil($index / Yii::$app->config->get('display_posts_count'));
 
         return $page;
     }

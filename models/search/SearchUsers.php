@@ -116,11 +116,8 @@ class SearchUsers extends Model
         $items = [
             'registered' => Yii::t('app/userlist', 'By registered sort item'),
             'username' => Yii::t('app/userlist', 'Username sort item'),
+            'number_posts' => Yii::t('app/userlist', 'By number of posts sort item'),
         ];
-
-        if ((Yii::$app->config->get('o_show_post_count') == '1')) {
-            $items['number_posts'] = Yii::t('app/userlist', 'By number of posts sort item');
-        }
 
         return $items;
     }

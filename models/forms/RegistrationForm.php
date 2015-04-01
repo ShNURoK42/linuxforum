@@ -96,9 +96,9 @@ class RegistrationForm extends \yii\base\Model
     public function sendMail($user, $password)
     {
         return \Yii::$app->mailer->compose(['text' => 'register'], ['user' => $user, 'password' => $password])
-            ->setFrom([Yii::$app->config->get('o_webmaster_email') => Yii::$app->config->get('o_board_title')])
+            ->setFrom([Yii::$app->config->get('support_email') => Yii::$app->config->get('site_title')])
             ->setTo([$this->email => $user->username])
-            ->setSubject('[' . Yii::$app->config->get('o_board_title') . '] Благодарим Вас за регистрацию!')
+            ->setSubject('[' . Yii::$app->config->get('site_title') . '] Благодарим Вас за регистрацию!')
             ->send();
     }
 }

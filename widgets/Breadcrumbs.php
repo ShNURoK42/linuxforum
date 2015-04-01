@@ -21,7 +21,7 @@ class Breadcrumbs extends \yii\widgets\Breadcrumbs
     public function init()
     {
         $this->homeLink = [
-            'label' => Yii::$app->config->get('o_board_title'),
+            'label' => Yii::$app->config->get('site_title'),
             'url' => Url::home(),
         ];
 

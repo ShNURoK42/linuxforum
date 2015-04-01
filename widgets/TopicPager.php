@@ -27,7 +27,7 @@ class TopicPager extends \yii\base\Widget
     public function run()
     {
         if (!$this->defaultPageSize) {
-            $this->defaultPageSize = Yii::$app->config->get('o_disp_posts_default');
+            $this->defaultPageSize = Yii::$app->config->get('display_posts_count');
         }
 
         if ($this->topic->number_posts <= $this->defaultPageSize) {

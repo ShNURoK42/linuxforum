@@ -20,9 +20,9 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <link rel="shortcut icon" href="<?= Url::to('@web/favicon.ico') ?>" />
     <?php if (!$this->title): ?>
-        <title><?= Yii::$app->config->get('o_board_title') ?></title>
+        <title><?= Yii::$app->config->get('site_title') ?></title>
     <?php else: ?>
-        <title><?= Html::encode($this->title) ?> / <?= Yii::$app->config->get('o_board_title') ?></title>
+        <title><?= Html::encode($this->title) ?> / <?= Yii::$app->config->get('site_title') ?></title>
     <?php endif; ?>
     <?php $this->head() ?>
 </head>
@@ -34,7 +34,7 @@ AppAsset::register($this);
         <div id="brdheader" class="block">
             <div class="box">
                 <div id="brdtitle" class="inbox">
-                    <h1><a href="<?= Url::home() ?>"><?= Yii::$app->config->get('o_board_title') ?></a></h1>
+                    <h1><a href="<?= Url::home() ?>"><?= Yii::$app->config->get('site_title') ?></a></h1>
                 </div>
                 <div id="brdmenu" class="inbox">
                     <?= Menu::widget() ?>
@@ -70,7 +70,7 @@ AppAsset::register($this);
                     </div>
                     <div class="conr">
                         <p id="copyright" style="display: block">
-                            <span>&copy;&nbsp;<a href="<?= Url::home() ?>"><?= Yii::$app->config->get('o_board_title') ?></a>,&nbsp;<?= date('Y') ?></span>
+                            <span>&copy;&nbsp;<a href="<?= Url::home() ?>"><?= Yii::$app->config->get('site_title') ?></a>,&nbsp;<?= date('Y') ?></span>
                         </p>
                     </div>
                 </div>

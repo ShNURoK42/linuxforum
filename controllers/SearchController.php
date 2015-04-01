@@ -27,7 +27,7 @@ class SearchController extends \app\components\BaseController
             'pagination' => [
                 'forcePageParam' => false,
                 'pageSizeLimit' => false,
-                'defaultPageSize' => Yii::$app->config->get('o_disp_topics_default'),
+                'defaultPageSize' => Yii::$app->config->get('display_topics_count'),
             ],
         ]);
 
@@ -53,7 +53,7 @@ class SearchController extends \app\components\BaseController
             'pagination' => [
                 'forcePageParam' => false,
                 'pageSizeLimit' => false,
-                'defaultPageSize' => Yii::$app->config->get('o_disp_topics_default'),
+                'defaultPageSize' => Yii::$app->config->get('display_topics_count'),
             ],
         ]);
 
@@ -94,7 +94,7 @@ class SearchController extends \app\components\BaseController
             'pagination' => [
                 'forcePageParam' => false,
                 'pageSizeLimit' => false,
-                'defaultPageSize' => Yii::$app->config->get('o_disp_topics_default'),
+                'defaultPageSize' => Yii::$app->config->get('display_topics_count'),
             ],
         ]);
 
