@@ -13,6 +13,10 @@ body {
   line-height: 1.6;
   word-wrap: break-word;
 }
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
 
 /* Header
    ========================================================================== */
@@ -392,7 +396,7 @@ body {
 .post-container {
   margin-left: 80px;
   position: relative;
-  width: 900px;
+  width: 870px;
 }
 .post-avatar {
   float: left;
@@ -487,7 +491,7 @@ body {
   border-radius: 3px;
   margin-left: 80px;
   position: relative;
-  width: 900px;
+  width: 870px;
 }
 .post-formbox-content:after,
 .post-formbox-content:before {
@@ -556,4 +560,23 @@ body {
 }
 .field-topicform-subject {
   padding: 10px 0;
+}
+.topic-discussion {
+  position: relative;
+}
+.topic-discussion::before {
+  background-color: #f3f3f3;
+  bottom: 0;
+  content: "";
+  display: block;
+  left: 95px;
+  position: absolute;
+  top: 0;
+  width: 2px;
+  z-index: -1;
+}
+.topic-discussion-end {
+  border-top: 2px solid #f3f3f3;
+  overflow: hidden;
+  clear: both;
 }

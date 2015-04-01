@@ -50,7 +50,10 @@
 .topic-row-meta {
   color: #777;
 }
-
+.topic-row-post-count {
+  float: right;
+  color: #777;
+}
 
 
 
