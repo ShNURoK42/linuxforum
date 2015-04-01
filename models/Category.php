@@ -6,8 +6,6 @@ use Yii;
 use yii\db\ActiveQuery;
 
 /**
- * This is the model class for table "categories".
- *
  * @property integer $id
  * @property string $name
  * @property integer $display_position
