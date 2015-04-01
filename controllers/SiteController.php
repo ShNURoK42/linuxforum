@@ -19,7 +19,7 @@ class SiteController extends \app\components\BaseController
     public function actionIndex()
     {
         $categories = Category::find()
-            ->joinWith(['forums'])
+            ->with(['forums'])
             ->orderBy('display_position')
             ->all();
 
