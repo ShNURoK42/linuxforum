@@ -523,7 +523,7 @@ body {
 .post-formbox-content .error-summary {
   color: #bd2c00;
   font-weight: bold;
-  margin: 0 0 10px;
+  margin: 10px;
 }
 .post-formbox-content .error-summary ul {
   list-style: none;
