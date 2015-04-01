@@ -14,15 +14,20 @@ class LinkPager extends \yii\widgets\LinkPager
      * @inheritdoc
      */
     public $maxButtonCount = 10;
-
     /**
      * @inheritdoc
      */
-    public function init()
-    {
-        parent::init();
-
-        $this->nextPageLabel = 'Далее';
-        $this->prevPageLabel = 'Назад';
-    }
+    public $firstPageLabel = 'Первая';
+    /**
+     * @inheritdoc
+     */
+    public $lastPageLabel = 'Последняя';
+    /**
+     * @inheritdoc
+     */
+    public $nextPageLabel = false;
+    /**
+     * @inheritdoc
+     */
+    public $prevPageLabel = false;
 }
