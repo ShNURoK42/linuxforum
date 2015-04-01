@@ -3,7 +3,6 @@
 namespace app\models\forms;
 
 use Yii;
-use app\models\Group;
 use app\models\User;
 
 /**
@@ -72,7 +71,7 @@ class RegistrationForm extends \yii\base\Model
             $user = new User();
             $password = Yii::$app->security->generateRandomString(12);
 
-            $user->role_id = Group::GROUP_UNVERIFIED;
+            $user->role = 'user';
             $user->username = $this->username;
             $user->email = $this->email;
             $user->salt = Yii::$app->security->generateSalt();
