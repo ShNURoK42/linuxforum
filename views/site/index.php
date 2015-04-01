@@ -23,8 +23,10 @@ $formatter = Yii::$app->formatter;
     <div class="clearfix">
         <div class="search-links right">
             <ul class="search-links-list">
+                <?php if (!Yii::$app->getUser()->getIsGuest()): ?>
                 <li><a title="Темы в которых вы отвечали." href="/search/ownpost_topics">Ваши</a></li>
                 <li>|</li>
+                <?php endif; ?>
                 <li><a title="Темы с активностью в последние 24 часа." href="/search/active_topics">Активные темы</a></li>
                 <li>|</li>
                 <li><a title="Темы без ответов." href="/search/unanswered_topics">Темы без ответов</a></li>
@@ -65,11 +67,11 @@ $formatter = Yii::$app->formatter;
     <?php endforeach; ?>
     <div class="statistic">
         <div class="clearfix">
-            <ul class="pull-right">
+            <ul class="right">
                 <li>Тем: <strong><?= $formatter->asInteger(\app\models\Topic::find()->count()) ?></strong></li>
                 <li>Сообщений: <strong><?= $formatter->asInteger(\app\models\Post::find()->count()) ?></strong></li>
             </ul>
-            <ul class="pull-left">
+            <ul class="left">
                 <li>Количество пользователей: <strong><?= $formatter->asInteger(\app\models\User::find()->count()) ?></strong></li>
                 <li>Последним зарегистрировался: <a href="">X</a></li>
             </ul>
