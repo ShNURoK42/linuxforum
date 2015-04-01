@@ -65,7 +65,7 @@ class TopicController extends \app\components\BaseController
             ->where(['id' => $id])
             ->one();
 
-        if (!$forum || !Yii::$app->getUser()->getIsGuest()) {
+        if (!$forum || Yii::$app->getUser()->getIsGuest()) {
             throw new NotFoundHttpException();
         }
 

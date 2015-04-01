@@ -86,11 +86,7 @@ class PostController extends \app\components\BaseController
             /** @var Post $post */
             $post = Post::findOne(['id' => $id]);
 
-            if (!Yii::$app->getUser()->can('updatePost', ['post' => $post])) {
-                throw new NotFoundHttpException();
-            }
-
-            if (!$post) {
+            if (!$post || !Yii::$app->getUser()->can('updatePost', ['post' => $post])) {
                 throw new NotFoundHttpException();
             }
 
@@ -120,7 +116,7 @@ class PostController extends \app\components\BaseController
             ->where(['id' => $id])
             ->one();
 
-        if (!$topic || !Yii::$app->getUser()->getIsGuest()) {
+        if (!$topic || Yii::$app->getUser()->getIsGuest()) {
             throw new NotFoundHttpException();
         }
 
