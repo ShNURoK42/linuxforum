@@ -37,7 +37,7 @@ $formatter = Yii::$app->formatter;
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th class=""><?= $formatter->asText($category->cat_name) ?></th>
+                    <th class=""><?= $formatter->asText($category->name) ?></th>
                     <th class="tens"><?= Yii::t('app/index', 'Topics') ?></th>
                     <th class="tens"><?= Yii::t('app/index', 'Posts') ?></th>
                     <th class="one-fourth"><?= Yii::t('app/index', 'Last post') ?></th>
@@ -47,14 +47,14 @@ $formatter = Yii::$app->formatter;
                 <?php foreach($category->forums as $forum): ?>
                 <?php $item['forum_count']++ ?>
                 <tr class="<?= ($item['forum_count'] % 2 == 0) ? 'roweven' : 'rowodd' ?>">
-                    <td class="table-column-title"><a href="<?= Url::toRoute(['forum/view', 'id' => $forum->id])?>"><?= $formatter->asText($forum->forum_name) ?></a></td>
-                    <td><?= $formatter->asInteger($forum->num_topics) ?></td>
-                    <td><?= $formatter->asInteger($forum->num_posts) ?></td>
+                    <td class="table-column-title"><a href="<?= Url::toRoute(['forum/view', 'id' => $forum->id])?>"><?= $formatter->asText($forum->name) ?></a></td>
+                    <td><?= $formatter->asInteger($forum->number_topics) ?></td>
+                    <td><?= $formatter->asInteger($forum->number_posts) ?></td>
                     <td>
-                        <?php if ($forum->last_post): ?>
-                        <a href="<?= Url::toRoute(['post/view', 'id' => $forum->last_post_id, '#' => 'p' . $forum->last_post_id]) ?>"><?= $formatter->asDatetime($forum->last_post) ?></a> <span class="byuser"><?= $forum->last_poster ?></span>
+                        <?php if ($forum->last_post_created_at): ?>
+                        <a href="<?= Url::toRoute(['post/view', 'id' => $forum->last_post_user_id, '#' => 'p' . $forum->last_post_user_id]) ?>"><?= $formatter->asDatetime($forum->last_post_created_at) ?></a> <span class="byuser"><?= $forum->last_post_username ?></span>
                         <?php else: ?>
-                        <?= $formatter->asDatetime($forum->last_post) ?>
+                        <?= $formatter->asDatetime($forum->last_post_created_at) ?>
                         <?php endif; ?>
                     </td>
                 </tr>

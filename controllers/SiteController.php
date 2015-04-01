@@ -20,7 +20,7 @@ class SiteController extends \app\components\BaseController
     {
         $categories = Category::find()
             ->joinWith(['forums'])
-            ->orderBy('disp_position')
+            ->orderBy('display_position')
             ->all();
 
         return $this->render('index', ['categories' => $categories]);

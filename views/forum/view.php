@@ -17,7 +17,7 @@ use app\widgets\TopicPager;
  * @var Topic $topic
  */
 
-$this->title = $forum->forum_name;
+$this->title = $forum->name;
 
 $formatter = Yii::$app->formatter;
 

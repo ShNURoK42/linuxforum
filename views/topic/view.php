@@ -16,7 +16,7 @@ $usernames = ArrayHelper::getColumn($users, 'username');
 $author = implode(', ', array_unique($usernames));
 
 $this->title = $topic->subject;
-$this->subtitle = 'вернуться в раздел <a href="' . Url::to(['forum/view', 'id' => $topic->forum->id]) . '">' . $topic->forum->forum_name . '</a>';
+$this->subtitle = 'вернуться в раздел <a href="' . Url::to(['forum/view', 'id' => $topic->forum->id]) . '">' . $topic->forum->name . '</a>';
 $this->description = $topic->subject;
 $this->author = $author;
 

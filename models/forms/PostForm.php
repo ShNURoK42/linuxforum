@@ -56,10 +56,10 @@ class PostForm extends \yii\base\Model
             $topic->save();
 
             $forum = $topic->forum;
-            $forum->num_posts += 1;
-            $forum->last_post = time();
-            $forum->last_post_id = $post->id;
-            $forum->last_poster = $user->username;
+            $forum->number_posts += 1;
+            $forum->last_post_created_at = time();
+            $forum->last_post_user_id = $post->id;
+            $forum->last_post_username = $user->username;
             $forum->save();
 
             return true;

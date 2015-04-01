@@ -42,7 +42,7 @@ $item['topic_count'] = 0;
                         <a href="<?= Url::toRoute(['topic/view', 'id' => $topic->id])?>"><?= $formatter->asText($topic->subject) ?></a> <span class="byuser"><?= $formatter->asText($topic->first_post_username) ?></span>
                         <?= TopicPager::widget(['topic' => $topic]) ?>
             </td>
-            <td class="tc2"><a href="<?= Url::toRoute(['forum/view', 'id' => $topic->forum->id])?>"><?= $topic->forum->forum_name ?></a></td>
+            <td class="tc2"><a href="<?= Url::toRoute(['forum/view', 'id' => $topic->forum->id])?>"><?= $topic->forum->name ?></a></td>
             <td class="tc3"><?= $formatter->asInteger($topic->number_posts) ?></td>
             <td class="tcr"><a href="<?= Url::toRoute(['post/view', 'id' => $topic->last_post_id, '#' => 'p' . $topic->last_post_id])?>"><?= Yii::$app->formatter->asDatetime($topic->last_post_created_at) ?></a> <span class="byuser"><?= $formatter->asText($topic->last_post_username) ?></span></td>
         </tr>

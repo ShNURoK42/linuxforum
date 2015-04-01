@@ -8,8 +8,8 @@ use app\widgets\PostFormbox;
 /** @var \app\components\View $this */
 /** @var Forum $forum */
 
-$this->title = Yii::t('app/topic', 'Title') . ' в разделе ' . $forum->forum_name;
-$this->subtitle = 'вернуться в раздел <a href="' . Url::to(['forum/view', 'id' => $forum->id]) . '">' . $forum->forum_name . '</a>';
+$this->title = Yii::t('app/topic', 'Title') . ' в разделе ' . $forum->name;
+$this->subtitle = 'вернуться в раздел <a href="' . Url::to(['forum/view', 'id' => $forum->id]) . '">' . $forum->name . '</a>';
 
 ?>
 <div class="page-create-topic">
