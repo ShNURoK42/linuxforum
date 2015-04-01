@@ -53,8 +53,22 @@
 .topic-row-post-count {
   float: right;
   color: #777;
+  font-weight: bold;
 }
-
+.topic-row-cell {
+  width: 870px;
+}
+.topic-row-meta {
+  font-size: 12px;
+  color: #999;
+}
+.topic-row-meta a {
+  font-size: 12px;
+  color: #777;
+}
+.topic-last-post {
+  margin-right: -45px;
+}
 
 
 /* POST EDIT*/
