@@ -5,7 +5,6 @@ namespace app\controllers;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
-use app\helpers\AccessHelper;
 use app\models\Forum;
 use app\models\Topic;
 
@@ -22,10 +21,6 @@ class ForumController extends \app\components\BaseController
     {
         /** @var Forum $forum */
         $forum = Forum::findOne(['id' => $id]);
-
-        if (!$forum || !AccessHelper::canReadForum($forum)) {
-            throw new NotFoundHttpException();
-        }
 
         $query = Topic::find()
             ->where(['forum_id' => $id])

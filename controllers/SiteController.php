@@ -7,7 +7,6 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\web\HttpException;
 use app\models\Category;
-use app\models\ForumPermission;
 
 /**
  * Class SiteController
@@ -19,24 +18,9 @@ class SiteController extends \app\components\BaseController
      */
     public function actionIndex()
     {
-        $permissionRows = ForumPermission::find()
-            ->select('forum_id')
-            ->where([
-                'group_id' => Yii::$app->getUser()->getGroupID(),
-                'read_forum' => 0
-            ])
-            ->all();
-
-        $listIDs = ArrayHelper::getColumn($permissionRows, 'forum_id');
-
-        $params = function ($query) use ($listIDs) {
-            /** @var \yii\db\Query $query */
-            $query->andWhere(['NOT IN', 'forums.id', $listIDs])
-                ->orderBy(['disp_position' => SORT_ASC]);
-        };
-
         $categories = Category::find()
-            ->joinWith(['forums' => $params])
+            ->joinWith(['forums'])
+            ->orderBy('disp_position')
             ->all();
 
         return $this->render('index', ['categories' => $categories]);

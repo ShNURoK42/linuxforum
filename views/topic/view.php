@@ -1,7 +1,6 @@
 <?php
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
-use app\helpers\AccessHelper;
 use app\widgets\PostFormbox;
 use app\widgets\LinkPager;
 
@@ -31,7 +30,7 @@ $item['post_count'] = $dataProvider->pagination->offset;
         <?php endforeach; ?>
     </div>
     <div class="topic-discussion-end"></div>
-    <?php if (AccessHelper::canPostReplyInTopic($topic)): ?>
+    <?php if (!Yii::$app->getUser()->getIsGuest()): ?>
         <?= PostFormbox::widget([
             'model' => $model,
             'messageAttribute' => 'message',

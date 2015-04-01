@@ -3,9 +3,7 @@
 namespace app\controllers;
 
 use Yii;
-use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
-use app\helpers\AccessHelper;
 use app\models\Forum;
 use app\models\Post;
 use app\models\Topic;
@@ -29,17 +27,13 @@ class TopicController extends \app\components\BaseController
             ->with('forum')
             ->one();
 
-        if (!$topic || !AccessHelper::canReadForum($topic->forum)) {
-            throw new NotFoundHttpException();
-        }
-
         $topic->incrementView();
         $topic->save();
 
         $dataProvider = Post::getDataProviderByTopic($topic->id);
         $posts = $dataProvider->getModels();
 
-        if (AccessHelper::canPostReplyInTopic($topic)) {
+        if (!Yii::$app->getUser()->getIsGuest()) {
             $model = new PostForm();
             if ($model->load(Yii::$app->getRequest()->post()) && $model->create($topic)) {
                 $this->redirect(['post/view', 'id' => $model->post->id, '#' => 'p' . $model->post->id]);
@@ -71,7 +65,7 @@ class TopicController extends \app\components\BaseController
             ->where(['id' => $id])
             ->one();
 
-        if (!$forum || !AccessHelper::canCreateTopic($forum)) {
+        if (!$forum || !Yii::$app->getUser()->getIsGuest()) {
             throw new NotFoundHttpException();
         }
 

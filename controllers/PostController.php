@@ -4,9 +4,7 @@ namespace app\controllers;
 
 use app\models\forms\PostForm;
 use Yii;
-use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
-use app\helpers\AccessHelper;
 use app\helpers\MarkdownParser;
 use app\models\Post;
 use app\models\Topic;
@@ -30,10 +28,6 @@ class PostController extends \app\components\BaseController
             ->where(['id' => $post->topic_id])
             ->with('forum')
             ->one();
-
-        if (!$topic || !AccessHelper::canReadForum($topic->forum)) {
-            throw new NotFoundHttpException();
-        }
 
         $dataProvider = Post::getDataProviderByTopic($topic->id);
         $dataProvider->pagination->route = 'topic/view';
@@ -126,19 +120,19 @@ class PostController extends \app\components\BaseController
             ->where(['id' => $id])
             ->one();
 
-        if (!$topic || !AccessHelper::canPostReplyInTopic($topic)) {
+        if (!$topic || !Yii::$app->getUser()->getIsGuest()) {
             throw new NotFoundHttpException();
         }
 
         $model = new PostForm();
 
-        if ($model->load(Yii::$app->getRequest()->post()) && $model->create()) {
+        if ($model->load(Yii::$app->getRequest()->post()) && $model->create($topic)) {
             $this->redirect(['topic/view', 'id' => $model->topic->id]);
         }
     }
 
     /**
-     * Return page number in topic by post.
+     * Returns page number in topic by post.
      * @param Post $post post model.
      * @return integer
      */
