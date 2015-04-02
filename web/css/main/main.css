@@ -1,11 +1,11 @@
 /* Common
    ========================================================================== */
+html {
+  font-size: 10px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 body {
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  line-height: 1.42857143;
-  color: #333;
-  background-color: #ffffff;
+  min-width: 980px;
 }
 .markdown-body {
   font-family: "Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;
@@ -16,6 +16,21 @@ body {
 .container {
   padding-right: 15px;
   padding-left: 15px;
+}
+.clearfix:before,
+.clearfix:after,
+.container:before,
+.container:after {
+  display: table;
+  content: " ";
+}
+.clearfix:after,
+.container:after {
+  clear: both;
+}
+.form-control {
+  display: block;
+  width: 100%;
 }
 .form-checkbox > label {
   cursor: pointer;
@@ -47,7 +62,6 @@ body {
 .header {
   background-color: #f5f5f5;
   border-bottom: 1px solid #e5e5e5;
-  min-width: 1000px;
   padding-bottom: 10px;
   padding-top: 10px;
 }
@@ -59,19 +73,21 @@ body {
   font-size: 18px;
   line-height: 16px;
 }
-
-.navbar-brand a,
-.navbar-brand a:hover,
-.navbar-brand a:focus {
-  color: #333;
+.navbar-brand-beta {
+  font-weight: bold;
+  font-size: 12px;
+  color: #d9534f;
+  position: relative;
+  top: 7px;
+  left: -2px;
+}
+.navbar-brand-beta > a {
+  color: #d9534f;
+}
+.navbar-brand-beta > a:hover {
+  color: #d9534f;
   text-decoration: none;
-  outline: none;
 }
-
-.navbar-brand a:hover {
-  color: #555;
-}
-
 .navbar-nav {
   display: block;
   float: right;
@@ -80,13 +96,11 @@ body {
   margin: 0;
   padding: 0;
 }
-
 .navbar-nav > li {
   margin: auto;
   display: inline;
   padding: 4px 7px;
 }
-
 .navbar-nav > li > a,
 .navbar-nav > li > a:hover,
 .navbar-nav > li > a:focus {
@@ -150,7 +164,6 @@ body {
 
 .pagehead p {
   color: #777;
-  font-size: 12px;
   margin-bottom: 0;
   margin-top: 2px;
 }
