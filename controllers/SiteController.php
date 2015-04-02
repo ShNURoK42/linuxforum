@@ -40,6 +40,8 @@ class SiteController extends \app\components\BaseController
      */
     public function actionIndex()
     {
+        var_dump(Yii::$app->formatter->timeZone);
+
         $categories = Category::find()
             ->with(['forums'])
             ->orderBy('display_position')

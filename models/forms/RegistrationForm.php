@@ -102,6 +102,7 @@ class RegistrationForm extends \yii\base\Model
             $user->auth_key = Yii::$app->security->generateRandomString();
             $user->password_hash = Yii::$app->security->generatePasswordHash($this->password);
             $user->last_visited_at = time();
+            $user->timezone = Yii::$app->timeZone;
 
             if ($this->sendMail($user)) {
                 return $user->save();
