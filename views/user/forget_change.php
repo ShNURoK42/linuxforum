@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use yii\helpers\Url;
 use app\widgets\ActiveForm;
 
 /* @var \app\components\View $this */
@@ -18,7 +17,7 @@ $this->title = 'Изменение вашего пароля';
             ]) ?>
             <?php if (!$model->isCorrectUsername): ?>
             <div class="flash flash-with-icon"><span class="octicon octicon-alert"></span>
-                Уважаемый, <strong><?= $model->getUser()->username ?></strong>, ваше имя содержит недопустимые символы для работы нашего сайта, пожалуйста придумате себе другое имя, используя латинские буквы, цифры, знаки &#171;_&#187; и &#171;-&#187;.
+                Уважаемый, <strong><?= $model->getUser()->username ?></strong>, ваше имя недопустимо для работы нашего сайта, пожалуйста придумате себе другое имя, используя латинские буквы, цифры, знаки &#171;_&#187; и &#171;-&#187;.
             </div>
             <?= $form->field($model, 'username', [
                 'options' => [
