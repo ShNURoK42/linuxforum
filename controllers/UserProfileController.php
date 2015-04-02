@@ -21,12 +21,13 @@ class UserProfileController extends \app\components\BaseController
         $model = new ProfileForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
-
                 $user->about = $model->message;
+                $user->timezone = $model->timezone;
                 $user->save();
             }
         } else {
             $model->message = $user->about;
+            $model->timezone = $user->timezone;
         }
 
         return $this->render('index', [

@@ -12,6 +12,10 @@ class Formatter extends \yii\i18n\Formatter
     public function init()
     {
         $this->timeZone = 'Europe/Moscow';
+        if (!Yii::$app->getUser()->getIsGuest()) {
+            $this->timeZone = Yii::$app->getUser()->getIdentity()->timezone;
+        }
+
         $this->datetimeFormat = 'php:d.m.Y H:i:s';
         $this->dateFormat = 'php:d.m.Y';
         $this->timeFormat = 'php:H:i:s';
