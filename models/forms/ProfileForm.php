@@ -22,9 +22,7 @@ class ProfileForm extends \yii\base\Model
     {
         return [
             ['message', 'trim'],
-            ['message', 'required', 'message' => Yii::t('app/form', 'Required message')],
-            ['message', 'string', 'min' => 6, 'tooShort' => Yii::t('app/form', 'String short topic message')],
-            ['message', 'string', 'max' => 1000, 'tooLong' => Yii::t('app/form', 'String long topic message')],
+            ['message', 'string', 'max' => 400, 'tooLong' => Yii::t('app/form', 'String long topic message')],
 
             ['timezone', 'timezoneValidation'],
         ];

@@ -333,7 +333,7 @@ use app\widgets\ActiveForm;
                 'Pacific/Noumea' => '(GMT+11:00) Нумеа',
                 'Pacific/Ponape' => '(GMT+11:00) Понапе',
                 'Pacific/Norfolk' => '(GMT+11:30) Норфолк',
-                'Asia/Kamchatka' => '(GMT+12:00) <strong>Москва +09</strong> – Петропавловск-Камчатский',
+                'Asia/Kamchatka' => '(GMT+12:00) Москва +09 – Петропавловск-Камчатский',
                 'Pacific/Auckland' => '(GMT+12:00) Оклэнд',
                 'Pacific/Fiji' => '(GMT+12:00) Фиджи',
                 'Pacific/Funafuti' => '(GMT+12:00) Фунафути',
