@@ -31,7 +31,7 @@ class SiteController extends \app\components\BaseController
                 'transparent' => true,
                 'foreColor' => 0x2A6496,
                 //'fixedVerifyCode' => 'test',
-            ]
+            ],
         ];
     }
 

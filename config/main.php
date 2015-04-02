@@ -8,7 +8,9 @@ return [
     'language' => 'ru-RU',
     //'language' => 'en-US',
 
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+    ],
 
     'components' => [
         'authManager' => [
