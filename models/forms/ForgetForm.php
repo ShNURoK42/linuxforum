@@ -172,8 +172,9 @@ class ForgetForm extends \yii\base\Model
     {
         $username = $this->getUser()->username;
 
-        if (!preg_match('/^[a-zA-Z][\w-]+$/', $username, $matches) || $matches[1] < 2 || $matches[1] > 40) {
-            return !empty($matches);
+
+        if (!preg_match('/^[a-zA-Z][\w-]+$/', $username, $matches) || $matches[0] < 2 || $matches[0] > 40) {
+            return !empty($matches[0]);
         }
 
         return false;
