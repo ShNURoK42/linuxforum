@@ -18,6 +18,7 @@ MainAsset::register($this);
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php if ($this->description): ?>
     <meta name="description" content="<?= $this->description ?>">
     <?php endif; ?>
@@ -43,8 +44,10 @@ MainAsset::register($this);
         <div class="navbar-brand">
             <?php if (Yii::$app->controller->route == 'site/index'): ?>
                 <span><?= Yii::$app->config->get('site_title') ?></span>
+                <span class="navbar-brand-beta tooltipped tooltipped-s" aria-label="Сайт находится на стадии разработки"><a href="<?= Url::toRoute(['forum/view', 'id' => 3]) ?>">alpha</a></span>
             <?php else: ?>
-                <a href="<?= Yii::$app->urlManager->createUrl('site/index') ?>"><?= Yii::$app->config->get('site_title') ?></a>
+                <a class="muted-link" href="<?= Yii::$app->urlManager->createUrl('site/index') ?>"><?= Yii::$app->config->get('site_title') ?></a>
+                <span class="navbar-brand-beta tooltipped tooltipped-s" aria-label="Сайт находится на стадии разработки"><a href="<?= Url::toRoute(['forum/view', 'id' => 3]) ?>">alpha</a></span>
             <?php endif; ?>
         </div>
         <?= Navigation::widget(['position' => 'header']); ?>
