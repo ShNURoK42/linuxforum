@@ -7,6 +7,7 @@ use yii\base\Behavior;
 use yii\base\Event;
 use yii\base\Model;
 use yii\db\Connection;
+use yii\db\Query;
 use yii\di\Instance;
 
 /**
@@ -30,7 +31,7 @@ class CaptchaBehavior extends Behavior
     /**
      * @var integer
      */
-    public $attemptsLimit = 3;
+    public $attemptsLimit = 5;
     /**
      * @var Connection
      */
@@ -103,8 +104,10 @@ class CaptchaBehavior extends Behavior
     public function removeAttempts()
     {
         $ip = ip2long(Yii::$app->getRequest()->getUserIP());
+        $time = time() - 86400;
+
         $this->db->createCommand()
-            ->delete($this->table, ['ip' => $ip])
+            ->delete($this->table, 'ip = :ip OR created_at < :time', [':ip' => $ip, ':time' => $time])
             ->execute();
     }
 
@@ -114,9 +117,13 @@ class CaptchaBehavior extends Behavior
     protected function getCountAttempts()
     {
         if (!isset($this->_attemptsCount)) {
-            $sql = "SELECT COUNT(*) FROM $this->table WHERE form='" . $this->owner->formName() ."'";
-            $this->_attemptsCount = $this->db->createCommand($sql)
-                ->queryScalar();
+            $this->_attemptsCount = (new Query)
+                ->from($this->table)
+                ->where([
+                    'form' => $this->owner->formName(),
+                    'ip' => ip2long(Yii::$app->getRequest()->getUserIP()),
+                ])
+                ->count('*', $this->db);
         }
 
         return $this->_attemptsCount;
