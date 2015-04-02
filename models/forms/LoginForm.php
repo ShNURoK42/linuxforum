@@ -3,10 +3,14 @@
 namespace app\models\forms;
 
 use Yii;
+use yii\helpers\Url;
 use app\models\User;
+use app\behaviors\CaptchaBehavior;
 
 /**
  * Model of user authorization form.
+ *
+ * @property boolean $isShow
  */
 class LoginForm extends \yii\base\Model
 {
@@ -23,6 +27,10 @@ class LoginForm extends \yii\base\Model
      */
     public $remember = true;
     /**
+     * @var string captcha
+     */
+    public $verifyCode;
+    /**
      * @var integer number of seconds that the user can remain in logged-in status.
      */
     private $_duartion;
@@ -30,6 +38,18 @@ class LoginForm extends \yii\base\Model
      * @var User current user model.
      */
     private $_user = null;
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'captchaBehavior' => [
+                'class' => CaptchaBehavior::className(),
+            ],
+        ];
+    }
 
     /**
      * @inheritdoc
@@ -49,6 +69,9 @@ class LoginForm extends \yii\base\Model
             ['password', 'passwordValidation'],
 
             ['remember', 'boolean'],
+
+            ['verifyCode', 'required', 'message' => 'Введите код безопасности с изображения.'],
+            ['verifyCode', 'captcha', 'message' => 'Код безопасности указан неверно.'],
         ];
     }
 
@@ -63,7 +86,12 @@ class LoginForm extends \yii\base\Model
         }
 
         $user = $this->getUser();
-        if (!$user || Yii::$app->security->generatePasswordHashForum($this->$attribute, $user->salt) !== $user->password) {
+        if (!preg_match('/^\$2[axy]\$(\d\d)\$[\.\/0-9A-Za-z]{22}/', $user->password_hash, $matches) || $matches[1] < 4 || $matches[1] > 30) {
+            $this->addError($attribute, 'На сайте введена новая система аутентификации, для входа вам необходимо <a href="' . Url::toRoute('user/forget') . '">сменить</a> свой пароль!');
+            return;
+        }
+
+        if (!$user || !Yii::$app->security->validatePassword($this->$attribute, $user->password_hash)) {
             $this->addError($attribute, Yii::t('app/form', 'Wrong email/password'));
         }
     }
@@ -84,7 +112,7 @@ class LoginForm extends \yii\base\Model
     /**
      * Set number in seconds that the user can remain in logged-in status.
      * @param integer $duartion number in seconds.
-     * @return self this class.
+     * @return self
      */
     public function setDuration($duartion)
     {

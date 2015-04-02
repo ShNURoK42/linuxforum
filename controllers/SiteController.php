@@ -14,6 +14,28 @@ use app\models\Category;
 class SiteController extends \app\components\BaseController
 {
     /**
+     * @inheritdoc
+     */
+    public function actions()
+    {
+        return [
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'testLimit' => 1,
+                'offset' => -2,
+                'padding' => 0,
+                'width' => 200,
+                'height' => 50,
+                'minLength' => 4,
+                'maxLength' => 7,
+                'transparent' => true,
+                'foreColor' => 0x2A6496,
+                //'fixedVerifyCode' => 'test',
+            ]
+        ];
+    }
+
+    /**
      * @return string
      */
     public function actionIndex()

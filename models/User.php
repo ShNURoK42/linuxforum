@@ -13,28 +13,29 @@ use app\helpers\MarkdownParser;
  *
  * @property integer $id
  * @property string $role
- * @property integer $role_id
+ * @property string $auth_key
+ * @property string $password_hash
+ * @property string $password_change_token
+ * @property integer $password_changed_at
  * @property string $username
- * @property string $password
- * @property string $salt
  * @property string $email
+ * @property boolean $email_status
  * @property string $about
- * @property float $timezone
- * @property integer $number_posts
  * @property integer $last_posted_at
- * @property integer $last_email_sent
- * @property integer $created_at
  * @property integer $last_visited_at
- * @property string $activate_string
- * @property string $activate_key
+ * @property integer $number_posts
+ * @property double $timezone
+ * @property integer $created_at
  * @property integer $updated_at
  *
- * @property Group $group
  * @property Post[] $posts
  * @property string $displayAbout
  */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
+    const EMAIL_STATUS_ACTIVE = 1;
+    const EMAIL_STATUS_INACTIVE = 0;
+
     public function behaviors()
     {
         return [
@@ -59,14 +60,6 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
         ];
-    }
-
-    /**
-     * @return Group
-     */
-    public function getGroup()
-    {
-        return $this->hasOne(Group::className(), ['g_id' => 'group_id']);
     }
 
     /**
@@ -129,7 +122,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function getAuthKey()
     {
-        return sha1($this->salt);
+        return $this->auth_key;
     }
 
     /**

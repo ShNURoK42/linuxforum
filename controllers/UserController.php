@@ -69,13 +69,12 @@ class UserController extends \app\components\BaseController
     public function actionRegistration()
     {
         $model = new RegistrationForm();
-        $model->setScenario('registration');
 
         if ($model->load(Yii::$app->request->post()) && $model->registration()) {
             return $this->render('/site/info', [
                 'params' => [
-                    'name' => Yii::t('app/common', 'Info'),
-                    'message' => Yii::t('app/register', 'Success info') . ' ' . Html::a(Yii::$app->config->get('support_email'), null, ['href' => 'mailto:' . Yii::$app->config->get('support_email')]) . '.',
+                    'name' => Yii::t('app/register', 'Important'),
+                    'message' => Yii::t('app/register', 'Success info'),
                 ]
             ]);
         }
@@ -92,16 +91,7 @@ class UserController extends \app\components\BaseController
         $model = new ForgetForm(['scenario' => 'email']);
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->isRequestFlud()) {
-                return $this->render('/site/info', [
-                    'params' => [
-                        'name' => Yii::t('app/common', 'Info'),
-                        'message' => Yii::t('app/forget', 'Email flood'),
-                    ]
-                ]);
-            }
-
-            if ($model->recoveryPassword()) {
+            if ($model->recovery()) {
                 return $this->render('/site/info', [
                     'params' => [
                         'name' => Yii::t('app/common', 'Info'),
@@ -118,7 +108,7 @@ class UserController extends \app\components\BaseController
      * Updated user password action.
      * @return string
      */
-    public function actionForgetChange()
+    public function actionChange()
     {
         $model = new ForgetForm(['scenario' => 'token']);
 
@@ -126,21 +116,16 @@ class UserController extends \app\components\BaseController
             throw new NotFoundHttpException();
         }
 
-        if ($model->updatePassword()) {
+        if ($model->load(Yii::$app->request->post()) && $model->change()) {
             $params = [
                 'name' => Yii::t('app/common', 'Info'),
                 'message' => Yii::t('app/forget', 'Password updated'),
             ];
 
             return $this->render('/site/info', ['params' => $params]);
-        } else {
-            $params = [
-                'name' => Yii::t('app/common', 'Info'),
-                'message' => Yii::t('app/forget', 'Key expired') . ' ' . Html::a(Yii::$app->config->get('support_email'), null, ['href' => 'mailto:' . Yii::$app->config->get('support_email')]) . '.',
-            ];
-
-            return $this->render('/site/info', ['params' => $params]);
         }
+
+        return $this->render('forget_change', ['model' => $model]);
     }
 
     /**

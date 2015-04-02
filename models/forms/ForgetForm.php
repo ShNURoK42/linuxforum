@@ -4,11 +4,13 @@ namespace app\models\forms;
 
 use Yii;
 use app\models\User;
+use app\behaviors\CaptchaBehavior;
 
 /**
  * Model of user password recovery.
  *
  * @property User $user
+ * @property User $isCorrectUsername
  */
 class ForgetForm extends \yii\base\Model
 {
@@ -21,6 +23,22 @@ class ForgetForm extends \yii\base\Model
      */
     public $token;
     /**
+     * @var string
+     */
+    public $username;
+    /**
+     * @var string
+     */
+    public $password;
+    /**
+     * @var string
+     */
+    public $repassword;
+    /**
+     * @var string captcha
+     */
+    public $verifyCode;
+    /**
      * @var User $_user
      */
     private $_user;
@@ -31,8 +49,20 @@ class ForgetForm extends \yii\base\Model
     public function scenarios()
     {
         return [
-            'email' => ['email'],
-            'token' => ['token'],
+            'email' => ['email', 'verifyCode'],
+            'token' => ['token', 'username', 'password', 'repassword'],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'captchaBehavior' => [
+                'class' => CaptchaBehavior::className(),
+            ],
         ];
     }
 
@@ -49,33 +79,40 @@ class ForgetForm extends \yii\base\Model
 
             ['token', 'filter', 'filter' => 'trim'],
             ['token', 'required'],
-            ['token', 'string', 'length' => 8],
-        ];
-    }
+            ['token', 'string', 'length' => 32],
 
-    /**
-     * Check flud.
-     * @return boolean
-     */
-    public function isRequestFlud()
-    {
-        return (time() - $this->user->last_email_sent) < 3600;
+            ['username', 'filter', 'filter' => 'trim'],
+            ['username', 'required', 'message' => 'Введите имя.'],
+            ['username', 'string', 'min' => 4, 'tooShort' => 'Ваше имя должно содержать минимум {min} символа.'],
+            ['username', 'string', 'max' => 40, 'tooLong' => 'Ваше имя не должно быть длиннее {max} символов.'],
+            ['username', 'match', 'pattern' => '/^[\w-]+$/', 'message' => 'В вашем имени можно использовать только латинские буквы, цифры, знаки &#171;_&#187; и &#171;-&#187;.'],
+            ['username', 'match', 'pattern' => '/^[a-zA-Z]/', 'message' => 'Первым символом в имени должна быть латинская буква.'],
+            ['username', 'unique', 'targetClass' => User::className(), 'message' => 'Указанное вами имя занято.'],
+
+            ['password', 'required', 'message' => 'Введите пароль.'],
+            ['password', 'string', 'min' => 6, 'tooShort' => 'Пароль должен содержать минимум {min} символа.'],
+            ['password', 'string', 'max' => 32, 'tooLong' => 'Пароль не должен быть длиннее {max} символов.'],
+
+            ['repassword', 'required', 'message' => 'Введите повторно пароль.'],
+            ['repassword', 'compare', 'compareAttribute' => 'password', 'message' => 'Введенные пароли не совпадают.'],
+
+            ['verifyCode', 'required', 'message' => 'Введите код безопасности с изображения.'],
+            ['verifyCode', 'captcha', 'message' => 'Код безопасности указан неверно.'],
+        ];
     }
 
     /**
      * Recovery password.
      * @return boolean
      */
-    public function recoveryPassword()
+    public function recovery()
     {
-        $password = Yii::$app->security->generateRandomString(12);
-        $token = Yii::$app->security->generateRandomString(8);
+        $token = Yii::$app->security->generateRandomString(32);
 
-        if ($this->sendMail($password, $token)) {
+        if ($this->sendMail($token)) {
             $user = $this->user;
-            $user->activate_key = $token;
-            $user->activate_string = $password;
-            $user->last_email_sent = time();
+            $user->password_change_token = $token;;
+            $user->password_changed_at = time();
 
             return $user->save();
         }
@@ -87,19 +124,29 @@ class ForgetForm extends \yii\base\Model
      * Updated user password.
      * @return boolean
      */
-    public function updatePassword()
+    public function change()
     {
-        $user = $this->user;
+        $attributes = ['token', 'password', 'repassword'];
+        if (!$this->isCorrectUsername) {
+            $attributes = array_merge($attributes, ['username']);
+        }
 
-        if ((time() - $user->last_email_sent) < 86400) {
-            $salt = Yii::$app->security->generateSalt();
-            $user->password = Yii::$app->security->generatePasswordHashForum($user->activate_string, $salt);
-            $user->activate_string = null;
-            $user->activate_key = null;
-            $user->last_email_sent = null;
-            $user->salt = $salt;
+        if ($this->validate($attributes)) {
+            $user = $this->getUser();
 
-            return $user->save();
+            if (!$this->isCorrectUsername) {
+                $user->username = $this->username;
+            }
+
+            if ((time() - $user->password_changed_at) < 86400) {
+                $user->email_status = User::EMAIL_STATUS_ACTIVE;
+                $user->password_hash = Yii::$app->security->generatePasswordHash($this->password);
+                $user->auth_key = Yii::$app->security->generateRandomString();
+                $user->password_changed_at = null;
+                $user->password_change_token = null;
+
+                return $user->save();
+            }
         }
 
         return false;
@@ -107,19 +154,29 @@ class ForgetForm extends \yii\base\Model
 
     /**
      * Send mail.
-     * @param $password
      * @param $token
      * @return boolean
      */
-    protected function sendMail($password, $token)
+    protected function sendMail($token)
     {
         $user = $this->user;
 
-        return \Yii::$app->mailer->compose(['text' => 'forget'], ['user' => $user, 'password' => $password, 'token' => $token])
+        return \Yii::$app->mailer->compose(['text' => 'forget'], ['user' => $user, 'token' => $token])
             ->setFrom([Yii::$app->config->get('support_email') => Yii::$app->config->get('site_title')])
             ->setTo([$this->email => $user->username])
             ->setSubject('[' . Yii::$app->config->get('site_title') . '] Запрос на смену пароля')
             ->send();
+    }
+
+    public function getIsCorrectUsername()
+    {
+        $username = $this->getUser()->username;
+
+        if (!preg_match('/^[a-zA-Z][\w-]+$/', $username, $matches) || $matches[1] < 2 || $matches[1] > 40) {
+            return !empty($matches);
+        }
+
+        return false;
     }
 
     /**
@@ -127,13 +184,13 @@ class ForgetForm extends \yii\base\Model
      * @return User|null current user model.
      * If null, it means the current user model will be not found with this username.
      */
-    protected function getUser()
+    public function getUser()
     {
         if (!isset($this->_user)) {
             if ($this->scenario == 'email') {
                 $this->_user = User::findByEmail($this->email);
             } elseif ($this->scenario == 'token') {
-                $this->_user = User::findOne(['activate_key' => $this->token]);
+                $this->_user = User::findOne(['password_change_token' => $this->token]);
             }
         }
         return $this->_user;

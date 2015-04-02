@@ -39,8 +39,8 @@ $item['topic_count'] = 0;
                 <a class="topic-row-link" href="<?= Url::toRoute(['topic/view', 'id' => $topic->id])?>"><?= $formatter->asText($topic->subject) ?></a>
                 <?= TopicPager::widget(['topic' => $topic]) ?>
                 <div class="topic-row-meta">
-                    <div>Тему создал: <a href="<?= Url::toRoute(['user/view', 'id' => $topic->first_post_user_id]) ?>"><?= $formatter->asText($topic->first_post_username) ?></a></div>
-                    <div>ответил <a href="<?= Url::toRoute(['post/view', 'id' => $topic->last_post_id, '#' => 'p' . $topic->last_post_id ]) ?>"><?= Yii::$app->formatter->asDatetime($topic->last_post_created_at) ?></a> <a href="<?= Url::toRoute(['user/view', 'id' => $topic->last_post_user_id]) ?>"><?= $formatter->asText($topic->last_post_username) ?></a></div>
+                    <span>Тему создал: <a class="muted-link" href="<?= Url::toRoute(['user/view', 'id' => $topic->first_post_user_id]) ?>"><?= $formatter->asText($topic->first_post_username) ?></a></span>
+                    <span class="topic-last-post right">ответил <a class="muted-link" href="<?= Url::toRoute(['post/view', 'id' => $topic->last_post_id, '#' => 'p' . $topic->last_post_id ]) ?>"><?= Yii::$app->formatter->asDatetime($topic->last_post_created_at) ?></a> <a class="muted-link" href="<?= Url::toRoute(['user/view', 'id' => $topic->last_post_user_id]) ?>"><?= $formatter->asText($topic->last_post_username) ?></a></span>
                 </div>
             </div>
             <div class="topic-row-post-count"><?= Yii::$app->formatter->asInteger($topic->number_posts) ?> <span class="octicon octicon-comment"></span>

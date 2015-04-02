@@ -33,13 +33,14 @@ return [
                 '/' => 'site/index',
                 'markdown' => 'site/markdown',
                 'terms' => 'site/terms',
+                'captcha' => 'site/captcha',
 
                 // UserController
                 'login' => 'user/login',
                 'logout' => 'user/logout',
                 'registration' => 'user/registration',
                 'forget' => 'user/forget',
-                'forget/change' => 'user/forget-change',
+                'forget/change' => 'user/change',
                 'users/page/<page:\d+>' => 'user/list',
                 'users' => 'user/list',
                 'user/<id:\d+>' => 'user/view',
@@ -107,9 +108,6 @@ return [
         ],
         'mailer' => [
             'class' => 'app\components\Mailer',
-        ],
-        'security' => [
-            'class' => 'app\components\Security',
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

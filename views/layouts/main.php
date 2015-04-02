@@ -68,9 +68,6 @@ MainAsset::register($this);
         </div>
     </div>
 </footer>
-
-
-
 <?php if (Yii::$app->getUser()->getIsGuest()): ?>
 <div class="container">
     <div class="ads-box clearfix" style="margin: 10px 0 30px; color: #566579; padding: 0;">
@@ -95,7 +92,7 @@ MainAsset::register($this);
             </ul>
         </div>
     </div>
-<div class="container">
+</div>
 <?php endif; ?>
 <?php $this->endBody() ?>
 </body>

@@ -3,7 +3,7 @@
 return [
     // required
     'Required username' => 'Введите имя пользователя.',
-    'Required email' => 'Введите адрес электронной почты.',
+    'Required email' => 'Введите электронную почту.',
     'Required password' => 'Введите пароль.',
     'Required topic subject' => 'Введите название темы.',
     'Required message' => 'Введите текст сообщения.',

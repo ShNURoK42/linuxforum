@@ -9,10 +9,6 @@ use app\models\forms\ForgetForm;
 $this->title = $params['name'];
 $this->params['page'] = 'info';
 ?>
-<div class="callout callout-info">
-    <div class="box">
-        <div class="inbox">
-            <p><?= $params['message'] ?></p>
-        </div>
-    </div>
+<div class="flash">
+    <?= $params['message'] ?>
 </div>

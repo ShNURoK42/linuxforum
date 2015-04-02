@@ -17,6 +17,30 @@ body {
   padding-right: 15px;
   padding-left: 15px;
 }
+.form-checkbox > label {
+  cursor: pointer;
+  font-weight: 400;
+}
+.form-checkbox.required > label {
+  font-weight: bold;
+}
+.error-summary {
+  padding: 8px 10px;
+  margin: 10px 0;
+  font-size: 13px;
+  color: #bd2c00;
+  font-weight: bold;
+  background: #ffffe2;
+  border: 1px solid #e7e4c2;
+  border-radius: 4px
+}
+.error-summary ul {
+  list-style: none;
+  padding: 0;
+}
+.error-summary li {
+  padding-bottom: 0;
+}
 
 /* Header
    ========================================================================== */
@@ -189,35 +213,48 @@ body {
   outline: none;
 }
 
-/* Form
+/* Captcha
    ========================================================================== */
 
-.form-group {
-  margin-bottom: 15px;
+.captcha-image {
+  overflow: hidden;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.captcha-image img {
+  float: left;
+}
+.captcha-hint {
+  float: right;
+  margin-top: 15px;
+  font-size: 11px;
+  color: #777777;
+}
+.captcha-hint p {
+  margin: 0;
+}
+.captcha-hint-link {
+  cursor: pointer;
+  color: #4183c4;
+}
+.captcha-hint-link:hover {
+  cursor: pointer;
+  color: #2a6496;
+  text-decoration: underline;
 }
 
-.form-control {
-  display: block;
-  width: 100%;
-}
+/* AuthForm
+   ========================================================================== */
 
-.formbox {
-  background-color: #FCFCFC;
+.authbox {
   border: 1px solid #DEDEDE;
   border-radius: 4px;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
-}
-
-.formbox-medium {
-  width: 440px;
-}
-
-.formbox-center {
+  width: 482px;
   margin: 0 auto;
 }
-
-.formbox-header {
-  background-color: #f4f4f4;
+.authbox-header {
+  background-color: #fcfcfc;
   border-bottom: 1px dashed #ddd;;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
@@ -225,16 +262,10 @@ body {
   font-size: 13px;
   padding: 15px 20px;
 }
-
-.formbox-header p:last-child {
-  margin-bottom: 0;
-}
-
-.formbox-content {
+.authbox-content {
   padding: 15px 20px;
 }
-
-.formbox-footer {
+.authbox-footer {
   background-color: #f4f4f4;
   border-top: 1px dashed #ddd;;
   border-bottom-left-radius: 4px;
@@ -243,50 +274,14 @@ body {
   font-size: 13px;
   padding: 15px 20px;
 }
-
-.formbox-footer p {
+.authbox-header p,
+.authbox-footer p {
   margin: 0;
   padding-bottom: 10px;
 }
-
-.formbox-footer p:last-child {
+.authbox-header p:last-child,
+.authbox-footer p:last-child {
   padding: 0;
-}
-
-.error-summary {
-  padding: 8px 10px;
-  margin: 10px 0;
-  font-size: 13px;
-  color: #333;
-  background: #ffffe2;
-  border: 1px solid #e7e4c2;
-  border-radius: 4px
-}
-
-.error-summary p {
-  margin: 0;
-  line-height: 1.5
-}
-
-.error-summary strong {
-  color: #000
-}
-
-.error-summary a {
-  font-weight: bold
-}
-
-.error-summary ul {
-  margin: 0;
-  padding: 0 0 0 15px;
-}
-
-.error-summary li {
-  padding-bottom: 0;
-}
-
-.form-warning li:last-child {
-  padding-bottom: 0;
 }
 
 /* Pagination
@@ -450,9 +445,6 @@ body {
 .post-header-user {
   font-weight: bold;
 }
-.post-header-user a {
-  color: #555;
-}
 .post-header-count {
   float: right;
   padding-top: 2px;
@@ -519,15 +511,6 @@ body {
 }
 .post-formbox-content .form-actions {
   padding: 10px;
-}
-.post-formbox-content .error-summary {
-  color: #bd2c00;
-  font-weight: bold;
-  margin: 10px;
-}
-.post-formbox-content .error-summary ul {
-  list-style: none;
-  padding: 0;
 }
 .post-formbox-preview {
   background-color: transparent;
