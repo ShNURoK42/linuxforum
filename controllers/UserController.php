@@ -25,7 +25,7 @@ class UserController extends \app\components\BaseController
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['login', 'register', 'forget', 'forget-change'],
+                'only' => ['login', 'register', 'forget', 'change'],
                 'rules' => [
                     [
                         'allow' => true,
