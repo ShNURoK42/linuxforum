@@ -13,10 +13,10 @@ use app\widgets\TopicPager;
  * @var ActiveDataProvider $dataProvider
  * @var array|ActiveRecord[] $topics
  * @var Topic $topic
+ * @var string $title
  */
 
-$this->title = 'Активные темы';
-$this->params['page'] = 'search';
+$this->title = $title;
 
 $formatter = Yii::$app->formatter;
 

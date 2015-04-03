@@ -18,7 +18,7 @@ class SearchController extends \app\components\BaseController
         $time = time() - 86400;
 
         $query = Topic::find()
-            ->where('last_post_created_at > :time', [':time' => $time])
+            ->where('last_post_created_at > :time AND forum_id NOT LIKE 0', [':time' => $time])
             ->with('forum')
             ->orderBy(['last_post_created_at' => SORT_DESC]);
 
@@ -34,6 +34,7 @@ class SearchController extends \app\components\BaseController
         $topics = $dataProvider->getModels();
 
         return $this->render('topic_list', [
+            'title' => 'Активные темы',
             'dataProvider' => $dataProvider,
             'topics' => $topics,
         ]);
@@ -44,7 +45,7 @@ class SearchController extends \app\components\BaseController
         // !!! need access check
 
         $query = Topic::find()
-            ->where('number_posts = 0')
+            ->where('number_posts = 0 AND forum_id NOT LIKE 0')
             ->with('forum')
             ->orderBy(['last_post_created_at' => SORT_DESC]);
 
@@ -60,6 +61,7 @@ class SearchController extends \app\components\BaseController
         $topics = $dataProvider->getModels();
 
         return $this->render('topic_list', [
+            'title' => 'Темы без ответов',
             'dataProvider' => $dataProvider,
             'topics' => $topics,
         ]);
@@ -86,6 +88,7 @@ class SearchController extends \app\components\BaseController
 
         $query = Topic::find()
             ->where(['IN', 'id', $uniqueIDs])
+            ->andWhere('forum_id NOT LIKE 0')
             ->with('forum')
             ->orderBy(['last_post_created_at' => SORT_DESC]);
 
@@ -101,6 +104,7 @@ class SearchController extends \app\components\BaseController
         $topics = $dataProvider->getModels();
 
         return $this->render('topic_list', [
+            'title' => 'Темы с вашим участием',
             'dataProvider' => $dataProvider,
             'topics' => $topics,
         ]);
