@@ -62,11 +62,8 @@ class PostController extends \app\components\BaseController
             }
 
             $parsedown = new MarkdownParser();
-            $text = $parsedown
-                ->setMarkupEscaped(true)
-                ->text($text);
 
-            return $text;
+            return $parsedown->parse($text);
         }
 
         throw new NotFoundHttpException();

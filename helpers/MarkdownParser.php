@@ -11,6 +11,13 @@ class MarkdownParser extends \Parsedown
         $this->inlineMarkerList .= '[';
     }
 
+    public function parse($text)
+    {
+        return $this->setBreaksEnabled(true)
+            ->setMarkupEscaped(true)
+            ->text($text);
+    }
+
     protected function inlineColoredText($Excerpt)
     {
         if (preg_match('/\[color=([a-zA-Z]{3,20}|\#[0-9a-fA-F]{6}|\#[0-9a-fA-F]{3})](.*?)\[\/color\]/', $Excerpt['text'], $matches))

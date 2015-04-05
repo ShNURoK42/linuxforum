@@ -93,10 +93,7 @@ class Post extends \yii\db\ActiveRecord
     public function getDisplayMessage()
     {
         $parsedown = new MarkdownParser();
-        $text = $parsedown
-            ->setMarkupEscaped(true)
-            ->text($this->message);
 
-        return $text;
+        return $parsedown->parse($this->message);
     }
 }
