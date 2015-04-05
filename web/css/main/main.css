@@ -402,9 +402,9 @@ body {
   padding-bottom: 20px;
 }
 .post-container {
-  margin-left: 80px;
+  margin-left: 60px;
   position: relative;
-  width: 870px;
+  width: 890px;
 }
 .post-avatar {
   float: left;
@@ -494,9 +494,9 @@ body {
 .post-formbox-content {
   border: 1px solid #ddd;
   border-radius: 3px;
-  margin-left: 80px;
+  margin-left: 60px;
   position: relative;
-  width: 870px;
+  width: 890px;
 }
 .post-formbox-content:after,
 .post-formbox-content:before {
@@ -565,7 +565,7 @@ body {
   bottom: 0;
   content: "";
   display: block;
-  left: 95px;
+  left: 70px;
   position: absolute;
   top: 0;
   width: 2px;

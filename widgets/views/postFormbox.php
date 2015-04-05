@@ -19,11 +19,11 @@ use app\widgets\ActiveForm;
             'options' => [
                 'alt' => $user->username,
                 'class' => 'avatar',
-                'width' => 64,
-                'height' => 64,
+                'width' => 48,
+                'height' => 48,
             ],
             'defaultImage' => 'retro',
-            'size' => 64
+            'size' => 48
         ]); ?></a>
         <?php endif; ?>
     </div>
