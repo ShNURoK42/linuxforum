@@ -22,11 +22,11 @@ $formatter = Yii::$app->formatter;
             'options' => [
                 'alt' => $post->user->username,
                 'class' => 'avatar',
-                'width' => 64,
-                'height' => 64,
+                'width' => 48,
+                'height' => 48,
             ],
             'defaultImage' => 'retro',
-            'size' => 64
+            'size' => 48
         ]); ?>
         <?php endif; ?>
     </div>
