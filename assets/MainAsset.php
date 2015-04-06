@@ -40,5 +40,8 @@ class MainAsset extends \yii\web\AssetBundle
         'app\assets\PrimerMarkdownAsset',
         'app\assets\GoogleAsset',
         'app\assets\SotmarketAsset',
+
+        'app\assets\CaretAsset',
+        'app\assets\AtwhoAsset',
     ];
 }

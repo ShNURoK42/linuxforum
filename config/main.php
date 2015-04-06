@@ -63,6 +63,7 @@ return [
                 // PostController
                 'post/<id:\d+>' => 'post/view',
                 'post/preview' => 'post/preview',
+                'post/mention' => 'post/mention',
                 'post/update' => 'post/update',
                 'topic/<id:\d+>/post/new' => 'post/create',
                 'post/delete/<id:\d+>' => 'post/delete',
@@ -71,6 +72,9 @@ return [
                 'search/active_topics' => 'search/view-active-topics',
                 'search/unanswered_topics' => 'search/view-unanswered-topics',
                 'search/ownpost_topics' => 'search/view-ownpost-topics',
+
+                // NotoficationController
+                'notifications' => 'notification/view',
 
                 // Admin
                 'admin' => 'admin-index/index',

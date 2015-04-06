@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\forms\PostForm;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use app\helpers\MarkdownParser;
 use app\models\Post;
@@ -46,6 +47,32 @@ class PostController extends \app\components\BaseController
             'topic' => $topic,
             'posts' => $posts,
         ]);
+    }
+
+    /**
+     * @return string
+     */
+    public function actionMention()
+    {
+        if (Yii::$app->getRequest()->getIsAjax()) {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            $id = substr(Yii::$app->getRequest()->post('id'), 1);
+
+            $posts = Post::find()
+                ->with('user')
+                ->where(['topic_id' => $id])
+                ->asArray()
+                ->all();
+
+            $users = ArrayHelper::getColumn($posts, 'user');
+            $usernames = array_unique(ArrayHelper::getColumn($users, 'username'));
+            $usernames = array_values($usernames);
+
+            return $usernames;
+        }
+
+        throw new NotFoundHttpException();
     }
 
     /**

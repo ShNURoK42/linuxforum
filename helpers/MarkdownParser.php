@@ -2,20 +2,26 @@
 
 namespace app\helpers;
 
+use app\models\User;
+
 class MarkdownParser extends \Parsedown
 {
     function __construct()
     {
-        $this->InlineTypes['['] []= 'ColoredText';
+        $this->InlineTypes['['][]= 'ColoredText';
+        $this->InlineTypes['@'][]= 'UserMention';
 
         $this->inlineMarkerList .= '[';
+        $this->inlineMarkerList .= '@';
     }
 
     public function parse($text)
     {
-        return $this->setBreaksEnabled(true)
+        $text = $this->setBreaksEnabled(true)
             ->setMarkupEscaped(true)
             ->text($text);
+
+        return $text;
     }
 
     protected function inlineColoredText($Excerpt)
@@ -32,6 +38,26 @@ class MarkdownParser extends \Parsedown
                     ),
                 ),
             );
+        }
+    }
+
+    protected function inlineUserMention($Excerpt)
+    {
+        if (preg_match('/[@]([a-zA-Z][\w-]+)/', $Excerpt['context'], $matches)) {
+            /** @var User $user */
+            $user = User::findByUsername($matches[1]);
+
+            return [
+                'extent' => strlen($matches[0]),
+                'element' => [
+                    'name' => 'a',
+                    'text' => $matches[0],
+                    'attributes' => array(
+                        'href' => '/user/' . $user->id,
+                        'class' => 'muted-link muted-link-strong',
+                    ),
+                ],
+            ];
         }
     }
 }

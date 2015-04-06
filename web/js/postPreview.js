@@ -15,6 +15,26 @@
             return this.each(function () {
                 var $this = $(this);
 
+                $(document).on('keydown', function(event) {
+                    if ((event.keyCode == 10 || event.keyCode == 13) && event.ctrlKey) {
+                        event.preventDefault();
+                        $this.find('#postform').submit();
+                    }
+                });
+
+                $(document).on('ready', function(event) {
+                    var usernames = $(document).find('meta[name="author"]').attr("content");
+                    var data = usernames.replace(/\s+/g, '').split(',');
+                    console.log(data);
+                    $('#postform-message').atwho({
+                        displayTimeout: 300,
+                        highlightFirst: true,
+                        delay: null,
+                        at: "@",
+                        data: data
+                    });
+                });
+
                 $this.on('click', '.js-post-preview-tab', function (event) {
                     event.preventDefault();
 

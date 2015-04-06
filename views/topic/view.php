@@ -23,13 +23,12 @@ $this->author = $author;
 $item['post_count'] = $dataProvider->pagination->offset;
 ?>
 <div class="page-viewtopic">
-    <div class="topic-discussion">
+    <div id="t<?= $topic->id ?>" class="topic-discussion">
         <?php foreach($posts as $post): ?>
             <?php $item['post_count']++ ?>
             <?= $this->render('/post/view', ['topic' => $topic, 'post' => $post, 'count' => $item['post_count']])?>
         <?php endforeach; ?>
     </div>
-    <div class="topic-discussion-end"></div>
     <?php if (!Yii::$app->getUser()->getIsGuest()): ?>
         <?= PostFormbox::widget([
             'model' => $model,

@@ -24,14 +24,15 @@ class Navigation extends Widget
                     'options' => [
                         'alt' => '',
                         'class' => 'avatar',
-                        'width' => 20,
-                        'height' => 20,
+                        'width' => 22,
+                        'height' => 22,
                     ],
                     'defaultImage' => 'retro',
-                    'size' => 20
+                    'size' => 22
                 ]);
 
                 $items[] = ['label' => $label . Yii::$app->user->identity->username, 'url' => ['user/view', 'id' => Yii::$app->user->id]];
+                //$items[] = ['label' => 'Уведомления', 'url' => ['notification/view']];
             }
 
             $items[] = ['label' => 'Пользователи', 'url' => ['user/list']];
