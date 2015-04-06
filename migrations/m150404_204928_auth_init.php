@@ -3,7 +3,7 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m141019_055000_auth_init extends \yii\db\Migration
+class m150404_204928_auth_init extends Migration
 {
     public function up()
     {
@@ -31,8 +31,6 @@ class m141019_055000_auth_init extends \yii\db\Migration
 
     public function down()
     {
-        echo "m141019_055000_auth_init cannot be reverted.\n";
-
-        return false;
+        $this->dropTable('{{%auth_item}}');
     }
 }
