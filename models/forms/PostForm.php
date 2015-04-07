@@ -4,6 +4,8 @@ namespace app\models\forms;
 
 use app\models\Post;
 use app\models\Topic;
+use app\models\User;
+use app\models\UserMention;
 use Yii;
 
 /**
@@ -61,6 +63,23 @@ class PostForm extends \yii\base\Model
             $forum->last_post_user_id = $post->id;
             $forum->last_post_username = $user->username;
             $forum->save();
+
+            // notification
+
+            preg_match_all('/(^|\s)@([a-zA-Z][\w-]+)(,?)/', $this->message, $matches);
+
+            foreach (array_unique($matches[2]) as $match) {
+                /** @var User $mentionUser */
+                $mentionUser = User::findByUsername($match);
+                if ($user) {
+                    $userMention = new UserMention();
+                    $userMention->user_id = $user->id;
+                    $userMention->mention_user_id = $mentionUser->id;
+                    $userMention->post_id = $post->id;
+                    $userMention->topic_id = $topic->id;
+                    $userMention->save();
+                }
+            }
 
             return true;
         }

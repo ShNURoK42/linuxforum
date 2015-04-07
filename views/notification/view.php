@@ -1,3 +1,12 @@
+<?php
+
+use yii\helpers\Url;
+
+/** @var \app\models\UserMention[] $userMentions */
+/** @var \app\models\UserMention $userMention */
+/** @var \app\models\User $user */
+
+?>
 <div class="columns">
     <div class="column one-fifth">
         <ul class="filter-list">
@@ -8,23 +17,21 @@
     </div>
 
     <div class="column four-fifths">
+        <?php if (!$userMentions): ?>
         <div class="blankslate spacious large-format">
             <h3>Нет новых уведомлений.</h3>
-            <p>Depending on <a href="/settings/notifications">your notification settings</a>, you’ll see updates here for your conversations in watched repositories.</p>
         </div>
-
-
+        <?php else: ?>
         <div class="notifications-list">
             <div class="boxed-group">
-                <h3>asdasdasd</h3>
-                    <ul class="boxed-group-inner list-group notifications">
-                        <li class="list-group-item">qwe</li>
-                        <li class="list-group-item">qwe</li>
-                        <li class="list-group-item">qwe</li>
-                        <li class="list-group-item">qwe</li>
-                    </ul>
+                <h3>Вас упоминули в теме:</h3>
+                <ul class="boxed-group-inner list-group notifications">
+                    <?php foreach($userMentions as $userMention): ?>
+                    <li class="list-group-item"><a href="<?= Url::toRoute(['post/view', 'id' => $userMention->post_id, '#' => 'p' . $userMention->post_id]) ?>">Заголовок темы #<?= $userMention->post_id ?></a></li>
+                    <?php endforeach; ?>
+                </ul>
             </div>
         </div>
-
+        <?php endif; ?>
     </div>
 </div>

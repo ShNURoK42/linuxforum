@@ -43,21 +43,35 @@ class MarkdownParser extends \Parsedown
 
     protected function inlineUserMention($Excerpt)
     {
-        if (preg_match('/[@]([a-zA-Z][\w-]+)/', $Excerpt['context'], $matches)) {
-            /** @var User $user */
-            $user = User::findByUsername($matches[1]);
+        if (preg_match('/@([a-zA-Z][\w-]+)/', $Excerpt['text'], $matches)) {
+            $a = strpos($Excerpt['context'], $matches[0]);
+            if (!empty($Excerpt['context'][$a + strlen($matches[0])])) {
+                if ($Excerpt['context'][$a + strlen($matches[0])] !== ' ' && $Excerpt['context'][$a + strlen($matches[0])] !== ',' && $Excerpt['context'][$a + strlen($matches[0])] !== "\n") {
+                    return;
+                }
+            }
 
-            return [
-                'extent' => strlen($matches[0]),
-                'element' => [
-                    'name' => 'a',
-                    'text' => $matches[0],
-                    'attributes' => array(
-                        'href' => '/user/' . $user->id,
-                        'class' => 'muted-link muted-link-strong',
-                    ),
-                ],
-            ];
+            $atPosition = strstr($Excerpt['context'], '@', true);
+            $beforeAt = substr($atPosition, -1);
+            if($beforeAt == ' ' || $beforeAt == '' || $beforeAt == "\n") {
+                /** @var User $user */
+                $user = User::findByUsername($matches[1]);
+                if (!$user) {
+                    return;
+                }
+
+                return [
+                    'extent' => strlen($matches[0]),
+                    'element' => [
+                        'name' => 'a',
+                        'text' => $matches[0],
+                        'attributes' => array(
+                            'href' => '/user/' . $user->id,
+                            'class' => 'user-mention',
+                        ),
+                    ],
+                ];
+            }
         }
     }
 }

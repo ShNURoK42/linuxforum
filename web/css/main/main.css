@@ -56,9 +56,10 @@ body {
 .error-summary li {
   padding-bottom: 0;
 }
-.muted-link-strong {
+.user-mention {
   color: #333;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 /* Header
@@ -476,30 +477,6 @@ body {
   margin-left: 60px;
   position: relative;
   width: 890px;
-}
-.post-formbox-content:after,
-.post-formbox-content:before {
-  border-color: transparent;
-  border-style: solid solid outset;
-  content: " ";
-  display: block;
-  height: 0;
-  left: -16px;
-  pointer-events: none;
-  position: absolute;
-  right: 100%;
-  top: 14px;
-  width: 0;
-}
-.post-formbox-content:after {
-  border-right-color: #f7f7f7;
-  border-width: 7px;
-  margin-left: 2px;
-  margin-top: 1px;
-}
-.post-formbox-content:before {
-  border-right-color: #ddd;
-  border-width: 8px;
 }
 .post-formbox-content .form-actions {
   padding: 10px;

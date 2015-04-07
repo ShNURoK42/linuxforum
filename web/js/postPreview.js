@@ -15,6 +15,17 @@
             return this.each(function () {
                 var $this = $(this);
 
+
+
+                var $win = $(window);
+                var $marker = $('#p447097');
+
+                $win.on('scroll', function() {
+                    if ($win.scrollTop() + $win.height() >= $marker.offset().top + $marker.height()) {
+                        $win.unbind('scroll');
+                    }
+                });
+
                 $(document).on('keydown', function(event) {
                     if ((event.keyCode == 10 || event.keyCode == 13) && event.ctrlKey) {
                         event.preventDefault();
