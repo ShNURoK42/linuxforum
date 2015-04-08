@@ -99,7 +99,7 @@ class TopicForm extends \yii\base\Model
                 /** @var User $mentionUser */
                 $mentionUser = User::findByUsername($mention);
 
-                if (!$user) {
+                if (!$mentionUser) {
                     continue;
                 }
 

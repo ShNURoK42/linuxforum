@@ -46,21 +46,24 @@ class MarkdownParser extends \Parsedown
         if (preg_match('/\B@([a-zA-Z][\w-]+)/', $Excerpt['context'], $matches)) {
             /** @var User $user */
             $user = User::findByUsername($matches[1]);
-            if (!$user) {
-                return;
-            }
-
-            return [
-                'extent' => strlen($matches[0]),
-                'element' => [
-                    'name' => 'a',
-                    'text' => $matches[0],
-                    'attributes' => [
-                        'href' => '/user/' . $user->id,
-                        'class' => 'user-mention',
+            if ($user) {
+                return [
+                    'extent' => strlen($matches[0]),
+                    'element' => [
+                        'name' => 'a',
+                        'text' => $matches[0],
+                        'attributes' => [
+                            'href' => '/user/' . $user->id,
+                            'class' => 'user-mention',
+                        ],
                     ],
-                ],
-            ];
+                ];
+            } else {
+                return [
+                    'markup' => $matches[0],
+                    'extent' => strlen($matches[0]),
+                ];
+            }
         }
     }
 
