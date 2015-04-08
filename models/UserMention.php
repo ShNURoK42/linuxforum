@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveQuery;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -14,6 +15,8 @@ use yii\behaviors\TimestampBehavior;
  * @property boolean $viewed
  * @property integer $created_at
  * @property integer $updated_at
+ *
+ * @property Topic $topic
  */
 class UserMention extends \yii\db\ActiveRecord
 {
@@ -32,5 +35,13 @@ class UserMention extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'user_mention';
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getTopic()
+    {
+        return $this->hasOne(Topic::className(), ['id' => 'topic_id']);
     }
 }

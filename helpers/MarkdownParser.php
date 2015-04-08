@@ -30,48 +30,79 @@ class MarkdownParser extends \Parsedown
         {
             return array(
                 'extent' => strlen($matches[0]),
-                'element' => array(
+                'element' => [
                     'name' => 'span',
                     'text' => $matches[2],
-                    'attributes' => array(
+                    'attributes' => [
                         'style' => 'color: '.$matches[1],
-                    ),
-                ),
+                    ],
+                ],
             );
         }
     }
 
     protected function inlineUserMention($Excerpt)
     {
-        if (preg_match('/@([a-zA-Z][\w-]+)/', $Excerpt['text'], $matches)) {
-            $a = strpos($Excerpt['context'], $matches[0]);
-            if (!empty($Excerpt['context'][$a + strlen($matches[0])])) {
-                if ($Excerpt['context'][$a + strlen($matches[0])] !== ' ' && $Excerpt['context'][$a + strlen($matches[0])] !== ',' && $Excerpt['context'][$a + strlen($matches[0])] !== "\n") {
-                    return;
-                }
+        if (preg_match('/\B@([a-zA-Z][\w-]+)/', $Excerpt['context'], $matches)) {
+            /** @var User $user */
+            $user = User::findByUsername($matches[1]);
+            if (!$user) {
+                return;
             }
 
-            $atPosition = strstr($Excerpt['context'], '@', true);
-            $beforeAt = substr($atPosition, -1);
-            if($beforeAt == ' ' || $beforeAt == '' || $beforeAt == "\n") {
-                /** @var User $user */
-                $user = User::findByUsername($matches[1]);
-                if (!$user) {
-                    return;
-                }
-
-                return [
-                    'extent' => strlen($matches[0]),
-                    'element' => [
-                        'name' => 'a',
-                        'text' => $matches[0],
-                        'attributes' => array(
-                            'href' => '/user/' . $user->id,
-                            'class' => 'user-mention',
-                        ),
+            return [
+                'extent' => strlen($matches[0]),
+                'element' => [
+                    'name' => 'a',
+                    'text' => $matches[0],
+                    'attributes' => [
+                        'href' => '/user/' . $user->id,
+                        'class' => 'user-mention',
                     ],
-                ];
-            }
+                ],
+            ];
         }
+    }
+
+    public static function findMentions($text)
+    {
+        $pattern = '/\B@([a-zA-Z][\w-]+)/';
+
+        if (preg_match_all($pattern, $text)) {
+            $text = str_replace(["\r\n", "\r"], "\n", $text);
+            $text = trim($text, "\n");
+            $lines = explode("\n", $text);
+
+            $mentions = [];
+            $isBlockCode = false;
+            foreach ($lines as $line) {
+                if (empty($line)) {
+                    continue;
+                }
+
+                if (($l = $line[0]) === '`' && strncmp($line, '```', 3) === 0 || $l === '~' && strncmp($line, '~~~', 3) === 0) {
+                    if ($isBlockCode === false) {
+                        $isBlockCode = true;
+                    } else {
+                        $isBlockCode = false;
+                    }
+                    continue;
+                } elseif ($isBlockCode === true) {
+                    continue;
+                } elseif (($l = $line[0]) === ' ' && $line[1] === ' ' && $line[2] === ' ' && $line[3] === ' ' || $l === "\t") {
+                    continue;
+                } elseif (preg_match('/^`(.+?)`/s', $line)) {
+                    continue;
+                } else {
+                    if (preg_match_all($pattern, $line, $matches)) {
+                        $mentions = array_merge($mentions, $matches[1]);
+                    }
+                }
+            }
+
+            return array_unique($mentions);
+        }
+
+        return null;
     }
 }

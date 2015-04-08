@@ -17,6 +17,7 @@ class NotificationController extends \app\components\BaseController
             $user = \Yii::$app->getUser()->getIdentity();
 
             $userMentions = UserMention::find()
+                ->with('topic')
                 ->where(['mention_user_id' => $user->id])
                 ->all();
 

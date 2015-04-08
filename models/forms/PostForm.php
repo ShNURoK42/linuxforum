@@ -2,6 +2,7 @@
 
 namespace app\models\forms;
 
+use app\helpers\MarkdownParser;
 use app\models\Post;
 use app\models\Topic;
 use app\models\User;
@@ -65,20 +66,21 @@ class PostForm extends \yii\base\Model
             $forum->save();
 
             // notification
-
-            preg_match_all('/(^|\s)@([a-zA-Z][\w-]+)(,?)/', $this->message, $matches);
-
-            foreach (array_unique($matches[2]) as $match) {
+            $mentions = MarkdownParser::findMentions($this->message);
+            foreach ($mentions as $mention) {
                 /** @var User $mentionUser */
-                $mentionUser = User::findByUsername($match);
-                if ($user) {
-                    $userMention = new UserMention();
-                    $userMention->user_id = $user->id;
-                    $userMention->mention_user_id = $mentionUser->id;
-                    $userMention->post_id = $post->id;
-                    $userMention->topic_id = $topic->id;
-                    $userMention->save();
+                $mentionUser = User::findByUsername($mention);
+
+                if (!$user) {
+                    continue;
                 }
+
+                $userMention = new UserMention();
+                $userMention->user_id = $user->id;
+                $userMention->mention_user_id = $mentionUser->id;
+                $userMention->post_id = $post->id;
+                $userMention->topic_id = $topic->id;
+                $userMention->save();
             }
 
             return true;

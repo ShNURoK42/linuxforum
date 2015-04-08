@@ -3,9 +3,12 @@
 namespace app\models\forms;
 
 use Yii;
+use app\helpers\MarkdownParser;
 use app\models\Post;
 use app\models\Topic;
 use app\models\Forum;
+use app\models\User;
+use app\models\UserMention;
 
 /**
  * Class TopicForm
@@ -89,6 +92,24 @@ class TopicForm extends \yii\base\Model
             $forum->save();
 
             $this->topic = $topic;
+
+            // notification
+            $mentions = MarkdownParser::findMentions($this->message);
+            foreach ($mentions as $mention) {
+                /** @var User $mentionUser */
+                $mentionUser = User::findByUsername($mention);
+
+                if (!$user) {
+                    continue;
+                }
+
+                $userMention = new UserMention();
+                $userMention->user_id = $user->id;
+                $userMention->mention_user_id = $mentionUser->id;
+                $userMention->post_id = $post->id;
+                $userMention->topic_id = $topic->id;
+                $userMention->save();
+            }
 
             return true;
         }

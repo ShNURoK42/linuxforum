@@ -11,7 +11,7 @@ use yii\helpers\Url;
     <div class="column one-fifth">
         <ul class="filter-list">
             <li>
-                <a class="filter-item selected" href="/notifications/participating"><span class="count">0</span>Упоминания о вас</a>
+                <a class="filter-item selected" href="/notifications/participating"><span class="count"><?= count($userMentions) ?></span>Упоминания о вас</a>
             </li>
         </ul>
     </div>
@@ -27,7 +27,7 @@ use yii\helpers\Url;
                 <h3>Вас упоминули в теме:</h3>
                 <ul class="boxed-group-inner list-group notifications">
                     <?php foreach($userMentions as $userMention): ?>
-                    <li class="list-group-item"><a href="<?= Url::toRoute(['post/view', 'id' => $userMention->post_id, '#' => 'p' . $userMention->post_id]) ?>">Заголовок темы #<?= $userMention->post_id ?></a></li>
+                    <li class="list-group-item"><a href="<?= Url::toRoute(['post/view', 'id' => $userMention->post_id, '#' => 'p' . $userMention->post_id]) ?>"><strong><?= $userMention->topic->subject ?></strong> #<?= $userMention->post_id ?></a></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
