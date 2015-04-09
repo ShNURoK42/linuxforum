@@ -608,12 +608,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "fc60cd58abea30a97098795d73d15f2a4dc0cbee"
+                "reference": "67ff4275271ed3e400c92470ee27e53f0204d5af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/fc60cd58abea30a97098795d73d15f2a4dc0cbee",
-                "reference": "fc60cd58abea30a97098795d73d15f2a4dc0cbee",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/67ff4275271ed3e400c92470ee27e53f0204d5af",
+                "reference": "67ff4275271ed3e400c92470ee27e53f0204d5af",
                 "shasum": ""
             },
             "require": {
@@ -688,7 +688,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-04-07 07:01:09"
+            "time": "2015-04-09 02:54:30"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -1005,12 +1005,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-gii.git",
-                "reference": "1895df62cc93cede87c5ce05ccf5c6bf4baf8cdb"
+                "reference": "6420868576af6b561609d6bdab85ea61f53886a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/1895df62cc93cede87c5ce05ccf5c6bf4baf8cdb",
-                "reference": "1895df62cc93cede87c5ce05ccf5c6bf4baf8cdb",
+                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/6420868576af6b561609d6bdab85ea61f53886a4",
+                "reference": "6420868576af6b561609d6bdab85ea61f53886a4",
                 "shasum": ""
             },
             "require": {
@@ -1050,7 +1050,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2015-04-03 13:51:55"
+            "time": "2015-04-08 22:20:45"
         }
     ],
     "aliases": [],

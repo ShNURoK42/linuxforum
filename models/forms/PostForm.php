@@ -67,20 +67,22 @@ class PostForm extends \yii\base\Model
 
             // notification
             $mentions = MarkdownParser::findMentions($this->message);
-            foreach ($mentions as $mention) {
-                /** @var User $mentionUser */
-                $mentionUser = User::findByUsername($mention);
+            if (!empty($mentions)) {
+                foreach ($mentions as $mention) {
+                    /** @var User $mentionUser */
+                    $mentionUser = User::findByUsername($mention);
 
-                if (!$mentionUser) {
-                    continue;
+                    if (!$mentionUser) {
+                        continue;
+                    }
+
+                    $userMention = new UserMention();
+                    $userMention->user_id = $user->id;
+                    $userMention->mention_user_id = $mentionUser->id;
+                    $userMention->post_id = $post->id;
+                    $userMention->topic_id = $topic->id;
+                    $userMention->save();
                 }
-
-                $userMention = new UserMention();
-                $userMention->user_id = $user->id;
-                $userMention->mention_user_id = $mentionUser->id;
-                $userMention->post_id = $post->id;
-                $userMention->topic_id = $topic->id;
-                $userMention->save();
             }
 
             return true;
