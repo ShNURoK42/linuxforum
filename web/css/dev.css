@@ -7,7 +7,6 @@
   background-color: #f8f8f8;
   border: 1px solid #e5e5e5;
   border-radius: 3px 3px 0 0;
-  margin-top: 20px;
   position: relative;
 }
 .topic-list-header-info {
@@ -133,9 +132,11 @@
 
 
 .search-links {
-  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+  margin-bottom: 20px;
 }
-.search-links-list {
+.search-links-list ul {
   list-style: outside none none;
 }
 .search-links-list > li {

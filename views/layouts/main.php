@@ -39,20 +39,33 @@ MainAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-<header class="header">
+<nav class="navbar">
     <div class="container">
         <div class="navbar-brand">
             <?php if (Yii::$app->controller->route == 'site/index'): ?>
                 <span><?= Yii::$app->config->get('site_title') ?></span>
                 <span class="navbar-brand-beta tooltipped tooltipped-s" aria-label="Сайт находится на стадии разработки"><a href="<?= Url::toRoute(['forum/view', 'id' => 3]) ?>">alpha</a></span>
             <?php else: ?>
-                <a class="muted-link" href="<?= Yii::$app->urlManager->createUrl('site/index') ?>"><?= Yii::$app->config->get('site_title') ?></a>
+                <a href="<?= Yii::$app->urlManager->createUrl('site/index') ?>"><?= Yii::$app->config->get('site_title') ?></a>
                 <span class="navbar-brand-beta tooltipped tooltipped-s" aria-label="Сайт находится на стадии разработки"><a href="<?= Url::toRoute(['forum/view', 'id' => 3]) ?>">alpha</a></span>
             <?php endif; ?>
         </div>
         <?= Navigation::widget(['position' => 'header']); ?>
     </div>
-</header>
+</nav>
+<div class="search-links">
+    <div class="container">
+        <ul class="search-links-list right">
+            <div class="btn-group">
+                <?php if (!Yii::$app->getUser()->getIsGuest()):?>
+                <a class="btn btn-sm btn-outline" title="Темы в которых вы отвечали." href="/search/ownpost_topics">Ваши темы</a>
+                <?php endif; ?>
+                <a class="btn btn-sm btn-outline" title="Темы с активностью в последние 24 часа." href="/search/active_topics">Активные темы</a>
+                <a class="btn btn-sm btn-outline" title="Темы без ответов." href="/search/unanswered_topics">Темы без ответов</a>
+            </div>
+        </ul>
+    </div>
+</div>
 <section class="content">
     <?= PageHead::widget(['title' => $this->title, 'subtitle' => $this->subtitle]) ?>
     <div class="pagecontent">
