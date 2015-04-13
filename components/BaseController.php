@@ -28,6 +28,8 @@ class BaseController extends \yii\web\Controller
 
             if (!Yii::$app->getUser()->getIsGuest()) {
                 $online->user_id = Yii::$app->getUser()->getIdentity()->getId();
+            } else {
+                $online->user_id = 0;
             }
 
             $online->save();
