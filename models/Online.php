@@ -30,14 +30,14 @@ class Online extends \yii\db\ActiveRecord
     public static function countGuests()
     {
         return static::find()
-            ->where(['user_id' => null])
+            ->where('user_id = 0')
             ->count();
     }
 
     public static function countUsers()
     {
         return static::find()
-            ->where(['IS NOT', 'user_id', null])
+            ->where('user_id > 0')
             ->count();
     }
 
@@ -45,7 +45,7 @@ class Online extends \yii\db\ActiveRecord
     {
         $array_ids = static::find()
             ->select(['user_id'])
-            ->where(['IS NOT', 'user_id', null])
+            ->where('user_id > 0')
             ->asArray()
             ->all();
 
