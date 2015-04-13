@@ -12,7 +12,7 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $mention_user_id
  * @property integer $post_id
  * @property integer $topic_id
- * @property boolean $viewed
+ * @property boolean $status
  * @property integer $created_at
  * @property integer $updated_at
  *
@@ -20,6 +20,9 @@ use yii\behaviors\TimestampBehavior;
  */
 class UserMention extends \yii\db\ActiveRecord
 {
+    const MENTION_SATUS_UNVIEWED = 0;
+    const MENTION_SATUS_VIEWED = 1;
+
     public function behaviors()
     {
         return [

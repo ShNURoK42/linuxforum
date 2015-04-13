@@ -82,6 +82,7 @@ class TopicForm extends \yii\base\Model
 
             // update user.number_posts
             $user->incrementPost();
+            $user->last_posted_at = time();
             $user->save();
 
             // update forum information
@@ -109,6 +110,7 @@ class TopicForm extends \yii\base\Model
                     $userMention->mention_user_id = $mentionUser->id;
                     $userMention->post_id = $post->id;
                     $userMention->topic_id = $topic->id;
+                    $userMention->status = UserMention::MENTION_SATUS_UNVIEWED;
                     $userMention->save();
                 }
             }
