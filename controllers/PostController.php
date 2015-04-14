@@ -67,6 +67,12 @@ class PostController extends \app\components\BaseController
 
             $users = ArrayHelper::getColumn($posts, 'user');
             $usernames = array_unique(ArrayHelper::getColumn($users, 'username'));
+
+            $key = array_search(Yii::$app->getUser()->getIdentity()->username, $usernames);
+            if (is_array($usernames) && (isset($usernames[$key]) || array_key_exists($key, $usernames))) {
+                unset($usernames[$key]);
+            }
+
             $usernames = array_values($usernames);
 
             return $usernames;
