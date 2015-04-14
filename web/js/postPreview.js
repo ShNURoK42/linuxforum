@@ -15,17 +15,6 @@
             return this.each(function () {
                 var $this = $(this);
 
-
-
-                var $win = $(window);
-                var $marker = $('#p447097');
-
-                $win.on('scroll', function() {
-                    if ($win.scrollTop() + $win.height() >= $marker.offset().top + $marker.height()) {
-                        $win.unbind('scroll');
-                    }
-                });
-
                 $(document).on('keydown', function(event) {
                     if ((event.keyCode == 10 || event.keyCode == 13) && event.ctrlKey) {
                         event.preventDefault();
@@ -34,13 +23,23 @@
                 });
 
                 $(document).on('ready', function(event) {
-                    console.log(data);
-                    $('#postform-message').atwho({
-                        displayTimeout: 300,
-                        highlightFirst: true,
-                        delay: null,
-                        at: "@",
-                        data: '/post/mention'
+                    var id = $('.topic-discussion').attr('id');
+                    var data = $.ajax({
+                        url: '/post/mention',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {id: id},
+                        success: function (data) {
+                            console.log(data);
+
+                            $('#postform-message').atwho({
+                                displayTimeout: 300,
+                                highlightFirst: true,
+                                delay: null,
+                                at: "@",
+                                data: data
+                            });
+                        }
                     });
                 });
 
