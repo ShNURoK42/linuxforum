@@ -37,6 +37,7 @@ return [
                 'markdown' => 'site/markdown',
                 'terms' => 'site/terms',
                 'captcha' => 'site/captcha',
+                'feedback' => 'site/feedback',
 
                 // UserController
                 'login' => 'user/login',

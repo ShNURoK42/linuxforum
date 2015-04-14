@@ -3,11 +3,7 @@
 namespace app\widgets;
 
 use Yii;
-use yii\helpers\Html;
 
-/**
- * Class LinkPager
- */
 class LinkPager extends \yii\widgets\LinkPager
 {
     /**

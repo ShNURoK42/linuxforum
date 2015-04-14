@@ -62,8 +62,8 @@ class Navigation extends Widget
                 //['label' => 'О сайте', 'url' => ['site/about']],
                 //['label' => '&bull;'],
                 ['label' => 'Правила пользования', 'url' => ['site/terms']],
-                //['label' => '&bull;'],
-                //['label' => 'Обратная связь', 'url' => ['site/contact']],
+                ['label' => '&bull;'],
+                ['label' => 'Обратная связь', 'url' => ['site/feedback']],
             ];
 
             return Menu::widget(['encodeLabels' => false, 'items' => $items]);

@@ -7,6 +7,7 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\web\HttpException;
 use app\models\Category;
+use app\models\forms\FeedbackForm;
 
 /**
  * Class SiteController
@@ -46,6 +47,20 @@ class SiteController extends \app\components\BaseController
             ->all();
 
         return $this->render('index', ['categories' => $categories]);
+    }
+
+    /**
+     * This action render the feedback page.
+     * @return string
+     */
+    public function actionFeedback()
+    {
+        $model = new FeedbackForm();
+        if ($model->load(Yii::$app->request->post()) && $model->contact()) {
+            return $this->goBack();
+        } else {
+            return $this->render('feedback', ['model' => $model]);
+        }
     }
 
     /**
