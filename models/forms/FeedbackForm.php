@@ -41,7 +41,7 @@ class FeedbackForm extends \yii\base\Model
             ['name', 'filter', 'filter' => 'trim'],
             ['name', 'required', 'message' => 'Введите имя пользователя.'],
             ['name', 'string', 'min' => 2, 'tooShort' => 'Имя пользователя должно содержать минимум {min} символа.'],
-            ['name', 'string', 'max' => 128, 'tooLong' => 'Имя пользователя не должно быть длиннее {max} символов.'],
+            ['name', 'string', 'max' => 40, 'tooLong' => 'Имя пользователя не должно быть длиннее {max} символов.'],
 
             ['email', 'required', 'message' => 'Введите адрес электронной почты.'],
             ['email', 'filter', 'filter' => 'trim'],
@@ -61,8 +61,8 @@ class FeedbackForm extends \yii\base\Model
                 'message' => $this->message,
             ])
                 ->setTo([Yii::$app->config->get('support_email') => 'Administrator'])
-                ->setFrom([$this->email => $this->name])
-                ->setSubject('Из формы обратной связи ' . Yii::$app->config->get('site_title'))
+                ->setFrom([Yii::$app->config->get('support_email') => $this->name])
+                ->setSubject('[' . Yii::$app->config->get('site_title') . '] Форма обратной связи')
                 ->send();
 
             return true;
