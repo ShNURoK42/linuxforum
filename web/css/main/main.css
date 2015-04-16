@@ -62,6 +62,9 @@ body {
 blockquote .user-mention {
   color: #777;
 }
+dl.form > dd textarea {
+  resize: vertical;
+}
 
 /* Header
    ========================================================================== */
