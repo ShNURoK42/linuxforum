@@ -56,7 +56,7 @@ class SiteController extends \app\components\BaseController
     public function actionFeedback()
     {
         $model = new FeedbackForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact()) {
+        if ($model->load(Yii::$app->request->post()) && $model->feedback()) {
             return $this->goBack();
         } else {
             return $this->render('feedback', ['model' => $model]);

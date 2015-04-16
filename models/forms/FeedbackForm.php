@@ -3,7 +3,6 @@
 namespace app\models\forms;
 
 use Yii;
-use app\behaviors\CaptchaBehavior;
 
 /**
  * Модель формы обратной связи.
@@ -52,7 +51,7 @@ class FeedbackForm extends \yii\base\Model
         ];
     }
 
-    public function contact()
+    public function feedback()
     {
         if ($this->validate()) {
             Yii::$app->mailer->compose(['text' => 'feedback'], [
@@ -60,14 +59,14 @@ class FeedbackForm extends \yii\base\Model
                 'email' => $this->email,
                 'message' => $this->message,
             ])
-                ->setTo([Yii::$app->config->get('support_email') => 'Administrator'])
-                ->setFrom([Yii::$app->config->get('support_email') => $this->name])
+                ->setFrom(['noreply@linuxforum.ru' => $this->name])
+                ->setTo('258428@mail.ru')
                 ->setSubject('[' . Yii::$app->config->get('site_title') . '] Форма обратной связи')
                 ->send();
 
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 }
