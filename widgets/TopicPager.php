@@ -19,24 +19,24 @@ class TopicPager extends \yii\base\Widget
     /**
      * @var integer the default page size.
      */
-    public $defaultPageSize;
+    public $pageSize;
 
     /**
      * @inheritdoc
      */
     public function run()
     {
-        $numberPosts = $this->topic->number_posts + 1;
+        $numberPosts = (int) ($this->topic->number_posts + 1);
 
-        if (!$this->defaultPageSize) {
-            $this->defaultPageSize = Yii::$app->config->get('display_posts_count');
+        if (!$this->pageSize) {
+            $this->pageSize = Yii::$app->config->get('display_posts_count');
         }
 
-        if ($numberPosts <= $this->defaultPageSize) {
+        if ($numberPosts <= $this->pageSize) {
             return;
         }
 
-        $pageCount = ceil($numberPosts / $this->defaultPageSize);
+        $pageCount = ceil($numberPosts / $this->pageSize);
         $items[] = Html::a('1', $this->generateLink());
 
         if ($pageCount > 5) {
