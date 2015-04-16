@@ -136,28 +136,6 @@ class PostController extends \app\components\BaseController
     }
 
     /**
-     * @param $id topic identificator
-     * @return string
-     */
-    public function actionCreate($id)
-    {
-        /** @var Topic $topic */
-        $topic = Topic::find()
-            ->where(['id' => $id])
-            ->one();
-
-        if (!$topic || Yii::$app->getUser()->getIsGuest()) {
-            throw new NotFoundHttpException();
-        }
-
-        $model = new PostForm();
-
-        if ($model->load(Yii::$app->getRequest()->post()) && $model->create($topic)) {
-            $this->redirect(['topic/view', 'id' => $model->topic->id]);
-        }
-    }
-
-    /**
      * Returns page number in topic by post.
      * @param Post $post post model.
      * @return integer
