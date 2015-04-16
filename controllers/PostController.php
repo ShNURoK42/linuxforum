@@ -9,6 +9,7 @@ use yii\web\NotFoundHttpException;
 use app\helpers\MarkdownParser;
 use app\models\Post;
 use app\models\Topic;
+use app\models\UserMention;
 
 /**
  * Class PostController
@@ -29,6 +30,19 @@ class PostController extends \app\components\BaseController
             ->where(['id' => $post->topic_id])
             ->with('forum')
             ->one();
+
+        if (!Yii::$app->getUser()->getIsGuest()) {
+            $userMentions = UserMention::findAll([
+                'post_id' => $id,
+                'mention_user_id' => Yii::$app->getUser()->getId(),
+                'status' => UserMention::MENTION_SATUS_UNVIEWED,
+            ]);
+
+            foreach ($userMentions as $userMention) {
+                $userMention->status = UserMention::MENTION_SATUS_VIEWED;
+                $userMention->save();
+            }
+        }
 
         $dataProvider = Post::getDataProviderByTopic($topic->id);
         $dataProvider->pagination->route = 'topic/view';

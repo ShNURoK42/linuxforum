@@ -7,6 +7,7 @@ use yii\web\NotFoundHttpException;
 use app\models\Forum;
 use app\models\Post;
 use app\models\Topic;
+use app\models\UserMention;
 use app\models\forms\PostForm;
 use app\models\forms\TopicForm;
 
@@ -34,6 +35,18 @@ class TopicController extends \app\components\BaseController
         $posts = $dataProvider->getModels();
 
         if (!Yii::$app->getUser()->getIsGuest()) {
+            $userMentions = UserMention::findAll([
+                'topic_id' => $id,
+                'mention_user_id' => Yii::$app->getUser()->getId(),
+                'status' => UserMention::MENTION_SATUS_UNVIEWED,
+            ]);
+
+            // user mention update
+            foreach ($userMentions as $userMention) {
+                $userMention->status = UserMention::MENTION_SATUS_VIEWED;
+                $userMention->save();
+            }
+
             $model = new PostForm();
             if ($model->load(Yii::$app->getRequest()->post()) && $model->create($topic)) {
                 $this->redirect(['post/view', 'id' => $model->post->id, '#' => 'p' . $model->post->id]);

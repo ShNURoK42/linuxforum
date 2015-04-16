@@ -16,6 +16,8 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $created_at
  * @property integer $updated_at
  *
+ * @property User $user
+ * @property User $mentionUser
  * @property Topic $topic
  */
 class UserMention extends \yii\db\ActiveRecord
@@ -43,8 +45,31 @@ class UserMention extends \yii\db\ActiveRecord
     /**
      * @return ActiveQuery
      */
+    public function getUser()
+    {
+        return $this->hasOne(Topic::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getMentionUser()
+    {
+        return $this->hasOne(Topic::className(), ['id' => 'mention_user_id']);
+    }
+
+    /**
+     * @return ActiveQuery
+     */
     public function getTopic()
     {
         return $this->hasOne(Topic::className(), ['id' => 'topic_id']);
+    }
+
+    public static function countByUser($id)
+    {
+        return static::find()
+            ->where(['mention_user_id' => $id, 'status' => self::MENTION_SATUS_UNVIEWED])
+            ->count();
     }
 }

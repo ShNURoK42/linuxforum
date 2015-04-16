@@ -1,6 +1,7 @@
 <?php
 namespace app\widgets;
 
+use app\models\UserMention;
 use Yii;
 use yii\base\Widget;
 
@@ -38,7 +39,14 @@ class Navigation extends Widget
                         'class' => 'navbar-nav-profile'
                     ]
                 ];
-                $items[] = ['label' => 'Уведомления', 'url' => ['notification/view']];
+
+                $notifications = UserMention::countByUser($user->id);
+
+                if ($notifications > 0) {
+                    $items[] = ['label' => 'Уведомления <font color="#FB4">(' . UserMention::countByUser($user->id) . ')</font>', 'url' => ['notification/view']];
+                } else {
+                    $items[] = ['label' => 'Уведомления', 'url' => ['notification/view']];
+                }
             }
 
             $items[] = ['label' => 'Пользователи', 'url' => ['user/list']];

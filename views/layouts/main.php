@@ -60,7 +60,7 @@ MainAsset::register($this);
                 <?php if (!Yii::$app->getUser()->getIsGuest()):?>
                 <a class="btn btn-sm btn-outline" title="Темы в которых вы отвечали." href="/search/ownpost_topics">Ваши темы</a>
                 <?php endif; ?>
-                <a class="btn btn-sm btn-outline" title="Темы с активностью в последние 24 часа." href="/search/active_topics">Активные темы</a>
+                <a class="btn btn-sm btn-outline" title="Темы с сортировкой по активности." href="/search/active_topics">Активные темы</a>
                 <a class="btn btn-sm btn-outline" title="Темы без ответов." href="/search/unanswered_topics">Темы без ответов</a>
             </div>
         </ul>

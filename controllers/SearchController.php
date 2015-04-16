@@ -15,10 +15,8 @@ class SearchController extends \app\components\BaseController
     {
         // !!! need access check
 
-        $time = time() - 86400;
-
         $query = Topic::find()
-            ->where('last_post_created_at > :time AND forum_id NOT LIKE 0', [':time' => $time])
+            ->where('forum_id NOT LIKE 0')
             ->with('forum')
             ->orderBy(['last_post_created_at' => SORT_DESC]);
 
