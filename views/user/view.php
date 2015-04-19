@@ -26,7 +26,11 @@ $formatter = Yii::$app->formatter;
         ]); ?>
         </div>
         <?php if (Yii::$app->getUser()->can('updateProfile', ['user' => $user])): ?>
-        <a class="btn profile-edit-btn" href="<?= Url::toRoute(['user-profile/index', 'id' => $user->id]) ?>"><span class="octicon octicon-pencil"></span> Редактировать профиль</a>
+            <?php if (Yii::$app->getUser()->getIdentity()->getId() == $user->id): ?>
+            <a class="btn profile-edit-btn" href="<?= Url::toRoute(['user-profile/index']) ?>"><span class="octicon octicon-pencil"></span> Редактировать профиль</a>
+            <?php else: ?>
+            <a class="btn profile-edit-btn" href="<?= Url::toRoute(['user-profile/index', 'id' => $user->id]) ?>"><span class="octicon octicon-pencil"></span> Редактировать профиль</a>
+            <?php endif; ?>
         <?php endif; ?>
     </div>
     <div class="profile-info">

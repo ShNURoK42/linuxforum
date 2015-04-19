@@ -13,6 +13,12 @@ return [
         'log',
     ],
 
+    'modules' => [
+        'user' => [
+            'class' => 'app\modules\user\Module',
+        ],
+    ],
+
     'components' => [
         'authManager' => [
             'class' => 'app\components\auth\AuthManager',
@@ -50,7 +56,13 @@ return [
                 'user/<id:\d+>' => 'user/view',
 
                 // UserProfileController
-                'user/<id:\d+>/settings' => 'user-profile/index',
+                'user/<id:\d+>/settings' => 'user-profile/profile',
+                'user/<id:\d+>/settings/profile' => 'user-profile/profile',
+                'user/<id:\d+>/settings/notifications' => 'user-profile/notifications',
+
+                'settings' => 'user-profile/profile',
+                'settings/profile' => 'user-profile/profile',
+                'settings/notifications' => 'user-profile/notifications',
 
                 // ForumController
                 'forum/<id:\d+>/page/<page:\d+>' => 'forum/view',
@@ -76,9 +88,6 @@ return [
 
                 // NotoficationController
                 'notifications' => 'notification/view',
-
-                // Admin
-                'admin' => 'admin-index/index',
             ],
         ],
         'request' => [

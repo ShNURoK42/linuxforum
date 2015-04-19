@@ -7,9 +7,10 @@ use app\widgets\ActiveForm;
 ?>
 <div class="columns">
     <div class="column one-fourth">
-        <nav data-pjax="" class="menu">
+        <nav class="menu">
             <h3 class="menu-heading">Персональные настройки</h3>
-            <a data-selected-links="avatar_settings /settings/profile" class="selected js-selected-navigation-item menu-item" href="/settings/profile">Основные</a>
+            <a class="selected menu-item" href="/settings/profile">Основные</a>
+            <a class="menu-item" href="/settings/notifications">Уведомления</a>
         </nav>
     </div>
     <div class="column three-fourths profile-box">
