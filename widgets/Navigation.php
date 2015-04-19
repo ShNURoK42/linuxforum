@@ -43,7 +43,7 @@ class Navigation extends Widget
                 $notifications = UserMention::countByUser($user->id);
 
                 if ($notifications > 0) {
-                    $items[] = ['label' => 'Уведомления <font color="#FB4">(' . UserMention::countByUser($user->id) . ')</font>', 'url' => ['notification/view']];
+                    $items[] = ['label' => 'Уведомления <span class="counter">' . UserMention::countByUser($user->id) . '</span>', 'url' => ['notification/view']];
                 } else {
                     $items[] = ['label' => 'Уведомления', 'url' => ['notification/view']];
                 }
