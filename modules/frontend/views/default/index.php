@@ -39,7 +39,7 @@ $formatter = Yii::$app->formatter;
                     <td><?= $formatter->asInteger($forum->number_posts) ?></td>
                     <td>
                         <?php if ($forum->last_post_created_at): ?>
-                        <a href="<?= Url::toRoute(['/post/default/view', 'id' => $forum->last_post_user_id, '#' => 'p' . $forum->last_post_user_id]) ?>"><?= $formatter->asDatetime($forum->last_post_created_at) ?></a> <span class="byuser"><?= $forum->last_post_username ?></span>
+                        <a href="<?= Url::toRoute(['/topic/post/view', 'id' => $forum->last_post_user_id, '#' => 'p' . $forum->last_post_user_id]) ?>"><?= $formatter->asDatetime($forum->last_post_created_at) ?></a> <span class="byuser"><?= $forum->last_post_username ?></span>
                         <?php else: ?>
                         <?= $formatter->asDatetime($forum->last_post_created_at) ?>
                         <?php endif; ?>

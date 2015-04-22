@@ -36,6 +36,9 @@ $item['post_count'] = $dataProvider->pagination->offset;
     </div>
     <?php if (!Yii::$app->getUser()->getIsGuest()): ?>
         <?= Editor::widget([
+            'activeFormOptions' => [
+                'action' => Url::to(['/topic/default/view', 'id' => $topic->id, '#' => 'postform']),
+            ],
             'model' => $model,
             'messageAttribute' => 'message',
         ]) ?>

@@ -47,7 +47,6 @@ class Editor extends \yii\base\Widget
             'id' => 'postform',
             'class' => 'postform-create',
         ];
-        $activeFormOptions['action'] = Url::current(['#' => 'postform']);
 
         $activeFormOptions = array_merge($this->activeFormOptions, $activeFormOptions);
 

@@ -35,7 +35,7 @@ $item['topic_count'] = 0;
                 <?= TopicPager::widget(['topic' => $topic]) ?>
                 <div class="topic-row-meta">
                     <span>Тему создал: <a class="muted-link" href="<?= Url::toRoute(['/user/default/view', 'id' => $topic->first_post_user_id]) ?>"><?= $formatter->asText($topic->first_post_username) ?></a></span>
-                    <span class="topic-last-post right"><span class="tooltipped tooltipped-w" aria-label="Сообщение от <?= $topic->last_post_username ?>"><a class="muted-link" href="<?= Url::toRoute(['/post/default/view', 'id' => $topic->last_post_id, '#' => 'p' . $topic->last_post_id ]) ?>"><?= Yii::$app->formatter->asDatetime($topic->last_post_created_at) ?></a></span></span>
+                    <span class="topic-last-post right"><span class="tooltipped tooltipped-w" aria-label="Сообщение от <?= $topic->last_post_username ?>"><a class="muted-link" href="<?= Url::toRoute(['/topic/post/view', 'id' => $topic->last_post_id, '#' => 'p' . $topic->last_post_id ]) ?>"><?= Yii::$app->formatter->asDatetime($topic->last_post_created_at) ?></a></span></span>
                 </div>
             </div>
             <div class="<?= ($topic->number_posts == 0) ? 'topic-row-post-null' : 'topic-row-post-count' ?>"><?= Yii::$app->formatter->asInteger($topic->number_posts) ?> <span class="octicon octicon-comment-discussion"></span>

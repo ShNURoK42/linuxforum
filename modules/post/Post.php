@@ -5,6 +5,7 @@ use Yii;
 use yii\base\InvalidConfigException;
 use post\models\Post as PostModel;
 use topic\models\Topic;
+use user\models\User;
 
 class Post extends \yii\base\Widget
 {
@@ -31,7 +32,7 @@ class Post extends \yii\base\Widget
             throw new InvalidConfigException('The "model" property must be set.');
         }
 
-        if ($this->topic instanceof Topic) {
+        if ($this->topic instanceof Topic && $this->model->user instanceof User) {
             if ($this->topic->first_post_user_id == $this->model->user->id) {
                 $this->model->setIsTopicAuthor(true);
             }
@@ -62,6 +63,6 @@ class Post extends \yii\base\Widget
     {
         $view = $this->getView();
         PostAsset::register($view);
-        $view->registerJs('jQuery(\'#p' . $this->model->id . '\').post();');
+        $view->registerJs("jQuery('#p" . $this->model->id . "').post();");
     }
 }
