@@ -4,24 +4,151 @@ return [
     'id' => 'app',
     'basePath' => dirname(__DIR__),
     'name' => 'SCV System',
-
     'timeZone' => 'Europe/Moscow',
     'language' => 'ru-RU',
     //'language' => 'en-US',
+    'controllerNamespace' => 'frontend\controllers',
+    'viewPath' => dirname(__DIR__) . '/modules/frontend/views',
 
+    /**
+     * Path aliases
+     */
+    'aliases' => [
+        '@ad' => dirname(__DIR__) . '/modules/ad',
+        '@captcha' => dirname(__DIR__) . '/modules/captcha',
+        '@editor' => dirname(__DIR__) . '/modules/editor',
+        '@forum' => dirname(__DIR__) . '/modules/forum',
+        '@frontend' => dirname(__DIR__) . '/modules/frontend',
+        '@notify' => dirname(__DIR__) . '/modules/notify',
+        '@post' => dirname(__DIR__) . '/modules/post',
+        '@role' => dirname(__DIR__) . '/modules/role',
+        '@topic' => dirname(__DIR__) . '/modules/topic',
+        '@user' => dirname(__DIR__) . '/modules/user',
+    ],
+
+    /**
+     * Preload modules
+     */
     'bootstrap' => [
         'log',
     ],
 
+    /**
+     * Modules list
+     */
     'modules' => [
+        'ad' => [
+            'class' => 'ad\Module',
+        ],
+        'captcha' => [
+            'class' => 'captcha\Module',
+        ],
+        'editor' => [
+            'class' => 'editor\Module',
+        ],
+        'forum' => [
+            'class' => 'forum\Module',
+        ],
+        'frontend' => [
+            'class' => 'frontend\Module',
+        ],
+        'notify' => [
+            'class' => 'notify\Module',
+        ],
+        'post' => [
+            'class' => 'post\Module',
+        ],
+        'role' => [
+            'class' => 'role\Module',
+        ],
+        'topic' => [
+            'class' => 'topic\Module',
+        ],
         'user' => [
-            'class' => 'app\modules\user\Module',
+            'class' => 'user\Module',
         ],
     ],
 
+    /**
+     * Components
+     */
     'components' => [
+        'urlManager' => [
+            'enableStrictParsing' => true,
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+
+            'rules' => [
+                /**
+                 * frontend module routes
+                 */
+                '/' => 'frontend/default/index',
+                'markdown' => 'frontend/default/markdown',
+                'terms' => 'frontend/default/terms',
+                'feedback' => 'frontend/default/feedback',
+
+                /**
+                 * user module routes
+                 */
+                'users/page/<page:\d+>' => 'user/default/list',
+                'users' => 'user/default/list',
+                'user/<id:\d+>' => 'user/default/view',
+                // IdentityController
+                'login' => 'user/identity/login',
+                'logout' => 'user/identity/logout',
+                'registration' => 'user/identity/registration',
+                // ForgetController
+                'forget' => 'user/forget/index',
+                'forget/change' => 'user/forget/change',
+                // SettingsController
+                'user/<id:\d+>/settings' => 'user/settings/profile',
+                'user/<id:\d+>/settings/profile' => 'user/settings/profile',
+                'user/<id:\d+>/settings/notifications' => 'user/settings/notifications',
+                'settings' => 'user/settings/profile',
+                'settings/profile' => 'user/settings/profile',
+                'settings/notifications' => 'user/settings/notifications',
+
+                /**
+                 * forum module routes
+                 */
+                'forum/<id:\d+>/page/<page:\d+>' => 'forum/default/view',
+                'forum/<id:\d+>' => 'forum/default/view',
+
+                /**
+                 * topic module routes
+                 */
+                'forum/<id:\d+>/topic/new' => 'topic/default/create',
+                'post/<id:\d+>' => 'topic/post/view',
+                'topic/<id:\d+>/page/<page:\d+>' => 'topic/default/view',
+                'topic/<id:\d+>' => 'topic/default/view',
+                // SearchController
+                'search/active_topics' => 'topic/search/view-active-topics',
+                'search/unanswered_topics' => 'topic/search/view-unanswered-topics',
+                'search/ownpost_topics' => 'topic/search/view-ownpost-topics',
+
+
+                /**
+                 * post module routes
+                 */
+                'post/preview' => 'post/default/preview',
+                'post/mention' => 'post/default/mention',
+                'post/update' => 'post/default/update',
+                'topic/<id:\d+>/post/new' => 'post/default/create',
+                'post/delete/<id:\d+>' => 'post/default/delete',
+
+                /**
+                 * notify module routes
+                 */
+                'notifications' => 'notify/default/view',
+
+                /**
+                 * captcha module routes
+                 */
+                'captcha' => 'captcha/default/index',
+            ],
+        ],
         'authManager' => [
-            'class' => 'app\components\auth\AuthManager',
+            'class' => 'role\components\AuthManager',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -32,71 +159,13 @@ return [
         'formatter' => [
             'class' => 'app\components\Formatter'
         ],
-        'urlManager' => [
-            'enableStrictParsing' => true,
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-
-            'rules' => [
-                // SiteController
-                '/' => 'site/index',
-                'markdown' => 'site/markdown',
-                'terms' => 'site/terms',
-                'captcha' => 'site/captcha',
-                'feedback' => 'site/feedback',
-
-                // UserController
-                'login' => 'user/login',
-                'logout' => 'user/logout',
-                'registration' => 'user/registration',
-                'forget' => 'user/forget',
-                'forget/change' => 'user/change',
-                'users/page/<page:\d+>' => 'user/list',
-                'users' => 'user/list',
-                'user/<id:\d+>' => 'user/view',
-
-                // UserProfileController
-                'user/<id:\d+>/settings' => 'user-profile/profile',
-                'user/<id:\d+>/settings/profile' => 'user-profile/profile',
-                'user/<id:\d+>/settings/notifications' => 'user-profile/notifications',
-
-                'settings' => 'user-profile/profile',
-                'settings/profile' => 'user-profile/profile',
-                'settings/notifications' => 'user-profile/notifications',
-
-                // ForumController
-                'forum/<id:\d+>/page/<page:\d+>' => 'forum/view',
-                'forum/<id:\d+>' => 'forum/view',
-
-                // TopicController
-                'forum/<id:\d+>/topic/new' => 'topic/create',
-                'topic/<id:\d+>/page/<page:\d+>' => 'topic/view',
-                'topic/<id:\d+>' => 'topic/view',
-
-                // PostController
-                'post/<id:\d+>' => 'post/view',
-                'post/preview' => 'post/preview',
-                'post/mention' => 'post/mention',
-                'post/update' => 'post/update',
-                'topic/<id:\d+>/post/new' => 'post/create',
-                'post/delete/<id:\d+>' => 'post/delete',
-
-                // SearchController
-                'search/active_topics' => 'search/view-active-topics',
-                'search/unanswered_topics' => 'search/view-unanswered-topics',
-                'search/ownpost_topics' => 'search/view-ownpost-topics',
-
-                // NotoficationController
-                'notifications' => 'notification/view',
-            ],
-        ],
         'request' => [
             'enableCsrfValidation' => true,
             'enableCookieValidation' => true,
         ],
         'user' => [
             'class' => 'app\components\User',
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'user\models\User',
             'enableAutoLogin' => true,
             'loginUrl' => ['user/login'],
         ],
@@ -127,7 +196,7 @@ return [
             'class' => 'app\components\Mailer',
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+            'errorAction' => 'frontend/default/error',
         ],
         'log' => [
             'targets' => [

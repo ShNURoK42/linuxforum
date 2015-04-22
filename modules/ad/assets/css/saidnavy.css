@@ -1,0 +1,17 @@
+.adsbox {
+  color: #566579;
+  margin: 10px 0 30px;
+  padding: 0;
+}
+.adsbox .saidnavy {
+  border: 1px solid #cad7e1;
+  border-radius: 3px;
+  color: #566579;
+}
+.adsbox .saidnavy-links {
+  margin: 10px;
+  padding: 0;
+  line-height: 1;
+  font-size: 11px;
+  list-style: none;
+}

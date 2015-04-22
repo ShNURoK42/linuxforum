@@ -12,6 +12,6 @@ class Mailer extends YiiMailer
      */
     public function init()
     {
-        $this->setViewPath($this->getViewPath() . '/' .  Yii::$app->language);
+        $this->setViewPath('@app/messages/' . Yii::$app->language . '/mail/');
     }
 }

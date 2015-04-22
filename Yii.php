@@ -20,12 +20,10 @@ Yii::$container = new yii\di\Container;
  * Class BaseApplication
  * Used for properties that are identical for both WebApplication and ConsoleApplication
  *
- * @property \app\components\auth\AuthManager $authManager
- * @property \app\components\Security $security
+ * @property \role\components\AuthManager $authManager
  * @property \app\components\View $view
  *
- * @method \app\components\auth\AuthManager getAuthManager()
- * @method \app\components\Security getSecurity()
+ * @method \role\components\AuthManager getAuthManager()
  * @method \app\components\View getView()
  */
 abstract class BaseApplication extends yii\base\Application

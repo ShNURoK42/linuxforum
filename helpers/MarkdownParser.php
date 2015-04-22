@@ -2,7 +2,7 @@
 
 namespace app\helpers;
 
-use app\models\User;
+use user\models\User;
 
 class MarkdownParser extends \Parsedown
 {
@@ -28,7 +28,7 @@ class MarkdownParser extends \Parsedown
     {
         if (preg_match('/\[color=([a-zA-Z]{3,20}|\#[0-9a-fA-F]{6}|\#[0-9a-fA-F]{3})](.*?)\[\/color\]/', $Excerpt['text'], $matches))
         {
-            return array(
+            return [
                 'extent' => strlen($matches[0]),
                 'element' => [
                     'name' => 'span',
@@ -37,7 +37,7 @@ class MarkdownParser extends \Parsedown
                         'style' => 'color: '.$matches[1],
                     ],
                 ],
-            );
+            ];
         }
     }
 

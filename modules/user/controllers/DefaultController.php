@@ -1,13 +1,37 @@
 <?php
 
-namespace app\modules\user\controllers;
+namespace user\controllers;
 
-use yii\web\Controller;
+use Yii;
+use user\models\User;
+use user\models\SearchUsers;
 
-class DefaultController extends Controller
+class DefaultController extends \yii\web\Controller
 {
-    public function actionIndex()
+    /**
+     * @param integer $id user profile identificator
+     * @return string content
+     */
+    public function actionView($id)
     {
-        return $this->render('index');
+        $user = User::findOne(['id' => $id]);
+
+        return $this->render('view', ['user' => $user]);
+    }
+
+    /**
+     * @return string
+     */
+    public function actionList()
+    {
+        $model = new SearchUsers();
+        $dataProvider = $model->search(Yii::$app->request->get());
+        $users = $dataProvider->getModels();
+
+        return $this->render('list', [
+            'model' => $model,
+            'users' => $users,
+            'dataProvider' => $dataProvider
+        ]);
     }
 }

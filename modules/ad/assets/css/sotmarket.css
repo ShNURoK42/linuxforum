@@ -1,0 +1,82 @@
+.b-sotmarket-banner .space_none {
+    padding: 0;
+    margin: 0;
+}
+.b-sotmarket-banner {
+    width: 310px; /* здесь задается ширина баннера*/
+    position: relative;
+    font: 13px/16px Arial, sans-serif;
+}
+.b-sotmarket-banner-head {
+    height: 32px;
+    background: url(../img/b-logo.png) 50% 50% no-repeat #000;  /* #000 это дефолтный цвет баннера */
+    -webkit-border-radius: 7px 7px 0 0;
+    -moz-border-radius: 7px 7px 0 0;
+    border-radius: 7px 7px 0 0;
+}
+/* чтобы поменять цвет баннера от дефолтного можно добавить класс баннеру
+<div class="b-sotmarket-banner mod_red">  - получаем красный цвет
+<div class="b-sotmarket-banner mod_green">  - получаем зеленый цвет
+по аналогии можно создать дополнительные необходимые цветовые гаммы баннеров
+прописав например так - добавление голубого цвета
+.b-sotmarket-banner.mod_blue .b-sotmarket-banner-head{
+    background-color: #1f6ebc;
+    }
+*/
+/* MOD: color style */
+.b-sotmarket-banner.mod_red .b-sotmarket-banner-head{
+    background-color: #e71c27;
+}
+.b-sotmarket-banner.mod_green .b-sotmarket-banner-head{
+    /* background-color: #3ab448; */
+    background-color: #1f6ebc;
+}
+.b-sotmarket-banner.mod_gray .b-sotmarket-banner-head{
+    background-color: #464646;
+}
+.b-sotmarket-banner.mod_blue .b-sotmarket-banner-head{
+    background-color: #1f6ebc;
+}
+.b-sotmarket-banner.mod_pink .b-sotmarket-banner-head{
+    background-color: #c1529b;
+}
+/* b-sotmarket-banner-content */
+.b-sotmarket-banner-content {
+    border: 1px solid #c6c6c6;
+    padding: 15px 20px;
+    position: relative;
+    -webkit-border-radius: 0 0 7px 7px;
+    -moz-border-radius: 0 0 7px 7px;
+    border-radius: 0 0 7px 7px;
+}
+.b-sotmarket-banner-product {
+    overflow: hidden;
+    display: block;
+}
+.b-sotmarket-banner-product-image {
+    float: left;
+    padding-right: 10px;
+    border: none;
+    vertical-align: middle;
+}
+.b-sotmarket-banner-product-text {
+    color: #2d5898;
+    text-decoration: underline;
+    min-width: 100px;
+    padding-top: 10px;
+    cursor: pointer;
+    display: table;
+    zoom:1;
+}
+/* b-sotmarket-banner-main-link */
+.b-sotmarket-banner-main-link {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+    opacity: 0;
+}

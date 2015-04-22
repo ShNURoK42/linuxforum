@@ -6,9 +6,9 @@ use Yii;
 
 /**
  * @property integer $groupID current user group identificator.
- * @property \app\models\User|\yii\web\IdentityInterface|null $identity
+ * @property \user\models\User|\yii\web\IdentityInterface|null $identity
  *
- * @method \app\models\User|\yii\web\IdentityInterface|null getIdentity()
+ * @method \user\models\User|\yii\web\IdentityInterface|null getIdentity()
  */
 class User extends \yii\web\User
 {
