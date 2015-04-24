@@ -45,9 +45,9 @@ GoogleAsset::register($this);
     <div class="container">
         <div class="navbar-brand">
             <?php if (Yii::$app->controller->route == 'site/index'): ?>
-            <span><?= Yii::$app->config->get('site_title') ?></span><span class="navbar-brand-beta tooltipped tooltipped-s" aria-label="Сайт находится на стадии разработки"><a href="<?= Url::toRoute(['forum/view', 'id' => 3]) ?>">alpha</a></span>
+            <span><?= Yii::$app->config->get('site_title') ?></span><span class="navbar-brand-beta tooltipped tooltipped-s" aria-label="Сайт находится на стадии разработки"><a href="<?= Url::toRoute(['/forum/default/view', 'id' => 3]) ?>">alpha</a></span>
             <?php else: ?>
-            <a href="<?= Url::home() ?>"><?= Yii::$app->config->get('site_title') ?></a><span class="navbar-brand-beta tooltipped tooltipped-s" aria-label="Сайт находится на стадии разработки"><a href="<?= Url::toRoute(['forum/view', 'id' => 3]) ?>">alpha</a></span>
+            <a href="<?= Url::home() ?>"><?= Yii::$app->config->get('site_title') ?></a><span class="navbar-brand-beta tooltipped tooltipped-s" aria-label="Сайт находится на стадии разработки"><a href="<?= Url::toRoute(['/forum/default/view', 'id' => 3]) ?>">alpha</a></span>
             <?php endif; ?>
         </div>
         <?= Navigation::widget(['position' => 'header']); ?>
