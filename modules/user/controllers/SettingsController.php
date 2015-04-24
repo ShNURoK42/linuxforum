@@ -4,6 +4,7 @@ namespace user\controllers;
 
 use Yii;
 use yii\web\NotFoundHttpException;
+use user\models\NotifyForm;
 use user\models\ProfileForm;
 use user\models\User;
 
@@ -42,6 +43,10 @@ class SettingsController extends \yii\web\Controller
 
     public function actionNotifications($id = 0)
     {
-        return $this->render('notifications');
+        $model = new NotifyForm();
+
+        return $this->render('notifications', [
+            'model' => $model,
+        ]);
     }
 }

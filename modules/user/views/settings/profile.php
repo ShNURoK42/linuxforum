@@ -2,19 +2,16 @@
 
 use yii\helpers\Html;
 use app\widgets\ActiveForm;
+use user\widgets\SettingsMenu;
 
 /* @var \user\models\User $user */
 ?>
 <div class="columns">
     <div class="column one-fourth">
-        <nav class="menu">
-            <h3 class="menu-heading">Персональные настройки</h3>
-            <a class="selected menu-item" href="/settings/profile">Основные</a>
-            <a class="menu-item" href="/settings/notifications">Уведомления</a>
-        </nav>
+        <?= SettingsMenu::widget() ?>
     </div>
     <div class="column three-fourths profile-box">
-        <div class="profile-box-header">Основные настройки профиля</div>
+        <div class="profile-box-header">Основные настройки</div>
         <div class="profile-box-content">
             <?php $form = ActiveForm::begin() ?>
             <?= $form->errorSummary($model, [
@@ -351,9 +348,8 @@ use app\widgets\ActiveForm;
                 'unselect' => 'Europe/Moscow',
             ])->label('Часовой пояс:') ?>
 
-
-
-            <p><?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary']) ?></p>
+            <hr class="bleed-flush compact">
+            <p><?= Html::submitButton('Сохранить настройки', ['class' => 'btn btn-primary']) ?></p>
             <?php ActiveForm::end() ?>
         </div>
     </div>

@@ -9,7 +9,7 @@ use editor\Editor;
 /** @var Forum $forum */
 
 $this->title = Yii::t('app/topic', 'Title') . ' в разделе ' . $forum->name;
-$this->subtitle = 'вернуться в раздел <a href="' . Url::to(['forum/view', 'id' => $forum->id]) . '">' . $forum->name . '</a>';
+$this->subtitle = 'вернуться в раздел <a href="' . Url::to(['/forum/default/view', 'id' => $forum->id]) . '">' . $forum->name . '</a>';
 
 ?>
 <div class="page-create-topic">

@@ -2,11 +2,10 @@
 namespace frontend\widgets;
 
 use Yii;
-use yii\base\Widget;
 use yii\widgets\Menu;
 use notify\models\UserMention;
 
-class Navigation extends Widget
+class Navigation extends \yii\base\Widget
 {
     public $position;
 

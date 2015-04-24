@@ -98,6 +98,35 @@
   margin-right: -45px;
 }
 
+.menu-item a {
+  text-decoration: none;
+}
+.menu-item.selected a {
+  background-color: inherit;
+  color: inherit;
+  font-weight: inherit;
+}
+.compact-options {
+  margin: -6px 0 13px;
+}
+.compact-options > li {
+  display: inline-block;
+  font-weight: bold;
+  list-style-type: none;
+  margin: 0 12px 0 0;
+}
+.compact-options > li label {
+  float: left;
+}
+.profile-box-content .compact {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.profile-box-content .bleed-flush {
+  margin-left: -10px;
+  padding: 0 10px;
+  width: 100%;
+}
 
 /* POST EDIT*/
 .post-header-actions {

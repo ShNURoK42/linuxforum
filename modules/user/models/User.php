@@ -134,16 +134,6 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return $this->getAuthKey() === $authKey;
     }
 
-    public function incrementPost()
-    {
-        $this->number_posts = $this->number_posts + 1;
-    }
-
-    public function decrementPost()
-    {
-        $this->number_posts = $this->number_posts - 1;
-    }
-
     /**
      * @return string
      */
