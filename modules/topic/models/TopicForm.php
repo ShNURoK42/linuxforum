@@ -80,12 +80,13 @@ class TopicForm extends \yii\base\Model
             $post->save();
 
             // update user.number_posts
-            $user->incrementPost();
+            $user->updateCounters(['number_posts' => 1]);
+
             $user->last_posted_at = time();
             $user->save();
 
             // update forum information
-            $forum->number_topics += 1;
+            $forum->updateCounters(['number_topics' => 1]);
             $forum->last_post_created_at = time();
             $forum->last_post_user_id = $post->id;
             $forum->last_post_username = $user->username;

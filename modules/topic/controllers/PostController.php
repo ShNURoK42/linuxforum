@@ -3,6 +3,7 @@
 namespace topic\controllers;
 
 use Yii;
+use yii\web\NotFoundHttpException;
 use post\models\Post;
 use post\models\PostForm;
 use topic\models\Topic;
@@ -28,6 +29,13 @@ class PostController extends \yii\web\Controller
             ->where(['id' => $post->topic_id])
             ->with('forum')
             ->one();
+
+        if (!$topic) {
+            throw new NotFoundHttpException();
+        }
+
+        $topic->updateCounters(['number_views' => 1]);
+        $topic->save();
 
         if (!Yii::$app->getUser()->getIsGuest()) {
             $userMentions = UserMention::findAll([

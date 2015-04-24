@@ -99,24 +99,4 @@ class Topic extends \yii\db\ActiveRecord
 
         return $this;
     }
-
-    public function incrementView()
-    {
-        $this->number_views = $this->number_views + 1;
-    }
-
-    public function decrementView()
-    {
-        $this->number_views = $this->number_views - 1;
-    }
-
-    public function incrementPost()
-    {
-        $this->number_posts = $this->number_posts + 1;
-    }
-
-    public function decrementPost()
-    {
-        $this->number_posts = $this->number_posts - 1;
-    }
 }

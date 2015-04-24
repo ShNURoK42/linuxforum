@@ -48,11 +48,11 @@ class PostForm extends \yii\base\Model
             $post->save();
             $this->post = $post;
 
-            $user->incrementPost();
+            $user->updateCounters(['number_posts' => 1]);
             $user->last_posted_at = time();
             $user->save();
 
-            $topic->incrementPost();
+            $topic->updateCounters(['number_posts' => 1]);
             $topic->last_post_username = $user->username;
             $topic->last_post_created_at = time();
             $topic->last_post_id = $post->id;
@@ -60,7 +60,7 @@ class PostForm extends \yii\base\Model
             $topic->save();
 
             $forum = $topic->forum;
-            $forum->number_posts += 1;
+            $forum->updateCounters(['number_posts' => 1]);
             $forum->last_post_created_at = time();
             $forum->last_post_user_id = $post->id;
             $forum->last_post_username = $user->username;

@@ -29,7 +29,11 @@ class DefaultController extends \yii\web\Controller
             ->with('forum')
             ->one();
 
-        $topic->incrementView();
+        if (!$topic) {
+            throw new NotFoundHttpException();
+        }
+
+        $topic->updateCounters(['number_views' => 1]);
         $topic->save();
 
         $dataProvider = Post::getDataProviderByTopic($topic->id);
