@@ -20,7 +20,6 @@ use user\models\User;
  *
  * @property User $user
  * @property User $mentionUser
- * @property Topic $topic
  */
 class UserMention extends \yii\db\ActiveRecord
 {
@@ -49,7 +48,7 @@ class UserMention extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(Topic::className(), ['id' => 'user_id']);
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
     /**
@@ -57,7 +56,7 @@ class UserMention extends \yii\db\ActiveRecord
      */
     public function getMentionUser()
     {
-        return $this->hasOne(Topic::className(), ['id' => 'mention_user_id']);
+        return $this->hasOne(User::className(), ['id' => 'mention_user_id']);
     }
 
     /**

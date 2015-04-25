@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use app\widgets\ActiveForm;
 use user\widgets\SettingsMenu;
 
@@ -17,12 +18,12 @@ use user\widgets\SettingsMenu;
             <?= $form->errorSummary($model, [
                 'header' => '',
             ]) ?>
-            <h4>Упоминание вас</h4>
-            <p>When you participate in a conversation or someone brings you in with an <a class="user-mention" href="https://github.com/blog/821">@username</a>.</p>
+            <h4>Упоминание вас в сообщениях</h4>
+            <p>Способ информирования, когда кто-то упоминает вас в сообщении, как <a class="user-mention" href="<?= Url::toRoute(['/user/default/view', 'id' => $user->id]) ?>">@<?= $user->username ?></a></p>
             <ul class="compact-options">
-                <li><?= $form->field($model, 'email', ['options' => ['class' => 'form-checkbox']])
+                <li><?= $form->field($model, 'notify_mention_email', ['options' => ['class' => 'form-checkbox']])
                         ->checkbox(['label' => 'По электронной почте']) ?></li>
-                <li><?= $form->field($model, 'email', ['options' => ['class' => 'form-checkbox']])
+                <li><?= $form->field($model, 'notify_mention_web', ['options' => ['class' => 'form-checkbox']])
                         ->checkbox(['label' => 'В центре уведомлений']) ?></li>
             </ul>
             <hr class="bleed-flush compact">

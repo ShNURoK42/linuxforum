@@ -8,6 +8,7 @@ use yii\db\ActiveQuery;
 use app\helpers\MarkdownParser;
 use topic\models\Topic;
 use user\models\User;
+use notify\Module as NotifyModule;
 
 
 /**
@@ -42,6 +43,18 @@ class Post extends \yii\db\ActiveRecord
         }
 
         return parent::beforeSave($insert);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        /** @var NotifyModule $notify */
+        $notify = Yii::$app->getModule('notify');
+        $notify->mentionHandler($this);
+
+        parent::afterSave($insert, $changedAttributes);
     }
 
     /**

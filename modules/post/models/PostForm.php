@@ -2,12 +2,8 @@
 
 namespace post\models;
 
-use app\helpers\MarkdownParser;
-use post\models\Post;
-use topic\models\Topic;
-use user\models\User;
-use notify\models\UserMention;
 use Yii;
+use topic\models\Topic;
 
 /**
  * Class TopicForm
@@ -65,27 +61,6 @@ class PostForm extends \yii\base\Model
             $forum->last_post_user_id = $post->id;
             $forum->last_post_username = $user->username;
             $forum->save();
-
-            // notification
-            $mentions = MarkdownParser::findMentions($this->message);
-            if (!empty($mentions)) {
-                foreach ($mentions as $mention) {
-                    /** @var User $mentionUser */
-                    $mentionUser = User::findByUsername($mention);
-
-                    if (!$mentionUser) {
-                        continue;
-                    }
-
-                    $userMention = new UserMention();
-                    $userMention->user_id = $user->id;
-                    $userMention->mention_user_id = $mentionUser->id;
-                    $userMention->post_id = $post->id;
-                    $userMention->topic_id = $topic->id;
-                    $userMention->status = UserMention::MENTION_SATUS_UNVIEWED;
-                    $userMention->save();
-                }
-            }
 
             return true;
         }

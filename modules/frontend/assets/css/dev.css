@@ -117,6 +117,10 @@
 }
 .compact-options > li label {
   float: left;
+  font-weight: bold;
+}
+.compact-options .form-checkbox {
+  margin: 0;
 }
 .profile-box-content .compact {
   margin-bottom: 10px;
@@ -126,6 +130,11 @@
   margin-left: -10px;
   padding: 0 10px;
   width: 100%;
+}
+.profile-box-content h4 {
+  color: #000;
+  font-size: 14px;
+  margin: 15px 0 -5px;
 }
 
 /* POST EDIT*/

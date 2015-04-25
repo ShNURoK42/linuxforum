@@ -94,27 +94,6 @@ class TopicForm extends \yii\base\Model
 
             $this->topic = $topic;
 
-            // notification
-            $mentions = MarkdownParser::findMentions($this->message);
-            if (!empty($mentions)) {
-                foreach ($mentions as $mention) {
-                    /** @var User $mentionUser */
-                    $mentionUser = User::findByUsername($mention);
-
-                    if (!$mentionUser) {
-                        continue;
-                    }
-
-                    $userMention = new UserMention();
-                    $userMention->user_id = $user->id;
-                    $userMention->mention_user_id = $mentionUser->id;
-                    $userMention->post_id = $post->id;
-                    $userMention->topic_id = $topic->id;
-                    $userMention->status = UserMention::MENTION_SATUS_UNVIEWED;
-                    $userMention->save();
-                }
-            }
-
             return true;
         }
 

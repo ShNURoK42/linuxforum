@@ -26,6 +26,8 @@ use post\models\Post;
  * @property integer $last_visited_at
  * @property integer $number_posts
  * @property double $timezone
+ * @property boolean notify_mention_email
+ * @property boolean notify_mention_web
  * @property integer $created_at
  * @property integer $updated_at
  *
