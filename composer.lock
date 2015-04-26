@@ -608,12 +608,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "6363758b2c96915ac10d38f08e25e36161da93ad"
+                "reference": "ef6543e4d1554d9277c8510ec7fa1de8484cf62e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/6363758b2c96915ac10d38f08e25e36161da93ad",
-                "reference": "6363758b2c96915ac10d38f08e25e36161da93ad",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/ef6543e4d1554d9277c8510ec7fa1de8484cf62e",
+                "reference": "ef6543e4d1554d9277c8510ec7fa1de8484cf62e",
                 "shasum": ""
             },
             "require": {
@@ -688,7 +688,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-04-24 11:34:33"
+            "time": "2015-04-26 02:01:50"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -1005,19 +1005,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-gii.git",
-                "reference": "201119398a4b3be981b659080fb2b76062bc5904"
+                "reference": "b0ed0ad42de3f9539c935b36794b880f78f9c39b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/201119398a4b3be981b659080fb2b76062bc5904",
-                "reference": "201119398a4b3be981b659080fb2b76062bc5904",
+                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/b0ed0ad42de3f9539c935b36794b880f78f9c39b",
+                "reference": "b0ed0ad42de3f9539c935b36794b880f78f9c39b",
                 "shasum": ""
             },
             "require": {
                 "bower-asset/typeahead.js": "0.10.*",
                 "phpspec/php-diff": ">=1.0.2",
-                "yiisoft/yii2": "*",
-                "yiisoft/yii2-bootstrap": "*"
+                "yiisoft/yii2": "~2.0",
+                "yiisoft/yii2-bootstrap": "~2.0"
             },
             "type": "yii2-extension",
             "extra": {
@@ -1050,7 +1050,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2015-04-20 09:13:55"
+            "time": "2015-04-24 15:35:21"
         }
     ],
     "aliases": [],
