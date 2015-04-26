@@ -54,7 +54,7 @@ class DefaultController extends \yii\web\Controller
 
             $model = new PostForm();
             if ($model->load(Yii::$app->getRequest()->post()) && $model->create($topic)) {
-                $this->redirect(['/topic/post/view', 'id' => $model->post->id, '#' => 'p' . $model->post->id]);
+                $this->redirect(['/topic/post/view', 'id' => $model->getPost()->id, '#' => 'p' . $model->getPost()->id]);
             }
 
             return $this->render('view', [

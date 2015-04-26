@@ -79,12 +79,6 @@ class TopicForm extends \yii\base\Model
             $post->link('topic', $topic);
             $post->save();
 
-            // update user.number_posts
-            $user->updateCounters(['number_posts' => 1]);
-
-            $user->last_posted_at = time();
-            $user->save();
-
             // update forum information
             $forum->updateCounters(['number_topics' => 1]);
             $forum->last_post_created_at = time();

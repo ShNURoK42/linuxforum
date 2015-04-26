@@ -40,6 +40,13 @@ class Post extends \yii\db\ActiveRecord
             $this->created_at = time();
             $this->user_ip = ip2long(Yii::$app->getRequest()->getUserIP());
             $this->user_id = Yii::$app->getUser()->getIdentity()->getId();
+
+            $currentUser = Yii::$app->getUser()->getIdentity();
+            $currentUser->updateCounters(['number_posts' => 1]);
+            $currentUser->last_posted_at = time();
+            $currentUser->save();
+        } else {
+            
         }
 
         return parent::beforeSave($insert);

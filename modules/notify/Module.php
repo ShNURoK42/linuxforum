@@ -34,6 +34,17 @@ class Module extends \yii\base\Module
                     continue;
                 }
 
+                $exist = UserMention::find()
+                    ->where([
+                        'post_id' => $post->id,
+                        'mention_user_id' => $mentioned->id,
+                        'status' => UserMention::MENTION_SATUS_UNVIEWED,
+                    ])
+                    ->exists();
+                if ($exist) {
+                    continue;
+                }
+
                 $currentUser = Yii::$app->getUser()->getIdentity();
                 $model = new UserMention();
 

@@ -59,8 +59,8 @@ class FeedbackForm extends \yii\base\Model
                 'email' => $this->email,
                 'message' => $this->message,
             ])
-                ->setFrom(['noreply@linuxforum.ru' => $this->name])
-                ->setTo('258428@mail.ru')
+                ->setFrom(['no-reply@linuxforum.ru' => $this->name])
+                ->setTo([Yii::$app->config->get('support_email') => Yii::$app->config->get('site_title')])
                 ->setSubject('[' . Yii::$app->config->get('site_title') . '] Форма обратной связи')
                 ->send();
 

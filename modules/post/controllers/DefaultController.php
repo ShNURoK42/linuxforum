@@ -3,7 +3,6 @@
 namespace post\controllers;
 
 use Yii;
-use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use app\helpers\MarkdownParser;
 use post\models\Post;
@@ -14,38 +13,6 @@ use post\models\PostForm;
  */
 class DefaultController extends \yii\web\Controller
 {
-    /**
-     * @return string
-     */
-    public function actionMention()
-    {
-        if (Yii::$app->getRequest()->getIsAjax()) {
-            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-
-            $id = substr(Yii::$app->getRequest()->post('id'), 1);
-
-            $posts = Post::find()
-                ->with('user')
-                ->where(['topic_id' => $id])
-                ->asArray()
-                ->all();
-
-            $users = ArrayHelper::getColumn($posts, 'user');
-            $usernames = array_unique(ArrayHelper::getColumn($users, 'username'));
-
-            $key = array_search(Yii::$app->getUser()->getIdentity()->username, $usernames);
-            if (is_array($usernames) && (isset($usernames[$key]) || array_key_exists($key, $usernames))) {
-                unset($usernames[$key]);
-            }
-
-            $usernames = array_values($usernames);
-
-            return $usernames;
-        }
-
-        throw new NotFoundHttpException();
-    }
-
     /**
      * @return string
      */

@@ -25,7 +25,7 @@
                 $(document).on('ready', function(event) {
                     var id = $('.topic-discussion').attr('id');
                     var data = $.ajax({
-                        url: '/post/mention',
+                        url: '/editor/mention',
                         type: 'POST',
                         dataType: 'json',
                         data: {id: id},

@@ -6,7 +6,9 @@ use Yii;
 use topic\models\Topic;
 
 /**
- * Class TopicForm
+ * Class PostForm
+ *
+ * @property Post $post
  */
 class PostForm extends \yii\base\Model
 {
@@ -14,7 +16,11 @@ class PostForm extends \yii\base\Model
      * @var string
      */
     public $message;
-    public $post;
+
+    /**
+     * @var Post
+     */
+    private $_post;
 
     /**
      * @inheritdoc
@@ -38,27 +44,21 @@ class PostForm extends \yii\base\Model
         if ($this->validate()) {
             $user = Yii::$app->getUser()->getIdentity();
 
-            $post = new Post();
-            $post->topic_id = $topic->id;
-            $post->message = $this->message;
-            $post->save();
-            $this->post = $post;
-
-            $user->updateCounters(['number_posts' => 1]);
-            $user->last_posted_at = time();
-            $user->save();
+            $this->getPost()->topic_id = $topic->id;
+            $this->getPost()->message = $this->message;
+            $this->getPost()->save();
 
             $topic->updateCounters(['number_posts' => 1]);
             $topic->last_post_username = $user->username;
             $topic->last_post_created_at = time();
-            $topic->last_post_id = $post->id;
+            $topic->last_post_id = $this->getPost()->id;
             $topic->last_post_user_id = $user->id;
             $topic->save();
 
             $forum = $topic->forum;
             $forum->updateCounters(['number_posts' => 1]);
             $forum->last_post_created_at = time();
-            $forum->last_post_user_id = $post->id;
+            $forum->last_post_user_id = $this->getPost()->id;
             $forum->last_post_username = $user->username;
             $forum->save();
 
@@ -66,5 +66,14 @@ class PostForm extends \yii\base\Model
         }
 
         return false;
+    }
+
+    public function getPost()
+    {
+        if (!$this->_post instanceof Post) {
+            $this->_post = new Post();
+        }
+
+        return $this->_post;
     }
 }
