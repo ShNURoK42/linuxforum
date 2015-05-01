@@ -6,6 +6,7 @@ class MentionHelper
 {
     public static function find($text)
     {
+        //(^|\s)@([a-zA-Z][\w-]+)
         $pattern = '/\B@([a-zA-Z][\w-]+)/';
 
         if (preg_match_all($pattern, $text)) {
