@@ -6,7 +6,8 @@
         "erusev/parsedown": "*",
         "cebe/yii2-gravatar": "*",
         "bower-asset/primer-css": "*",
-        "bower-asset/jquery.atwho": "*"
+        "bower-asset/jquery.atwho": "*",
+        "bower-asset/rangyinputs": "*"
     },
     "require-dev": {
         "yiisoft/yii2-gii": "*",
