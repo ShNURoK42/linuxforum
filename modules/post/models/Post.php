@@ -57,9 +57,11 @@ class Post extends \yii\db\ActiveRecord
      */
     public function afterSave($insert, $changedAttributes)
     {
-        /** @var NotifyModule $notify */
-        $notify = Yii::$app->getModule('notify');
-        $notify->mentionHandler($this);
+        if ($this->topic_id > 0) {
+            /** @var NotifyModule $notify */
+            $notify = Yii::$app->getModule('notify');
+            $notify->mentionHandler($this);
+        }
 
         parent::afterSave($insert, $changedAttributes);
     }

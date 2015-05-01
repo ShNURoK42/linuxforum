@@ -68,27 +68,28 @@ class TopicForm extends \yii\base\Model
             $post->message = $this->message;
             $post->save();
 
-            // create topic
-            $topic = new Topic();
-            $topic->forum_id = $forum->id;
-            $topic->subject = $this->subject;
-            $topic->post = $post;
-            $topic->save();
+            if ($post->save()) {
+                // create topic
+                $topic = new Topic();
+                $topic->forum_id = $forum->id;
+                $topic->subject = $this->subject;
+                $topic->post = $post;
+                $topic->save();
 
-            // update post.topic_id
-            $post->link('topic', $topic);
-            $post->save();
+                // update post.topic_id
+                $post->link('topic', $topic);
 
-            // update forum information
-            $forum->updateCounters(['number_topics' => 1]);
-            $forum->last_post_created_at = time();
-            $forum->last_post_user_id = $post->id;
-            $forum->last_post_username = $user->username;
-            $forum->save();
+                // update forum information
+                $forum->updateCounters(['number_topics' => 1]);
+                $forum->last_post_created_at = time();
+                $forum->last_post_user_id = $post->id;
+                $forum->last_post_username = $user->username;
+                $forum->save();
 
-            $this->topic = $topic;
+                $this->topic = $topic;
 
-            return true;
+                return true;
+            }
         }
 
         return false;
