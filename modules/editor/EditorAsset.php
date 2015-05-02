@@ -12,6 +12,12 @@ class EditorAsset extends \yii\web\AssetBundle
     /**
      * @inheritdoc
      */
+    public $css = [
+        'css/glyphicon.css',
+    ];
+    /**
+     * @inheritdoc
+     */
     public $js = [
         'js/editor.js',
     ];
@@ -23,5 +29,6 @@ class EditorAsset extends \yii\web\AssetBundle
         'yii\web\YiiAsset',
         'editor\AtwhoAsset',
         'editor\CaretAsset',
+        'editor\RangyInputsAsset',
     ];
 }

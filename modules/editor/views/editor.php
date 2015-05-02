@@ -4,13 +4,15 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use app\widgets\ActiveForm;
 
+/* @var \app\components\View $this */
 /* @var \user\models\User $user */
 /* @var \post\models\PostForm $model */
 /* @var string $titleAttribute */
 /* @var string $messageAttribute */
 /* @var array $activeFormOptions */
-?>
 
+$bundle = \editor\EditorAsset::register($this);
+?>
 <div class="post-formbox">
     <div class="post-avatar">
         <?php if ($user->email): ?>
@@ -55,6 +57,11 @@ use app\widgets\ActiveForm;
             'placeholder' => 'Напишите сообщение',
         ]) ?>
         <div class="post-formbox-preview markdown-body"></div>
+        <div class="editor-texticon-panel">
+            <button class="btn-texticon js-btn-texticon-bold" title="Полужирный текст"><span class="glyphicon glyphicon-bold" aria-hidden="true"></span></button>
+            <button class="btn-texticon js-btn-texticon-italic" title="Курсивный текст"><span class="glyphicon glyphicon-italic" aria-hidden="true"></span></button>
+            <button class="btn-texticon js-btn-texticon-link" title="Гиперссылка (URL)"><span class="glyphicon glyphicon-link" aria-hidden="true"></span></button>
+        </div>
         <div class="form-actions">
             <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary']) ?>
         </div>
