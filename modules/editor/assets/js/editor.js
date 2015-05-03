@@ -15,6 +15,13 @@
             return this.each(function () {
                 var $this = $(this);
 
+                $(document).on('keydown', function(event) {
+                    if ((event.keyCode == 10 || event.keyCode == 13) && event.ctrlKey) {
+                        event.preventDefault();
+                        $this.find('#postform').submit();
+                    }
+                });
+
                 $this.on('click', '.js-btn-texticon-bold', function (event) {
                     event.preventDefault();
                     markUp(1);
@@ -23,16 +30,49 @@
                     event.preventDefault();
                     markUp(2);
                 });
+                $this.on('click', '.js-btn-texticon-paragraph', function (event) {
+                    event.preventDefault();
+                    markUp(3);
+                });
+                $this.on('click', '.js-btn-texticon-newline', function (event) {
+                    event.preventDefault();
+                    markUp(4);
+                });
                 $this.on('click', '.js-btn-texticon-link', function (event) {
                     event.preventDefault();
                     markUp(5);
                 });
-
-                $(document).on('keydown', function(event) {
-                    if ((event.keyCode == 10 || event.keyCode == 13) && event.ctrlKey) {
-                        event.preventDefault();
-                        $this.find('#postform').submit();
-                    }
+                $this.on('click', '.js-btn-texticon-img', function (event) {
+                    event.preventDefault();
+                    markUp(6);
+                });
+                $this.on('click', '.js-btn-texticon-indent', function (event) {
+                    event.preventDefault();
+                    markUp(7);
+                });
+                $this.on('click', '.js-btn-texticon-unindent', function (event) {
+                    event.preventDefault();
+                    markUp(8);
+                });
+                $this.on('click', '.js-btn-texticon-bulleted', function (event) {
+                    event.preventDefault();
+                    markUp(9);
+                });
+                $this.on('click', '.js-btn-texticon-numbered', function (event) {
+                    event.preventDefault();
+                    markUp(10);
+                });
+                $this.on('click', '.js-btn-texticon-quote', function (event) {
+                    event.preventDefault();
+                    markUp(13);
+                });
+                $this.on('click', '.js-btn-texticon-inlinecode', function (event) {
+                    event.preventDefault();
+                    markUp(14);
+                });
+                $this.on('click', '.js-btn-texticon-blockcode', function (event) {
+                    event.preventDefault();
+                    markUp(15);
                 });
 
                 $(document).on('ready', function(event) {
@@ -56,49 +96,68 @@
                     });
                 });
 
-                $this.on('click', '.js-post-preview-tab', function (event) {
+                $this.on('click', '.js-editor-preview', function (event) {
                     event.preventDefault();
 
                     methods.preview.apply($this);
                 });
-
-                $this.on('click', '.js-post-write-tab', function (event) {
-                    event.preventDefault();
-
-                    methods.write.apply($this);
-                });
             });
-        },
-
-        write: function() {
-            var $this = this;
-            $this.find('.js-post-preview-tab').removeClass('selected');
-            $this.find('.js-post-write-tab').addClass('selected');
-            $this.find('textarea').show();
-            $this.find('.editor-texticon-panel').show();
-            $this.find('.post-formbox-preview').hide();
         },
 
         preview: function() {
             var $this = this,
                 message = $this.find('textarea').val();
 
-            $this.find('.js-post-write-tab').removeClass('selected');
-            $this.find('.js-post-preview-tab').addClass('selected');
-            $this.find('textarea').hide();
-            $this.find('.editor-texticon-panel').hide();
-            $this.find('.post-formbox-preview').show().html('Загрузка предпросмотра...');
+            if ($this.find('.js-editor-preview').hasClass('selected')) {
+                $this.find('.js-editor-preview').removeClass('selected');
+                $this.find('.js-btn-texticon-bold').removeClass('disabled');
+                $this.find('.js-btn-texticon-italic').removeClass('disabled');
+                $this.find('.js-btn-texticon-paragraph').removeClass('disabled');
+                $this.find('.js-btn-texticon-newline').removeClass('disabled');
+                $this.find('.js-btn-texticon-link').removeClass('disabled');
+                $this.find('.js-btn-texticon-img').removeClass('disabled');
+                $this.find('.js-btn-texticon-indent').removeClass('disabled');
+                $this.find('.js-btn-texticon-unindent').removeClass('disabled');
+                $this.find('.js-btn-texticon-bulleted').removeClass('disabled');
+                $this.find('.js-btn-texticon-numbered').removeClass('disabled');
+                $this.find('.js-btn-texticon-quote').removeClass('disabled');
+                $this.find('.js-btn-texticon-inlinecode').removeClass('disabled');
+                $this.find('.js-btn-texticon-blockcode').removeClass('disabled');
+                $this.find('textarea').show();
+                $this.find('.editor-texticon-panel').show();
+                $this.find('.editor-preview').hide();
+                $this.find('textarea').focus();
+            } else {
+                $this.find('.js-editor-preview').addClass('selected');
+                $this.find('.js-btn-texticon-bold').addClass('disabled');
+                $this.find('.js-btn-texticon-italic').addClass('disabled');
+                $this.find('.js-btn-texticon-paragraph').addClass('disabled');
+                $this.find('.js-btn-texticon-newline').addClass('disabled');
+                $this.find('.js-btn-texticon-link').addClass('disabled');
+                $this.find('.js-btn-texticon-img').addClass('disabled');
+                $this.find('.js-btn-texticon-indent').addClass('disabled');
+                $this.find('.js-btn-texticon-unindent').addClass('disabled');
+                $this.find('.js-btn-texticon-bulleted').addClass('disabled');
+                $this.find('.js-btn-texticon-numbered').addClass('disabled');
+                $this.find('.js-btn-texticon-quote').addClass('disabled');
+                $this.find('.js-btn-texticon-inlinecode').addClass('disabled');
+                $this.find('.js-btn-texticon-blockcode').addClass('disabled');
+                $this.find('.error-summary').hide();
+                $this.find('textarea').hide();
+                $this.find('.editor-texticon-panel').hide();
+                $this.find('.editor-preview').show().html('Загрузка предпросмотра...');
 
-            $.ajax({
-                url: '/post/preview',
-                type: 'POST',
-                dataType: 'json',
-                data: {message: message},
-                cache: false,
-                success: function (data) {
-                    $this.find('.post-formbox-preview').show().html(data);
-                }
-            });
+                $.ajax({
+                    url: '/post/preview',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {message: message},
+                    cache: false,
+                    success: function (data) {
+                        $this.find('.editor-preview').show().html(data);
+                    }
+                });
+            }
         }
     };
 
@@ -149,7 +208,7 @@
         // Bold
         if (btn == 1) {
             tip = '**Полужирный текст**';
-            if (txt.length > 0) {
+            if (len > 0) {
                 if (str == tip) {
                     str = '';
                 } else {
@@ -161,8 +220,8 @@
         }
         // Italic
         else if (btn == 2) {
-            tip = '**Курсивный текст**';
-            if (txt.length > 0) {
+            tip = '*Курсивный текст*';
+            if (len > 0) {
                 if (str == tip) {
                     str = '';
                 } else {
@@ -174,27 +233,24 @@
         }
         // Paragraph
         else if (btn == 3) {
-            str = (txt.length > 0) ? getMarkUp(txt, '\n', '\n') : '\n(paragraph text here)\n';
+            str = (txt.length > 0) ? getMarkUp(txt, '\n', '\n') : '\n(Новый абзац)\n';
         }
         // New Line
         else if (btn == 4) {
             str = getBlockMarkUp(txt, '', '  ');
         }
-        // Header
-        else if (btn > 100) {
-            n = btn - 100;
-            var pad = "#".repeat(n);
-            str = getMarkUp(txt, pad + " ", " " + pad);
-        }
         // Hyperlink
         else if (btn == 5) {
-            link = prompt('Вставьте гиперссылку', 'http://');
+            var link = prompt('Вставьте гиперссылку', 'http://');
+            if (len == 0) {
+                txt = prompt('Название гиперссылки', 'Гиперссылка');
+            }
             str = (link != null && link != '' && link != 'http://') ? '[' + txt + '](' + link + ')' : txt
         }
         // Image
         else if (btn == 6) {
-            link = prompt('Insert Image Hyperlink', 'http://');
-            str = (link != null && link != '' && link != 'http://') ? '![' + txt + '](' + link + ' "enter image title here")' : txt
+            link = prompt('Вставка картинки', 'http://');
+            str = (link != null && link != '' && link != 'http://') ? '![' + txt + '](' + link + ' "название картинки")' : txt
         }
         // Add Indent
         else if (btn == 7) {
@@ -235,7 +291,7 @@
         }
         // Ordered List
         else if (btn == 10) {
-            start = prompt('Enter starting number', 1);
+            start = prompt('Введите начальное число', 1);
             if (start != null && start != '') {
                 if (!isNumber(start)) {
                     start = 1
@@ -254,42 +310,6 @@
                 }
             }
         }
-        // Definition List
-        else if (btn == 11) {
-            if (txt.indexOf('\n') > 0) {
-                var list = [],
-                    i = 1;
-                list = txt.split('\n');
-                $.each(list, function (k, v) {
-                    tag = (i % 2 == 0) ? ':    ' : '';
-                    list[k] = getMarkUp(v, tag, '');
-                    i++
-                });
-                str = list.join('\n')
-            } else {
-                str = txt + "\n:    \n"
-            }
-        }
-        // Footnote
-        else if (btn == 12) {
-            title = 'Enter footnote ';
-            notes = '';
-            if (txt.indexOf('\n') < 0) {
-                notes = '[^1]: ' + title + '1\n';
-                str = getMarkUp(txt, '', title + '[^1]') + "\n" + notes;
-            } else {
-                var list = [],
-                    i = 1;
-                list = txt.split('\n');
-                $.each(list, function (k, v) {
-                    id = '[^' + i + ']';
-                    list[k] = getMarkUp(v, '', id + '  ');
-                    notes = notes + id + ': ' + title + i + '\n';
-                    i++
-                });
-                str = list.join('\n') + "  \n\n" + notes
-            }
-        }
         // Blockquote
         else if (btn == 13) {
             str = getBlockMarkUp(txt, "> ", "  ");
@@ -300,15 +320,11 @@
         }
         // Code Block
         else if (btn == 15) {
-            lang = prompt('Enter code language (e.g. html)', '');
+            lang = prompt('Введите язык (например: html)', '');
             if (isEmpty(lang, true)) {
                 lang = '';
             }
             str = getMarkUp(txt, "~~~" + lang + " \n", "\n~~~  \n");
-        }
-        // Horizontal Line
-        else if (btn == 16) {
-            str = getMarkUp(txt, '', '\n- - -');
         }
         if (!isEmpty(str)) {
             el.replaceSelectedText(str, "select")

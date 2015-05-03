@@ -477,48 +477,36 @@ dl.form > dd textarea {
 
 /* Post Formbox
    ========================================================================== */
-.editor-texticon-panel {
-  border-bottom: 1px dashed #ddd;
-  padding: 10px;
-  display: block;
-  vertical-align: middle;
+.editor-btn-panel {
+  margin: 10px;
   overflow: hidden;
 }
-.editor-texticon-panel .btn-texticon {
+.editor-btn-text {
   float: left;
-  position: relative;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  display: inline-block;
-  color: #333;
-  cursor: pointer;
-  border-radius: 3px;
-  font-weight: 400;
+}
+.editor-btn-preview {
+  float: right;
+}
+.editor-tips {
   font-size: 12px;
-  line-height: 1.5;
+  margin: 10px;
+  color: #999;
+}
+.editor-preview {
+  background-color: transparent;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  overflow: auto;
+  display: none;
+  font-size: 13px;
+  min-height: 200px;
   padding: 5px 10px;
-  margin: 0;
-  text-align: center;
-  vertical-align: middle;
-  white-space: nowrap;
 }
-.editor-texticon-panel .btn-texticon:active,
-.editor-texticon-panel .btn-texticon:hover {
-  background-color: #e6e6e6;
-  border-color: #adadad;
-  color: #4183c4;
-}
-.editor-texticon-panel > .btn-texticon:not(:first-child) {
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-}
-.editor-texticon-panel > .btn-texticon:not(:last-child) {
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
-}
-.editor-texticon-panel .btn-texticon + .btn-texticon {
-  margin-left: -1px;
-}
+
+
+
+
+
 .post-formbox {
   padding-top: 20px;
 }
@@ -529,29 +517,30 @@ dl.form > dd textarea {
   position: relative;
   width: 890px;
 }
+.post-formbox-content .error-summary {
+  margin: 10px 10px 0 10px;
+}
 .post-formbox-content .form-actions {
   padding: 10px;
 }
-.post-formbox-preview {
-  background-color: transparent;
-  border-bottom: 1px solid #eee;
-  overflow: auto;
-  display: none;
-  font-size: 13px;
-  min-height: 246px;
-  padding: 7px 5px 15px 19px;
-}
-.postform-create .form-group {
-  margin: 0 10px;
-}
 .postform-create textarea {
+  border-color: #ddd;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+  box-shadow: none;
   background-color: #fafafa;
   min-height: 200px;
   resize: vertical;
   max-width: 100%;
+  padding: 6px 10px;
 }
 .postform-create textarea:focus {
   background-color: #fff;
+  box-shadow: none;
+  border-color: #ddd;
+  border-left: none;
+  border-right: none;
 }
 .post-formbox-tabnav {
   background: #f7f7f7;

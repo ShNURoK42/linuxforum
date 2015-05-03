@@ -29,7 +29,7 @@ $bundle = \editor\EditorAsset::register($this);
         ]); ?></a>
         <?php endif; ?>
     </div>
-    <div class="post-formbox-content">
+    <div class="post-formbox-content clearfix">
         <?php $form = ActiveForm::begin($activeFormOptions) ?>
         <?= $form->errorSummary($model, [
             'header' => '',
@@ -42,27 +42,47 @@ $bundle = \editor\EditorAsset::register($this);
                 ])
                 ->label(\Yii::t('app/topic', 'Subject')) ?>
         <?php endif; ?>
-        <div class="tabnav post-formbox-tabnav">
-            <div class="right">
-                <a class="tabnav-extra" target="_blank" href="<?= Url::toRoute('/frontend/default/markdown') ?>"><span class="octicon octicon-markdown"></span>Поддержка markdown</a>
+        <div class="editor-btn-panel">
+            <div class="btn-group">
+                <button title="Полужирный текст" class="btn btn-sm btn-outline js-btn-texticon-bold" type="button"><span class="glyphicon glyphicon-bold"></span></button>
+                <button title="Курсивный текст" class="btn btn-sm btn-outline js-btn-texticon-italic" type="button"><span class="glyphicon glyphicon-italic"></span></button>
+                <button title="Новый абзац" class="btn btn-sm btn-outline js-btn-texticon-paragraph" type="button"><span class="glyphicon glyphicon-font"></span></button>
+                <button title="Перевод на новую строку" class="btn btn-sm btn-outline js-btn-texticon-newline" type="button"><span class="glyphicon glyphicon-text-height"></span></button>
             </div>
-            <nav class="tabnav-tabs">
-                <a href="#" class="tabnav-tab js-post-write-tab selected">Набор сообщения</a>
-                <a href="#" class="tabnav-tab js-post-preview-tab">Предпросмотр</a>
-            </nav>
+            <div class="btn-group">
+                <button title="Вставка гиперссылки (URL)" class="btn btn-sm btn-outline js-btn-texticon-link" type="button"><span class="glyphicon glyphicon-link"></span></button>
+                <button title="Вставка картинки" class="btn btn-sm btn-outline js-btn-texticon-img" type="button"><span class="glyphicon glyphicon-picture"></span></button>
+            </div>
+            <div class="btn-group">
+                <button title="Отступ вправо" class="btn btn-sm btn-outline js-btn-texticon-indent" type="button"><span class="glyphicon glyphicon-indent-left"></span></button>
+                <button title="Отступ влево" class="btn btn-sm btn-outline js-btn-texticon-unindent" type="button"><span class="glyphicon glyphicon-indent-right"></span></button>
+            </div>
+            <div class="btn-group">
+                <button title="Список" class="btn btn-sm btn-outline js-btn-texticon-bulleted" type="button"><spani class="glyphicon glyphicon-list"></spani></button>
+                <button title="Нумерованный список" class="btn btn-sm btn-outline js-btn-texticon-numbered" type="button"><span class="glyphicon glyphicon-list-alt"></span></button>
+            </div>
+            <div class="btn-group">
+                <button title="Цитата" class="btn btn-sm btn-outline js-btn-texticon-quote" type="button"><span class="glyphicon glyphicon-comment"></span></button>
+            </div>
+            <div class="btn-group">
+                <button title="Строковый код" class="btn btn-sm btn-outline js-btn-texticon-inlinecode" type="button"><span class="glyphicon glyphicon-expand"></span></button>
+                <button title="Блочный код" class="btn btn-sm btn-outline js-btn-texticon-blockcode" type="button"><span class="glyphicon glyphicon-collapse-down"></span></button>
+            </div>
+            <div class="right btn-group">
+                <button title="Предпросмотр сообщения" class="btn btn-sm btn-outline js-editor-preview" type="button"><span class="glyphicon glyphicon-search"></span></button>
+            </div>
         </div>
         <?= $form->field($model, $messageAttribute, [
             'template' => "{input}",
         ])->textarea([
             'placeholder' => 'Напишите сообщение',
         ]) ?>
-        <div class="post-formbox-preview markdown-body"></div>
-        <div class="editor-texticon-panel">
-            <button class="btn-texticon js-btn-texticon-bold" title="Полужирный текст"><span class="glyphicon glyphicon-bold" aria-hidden="true"></span></button>
-            <button class="btn-texticon js-btn-texticon-italic" title="Курсивный текст"><span class="glyphicon glyphicon-italic" aria-hidden="true"></span></button>
-            <button class="btn-texticon js-btn-texticon-link" title="Гиперссылка (URL)"><span class="glyphicon glyphicon-link" aria-hidden="true"></span></button>
+        <div class="editor-preview markdown-body"></div>
+        <div class="editor-tips left">
+            <span class="glyphicon glyphicon-arrow-right"></span> При оформлении сообщения Вы можете использовать разметку <strong><a target="_blank" class="muted-link" href="/markdown">markdown</a></strong><br />
+            <span class="glyphicon glyphicon-arrow-right"></span> Для обращения к участнику дискуссии текущей темы введите <strong>@</strong> и выбирите пользователя.
         </div>
-        <div class="form-actions">
+        <div class="form-actions right">
             <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary']) ?>
         </div>
         <?php ActiveForm::end() ?>
