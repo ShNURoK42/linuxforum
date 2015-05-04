@@ -1,12 +1,8 @@
 <div class="container">
-    <div class="adsbox clearfix">
-        <div class="left">
-            <?php require Yii::$app->basePath . '/ads/slibs/csKeysDb.php' ?>
-            <?= csKeysDb::getBlock($_SERVER["REQUEST_URI"], 2) ?>
-        </div>
+    <div class="adsbox">
         <div class="saidnavy right">
             <ul class="saidnavy-links">
-                <?php if (Yii::$app->controller->route == 'site/index'): ?>
+                <?php if (Yii::$app->controller->route == 'frontend/default/index'): ?>
                 <li><a href=http://www.zapravkairemont.ru>заправка картриджей hp</a></li>
                 <li>Профессиональная <a href=http://pchlp.ru/>компьютерная помощь на дому</a> в Москве</li>
                 <li><a href=http://www.bergab.ru>подшипники</a> для пользователей linux</li>
