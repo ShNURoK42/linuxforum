@@ -21,9 +21,9 @@ $item['topic_count'] = 0;
 <div class="pviewforum">
     <?php if (!Yii::$app->getUser()->getIsGuest()): ?>
     <div class="topic-list-header clearfix">
-        <div class="topic-create-btn">
-            <a class="btn btn-primary" href="<?= Url::toRoute(['/topic/default/create', 'id' => $forum->id]) ?>"><?= Yii::t('app/forum', 'Create topic') ?></a>
-        </div>
+        <span class="topic-create-link">
+            <a href="<?= Url::toRoute(['/topic/default/create', 'id' => $forum->id]) ?>"><?= Yii::t('app/forum', 'Create topic') ?></a>
+        </span>
     </div>
     <?php endif; ?>
     <div class="topics-list">

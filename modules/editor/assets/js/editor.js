@@ -30,13 +30,9 @@
                     event.preventDefault();
                     markUp(2);
                 });
-                $this.on('click', '.js-btn-texticon-paragraph', function (event) {
+                $this.on('click', '.js-btn-texticon-strike', function (event) {
                     event.preventDefault();
                     markUp(3);
-                });
-                $this.on('click', '.js-btn-texticon-newline', function (event) {
-                    event.preventDefault();
-                    markUp(4);
                 });
                 $this.on('click', '.js-btn-texticon-link', function (event) {
                     event.preventDefault();
@@ -65,10 +61,6 @@
                 $this.on('click', '.js-btn-texticon-quote', function (event) {
                     event.preventDefault();
                     markUp(13);
-                });
-                $this.on('click', '.js-btn-texticon-inlinecode', function (event) {
-                    event.preventDefault();
-                    markUp(14);
                 });
                 $this.on('click', '.js-btn-texticon-blockcode', function (event) {
                     event.preventDefault();
@@ -112,8 +104,7 @@
                 $this.find('.js-editor-preview').removeClass('selected');
                 $this.find('.js-btn-texticon-bold').removeClass('disabled');
                 $this.find('.js-btn-texticon-italic').removeClass('disabled');
-                $this.find('.js-btn-texticon-paragraph').removeClass('disabled');
-                $this.find('.js-btn-texticon-newline').removeClass('disabled');
+                $this.find('.js-btn-texticon-strike').removeClass('disabled');
                 $this.find('.js-btn-texticon-link').removeClass('disabled');
                 $this.find('.js-btn-texticon-img').removeClass('disabled');
                 $this.find('.js-btn-texticon-indent').removeClass('disabled');
@@ -121,7 +112,6 @@
                 $this.find('.js-btn-texticon-bulleted').removeClass('disabled');
                 $this.find('.js-btn-texticon-numbered').removeClass('disabled');
                 $this.find('.js-btn-texticon-quote').removeClass('disabled');
-                $this.find('.js-btn-texticon-inlinecode').removeClass('disabled');
                 $this.find('.js-btn-texticon-blockcode').removeClass('disabled');
                 $this.find('textarea').show();
                 $this.find('.editor-texticon-panel').show();
@@ -131,8 +121,7 @@
                 $this.find('.js-editor-preview').addClass('selected');
                 $this.find('.js-btn-texticon-bold').addClass('disabled');
                 $this.find('.js-btn-texticon-italic').addClass('disabled');
-                $this.find('.js-btn-texticon-paragraph').addClass('disabled');
-                $this.find('.js-btn-texticon-newline').addClass('disabled');
+                $this.find('.js-btn-texticon-strike').addClass('disabled');
                 $this.find('.js-btn-texticon-link').addClass('disabled');
                 $this.find('.js-btn-texticon-img').addClass('disabled');
                 $this.find('.js-btn-texticon-indent').addClass('disabled');
@@ -140,7 +129,6 @@
                 $this.find('.js-btn-texticon-bulleted').addClass('disabled');
                 $this.find('.js-btn-texticon-numbered').addClass('disabled');
                 $this.find('.js-btn-texticon-quote').addClass('disabled');
-                $this.find('.js-btn-texticon-inlinecode').addClass('disabled');
                 $this.find('.js-btn-texticon-blockcode').addClass('disabled');
                 $this.find('.error-summary').hide();
                 $this.find('textarea').hide();
@@ -233,11 +221,16 @@
         }
         // Paragraph
         else if (btn == 3) {
-            str = (txt.length > 0) ? getMarkUp(txt, '\n', '\n') : '\n(Новый абзац)\n';
-        }
-        // New Line
-        else if (btn == 4) {
-            str = getBlockMarkUp(txt, '', '  ');
+            tip = '~~Зачеркнутый текст~~';
+            if (len > 0) {
+                if (str == tip) {
+                    str = '';
+                } else {
+                    str = getBlockMarkUp(txt, '~~', '~~');
+                }
+            } else {
+                str = tip;
+            }
         }
         // Hyperlink
         else if (btn == 5) {
@@ -245,12 +238,12 @@
             if (len == 0) {
                 txt = prompt('Название гиперссылки', 'Гиперссылка');
             }
-            str = (link != null && link != '' && link != 'http://') ? '[' + txt + '](' + link + ')' : txt
+            str = (link != null && link != '' && link != 'http://') ? '[' + txt + '](' + link + ')' : txt;
         }
         // Image
         else if (btn == 6) {
             link = prompt('Вставка картинки', 'http://');
-            str = (link != null && link != '' && link != 'http://') ? '![' + txt + '](' + link + ' "название картинки")' : txt
+            str = (link != null && link != '' && link != 'http://') ? '![' + txt + '](' + link + ' "название картинки")' : txt;
         }
         // Add Indent
         else if (btn == 7) {
@@ -314,17 +307,9 @@
         else if (btn == 13) {
             str = getBlockMarkUp(txt, "> ", "  ");
         }
-        // Inline Code
-        else if (btn == 14) {
-            str = getMarkUp(txt, "`", "`");
-        }
         // Code Block
         else if (btn == 15) {
-            lang = prompt('Введите язык (например: html)', '');
-            if (isEmpty(lang, true)) {
-                lang = '';
-            }
-            str = getMarkUp(txt, "~~~" + lang + " \n", "\n~~~  \n");
+            str = getMarkUp(txt, "~~~\n", "\n~~~  \n");
         }
         if (!isEmpty(str)) {
             el.replaceSelectedText(str, "select")

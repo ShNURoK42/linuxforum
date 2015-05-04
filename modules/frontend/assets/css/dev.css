@@ -1,6 +1,7 @@
 /* TOPIC */
-.topic-create-btn {
+.topic-create-link {
   float: right;
+  font-weight: bold;
   padding: 5px 10px;
 }
 .topic-list-header {

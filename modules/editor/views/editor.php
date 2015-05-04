@@ -44,32 +44,26 @@ $bundle = \editor\EditorAsset::register($this);
         <?php endif; ?>
         <div class="editor-btn-panel">
             <div class="btn-group">
-                <button title="Полужирный текст" class="btn btn-sm btn-outline js-btn-texticon-bold" type="button"><span class="glyphicon glyphicon-bold"></span></button>
-                <button title="Курсивный текст" class="btn btn-sm btn-outline js-btn-texticon-italic" type="button"><span class="glyphicon glyphicon-italic"></span></button>
-                <button title="Новый абзац" class="btn btn-sm btn-outline js-btn-texticon-paragraph" type="button"><span class="glyphicon glyphicon-font"></span></button>
-                <button title="Перевод на новую строку" class="btn btn-sm btn-outline js-btn-texticon-newline" type="button"><span class="glyphicon glyphicon-text-height"></span></button>
+                <button title="Полужирный текст" class="btn btn-sm js-btn-texticon-bold" type="button"><span class="fa fa-bold"></span></button>
+                <button title="Курсивный текст" class="btn btn-sm js-btn-texticon-italic" type="button"><span class="fa fa-italic"></span></button>
+                <button title="Зачеркнутый текст" class="btn btn-sm js-btn-texticon-strike" type="button"><span class="fa fa-strikethrough"></span></button>
+                <button title="Отступ вправо" class="btn btn-sm js-btn-texticon-indent" type="button"><span class="fa fa-indent"></span></button>
+                <button title="Отступ влево" class="btn btn-sm js-btn-texticon-unindent" type="button"><span class="fa fa-outdent"></span></button>
             </div>
             <div class="btn-group">
-                <button title="Вставка гиперссылки (URL)" class="btn btn-sm btn-outline js-btn-texticon-link" type="button"><span class="glyphicon glyphicon-link"></span></button>
-                <button title="Вставка картинки" class="btn btn-sm btn-outline js-btn-texticon-img" type="button"><span class="glyphicon glyphicon-picture"></span></button>
+                <button title="Вставка гиперссылки (URL)" class="btn btn-sm js-btn-texticon-link" type="button"><span class="fa fa-link"></span></button>
+                <button title="Вставка картинки" class="btn btn-sm js-btn-texticon-img" type="button"><span class="fa fa-picture-o"></span></button>
             </div>
             <div class="btn-group">
-                <button title="Отступ вправо" class="btn btn-sm btn-outline js-btn-texticon-indent" type="button"><span class="glyphicon glyphicon-indent-left"></span></button>
-                <button title="Отступ влево" class="btn btn-sm btn-outline js-btn-texticon-unindent" type="button"><span class="glyphicon glyphicon-indent-right"></span></button>
+                <button title="Список" class="btn btn-sm js-btn-texticon-bulleted" type="button"><spani class="fa fa-list"></spani></button>
+                <button title="Нумерованный список" class="btn btn-sm js-btn-texticon-numbered" type="button"><span class="fa fa-list-ol"></span></button>
             </div>
             <div class="btn-group">
-                <button title="Список" class="btn btn-sm btn-outline js-btn-texticon-bulleted" type="button"><spani class="glyphicon glyphicon-list"></spani></button>
-                <button title="Нумерованный список" class="btn btn-sm btn-outline js-btn-texticon-numbered" type="button"><span class="glyphicon glyphicon-list-alt"></span></button>
-            </div>
-            <div class="btn-group">
-                <button title="Цитата" class="btn btn-sm btn-outline js-btn-texticon-quote" type="button"><span class="glyphicon glyphicon-comment"></span></button>
-            </div>
-            <div class="btn-group">
-                <button title="Строковый код" class="btn btn-sm btn-outline js-btn-texticon-inlinecode" type="button"><span class="glyphicon glyphicon-expand"></span></button>
-                <button title="Блочный код" class="btn btn-sm btn-outline js-btn-texticon-blockcode" type="button"><span class="glyphicon glyphicon-collapse-down"></span></button>
+                <button title="Цитата" class="btn btn-sm js-btn-texticon-quote" type="button"><span class="fa fa-comment"></span></button>
+                <button title="Код" class="btn btn-sm js-btn-texticon-blockcode" type="button"><span class="fa fa-code"></span></button>
             </div>
             <div class="right btn-group">
-                <button title="Предпросмотр сообщения" class="btn btn-sm btn-outline js-editor-preview" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                <button title="Предпросмотр сообщения" class="btn btn-sm js-editor-preview" type="button"><span class="fa fa-eye"></span></button>
             </div>
         </div>
         <?= $form->field($model, $messageAttribute, [
@@ -79,8 +73,8 @@ $bundle = \editor\EditorAsset::register($this);
         ]) ?>
         <div class="editor-preview markdown-body"></div>
         <div class="editor-tips left">
-            <span class="glyphicon glyphicon-arrow-right"></span> При оформлении сообщения Вы можете использовать разметку <strong><a target="_blank" class="muted-link" href="/markdown">markdown</a></strong><br />
-            <span class="glyphicon glyphicon-arrow-right"></span> Для обращения к участнику дискуссии текущей темы введите <strong>@</strong> и выбирите пользователя.
+            <span class="fa fa-hand-o-right"></span> При оформлении сообщения Вы можете использовать разметку <strong><a target="_blank" class="muted-link" href="/markdown">markdown</a></strong>.<br />
+            <span class="fa fa-hand-o-right"></span> Для обращения к участнику дискуссии текущей темы введите <strong>@</strong> и выберите пользователя.
         </div>
         <div class="form-actions right">
             <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary']) ?>

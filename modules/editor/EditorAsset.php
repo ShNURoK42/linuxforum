@@ -13,7 +13,7 @@ class EditorAsset extends \yii\web\AssetBundle
      * @inheritdoc
      */
     public $css = [
-        'css/glyphicon.css',
+        'css/font-awesome.css',
     ];
     /**
      * @inheritdoc

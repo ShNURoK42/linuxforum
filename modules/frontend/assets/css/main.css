@@ -494,13 +494,14 @@ dl.form > dd textarea {
 }
 .editor-preview {
   background-color: transparent;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  border: 1px solid #ddd;
+  border-radius: 3px;
   overflow: auto;
   display: none;
   font-size: 13px;
   min-height: 200px;
   padding: 5px 10px;
+  margin: 0 10px;
 }
 
 
@@ -523,24 +524,16 @@ dl.form > dd textarea {
 .post-formbox-content .form-actions {
   padding: 10px;
 }
+.post-formbox-content .form-group {
+  margin: 0 10px;
+}
 .postform-create textarea {
   border-color: #ddd;
-  border-left: none;
-  border-right: none;
-  border-radius: 0;
-  box-shadow: none;
   background-color: #fafafa;
   min-height: 200px;
   resize: vertical;
   max-width: 100%;
   padding: 6px 10px;
-}
-.postform-create textarea:focus {
-  background-color: #fff;
-  box-shadow: none;
-  border-color: #ddd;
-  border-left: none;
-  border-right: none;
 }
 .post-formbox-tabnav {
   background: #f7f7f7;
