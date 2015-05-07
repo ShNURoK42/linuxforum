@@ -58,10 +58,10 @@ GoogleAsset::register($this);
         <ul class="search-links-list right">
             <div class="btn-group">
                 <?php if (!Yii::$app->getUser()->getIsGuest()):?>
-                <a class="btn btn-sm btn-outline" title="Темы в которых вы отвечали." href="/search/ownpost_topics">Ваши темы</a>
+                <a class="btn btn-sm btn-outline" title="Темы в которых вы отвечали." href="<?= Url::toRoute('/topic/search/view-ownpost-topics') ?>">Ваши темы</a>
                 <?php endif; ?>
-                <a class="btn btn-sm btn-outline" title="Темы с сортировкой по активности." href="/search/active_topics">Активные темы</a>
-                <a class="btn btn-sm btn-outline" title="Темы без ответов." href="/search/unanswered_topics">Темы без ответов</a>
+                <a class="btn btn-sm btn-outline" title="Темы с сортировкой по активности." href="<?= Url::toRoute('/topic/search/view-active-topics') ?>">Активные темы</a>
+                <a class="btn btn-sm btn-outline" title="Темы без ответов." href="<?= Url::toRoute('/topic/search/view-unanswered-topics') ?>">Темы без ответов</a>
             </div>
         </ul>
     </div>
