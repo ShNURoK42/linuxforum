@@ -14,6 +14,5 @@ class AdAsset extends \yii\web\AssetBundle
      */
     public $css = [
         'css/saidnavy.css',
-        'css/sotmarket.css',
     ];
 }

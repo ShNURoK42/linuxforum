@@ -39,7 +39,7 @@ $formatter = Yii::$app->formatter;
                     <?php endif; ?>
                     <?php if (Yii::$app->getUser()->can('updatePost', ['post' => $model])): ?>
                     <div class="post-header-actions">
-                        <a class="post-header-action js-post-update-pencil" href="#"><span class="octicon octicon-pencil octicon-btn"></span></a>
+                        <a class="post-header-action js-post-update-pencil" href="#"><span class="fa fa-pencil"></span></a>
                     </div>
                     <?php endif; ?>
             </div>

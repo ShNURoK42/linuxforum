@@ -1,6 +1,6 @@
 <?php
 
-namespace editor;
+namespace app\assets;
 
 class RangyInputsAsset extends \yii\web\AssetBundle
 {

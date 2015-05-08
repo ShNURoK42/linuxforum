@@ -11,7 +11,6 @@ use app\widgets\ActiveForm;
 /* @var string $messageAttribute */
 /* @var array $activeFormOptions */
 
-$bundle = \editor\EditorAsset::register($this);
 ?>
 <div class="post-formbox">
     <div class="post-avatar">
@@ -55,7 +54,7 @@ $bundle = \editor\EditorAsset::register($this);
                 <button title="Вставка картинки" class="btn btn-sm js-btn-texticon-img" type="button"><span class="fa fa-picture-o"></span></button>
             </div>
             <div class="btn-group">
-                <button title="Список" class="btn btn-sm js-btn-texticon-bulleted" type="button"><spani class="fa fa-list"></spani></button>
+                <button title="Список" class="btn btn-sm js-btn-texticon-bulleted" type="button"><span class="fa fa-list"></span></button>
                 <button title="Нумерованный список" class="btn btn-sm js-btn-texticon-numbered" type="button"><span class="fa fa-list-ol"></span></button>
             </div>
             <div class="btn-group">
@@ -73,8 +72,8 @@ $bundle = \editor\EditorAsset::register($this);
         ]) ?>
         <div class="editor-preview markdown-body"></div>
         <div class="editor-tips left">
-            <span class="fa fa-hand-o-right"></span> При оформлении сообщения Вы можете использовать разметку <strong><a target="_blank" class="muted-link" href="/markdown">markdown</a></strong>.<br />
-            <span class="fa fa-hand-o-right"></span> Для обращения к участнику дискуссии текущей темы введите <strong>@</strong> и выберите пользователя.
+            <span class="fa fa-hand-o-right"></span> При оформлении сообщения Вы можете использовать разметку <strong><a target="_blank" class="muted-link" href="<?= Url::toRoute('/frontend/default/markdown') ?>">markdown</a></strong>.<br />
+            <span class="fa fa-hand-o-right"></span> Для обращения к участнику дискуссии текущей темы введите <span style="font-size: 14px; font-weight: 400" class="fa fa-at"></span> и выберите пользователя.
         </div>
         <div class="form-actions right">
             <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary']) ?>

@@ -1,24 +1,23 @@
 <?php
 
-namespace frontend;
+namespace app\assets;
 
 class PrimerAsset extends \yii\web\AssetBundle
 {
     /**
      * @inheritdoc
      */
-    public $sourcePath = '@bower/primer-css/css';
+    public $sourcePath = '@bower/primer-css';
     /**
      * @inheritdoc
      */
     public $css = [
-        'primer.css',
+        'css/primer.css',
     ];
     /**
      * @inheritdoc
      */
     public $depends = [
-        'frontend\PrimerOcticonsAsset',
-        'frontend\PrimerMarkdownAsset',
+        'app\assets\PrimerMarkdownAsset',
     ];
 }

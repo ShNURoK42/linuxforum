@@ -19,9 +19,6 @@
   padding-top: 13px;
   position: relative;
 }
-
-.topics-list {
-}
 .topic-row {
   border-left: 1px solid #eee;
   border-right: 1px solid #eee;
@@ -98,6 +95,10 @@
 .topic-last-post {
   margin-right: -45px;
 }
+
+
+
+
 
 .menu-item a {
   text-decoration: none;

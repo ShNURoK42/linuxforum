@@ -19,7 +19,7 @@ class PostAsset extends \yii\web\AssetBundle
      * @inheritdoc
      */
     public $depends = [
-        'yii\web\JqueryAsset',
-        'yii\web\YiiAsset'
+        'yii\web\YiiAsset',
+        'app\assets\AwesomeAsset',
     ];
 }

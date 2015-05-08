@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend;
+namespace app\assets;
 
 class PrimerMarkdownAsset extends \yii\web\AssetBundle
 {

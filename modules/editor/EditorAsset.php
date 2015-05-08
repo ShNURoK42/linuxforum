@@ -8,13 +8,6 @@ class EditorAsset extends \yii\web\AssetBundle
      * @inheritdoc
      */
     public $sourcePath = '@editor/assets';
-
-    /**
-     * @inheritdoc
-     */
-    public $css = [
-        'css/font-awesome.css',
-    ];
     /**
      * @inheritdoc
      */
@@ -25,10 +18,10 @@ class EditorAsset extends \yii\web\AssetBundle
      * @inheritdoc
      */
     public $depends = [
-        'yii\web\JqueryAsset',
         'yii\web\YiiAsset',
-        'editor\AtwhoAsset',
-        'editor\CaretAsset',
-        'editor\RangyInputsAsset',
+        'app\assets\AtwhoAsset',
+        'app\assets\CaretAsset',
+        'app\assets\RangyInputsAsset',
+        'app\assets\AwesomeAsset',
     ];
 }

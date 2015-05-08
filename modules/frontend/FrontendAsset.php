@@ -22,6 +22,6 @@ class FrontendAsset extends \yii\web\AssetBundle
      * @inheritdoc
      */
     public $depends = [
-        'frontend\PrimerAsset',
+        'app\assets\PrimerAsset',
     ];
 }
