@@ -1,0 +1,110 @@
+.question-list {
+}
+.question-list-header {
+  border-bottom: 1px solid #e0e0e0;
+  clear: both;
+  height: 34px;
+  margin-bottom: 0;
+  width: 950px;
+}
+.question-list-title h3 {
+  color: #222;
+  font-weight: normal;
+  margin-top: 0;
+  margin-bottom: 0;
+  float: left;
+  font-size: 18px;
+}
+.question-list--topic-create {
+  float: right;
+}
+.question-row {
+  overflow: hidden;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 12px 0 10px;
+}
+.question-row-sticked {
+}
+.question-row-closed {
+}
+.question-info {
+  float: left;
+  margin-right: 10px;
+  vertical-align: top;
+}
+.question-info .mini-counts {
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+.question-info .mini-counts span {
+  font-weight: 300;
+}
+.question-info .answers {
+  height: auto;
+  padding: 6px;
+  display: inline-block;
+  font-size: 11px;
+  margin: 0 3px 0 0;
+  min-width: 60px;
+  text-align: center;
+}
+.question-info .answers.answered {
+  background-color: #6e5494;
+  color: #fff;
+}
+.question-info .views {
+  color: #777;
+  display: inline-block;
+  font-size: 11px;
+  height: 38px;
+  margin: 0 7px 0 0;
+  min-width: 40px;
+  padding: 5px 5px 6px;
+  text-align: center;
+}
+.question-summary {
+  float: left;
+  padding: 0;
+  width: 790px;
+}
+.question-summary h3 {
+  font-weight: normal;
+  line-height: 1.3;
+  margin-bottom: 8px;
+  margin-top: 0;
+}
+.question-tags {
+  float: left;
+  line-height: 18px;
+}
+.question-tags a {
+  background-color: #f7f7f7;
+  border: 1px solid #e4edf4;
+  border-radius: 0;
+  color: #3e6d8e;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1;
+  margin: 2px 2px 2px 0;
+  padding: 0.4em 0.5em;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.question-tags a:hover {
+  text-decoration: none;
+  background-color: #dae6ef;
+  border: 1px solid #dae6ef;
+  color: #3e6d8e;
+}
+.question-author {
+  line-height: inherit;
+  padding-top: 4px;
+  white-space: nowrap;
+  width: auto;
+  color: #999;
+  float: right;
+}
+.pagestext {
+  white-space: nowrap;
+}

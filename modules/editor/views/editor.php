@@ -73,7 +73,7 @@ use app\widgets\ActiveForm;
         <div class="editor-preview markdown-body"></div>
         <div class="editor-tips left">
             <span class="fa fa-hand-o-right"></span> При оформлении сообщения Вы можете использовать разметку <strong><a target="_blank" class="muted-link" href="<?= Url::toRoute('/frontend/default/markdown') ?>">markdown</a></strong>.<br />
-            <span class="fa fa-hand-o-right"></span> Для обращения к участнику дискуссии текущей темы введите <span style="font-size: 14px; font-weight: 400" class="fa fa-at"></span> и выберите пользователя.
+            <span class="fa fa-hand-o-right"></span> Для обращения к участнику дискуссии текущей темы введите <strong>@</strong> и выберите пользователя.
         </div>
         <div class="form-actions right">
             <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary']) ?>

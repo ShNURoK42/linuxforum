@@ -7,8 +7,17 @@ class ForumAsset extends \yii\web\AssetBundle
     /**
      * @inheritdoc
      */
+    public $sourcePath = '@forum/assets';
+    /**
+     * @inheritdoc
+     */
+    public $css = [
+        'css/forum.css',
+    ];
+    /**
+     * @inheritdoc
+     */
     public $depends = [
-        'yii\web\YiiAsset',
         'app\assets\AwesomeAsset',
     ];
 }

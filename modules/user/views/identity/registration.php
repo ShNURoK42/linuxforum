@@ -56,7 +56,7 @@ $this->params['page'] = 'register';
                 ->passwordInput()
                 ->label('Пароль повторно') ?>
             <?= $form->field($model, 'termsAgree', ['options' => ['class' => 'form-checkbox']])
-                ->checkbox(['label' => 'Я согласен с <a href="' . Url::toRoute('site/terms') . '">правилами пользования</a> сайта.']) ?>
+                ->checkbox(['label' => 'Я согласен с <a href="' . Url::toRoute('/frontend/default/terms') . '">правилами пользования</a> сайта.']) ?>
             <?php if ($model->isShow): ?>
                 <?= $form->field($model, 'verifyCode', [
                     'options' => [

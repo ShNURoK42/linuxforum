@@ -93,19 +93,18 @@ dl.form > dd textarea {
   color: #e5e5e5;
   text-decoration: none;
 }
-.navbar-brand-beta {
+.navbar-brand-beta a sup {
+  border: 2px solid #ffbb44;
+  border-radius: 3px;
+  color: #ffbb44;
+  display: inline-block;
+  font-size: 10px;
   font-weight: bold;
-  font-size: 12px;
-  position: relative;
-  top: 8px;
-  left: -4px;
-}
-.navbar-brand-beta > a {
-  color: #ffbb44;
-}
-.navbar-brand-beta > a:hover {
-  color: #ffbb44;
-  text-decoration: none;
+  line-height: normal;
+  margin-left: 3px;
+  padding: 0 3px 1px;
+  top: -1.5em;
+  transform: rotate(15deg);
 }
 .navbar-nav {
   float: right;

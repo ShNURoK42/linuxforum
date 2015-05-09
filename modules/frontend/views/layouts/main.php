@@ -47,7 +47,7 @@ GoogleAsset::register($this);
             <?php if (Yii::$app->controller->route == 'site/index'): ?>
             <span><?= Yii::$app->config->get('site_title') ?></span><span class="navbar-brand-beta tooltipped tooltipped-s" aria-label="Сайт находится на стадии разработки"><a href="<?= Url::toRoute(['/forum/default/view', 'id' => 3]) ?>">alpha</a></span>
             <?php else: ?>
-            <a href="<?= Url::home() ?>"><?= Yii::$app->config->get('site_title') ?></a><span class="navbar-brand-beta tooltipped tooltipped-s" aria-label="Сайт находится на стадии разработки"><a href="<?= Url::toRoute(['/forum/default/view', 'id' => 3]) ?>">alpha</a></span>
+            <a href="<?= Url::home() ?>"><?= Yii::$app->config->get('site_title') ?></a><span class="navbar-brand-beta"><a href="<?= Url::toRoute(['/forum/default/view', 'id' => 3]) ?>"><sup>beta</sup></a></span>
             <?php endif; ?>
         </div>
         <?= Navigation::widget(['position' => 'header']); ?>
