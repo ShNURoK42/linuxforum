@@ -7,7 +7,8 @@
         "cebe/yii2-gravatar": "*",
         "bower-asset/primer-css": "*",
         "bower-asset/jquery.atwho": "*",
-        "bower-asset/rangyinputs": "*"
+        "bower-asset/rangyinputs": "*",
+        "bower-asset/fontawesome": "*"
     },
     "require-dev": {
         "yiisoft/yii2-gii": "*",
