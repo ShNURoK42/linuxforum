@@ -1,18 +1,18 @@
 <?php
 
-namespace forum;
+namespace topic;
 
-class ForumAsset extends \yii\web\AssetBundle
+class TopicAsset extends \yii\web\AssetBundle
 {
     /**
      * @inheritdoc
      */
-    public $sourcePath = '@forum/assets';
+    public $sourcePath = '@topic/assets';
     /**
      * @inheritdoc
      */
     public $css = [
-        'css/forum.css',
+        'css/topic.css',
     ];
     /**
      * @inheritdoc

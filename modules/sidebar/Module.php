@@ -1,10 +1,10 @@
 <?php
 
-namespace forum;
+namespace app\modules\sidebar;
 
 class Module extends \yii\base\Module
 {
-    public $controllerNamespace = 'forum\controllers';
+    public $controllerNamespace = 'app\modules\sidebar\controllers';
 
     public function init()
     {

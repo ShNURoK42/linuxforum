@@ -1,6 +1,6 @@
 <?php
 
-namespace forum\widgets;
+namespace topic\widgets;
 
 use Yii;
 use yii\helpers\Html;

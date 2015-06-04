@@ -41,12 +41,9 @@ class DefaultController extends \yii\web\Controller
      */
     public function actionIndex()
     {
-        $categories = Category::find()
-            ->with(['forums'])
-            ->orderBy('display_position')
-            ->all();
+        $page = Yii::$app->getRequest()->get('page', 0);
 
-        return $this->render('index', ['categories' => $categories]);
+        return $this->run('/topic/default/list', ['page' => $page]);
     }
 
     /**

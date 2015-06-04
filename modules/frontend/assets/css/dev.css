@@ -62,27 +62,9 @@
   margin: 10px 0;
 }
 
-
 .new-topic-btn {
   padding-bottom: 10px;
 }
-
-
-
-.search-links {
-  border-bottom: 1px solid #eee;
-  padding: 10px 0;
-  margin-bottom: 20px;
-}
-.search-links-list ul {
-  list-style: outside none none;
-}
-.search-links-list > li {
-  display: inline;
-}
-
-
-
 
 
 

@@ -106,14 +106,16 @@ class ForgetForm extends \yii\base\Model
      */
     public function recovery()
     {
-        $token = Yii::$app->security->generateRandomString(32);
+        if ($this->validate()) {
+            $token = Yii::$app->security->generateRandomString(32);
 
-        if ($this->sendMail($token)) {
-            $user = $this->user;
-            $user->password_change_token = $token;;
-            $user->password_changed_at = time();
+            if ($this->sendMail($token)) {
+                $user = $this->getUser();
+                $user->password_change_token = $token;;
+                $user->password_changed_at = time();
 
-            return $user->save();
+                return $user->save();
+            }
         }
 
         return false;
@@ -158,13 +160,14 @@ class ForgetForm extends \yii\base\Model
      */
     protected function sendMail($token)
     {
-        $user = $this->user;
+        $user = $this->getUser();
 
         return \Yii::$app->mailer->compose(['text' => 'forget'], ['user' => $user, 'token' => $token])
             ->setFrom([Yii::$app->config->get('support_email') => Yii::$app->config->get('site_title')])
-            ->setTo([$this->email => $user->username])
+            ->setTo([$this->email])
             ->setSubject('[' . Yii::$app->config->get('site_title') . '] Запрос на смену пароля')
             ->send();
+        //http://stackoverflow.com/questions/17240387/in-symfony-1-4-using-swiftmailer-setto-with-parentheses-in-name-breaks-message
     }
 
     public function getIsCorrectUsername()

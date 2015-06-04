@@ -17,11 +17,12 @@ return [
         '@ad' => dirname(__DIR__) . '/modules/ad',
         '@captcha' => dirname(__DIR__) . '/modules/captcha',
         '@editor' => dirname(__DIR__) . '/modules/editor',
-        '@forum' => dirname(__DIR__) . '/modules/forum',
         '@frontend' => dirname(__DIR__) . '/modules/frontend',
         '@notify' => dirname(__DIR__) . '/modules/notify',
         '@post' => dirname(__DIR__) . '/modules/post',
         '@role' => dirname(__DIR__) . '/modules/role',
+        '@sidebar' => dirname(__DIR__) . '/modules/sidebar',
+        '@tag' => dirname(__DIR__) . '/modules/tag',
         '@topic' => dirname(__DIR__) . '/modules/topic',
         '@user' => dirname(__DIR__) . '/modules/user',
     ],
@@ -46,9 +47,6 @@ return [
         'editor' => [
             'class' => 'editor\Module',
         ],
-        'forum' => [
-            'class' => 'forum\Module',
-        ],
         'frontend' => [
             'class' => 'frontend\Module',
         ],
@@ -60,6 +58,12 @@ return [
         ],
         'role' => [
             'class' => 'role\Module',
+        ],
+        'sidebar' => [
+            'class' => 'sidebar\Module',
+        ],
+        'tag' => [
+            'class' => 'tag\Module',
         ],
         'topic' => [
             'class' => 'topic\Module',
@@ -80,14 +84,15 @@ return [
 
             'rules' => [
                 /**
-                 * frontend module routes
+                 * frontend module
                  */
+                '/page/<page:\d+>' => 'frontend/default/index',
                 '/' => 'frontend/default/index',
                 'markdown' => 'frontend/default/markdown',
                 'terms' => 'frontend/default/terms',
                 'feedback' => 'frontend/default/feedback',
                 /**
-                 * user module routes
+                 * user module
                  */
                 'users/page/<page:\d+>' => 'user/default/list',
                 'users' => 'user/default/list',
@@ -107,38 +112,37 @@ return [
                 'settings/profile' => 'user/settings/profile',
                 'settings/notifications' => 'user/settings/notifications',
                 /**
-                 * forum module routes
+                 * tag module
                  */
-                'forum/<id:\d+>/page/<page:\d+>' => 'forum/default/view',
-                'forum/<id:\d+>' => 'forum/default/view',
+                'ajax/tag' => 'tag/ajax/tag',
                 /**
-                 * topic module routes
+                 * topic module
                  */
-                'forum/<id:\d+>/topic/new' => 'topic/default/create',
+                'topics/tagged/<name:\w+>/page/<page:\d+>' => 'topic/default/list',
+                'topics/tagged/<name:\w+>' => 'topic/default/list',
+                'topics/page/<page:\d+>' => 'topic/default/list',
+                'topics' => 'topic/default/list',
+                'topic/create' => 'topic/default/create',
+
                 'post/<id:\d+>' => 'topic/post/view',
                 'topic/<id:\d+>/page/<page:\d+>' => 'topic/default/view',
                 'topic/<id:\d+>' => 'topic/default/view',
-                // SearchController
-                'search/active_topics' => 'topic/search/view-active-topics',
-                'search/unanswered_topics' => 'topic/search/view-unanswered-topics',
-                'search/ownpost_topics' => 'topic/search/view-ownpost-topics',
                 /**
-                 * post module routes
+                 * post module
                  */
                 'post/preview' => 'post/default/preview',
                 'post/update' => 'post/default/update',
                 'topic/<id:\d+>/post/new' => 'post/default/create',
-                'post/delete/<id:\d+>' => 'post/default/delete',
                 /**
-                 * notify module routes
+                 * notify module
                  */
                 'notifications' => 'notify/default/view',
                 /**
-                 * captcha module routes
+                 * captcha module
                  */
                 'captcha' => 'captcha/default/index',
                 /**
-                 * editor module routes
+                 * editor module
                  */
                 'editor/mention' => 'editor/default/mention',
 

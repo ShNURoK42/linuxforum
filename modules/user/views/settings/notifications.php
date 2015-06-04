@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\Html;
 use yii\helpers\Url;
 use app\widgets\ActiveForm;

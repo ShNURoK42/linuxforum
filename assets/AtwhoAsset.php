@@ -20,4 +20,10 @@ class AtwhoAsset extends \yii\web\AssetBundle
     public $css = [
         'css/jquery.atwho.css',
     ];
+    /**
+     * @inheritdoc
+     */
+    public $depends = [
+        'app\assets\CaretAsset',
+    ];
 }

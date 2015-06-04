@@ -4,11 +4,12 @@ namespace topic\controllers;
 
 use Yii;
 use yii\web\NotFoundHttpException;
-use forum\models\Forum;
+use yii\data\ActiveDataProvider;
+use tag\models\Tag;
+use topic\models\Topic;
 use post\models\Post;
 use post\models\PostForm;
 use topic\models\TopicForm;
-use topic\models\Topic;
 use notify\models\UserMention;
 
 
@@ -26,7 +27,6 @@ class DefaultController extends \yii\web\Controller
         /** @var Topic $topic */
         $topic = Topic::find()
             ->where(['id' => $id])
-            ->with('forum')
             ->one();
 
         if (!$topic) {
@@ -54,7 +54,7 @@ class DefaultController extends \yii\web\Controller
 
             $model = new PostForm();
             if ($model->load(Yii::$app->getRequest()->post()) && $model->create($topic)) {
-                $this->redirect(['/topic/post/view', 'id' => $model->getPost()->id, '#' => 'p' . $model->getPost()->id]);
+                $this->redirect(['/topic/post/view', 'id' => $model->post->id, '#' => 'p' . $model->post->id]);
             }
 
             return $this->render('view', [
@@ -73,29 +73,79 @@ class DefaultController extends \yii\web\Controller
     }
 
     /**
-     * @param $id
      * @return string
      */
-    public function actionCreate($id)
+    public function actionList()
     {
-        /** @var Forum $forum */
-        $forum = Forum::find()
-            ->where(['id' => $id])
-            ->one();
+        $name = Yii::$app->getRequest()->get('name');
 
-        if (!$forum || Yii::$app->getUser()->getIsGuest()) {
-            throw new NotFoundHttpException();
+        $tagModel = '';
+
+        if (isset($name)) {
+            /** @var Tag $tagModel */
+            $tagModel = Tag::findOne(['name' => $name]);
+
+            if (!$tagModel) {
+                throw new NotFoundHttpException();
+            }
         }
 
+        $query = Topic::find()
+            ->select('*')
+            ->from('topic t')
+            ->with('tags', 'firstPostUser', 'lastPostUser');
+        if (isset($name)) {
+            $query->innerJoin('tag_topic_assignment tta', 'tta.topic_id = t.id')
+                ->where(['tta.tag_name' => $name]);
+        }
+
+        $sort_by = Yii::$app->getRequest()->get('sort_by');
+
+        if (!$sort_by || $sort_by == 'new') {
+            $query->orderBy(['t.last_post_created_at' => SORT_DESC]);
+        } elseif ($sort_by == 'unanwser') {
+            $query->andWhere(['t.number_posts' => 0])
+                ->orderBy(['t.last_post_created_at' => SORT_DESC]);
+        } elseif ($sort_by == 'own') {
+            $id = Yii::$app->getUser()->getId();
+
+            $query->andWhere(['t.first_post_user_id' => $id])
+                ->orderBy(['t.last_post_created_at' => SORT_DESC]);
+        }
+
+
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'forcePageParam' => false,
+                'pageSizeLimit' => false,
+                'defaultPageSize' => Yii::$app->config->get('display_topics_count'),
+            ],
+        ]);
+
+        $topics = $dataProvider->getModels();
+
+        return $this->render('list', [
+            'dataProvider' => $dataProvider,
+            'tagModel' => $tagModel,
+            'topics' => $topics,
+        ]);
+    }
+
+    /**
+     * @return string
+     */
+    public function actionCreate()
+    {
         $model = new TopicForm();
 
-        if ($model->load(Yii::$app->getRequest()->post()) && $model->create($forum)) {
+        if ($model->load(Yii::$app->getRequest()->post()) && $model->create()) {
             $this->redirect(['/topic/default/view', 'id' => $model->topic->id]);
         }
 
         return $this->render('create', [
             'model' => $model,
-            'forum' => $forum,
         ]);
     }
 }

@@ -4,8 +4,9 @@ namespace topic\models;
 
 use Yii;
 use yii\db\ActiveQuery;
-use forum\models\Forum;
 use post\models\Post;
+use tag\models\Tag;
+use user\models\User;
 
 /**
  * @property integer $id
@@ -24,9 +25,11 @@ use post\models\Post;
  * @property integer $closed
  * @property integer $sticked
  *
- * @property \post\models\Post[] $posts
- * @property \post\models\Post $post
- * @property \forum\models\Forum $forum
+ * @property Post[] $posts
+ * @property Post $post
+ * @property Tag[] $tags
+ * @property User $firstPostUser
+ * @property User $lastPostUser
  */
 class Topic extends \yii\db\ActiveRecord
 {
@@ -75,9 +78,17 @@ class Topic extends \yii\db\ActiveRecord
     /**
      * @return ActiveQuery
      */
-    public function getForum()
+    public function getFirstPostUser()
     {
-        return $this->hasOne(Forum::className(), ['id' => 'forum_id']);
+        return $this->hasOne(User::className(), ['id' => 'first_post_user_id']);
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getLastPostUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'last_post_user_id']);
     }
 
     /**
@@ -87,6 +98,15 @@ class Topic extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Post::className(), ['topic_id' => 'id'])
             ->inverseOf('topic');
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getTags()
+    {
+        return $this->hasMany(Tag::className(), ['name' => 'tag_name'])
+            ->viaTable('tag_topic_assignment', ['topic_id' => 'id']);
     }
 
     /**

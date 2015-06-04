@@ -14,6 +14,53 @@
         init: function () {
             return this.each(function () {
                 var $this = $(this);
+                var $tagInput = $('#topicform-tags');
+
+                var usernames = new Bloodhound({
+                    datumTokenizer: Bloodhound.tokenizers.whitespace,
+                    queryTokenizer: Bloodhound.tokenizers.whitespace,
+                    remote: {
+                        url: '/ajax/tag?query=%QUERY',
+                        wildcard: '%QUERY',
+                        transform: function(response) {
+                            return response;
+                        },
+                        filter: function (usernames) {
+                            return $.map(usernames, function (name) {
+                                var tags = $tagInput.tagsinput('items');
+
+                                for (var i = 0, length = tags.length; i < length; i++) {
+                                    if (i in tags) {
+                                        if (tags[i] == name) {
+                                            return null;
+                                        }
+                                    }
+                                }
+
+                                return name;
+                            });
+                        }
+                    }
+                });
+                usernames.initialize();
+
+                $tagInput.tagsinput({
+                    maxTags: 5,
+                    maxChars: 64,
+                    trimValue: true,
+                    freeInput: false,
+                    typeaheadjs: {
+                        name: 'usernames',
+                        limit: 10,
+                        source: usernames,
+                        templates: {
+                            empty: ['Пусто'].join('\n'),
+                            suggestion: function(value){
+                                return '<div>' + value + '</div>';
+                            }
+                        }
+                    }
+                });
 
                 $(document).on('keydown', function(event) {
                     if ((event.keyCode == 10 || event.keyCode == 13) && event.ctrlKey) {
@@ -67,26 +114,39 @@
                     markUp(15);
                 });
 
-                $(document).on('ready', function(event) {
-                    var id = $('.topic-discussion').attr('id');
-                    $.ajax({
-                        url: '/editor/mention',
-                        type: 'POST',
-                        dataType: 'json',
-                        data: {id: id},
-                        success: function (data) {
-                            console.log(data);
 
-                            $('#postform-message').atwho({
-                                displayTimeout: 300,
-                                highlightFirst: true,
-                                delay: null,
-                                at: "@",
-                                data: data
-                            });
+                var cachequeryMentions = [],
+                    itemsMentions,
+                    id = $('.topic-discussion').attr('id'),
+                    searchmentions = $('textarea').atwho({
+                        at: "@",
+                        callbacks: {
+                            remoteFilter: function (query, render_view) {
+                                var thisVal = query,
+                                    self = $(this);
+
+                                if (!self.data('active')) {
+                                    self.data('active', true);
+                                    itemsMentions = cachequeryMentions[thisVal];
+                                    if (typeof itemsMentions == "object"){
+                                        render_view(itemsMentions);
+                                    } else {
+                                        if (self.xhr) {
+                                            self.xhr.abort();
+                                        }
+                                        self.xhr = $.getJSON("/editor/mention", {
+                                            id: id,
+                                            query: query
+                                        }, function(data) {
+                                            cachequeryMentions[thisVal] = data;
+                                            render_view(data);
+                                        });
+                                    }
+                                    self.data('active', false);
+                                }
+                            }
                         }
                     });
-                });
 
                 $this.on('click', '.js-editor-preview', function (event) {
                     event.preventDefault();
@@ -187,7 +247,7 @@
     };
 
     var markUp = function (btn) {
-        var el = $('#postform-message');
+        var el = $('textarea');
         el.focus();
         var txt = str = el.extractSelectedText(),
             len = txt.length,

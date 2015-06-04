@@ -86,7 +86,7 @@ class LoginForm extends \yii\base\Model
 
         $user = $this->getUser();
         if (!preg_match('/^\$2[axy]\$(\d\d)\$[\.\/0-9A-Za-z]{22}/', $user->password_hash, $matches) || $matches[1] < 4 || $matches[1] > 30) {
-            $this->addError($attribute, 'На сайте введена новая система аутентификации, для входа вам необходимо <a href="' . Url::toRoute('user/forget') . '">сменить</a> свой пароль!');
+            $this->addError($attribute, 'На сайте введена новая система аутентификации, для входа вам необходимо <a href="' . Url::toRoute('/user/forget/index') . '">сменить</a> свой пароль!');
             return;
         }
 

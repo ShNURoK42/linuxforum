@@ -39,6 +39,9 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     const EMAIL_STATUS_ACTIVE = 1;
     const EMAIL_STATUS_INACTIVE = 0;
 
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [

@@ -3,10 +3,13 @@ namespace editor;
 
 use Yii;
 use yii\base\Model;
-use yii\helpers\Url;
 
 class Editor extends \yii\base\Widget
 {
+    /**
+     * @var string
+     */
+    public $type = 'default';
     /**
      * @var Model the data model that this field is associated with
      */
@@ -23,10 +26,6 @@ class Editor extends \yii\base\Widget
      * @var array
      */
     public $activeFormOptions = [];
-    /**
-     * @var boolean
-     */
-    public $enablePreview = true;
 
     /**
      * @inheritdoc

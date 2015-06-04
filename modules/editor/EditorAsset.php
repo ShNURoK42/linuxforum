@@ -11,6 +11,12 @@ class EditorAsset extends \yii\web\AssetBundle
     /**
      * @inheritdoc
      */
+    public $css = [
+        'css/editor.css',
+    ];
+    /**
+     * @inheritdoc
+     */
     public $js = [
         'js/editor.js',
     ];
@@ -19,9 +25,11 @@ class EditorAsset extends \yii\web\AssetBundle
      */
     public $depends = [
         'yii\web\YiiAsset',
+        'frontend\FrontendAsset',
         'app\assets\AtwhoAsset',
-        'app\assets\CaretAsset',
         'app\assets\RangyInputsAsset',
         'app\assets\AwesomeAsset',
+
+        'app\assets\TagsinputAsset',
     ];
 }

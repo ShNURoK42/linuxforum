@@ -5,7 +5,6 @@ use frontend\GoogleAsset;
 use ad\Ad;
 use frontend\FrontendAsset;
 use frontend\widgets\Navigation;
-use frontend\widgets\PageHead;
 
 /**
  * @var \app\components\View $this
@@ -47,27 +46,18 @@ GoogleAsset::register($this);
             <?php if (Yii::$app->controller->route == 'site/index'): ?>
             <span><?= Yii::$app->config->get('site_title') ?></span><span class="navbar-brand-beta tooltipped tooltipped-s" aria-label="Сайт находится на стадии разработки"><a href="<?= Url::toRoute(['/forum/default/view', 'id' => 3]) ?>">alpha</a></span>
             <?php else: ?>
-            <a href="<?= Url::home() ?>"><?= Yii::$app->config->get('site_title') ?></a><span class="navbar-brand-beta"><a href="<?= Url::toRoute(['/forum/default/view', 'id' => 3]) ?>"><sup>beta</sup></a></span>
+            <a href="<?= Url::home() ?>"><?= Yii::$app->config->get('site_title') ?></a><span class="navbar-brand-beta"><a href="<?= Url::toRoute(['/topic/default/list', 'name' => 'support']) ?>"><sup>beta</sup></a></span>
             <?php endif; ?>
         </div>
         <?= Navigation::widget(['position' => 'header']); ?>
     </div>
 </nav>
-<div class="search-links">
+<div class="sub-navbar">
     <div class="container">
-        <ul class="search-links-list right">
-            <div class="btn-group">
-                <?php if (!Yii::$app->getUser()->getIsGuest()):?>
-                <a class="btn btn-sm btn-outline" title="Темы в которых вы отвечали." href="<?= Url::toRoute('/topic/search/view-ownpost-topics') ?>">Ваши темы</a>
-                <?php endif; ?>
-                <a class="btn btn-sm btn-outline" title="Темы с сортировкой по активности." href="<?= Url::toRoute('/topic/search/view-active-topics') ?>">Активные темы</a>
-                <a class="btn btn-sm btn-outline" title="Темы без ответов." href="<?= Url::toRoute('/topic/search/view-unanswered-topics') ?>">Темы без ответов</a>
-            </div>
-        </ul>
+        <?= Navigation::widget(['position' => 'sub_header']); ?>
     </div>
 </div>
 <section class="content">
-    <?= PageHead::widget(['title' => $this->title, 'subtitle' => $this->subtitle]) ?>
     <div class="pagecontent">
         <div class="container">
             <?= $content; ?>

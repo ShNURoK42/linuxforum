@@ -1,17 +1,18 @@
 <?php
 
-use yii\helpers\Url;
-use forum\models\Forum;
 use editor\Editor;
 
 
 /** @var \app\components\View $this */
-/** @var Forum $forum */
 
-$this->title = Yii::t('app/topic', 'Title') . ' в разделе ' . $forum->name;
-$this->subtitle = 'вернуться в раздел <a href="' . Url::to(['/forum/default/view', 'id' => $forum->id]) . '">' . $forum->name . '</a>';
+$this->title = 'Создание новой темы';
+
+\topic\TopicAsset::register($this);
 
 ?>
+<div class="question-header">
+    <h1><?= $this->title ?></h1>
+</div>
 <div class="page-create-topic">
     <?= Editor::widget([
         'model' => $model,

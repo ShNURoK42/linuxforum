@@ -8,7 +8,9 @@
         "bower-asset/primer-css": "*",
         "bower-asset/jquery.atwho": "*",
         "bower-asset/rangyinputs": "*",
-        "bower-asset/fontawesome": "*"
+        "bower-asset/fontawesome": "*",
+        "bower-asset/bootstrap-tagsinput": "*",
+        "bower-asset/typeahead.js": "*"
     },
     "require-dev": {
         "yiisoft/yii2-gii": "*",

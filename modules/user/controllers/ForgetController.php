@@ -18,15 +18,13 @@ class ForgetController extends \yii\web\Controller
     {
         $model = new ForgetForm(['scenario' => 'email']);
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->recovery()) {
-                return $this->render('@frontend/views/default/info', [
-                    'params' => [
-                        'name' => Yii::t('app/common', 'Info'),
-                        'message' => Yii::t('app/forget', 'Email sent message') . ' ' . Html::a(Yii::$app->config->get('support_email'), null, ['href' => 'mailto:' . Yii::$app->config->get('support_email')]) . '.',
-                    ]
-                ]);
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->recovery()) {
+            return $this->render('@frontend/views/default/info', [
+                'params' => [
+                    'name' => Yii::t('app/common', 'Info'),
+                    'message' => Yii::t('app/forget', 'Email sent message') . ' ' . Html::a(Yii::$app->config->get('support_email'), null, ['href' => 'mailto:' . Yii::$app->config->get('support_email')]) . '.',
+                ]
+            ]);
         }
 
         return $this->render('forget', ['model' => $model]);

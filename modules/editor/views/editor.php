@@ -35,13 +35,14 @@ use app\widgets\ActiveForm;
         ]) ?>
         <?php if ($titleAttribute):?>
             <?= $form->field($model, $titleAttribute, [
-            'template' => "{input}",
-                ])->textInput([
+                    'template' => "{input}",
+                ])
+                    ->textInput([
                     'placeholder' => 'Заголовок темы',
                 ])
-                ->label(\Yii::t('app/topic', 'Subject')) ?>
+                    ->label(\Yii::t('app/topic', 'Subject')) ?>
         <?php endif; ?>
-        <div class="editor-btn-panel">
+        <div class="form-group editor-btn-panel">
             <div class="btn-group">
                 <button title="Полужирный текст" class="btn btn-sm js-btn-texticon-bold" type="button"><span class="fa fa-bold"></span></button>
                 <button title="Курсивный текст" class="btn btn-sm js-btn-texticon-italic" type="button"><span class="fa fa-italic"></span></button>
@@ -67,11 +68,22 @@ use app\widgets\ActiveForm;
         </div>
         <?= $form->field($model, $messageAttribute, [
             'template' => "{input}",
-        ])->textarea([
-            'placeholder' => 'Напишите сообщение',
+        ])
+            ->textarea([
+                'placeholder' => 'Напишите сообщение',
         ]) ?>
-        <div class="editor-preview markdown-body"></div>
-        <div class="editor-tips left">
+        <div class="form-group editor-preview markdown-body"></div>
+        <?php if ($titleAttribute):?>
+            <?= $form->field($model, 'tags', [
+                'template' => "{label}\n{input}\n{hint}",
+            ])
+                ->textInput([
+                    'placeholder' => 'Добавьте тег',
+            ])
+                ->label('Теги') ?>
+        <?php endif; ?>
+        <hr>
+        <div class="form-group editor-tips left">
             <span class="fa fa-hand-o-right"></span> При оформлении сообщения Вы можете использовать разметку <strong><a target="_blank" class="muted-link" href="<?= Url::toRoute('/frontend/default/markdown') ?>">markdown</a></strong>.<br />
             <span class="fa fa-hand-o-right"></span> Для обращения к участнику дискуссии текущей темы введите <strong>@</strong> и выберите пользователя.
         </div>

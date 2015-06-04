@@ -1,19 +1,22 @@
 /* Common
    ========================================================================== */
 html {
-  font-size: 10px;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   overflow-y: scroll;
 }
 body {
-  min-width: 980px;
+  min-width: 970px;
 }
 .markdown-body {
   font-size: 14px;
 }
+.markdown-body .highlight pre,
+.markdown-body pre {
+  max-height: 500px;
+}
 .container {
   padding-right: 15px;
   padding-left: 15px;
+  width: 970px;
 }
 .clearfix:before,
 .clearfix:after,
@@ -75,7 +78,7 @@ dl.form > dd textarea {
 /* Navbar
    ========================================================================== */
 .navbar {
-  background-color: #4183C4;
+  background-color: #333;
 }
 .navbar-brand {
   float: left;
@@ -94,9 +97,9 @@ dl.form > dd textarea {
   text-decoration: none;
 }
 .navbar-brand-beta a sup {
-  border: 2px solid #ffbb44;
+  border: 2px solid #f93;
   border-radius: 3px;
-  color: #ffbb44;
+  color: #f93;
   display: inline-block;
   font-size: 10px;
   font-weight: bold;
@@ -146,6 +149,49 @@ dl.form > dd textarea {
 }
 .navbar-nav-profile a {
   height: 36px;
+}
+
+
+/* Sub-navbar
+   ========================================================================== */
+.sub-navbar {
+  clear: both;
+  margin: 40px 0;
+}
+.sub-navbar-nav {
+  float: right;
+  list-style: outside none none;
+}
+.sub-navbar-nav li {
+  float: left;
+  display: inline;
+  margin: 0 6px 0 0;
+  padding: 0;
+}
+.sub-navbar-nav li a {
+  background: #858d93;
+  position: relative;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.3;
+  padding: 4px 10px 5px;
+  text-decoration: none;
+  transition: background 0s ease 0s, all 0.15s ease 0s, all 0s ease 0s;
+}
+.sub-navbar-nav li:last-child {
+  margin-right: 0;
+}
+.sub-navbar-nav li:last-child a {
+  background: #6cc644;
+  color: #fff;
+}
+.sub-navbar-nav li.active a {
+  background: #f93;
+  color: #fff;
+}
+.sub-navbar-nav li a:hover {
+  background: #f93;
+  color: #fff;
 }
 
 /* Pagehead
@@ -417,7 +463,7 @@ dl.form > dd textarea {
 .post-container {
   margin-left: 60px;
   position: relative;
-  width: 890px;
+  width: 610px;
 }
 .post-avatar {
   float: left;
@@ -503,12 +549,8 @@ dl.form > dd textarea {
   margin: 0 10px;
 }
 
-
-
-
-
-.post-formbox {
-  padding-top: 20px;
+.postform-create {
+  padding-top: 10px;
 }
 .post-formbox-content {
   border: 1px solid #ddd;
@@ -517,14 +559,17 @@ dl.form > dd textarea {
   position: relative;
   width: 890px;
 }
+.topic-content .post-formbox-content {
+  width: 610px;
+}
 .post-formbox-content .error-summary {
-  margin: 10px 10px 0 10px;
+  margin: 0 10px 10px 10px;
 }
 .post-formbox-content .form-actions {
-  padding: 10px;
+  margin: 0 10px 10px;
 }
 .post-formbox-content .form-group {
-  margin: 0 10px;
+  margin: 0 10px 10px;
 }
 .postform-create textarea {
   border-color: #ddd;
@@ -543,12 +588,15 @@ dl.form > dd textarea {
 .post-formbox-tabnav > nav > a {
   font-size: 13px;
 }
-.field-topicform-subject {
-  padding: 10px 0;
+.topic-content {
+  float: left;
+  width: 670px;
 }
 .topic-discussion {
   position: relative;
   border-bottom: 2px solid #f3f3f3;
+  width: 670px;
+  margin-bottom: 20px;
 }
 .topic-discussion::before {
   background-color: #f3f3f3;
@@ -562,3 +610,24 @@ dl.form > dd textarea {
   z-index: -1;
 }
 
+
+.tag-url {
+  background: #e4edf4 none repeat scroll 0 0;
+  border: 1px solid #e4edf4;
+  border-radius: 0;
+  color: #3e6d8e;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1;
+  margin: 2px 2px 2px 0;
+  padding: 0.4em 0.5em;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.tag-url:hover {
+  text-decoration: none;
+  background-color: #dae6ef;
+  border: 1px solid #dae6ef;
+  color: #3e6d8e;
+}

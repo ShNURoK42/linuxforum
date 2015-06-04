@@ -27,7 +27,6 @@ class PostController extends \yii\web\Controller
         /** @var Topic $topic */
         $topic = Topic::find()
             ->where(['id' => $post->topic_id])
-            ->with('forum')
             ->one();
 
         if (!$topic) {
