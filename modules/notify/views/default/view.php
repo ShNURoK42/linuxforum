@@ -28,7 +28,7 @@ use yii\helpers\Url;
                 <ul class="boxed-group-inner list-group notifications">
                     <?php foreach($userMentions as $userMention): ?>
                     <li class="list-group-item">
-                        <a href="<?= Url::toRoute(['/topic/default/view', 'id' => $userMention->topic_id]) ?>"><strong><?= $userMention->topic->subject ?></strong></a> <a href="<?= Url::toRoute(['/topic/post/view', 'id' => $userMention->post_id, '#' => 'p' . $userMention->post_id]) ?>">#<?= $userMention->post_id ?></a>
+                        <a href="<?= Url::toRoute(['/topic/default/view', 'id' => $userMention->topic_id]) ?>"><strong><?= $userMention->topic->subject ?></strong></a> <a href="<?= Url::toRoute(['/post/default/view', 'id' => $userMention->post_id, '#' => 'post' . $userMention->post_id]) ?>">#<?= $userMention->post_id ?></a>
                     </li>
                     <?php endforeach; ?>
                 </ul>

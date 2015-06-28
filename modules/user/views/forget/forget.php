@@ -1,12 +1,12 @@
 <?php
 
+/* @var \common\components\View $this */
+/* @var \user\models\ForgetForm $model */
+
 use yii\helpers\Html;
 use yii\helpers\Url;
-use app\widgets\ActiveForm;
-use captcha\Captcha;
-
-/* @var \app\components\View $this */
-/* @var \user\models\ForgetForm $model */
+use yii\widgets\ActiveForm;
+use captcha\widgets\Captcha;
 
 $this->title = 'Изменение вашего пароля';
 ?>

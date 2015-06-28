@@ -2,10 +2,10 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use app\widgets\ActiveForm;
+use yii\widgets\ActiveForm;
 
-/* @var $this \app\components\View */
-/* @var $model \app\models\forms\FeedbackForm */
+/* @var $this \common\components\View */
+/* @var $model \frontend\models\FeedbackForm */
 
 $this->title = 'Обратная связь';
 $this->subtitle = 'Мы надеемся, что сможем ответить на любой ваш вопрос!';

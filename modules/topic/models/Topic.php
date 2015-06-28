@@ -30,10 +30,12 @@ use user\models\User;
  * @property Tag[] $tags
  * @property User $firstPostUser
  * @property User $lastPostUser
+ * @property Post $firstPost
+ * @property Post $lastPost
  */
 class Topic extends \yii\db\ActiveRecord
 {
-    /** @var \post\models\Post */
+    /** @var Post */
     private $_post;
     /**
      * @inheritdoc
@@ -43,11 +45,12 @@ class Topic extends \yii\db\ActiveRecord
         if ($this->isNewRecord) {
             $user = Yii::$app->getUser()->getIdentity();
 
-            $this->first_post_created_at = time();
-            $this->first_post_username = $user->username;
             $this->first_post_user_id = $user->id;
-            $this->last_post_created_at = time();
+            $this->last_post_user_id = $user->id;
+            $this->first_post_username = $user->username;
             $this->last_post_username = $user->username;
+            $this->first_post_created_at = time();
+            $this->last_post_created_at = time();
             $this->last_post_user_id = $user->id;
             $this->number_posts = 0;
             $this->number_views = 0;
@@ -73,6 +76,22 @@ class Topic extends \yii\db\ActiveRecord
     public static function countAll()
     {
         return static::find()->count();
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getFirstPost()
+    {
+        return $this->hasOne(Post::className(), ['id' => 'first_post_id']);
+    }
+
+    /**
+     * @return ActiveQuery
+     */
+    public function getLastPost()
+    {
+        return $this->hasOne(Post::className(), ['id' => 'last_post_id']);
     }
 
     /**

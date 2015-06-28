@@ -1,10 +1,10 @@
 <?php
 
-use yii\helpers\Html;
-use app\widgets\ActiveForm;
-
-/* @var \app\components\View $this */
+/* @var \common\components\View $this */
 /* @var \user\models\ForgetForm $model */
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 $this->title = 'Изменение вашего пароля';
 ?>

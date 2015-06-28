@@ -16,6 +16,7 @@ return [
     'aliases' => [
         '@ad' => dirname(__DIR__) . '/modules/ad',
         '@captcha' => dirname(__DIR__) . '/modules/captcha',
+        '@common' => dirname(__DIR__) . '/modules/common',
         '@editor' => dirname(__DIR__) . '/modules/editor',
         '@frontend' => dirname(__DIR__) . '/modules/frontend',
         '@notify' => dirname(__DIR__) . '/modules/notify',
@@ -32,6 +33,7 @@ return [
      */
     'bootstrap' => [
         'log',
+        'common\Bootstrap',
     ],
 
     /**
@@ -43,6 +45,9 @@ return [
         ],
         'captcha' => [
             'class' => 'captcha\Module',
+        ],
+        'common' => [
+            'class' => 'common\Module',
         ],
         'editor' => [
             'class' => 'editor\Module',
@@ -118,18 +123,18 @@ return [
                 /**
                  * topic module
                  */
+                'topic/<id:\d+>/page/<page:\d+>' => 'topic/default/view',
+                'topic/<id:\d+>' => 'topic/default/view',
                 'topics/tagged/<name:\w+>/page/<page:\d+>' => 'topic/default/list',
                 'topics/tagged/<name:\w+>' => 'topic/default/list',
                 'topics/page/<page:\d+>' => 'topic/default/list',
                 'topics' => 'topic/default/list',
                 'topic/create' => 'topic/default/create',
-
-                'post/<id:\d+>' => 'topic/post/view',
-                'topic/<id:\d+>/page/<page:\d+>' => 'topic/default/view',
-                'topic/<id:\d+>' => 'topic/default/view',
                 /**
                  * post module
                  */
+                'post/<id:\d+>' => 'post/default/view',
+                'post/create' => 'post/default/create',
                 'post/preview' => 'post/default/preview',
                 'post/update' => 'post/default/update',
                 'topic/<id:\d+>/post/new' => 'post/default/create',
@@ -155,29 +160,29 @@ return [
             'class' => 'yii\caching\FileCache',
         ],
         'config' => [
-            'class' => 'app\components\Config'
+            'class' => 'common\components\Config'
         ],
         'formatter' => [
-            'class' => 'app\components\Formatter'
+            'class' => 'common\components\Formatter'
         ],
         'request' => [
             'enableCsrfValidation' => true,
             'enableCookieValidation' => true,
         ],
         'user' => [
-            'class' => 'app\components\User',
+            'class' => 'common\components\User',
             'identityClass' => 'user\models\User',
             'enableAutoLogin' => true,
             'loginUrl' => ['user/login'],
         ],
         'view' => [
-            'class' => 'app\components\View',
+            'class' => 'common\components\View',
         ],
         'i18n' => [
             'translations' => [
                 'app*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@app/messages',
+                    'basePath' => '@common/messages',
                     'fileMap' => [
                         'app/common' => 'common.php',
                         'app/forget' => 'forget.php',
@@ -194,7 +199,7 @@ return [
             ],
         ],
         'mailer' => [
-            'class' => 'app\components\Mailer',
+            'class' => 'common\components\Mailer',
         ],
         'errorHandler' => [
             'errorAction' => 'frontend/default/error',

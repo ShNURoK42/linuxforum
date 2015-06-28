@@ -1,14 +1,13 @@
 <?php
 
+/* @var \common\components\View $this */
+/* @var RegistrationForm $model */
+
 use yii\helpers\Html;
 use yii\helpers\Url;
-use app\widgets\ActiveForm;
-use captcha\Captcha;
-
+use yii\widgets\ActiveForm;
+use captcha\widgets\Captcha;
 use user\models\RegistrationForm;
-
-/* @var \app\components\View $this */
-/* @var RegistrationForm $model */
 
 $this->title = 'Регистрация в сообществе';
 $this->subtitle = 'Присоединяйтесь к нам прямо сейчас!';

@@ -1,397 +1,62 @@
-.tt-menu {
-  background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  width: auto;
-}
-.tt-dataset {
-  padding: 10px 15px;
-  line-height: 12px;
-}
-.tt-suggestion {
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 12px;
-  padding: 10px 15px;
-  margin: 0;
-}
-.tt-suggestion:hover {
-  background-color: #0097cf;
-  color: #fff;
-  cursor: pointer;
-}
-.tt-suggestion.tt-cursor {
-  background-color: #0097cf;
-  color: #fff;
-}
-.bootstrap-tagsinput-max {
-  cursor: default;
-}
-.bootstrap-tagsinput-max .tt-input {
-  display:none;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.typeahead, .tt-query, .tt-hint {
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  font-size: 12px;
-  height: 30px;
-  line-height: 30px;
-  outline: medium none;
-  padding: 8px 12px;
-  width: 396px;
-}
-.typeahead {
-  background-color: #fff;
-}
-.typeahead:focus {
-  border: 2px solid #0097cf;
-}
-.tt-query {
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-}
-.tt-hint {
-  color: #999;
-}
-
-
-.twitter-typeahead .tt-hint {
-  display: none;
-}
-.twitter-typeahead .tt-query, .twitter-typeahead .tt-hint {
-  margin-bottom: 0;
-}
-
-
-
-.bootstrap-tagsinput {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  display: block;
-  color: #555;
-  vertical-align: middle;
-  border-radius: 3px;
-  max-width: 100%;
-  line-height: 34px;
-  padding-left: 6px;
-  cursor: text;
-}
-.bootstrap-tagsinput input {
-  border: none;
-  box-shadow: none;
-  outline: none;
-  background-color: transparent;
-  padding: 0 6px;
-  margin: 0;
-  max-width: inherit;
-}
-.bootstrap-tagsinput.form-control input::-moz-placeholder {
-  color: #777;
-  opacity: 1;
-}
-.bootstrap-tagsinput.form-control input:-ms-input-placeholder {
-  color: #777;
-}
-.bootstrap-tagsinput.form-control input::-webkit-input-placeholder {
-  color: #777;
-}
-.bootstrap-tagsinput input:focus {
-  border: none;
-  box-shadow: none;
-}
-.bootstrap-tagsinput .tag {
-  margin-right: 2px;
-}
-.bootstrap-tagsinput .tag [data-role="remove"] {
-  margin-left: 8px;
-  cursor: pointer;
-}
-.bootstrap-tagsinput .tag [data-role="remove"]:after {
-  content: "x";
-  padding: 0px 2px;
-}
-.bootstrap-tagsinput .tag [data-role="remove"]:hover {
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-.bootstrap-tagsinput .tag [data-role="remove"]:hover:active {
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.label-info {
-  background-color: #666;
-}
-.label {
-  border-radius: 0.25em;
-  color: #fff;
-  display: inline;
-  line-height: 1;
-  padding: 0.2em 0.6em 0.3em;
-  text-align: center;
-  vertical-align: baseline;
-  white-space: nowrap;
-}
-
-
-
-
-.Typeahead *,
-.Typeahead *:before,
-.Typeahead *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-/* Utilities */
-
-.u-cf:before,
-.u-cf:after {
-  content: " ";
-  display: table;
-}
-
-.u-cf:after {
+/* Editor
+   ========================================================================== */
+.editorbox {
   clear: both;
 }
-
-.u-hidden {
-  display: none !important;
+.editor-avatar {
+  float: left;
 }
-
-.u-posRelative {
-  position: relative;
-}
-
-/* Typeahead */
-
-.Typeahead {
-  position: relative;
-  *z-index: 1;
-  width: 500px;
-  margin: 50px auto 0 auto;
-  padding: 15px;
-  text-align: left;
-  background-color: #0097cf;
-  background-image: -moz-linear-gradient(top, #04a2dd, #03739c);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#04a2dd), to(#03739c));
-  background-image: -webkit-linear-gradient(top, #04a2dd, #03739c);
-  background-image: -o-linear-gradient(top, #04a2dd, #03739c);
-  background-image: linear-gradient(top, #04a2dd, #03739c);
-  background-repeat: repeat-x;
-  border: 1px solid #024e6a;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  -webkit-box-shadow: 0 0 2px #111;
-  -moz-box-shadow: 0 0 2px #111;
-  box-shadow: 0 0 2px #111;
-}
-
-.Typeahead-spinner {
-  position: absolute;
-  top: 7px;
-  right: 7px;
-  display: none;
-  width: 28px;
-  height: 28px;
-}
-
-.Typeahead-hint,
-.Typeahead-input {
-  width: 100%;
-  padding: 5px 8px;
-  font-size: 24px;
-  line-height: 30px;
-  border: 1px solid #024e6a;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-}
-
-.Typeahead-hint {
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: #ccd6dd;
-  opacity: 1;
-}
-
-.Typeahead-input {
-  position: relative;
-  background-color: transparent;
-  background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7);
-  outline: none;
-}
-
-.Typeahead-menu {
-  position: absolute;
-  left: 2.5%;
-  z-index: 100;
-  display: none;
-  width: 95%;
-  margin-bottom: 20px;
-  overflow: hidden;
-  background-color: #fff;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-  box-shadow: 0px 0px 0px 1px green;
-  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-  -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-  box-shadow: 0 5px 10px rgba(0,0,0,.2);
-}
-
-.Typeahead-menu.is-open {
-  display: block;
-}
-
-.Typeahead-selectable {
-  cursor: pointer;
-}
-
-.Typeahead-selectable + .Typeahead-selectable {
-  border-top: 1px solid #ccd6dd;
-}
-
-/* ProfileCard */
-
-.ProfileCard {
-  position: relative;
-  padding: 8px;
-}
-
-.ProfileCard-avatar {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  width: 52px;
-  height: 52px;
-  border: 2px solid #ccd6dd;
-  border-radius: 5px;
-}
-
-.ProfileCard:hover .ProfileCard-avatar {
-  border-color: #f5f8fa;
-}
-
-.ProfileCard-details {
-  min-height: 60px;
-  padding-left: 60px;
-}
-
-.ProfileCard-realName,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.ProfileCard-screenName {
-  display: inline-block;
-}
-
-.ProfileCard-realName {
-  font-weight: 700;
-}
-
-.ProfileCard-screenName {
-  color: #8899a6;
-}
-
-.ProfileCard-description {
-  margin-top: 5px;
-  font-size: 14px;
-  line-height: 18px;
-}
-
-.ProfileCard-stats {
-  float: right;
-  text-align: right;
-}
-
-.ProfileCard-stat {
-  display: inline-block;
-  font-size: 12px;
-  line-height: 16px;
-  text-transform: uppercase;
-}
-
-.ProfileCard-stat-label {
-  color: #8899a6;
-  font-weight: 500;
-}
-
-.ProfileCard-stat + .ProfileCard-stat {
-  margin-left: 5px;
-}
-
-.ProfileCard:hover,
-.ProfileCard.is-active {
-  color: #fff;
-  background: #55acee;
-}
-
-.ProfileCard:hover .ProfileCard-screenName,
-.ProfileCard:hover .ProfileCard-stat-label,
-.ProfileCard.is-active .ProfileCard-screenName,
-.ProfileCard.is-active .ProfileCard-stat-label {
-  color: #fff;
-}
-
-/* EmptyMessage */
-
-.EmptyMessage {
+.editor-formbox {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin-left: 60px;
   position: relative;
   padding: 10px;
-  font-size: 24px;
-  line-height: 30px;
-  text-align: center;
-
+}
+.editor-formbox .form-group {
+  margin-bottom: 10px;
+}
+.editor-formbox .form-group:last-child {
+  margin-bottom: 0;
+}
+.editor-btn-panel {
+  overflow: hidden;
+}
+.editor-btn-text {
+  float: left;
+}
+.editor-btn-preview {
+  float: right;
+}
+.editor-formbox textarea {
+  border-color: #ddd;
+  background-color: #fafafa;
+  min-height: 200px;
+  resize: vertical;
+  max-width: 100%;
+  padding: 6px 10px;
+  display: block;
+  width: 100%;
+  font-size: 14px;
+}
+.editor-footer {
+  overflow: hidden;
+}
+.editor-tips {
+  float: left;
+  font-size: 12px;
+  color: #999;
+}
+.editor-actions {
+  float: right;
+}
+.editor-preview {
+  background-color: transparent;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  overflow: auto;
+  display: none;
+  font-size: 13px;
+  min-height: 200px;
+  padding: 5px 10px;
 }

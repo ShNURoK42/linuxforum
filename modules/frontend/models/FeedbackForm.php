@@ -63,10 +63,8 @@ class FeedbackForm extends \yii\base\Model
                 ->setTo([Yii::$app->config->get('support_email') => Yii::$app->config->get('site_title')])
                 ->setSubject('[' . Yii::$app->config->get('site_title') . '] Форма обратной связи')
                 ->send();
-
             return true;
         }
-
         return false;
     }
 }

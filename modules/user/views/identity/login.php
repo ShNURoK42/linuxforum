@@ -1,14 +1,12 @@
 <?php
 
+/* @var \common\components\View $this */
+/* @var \user\models\LoginForm $model */
+
 use yii\helpers\Html;
 use yii\helpers\Url;
-use app\widgets\ActiveForm;
-use captcha\Captcha;
-
-use user\models\LoginForm;
-
-/* @var \app\components\View $this */
-/* @var LoginForm $model */
+use yii\widgets\ActiveForm;
+use captcha\widgets\Captcha;
 
 $this->title = 'Вход в сообщество';
 ?>

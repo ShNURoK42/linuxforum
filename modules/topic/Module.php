@@ -8,6 +8,9 @@ class Module extends \yii\base\Module
 
     public function init()
     {
+
+        \topic\TopicAsset::register(\Yii::$app->getView());
+
         parent::init();
     }
 }

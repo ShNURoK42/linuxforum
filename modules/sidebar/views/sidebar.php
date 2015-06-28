@@ -15,9 +15,9 @@ use tag\models\Tag;
         <p>топиков отмеченны тегом</p>
         <a class="tag-url" href="<?= Url::toRoute(['/topic/default/list','name' => $tagModel->name]) ?>"><?= Yii::$app->formatter->asText($tagModel->name) ?></a>
     </div>
-    <?php endif; ?>
+    <?php endif ?>
     <div class="sidebar-module">
-        <h4>Список доступных тегов</h4>
+        <h4>Список тегов</h4>
         <div class="interesting-tags">
             <?php foreach(Tag::getNamesList() as $name): ?>
                 <a class="tag-url" href="<?= Url::toRoute(['/topic/default/list','name' => $name])?>"><?= $name ?></a>

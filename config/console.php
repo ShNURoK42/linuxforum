@@ -4,10 +4,10 @@ return [
     'id' => 'application-console',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'controllerNamespace' => 'app\commands',
+    'controllerNamespace' => 'common\commands',
     'components' => [
         'authManager' => [
-            'class' => 'app\components\auth\AuthManager',
+            'class' => 'common\components\auth\AuthManager',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',

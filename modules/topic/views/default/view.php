@@ -1,63 +1,54 @@
 <?php
-use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
-use app\widgets\LinkPager;
-use editor\Editor;
-use post\Post;
+
+/* @var \common\components\View $this */
+/* @var \yii\data\ActiveDataProvider $dataProvider */
+/* @var \topic\models\Topic $topic */
+/* @var \post\models\CreateForm $model */
+
+use yii\widgets\ListView;
+use common\widgets\LinkPager;
 use sidebar\Sidebar;
 
-/* @var \app\components\View $this */
-/* @var \yii\data\ActiveDataProvider $dataProvider */
-/* @var \yii\db\ActiveRecord[] $posts */
-/* @var \topic\models\Topic $topic */
-/* @var \post\models\Post $post */
-/* @var \post\models\PostForm $model */
+$formatter = Yii::$app->formatter;
+$topic = $dataProvider->getModels()[0]->topic;
 
-$users = ArrayHelper::getColumn($posts, 'user');
-$usernames = ArrayHelper::getColumn($users, 'username');
-$author = implode(', ', array_unique($usernames));
+//$users = ArrayHelper::getColumn($posts, 'user');
+//$usernames = ArrayHelper::getColumn($users, 'username');
+//$author = implode(', ', array_unique($usernames));
 
 $this->title = $topic->subject;
-$this->description = $topic->subject;
-$this->author = $author;
-
-$formatter = Yii::$app->formatter;
-
-\topic\TopicAsset::register($this);
-
-$item['post_count'] = $dataProvider->pagination->offset;
+//$this->description = $topic->subject;
+//$this->author = $author;
 ?>
-
-<div class="p-viewtopic">
+<div class="p-topic-view">
     <div class="topic-content">
         <div class="question-header">
             <h1><?= $formatter->asText($this->title) ?></h1>
         </div>
-        <div id="t<?= $topic->id ?>" class="topic-discussion">
-            <?php foreach($posts as $post): ?>
-                <?php $item['post_count']++ ?>
-                <?= Post::widget([
-                    'model' => $post,
-                    'topic' => $topic,
-                    'count' => $item['post_count'],
-                ]) ?>
-            <?php endforeach; ?>
-        </div>
-        <?php if (!Yii::$app->getUser()->getIsGuest()): ?>
-        <?= Editor::widget([
-            'activeFormOptions' => [
-                'action' => Url::to(['/topic/default/view', 'id' => $topic->id, '#' => 'postform']),
-            ],
-            'model' => $model,
-            'messageAttribute' => 'message',
+        <?= ListView::widget([
+            'dataProvider' => $dataProvider,
+            'options' => ['class' => 'postlist js-postlist', 'data-topic-id' => $topic->id, 'data-topic-page' => $dataProvider->pagination->page + 1],
+            'layout' => "{items}",
+            'itemOptions' => ['tag' => false],
+            'itemView' => function ($model, $key, $index, $widget) use ($dataProvider) {
+                return $this->render('_view_post', [
+                    'model' => $model,
+                    'key' => $key,
+                    'index' => $index,
+                    'widget' => $widget,
+                ]);
+            },
         ]) ?>
+        <?php if (!Yii::$app->getUser()->getIsGuest()): ?>
+            <?= $this->render('_view_form', [
+                'model' => $model,
+            ]) ?>
         <?php endif; ?>
         <div class="pagination-center">
-            <?= LinkPager::widget(['pagination' => $dataProvider->pagination]) ?>
+            <?= LinkPager::widget([
+                'pagination' => $dataProvider->pagination
+            ]) ?>
         </div>
     </div>
     <?= Sidebar::widget() ?>
 </div>
-
-
-<?php $this->registerJs("jQuery(document).post();") ?>

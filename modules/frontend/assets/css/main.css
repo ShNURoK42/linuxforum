@@ -4,7 +4,7 @@ html {
   overflow-y: scroll;
 }
 body {
-  min-width: 970px;
+  min-width: 1000px;
 }
 .markdown-body {
   font-size: 14px;
@@ -16,7 +16,7 @@ body {
 .container {
   padding-right: 15px;
   padding-left: 15px;
-  width: 970px;
+  width: 1000px;
 }
 .clearfix:before,
 .clearfix:after,
@@ -29,10 +29,6 @@ body {
 .container:after {
   clear: both;
 }
-.form-control {
-  display: block;
-  width: 100%;
-}
 .form-checkbox > label {
   cursor: pointer;
   font-weight: 400;
@@ -42,7 +38,6 @@ body {
 }
 .error-summary {
   padding: 8px 10px;
-  margin: 10px 0;
   font-size: 13px;
   color: #bd2c00;
   font-weight: bold;
@@ -429,9 +424,9 @@ dl.form > dd textarea {
   background-color: #fff;
   border-color: #ddd;
 }
-
 .pagination-center {
   text-align: center;
+  padding-left: 60px;
 }
 
 /* Statistic
@@ -454,113 +449,10 @@ dl.form > dd textarea {
   margin-top: 7px;
 }
 
-/* Post
-   ========================================================================== */
-.post {
-  overflow: hidden;
-  padding-bottom: 20px;
-}
-.post-container {
-  margin-left: 60px;
-  position: relative;
-  width: 610px;
-}
-.post-avatar {
-  float: left;
-}
-.post-content {
-  border: 1px solid #dfe6ee;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-  position: relative;
-}
-.post-header {
-  background-color: #f7f7f7;
-  border-bottom: 1px solid #dfe6ee;
-  color: #999;
-  line-height: 24px;
-  padding: 5px 10px;
-}
-.post-message {
-  background-color: #fff;
-  padding: 10px;
-}
-.post-user {
-  border-right: 1px solid #dfe6ee;
-  padding: 10px;
-}
-.post-header-user {
-  font-weight: bold;
-}
-.post-header-count {
-  float: right;
-  padding-top: 2px;
-  padding-left: 10px;
-}
-.post-header-owner {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 3px;
-  float: right;
-  font-size: 12px;
-  margin: 2px 0 0 10px;
-  padding: 4px 8px;
-  line-height: 1;
-}
-.post-update {
-  display: none;
-  background-color: #fff;
-  padding: 10px;
-}
-.post-update .form-actions {
-  margin-top: 10px;
-}
-.post-update-message {
-  background-color: #fafafa;
-  min-height: 150px;
-  resize: vertical;
-}
-
 /* Post Formbox
    ========================================================================== */
-.editor-btn-panel {
-  margin: 10px;
-  overflow: hidden;
-}
-.editor-btn-text {
-  float: left;
-}
-.editor-btn-preview {
-  float: right;
-}
-.editor-tips {
-  font-size: 12px;
-  margin: 10px;
-  color: #999;
-}
-.editor-preview {
-  background-color: transparent;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  overflow: auto;
-  display: none;
-  font-size: 13px;
-  min-height: 200px;
-  padding: 5px 10px;
-  margin: 0 10px;
-}
-
 .postform-create {
   padding-top: 10px;
-}
-.post-formbox-content {
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  margin-left: 60px;
-  position: relative;
-  width: 890px;
-}
-.topic-content .post-formbox-content {
-  width: 610px;
 }
 .post-formbox-content .error-summary {
   margin: 0 10px 10px 10px;
@@ -571,34 +463,16 @@ dl.form > dd textarea {
 .post-formbox-content .form-group {
   margin: 0 10px 10px;
 }
-.postform-create textarea {
-  border-color: #ddd;
-  background-color: #fafafa;
-  min-height: 200px;
-  resize: vertical;
-  max-width: 100%;
-  padding: 6px 10px;
-}
-.post-formbox-tabnav {
-  background: #f7f7f7;
-  border-radius: 3px 3px 0 0;
-  margin-bottom: 10px;
-  padding: 6px 10px 0;
-}
-.post-formbox-tabnav > nav > a {
-  font-size: 13px;
-}
 .topic-content {
   float: left;
-  width: 670px;
+  width: 790px;
 }
-.topic-discussion {
+.postlist {
   position: relative;
   border-bottom: 2px solid #f3f3f3;
-  width: 670px;
   margin-bottom: 20px;
 }
-.topic-discussion::before {
+.postlist::before {
   background-color: #f3f3f3;
   bottom: 0;
   content: "";
@@ -610,7 +484,8 @@ dl.form > dd textarea {
   z-index: -1;
 }
 
-
+/* Tag urls
+   ========================================================================== */
 .tag-url {
   background: #e4edf4 none repeat scroll 0 0;
   border: 1px solid #e4edf4;

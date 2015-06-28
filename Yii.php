@@ -21,10 +21,10 @@ Yii::$container = new yii\di\Container;
  * Used for properties that are identical for both WebApplication and ConsoleApplication
  *
  * @property \role\components\AuthManager $authManager
- * @property \app\components\View $view
+ * @property \common\components\View $view
  *
  * @method \role\components\AuthManager getAuthManager()
- * @method \app\components\View getView()
+ * @method \common\components\View getView()
  */
 abstract class BaseApplication extends yii\base\Application
 {
@@ -34,13 +34,13 @@ abstract class BaseApplication extends yii\base\Application
  * Class WebApplication
  * Include only Web application related components here
  *
- * @property \app\components\Config $config
- * @property \app\components\User $user
- * @property \app\components\Formatter $formatter
+ * @property \common\components\Config $config
+ * @property \common\components\User $user
+ * @property \common\components\Formatter $formatter
  *
- * @method \app\components\Config getConfig()
- * @method \app\components\User getUser()
- * @method \app\components\Formatter getFormatter()
+ * @method \common\components\Config getConfig()
+ * @method \common\components\User getUser()
+ * @method \common\components\Formatter getFormatter()
  */
 class WebApplication extends yii\web\Application
 {
@@ -50,9 +50,9 @@ class WebApplication extends yii\web\Application
  * Class ConsoleApplication
  * Include only Console application related components here
  *
- * @property \app\components\Mailer $mailer
+ * @property \common\components\Mailer $mailer
  *
- * @method \app\components\Mailer getMailer()
+ * @method \common\components\Mailer getMailer()
  */
 class ConsoleApplication extends yii\console\Application
 {

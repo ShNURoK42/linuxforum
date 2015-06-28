@@ -17,7 +17,14 @@ class TopicAsset extends \yii\web\AssetBundle
     /**
      * @inheritdoc
      */
+    public $js = [
+        'js/topic.js',
+    ];
+    /**
+     * @inheritdoc
+     */
     public $depends = [
-        'app\assets\AwesomeAsset',
+        'yii\web\YiiAsset',
+        'common\assets\AwesomeAsset',
     ];
 }

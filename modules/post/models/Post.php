@@ -5,7 +5,7 @@ namespace post\models;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
-use app\helpers\MarkdownParser;
+use common\helpers\MarkdownParser;
 use topic\models\Topic;
 use user\models\User;
 use notify\Module as NotifyModule;
@@ -24,12 +24,22 @@ use notify\Module as NotifyModule;
  * @property \user\models\User $user
  * @property \topic\models\Topic $topic
  * @property string $displayMessage
- * @property \yii\data\ActiveDataProvider $dataProvider
  * @property boolean $isTopicAuthor
+ * @property boolean $isFirstPost
  */
 class Post extends \yii\db\ActiveRecord
 {
+    const EVENT_CREATE_POST = 'createPost';
+
     private $_isTopicAuthor;
+
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        $this->on(self::EVENT_CREATE_POST, [$this, 'sendMail']);
+    }
 
     /**
      * @inheritdoc
@@ -62,7 +72,6 @@ class Post extends \yii\db\ActiveRecord
             $notify = Yii::$app->getModule('notify');
             $notify->mentionHandler($this);
         }
-
         parent::afterSave($insert, $changedAttributes);
     }
 
@@ -88,46 +97,18 @@ class Post extends \yii\db\ActiveRecord
      */
     public function getTopic()
     {
-        return $this->hasOne(Topic::className(), ['id' => 'topic_id']);
+        return $this->hasOne(Topic::className(), ['id' => 'topic_id'])
+            ->inverseOf('posts');
     }
 
-    /**
-     * @param $id
-     * @return ActiveDataProvider
-     */
-    public static function getDataProviderByTopic($id)
+    public function getIsFirstPost()
     {
-        $query = static::find()
-            ->where(['topic_id' => $id])
-            ->with('user')
-            ->orderBy(['created_at' => SORT_ASC]);
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' => [
-                'forcePageParam' => false,
-                'pageSizeLimit' => false,
-                'defaultPageSize' => Yii::$app->config->get('display_posts_count'),
-            ],
-        ]);
-
-        return $dataProvider;
+        return $this->topic->firstPost->id == $this->id;
     }
 
     public function getIsTopicAuthor()
     {
-        if (isset($this->_isTopicAuthor)) {
-            return $this->_isTopicAuthor;
-        }
-
-        return false;
-    }
-
-    public function setIsTopicAuthor($value)
-    {
-        $this->_isTopicAuthor = (bool) $value;
-
-        return $this;
+        return $this->topic->first_post_user_id == $this->user_id;
     }
 
     /**
@@ -138,5 +119,39 @@ class Post extends \yii\db\ActiveRecord
         $parsedown = new MarkdownParser();
 
         return $parsedown->parse($this->message);
+    }
+
+    /**
+     * @param $params
+     * @return ActiveDataProvider
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getDataProvider($params)
+    {
+        $query = Post::find()
+            ->with('user', 'topic')
+            ->orderBy(['created_at' => SORT_ASC]);
+
+        if($params['topic_id']) {
+            $query->andWhere(['topic_id' => $params['topic_id']]);
+        }
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'route' => '/topic/default/view',
+                'params' => [
+                    'id' => $params['topic_id'],
+                    'page' => $params['page'],
+                ],
+                'forcePageParam' => false,
+                'pageSizeLimit' => false,
+                'defaultPageSize' => Yii::$app->config->get('display_posts_count'),
+            ],
+        ]);
+
+        $dataProvider->prepare();
+
+        return $dataProvider;
     }
 }

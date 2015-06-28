@@ -58,14 +58,14 @@ class Module extends \yii\base\Module
                 }
 
                 if ($mentioned->notify_mention_email == 1) {
-                    \Yii::$app->mailer->compose(['text' => 'mention'], [
+                    Yii::$app->mailer->compose(['text' => 'mention'], [
                         'model' => $model,
                         'topic' => $post->topic,
                     ])
-                        ->setFrom([Yii::$app->config->get('support_email') => Yii::$app->config->get('site_title')])
-                        ->setTo([$model->mentionUser->email => $model->mentionUser->username])
-                        ->setSubject('#' . $post->id . ' ' . $post->topic->subject)
-                        ->send();
+                    ->setFrom([Yii::$app->config->get('support_email') => Yii::$app->config->get('site_title')])
+                    ->setTo([$model->mentionUser->email => $model->mentionUser->username])
+                    ->setSubject('#' . $post->id . ' ' . $post->topic->subject)
+                    ->send();
                 }
             }
 

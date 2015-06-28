@@ -1,9 +1,10 @@
 <?php
+
+/* @var \common\components\View $this */
+/* @var \user\models\User $user */
+
 use cebe\gravatar\Gravatar;
 use yii\helpers\Url;
-
-/* @var \app\components\View $this */
-/* @var \user\models\User $user */
 
 $this->title = $user->username;
 $this->params['page'] = 'login';

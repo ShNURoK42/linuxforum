@@ -7,12 +7,14 @@ use frontend\FrontendAsset;
 use frontend\widgets\Navigation;
 
 /**
- * @var \app\components\View $this
+ * @var \common\components\View $this
  * @var $content string
  */
 
 FrontendAsset::register($this);
-GoogleAsset::register($this);
+if (!YII_DEBUG) {
+    GoogleAsset::register($this);
+}
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

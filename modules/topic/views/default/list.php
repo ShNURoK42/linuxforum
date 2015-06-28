@@ -2,13 +2,13 @@
 
 use yii\helpers\Url;
 use topic\widgets\Tabs;
-use app\widgets\LinkPager;
+use common\widgets\LinkPager;
 use topic\widgets\TopicPager;
 use tag\models\Tag;
 use sidebar\Sidebar;
 
 /**
- * @var \app\components\View $this
+ * @var \common\components\View $this
  * @var \yii\data\ActiveDataProvider $dataProvider
  * @var array|\yii\db\ActiveRecord[] $topics
  * @var \topic\models\Topic $topic
@@ -74,7 +74,7 @@ $item['topic_count'] = 0;
                             ]); ?>
                         </div>
                         <div class="question-author-time">
-                            <a class="muted-link" href="<?= Url::toRoute(['/topic/post/view', 'id' => $topic->last_post_id, '#' => 'p' . $topic->last_post_id]) ?>"><?= Yii::$app->formatter->asDatetime($topic->last_post_created_at) ?></a>
+                            <a class="muted-link" href="<?= Url::toRoute(['/post/default/view', 'id' => $topic->last_post_id, '#' => 'p' . $topic->last_post_id]) ?>"><?= Yii::$app->formatter->asDatetime($topic->last_post_created_at) ?></a>
                         </div>
                         <div class="question-author-info">
                             <a href="<?= Url::toRoute(['/user/default/view', 'id' => $topic->last_post_user_id]) ?>"><?= $formatter->asText($topic->last_post_username) ?></a>

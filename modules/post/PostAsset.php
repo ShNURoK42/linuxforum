@@ -8,7 +8,12 @@ class PostAsset extends \yii\web\AssetBundle
      * @inheritdoc
      */
     public $sourcePath = '@post/assets';
-
+    /**
+     * @inheritdoc
+     */
+    public $css = [
+        'css/post.css',
+    ];
     /**
      * @inheritdoc
      */
@@ -20,6 +25,6 @@ class PostAsset extends \yii\web\AssetBundle
      */
     public $depends = [
         'yii\web\YiiAsset',
-        'app\assets\AwesomeAsset',
+        'common\assets\AwesomeAsset',
     ];
 }

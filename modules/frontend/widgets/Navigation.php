@@ -72,7 +72,7 @@ class Navigation extends \yii\base\Widget
             $items[] = ['label' => 'Пользователи', 'url' => ['/user/default/list']];
 
             if (!Yii::$app->getUser()->getIsGuest()) {
-                $items[] = ['label' => 'Создать тему', 'url' => ['/topic/default/create']];
+                $items[] = ['label' => 'Создать тему', 'url' => ['/topic/default/create'], 'options' => ['alt' => 'asd']];
             }
 
 

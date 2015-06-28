@@ -7,9 +7,9 @@ use yii\web\NotFoundHttpException;
 use yii\data\ActiveDataProvider;
 use tag\models\Tag;
 use topic\models\Topic;
+use topic\models\CreateForm as CreateTopicForm;
 use post\models\Post;
-use post\models\PostForm;
-use topic\models\TopicForm;
+use post\models\CreateForm as CreatePostForm;
 use notify\models\UserMention;
 
 
@@ -19,13 +19,15 @@ use notify\models\UserMention;
 class DefaultController extends \yii\web\Controller
 {
     /**
-     * @param $id topic identificator.
+     * @param integer $id
+     * @param integer $page
      * @return string
      */
-    public function actionView($id)
+    public function actionView($id, $page = 1)
     {
         /** @var Topic $topic */
         $topic = Topic::find()
+            ->with('tags')
             ->where(['id' => $id])
             ->one();
 
@@ -36,40 +38,26 @@ class DefaultController extends \yii\web\Controller
         $topic->updateCounters(['number_views' => 1]);
         $topic->save();
 
-        $dataProvider = Post::getDataProviderByTopic($topic->id);
-        $posts = $dataProvider->getModels();
-
         if (!Yii::$app->getUser()->getIsGuest()) {
-            $userMentions = UserMention::findAll([
-                'topic_id' => $id,
-                'mention_user_id' => Yii::$app->getUser()->getId(),
-                'status' => UserMention::MENTION_SATUS_UNVIEWED,
-            ]);
-
-            // user mention update
-            foreach ($userMentions as $userMention) {
-                $userMention->status = UserMention::MENTION_SATUS_VIEWED;
-                $userMention->save();
-            }
-
-            $model = new PostForm();
-            if ($model->load(Yii::$app->getRequest()->post()) && $model->create($topic)) {
-                $this->redirect(['/topic/post/view', 'id' => $model->post->id, '#' => 'p' . $model->post->id]);
-            }
-
-            return $this->render('view', [
-                'dataProvider' => $dataProvider,
-                'model' => $model,
-                'topic' => $topic,
-                'posts' => $posts,
-            ]);
-        } else {
-            return $this->render('view', [
-                'dataProvider' => $dataProvider,
-                'topic' => $topic,
-                'posts' => $posts,
-            ]);
+            UserMention::markAsViewedByTopicID($id);
         }
+
+        $dataProvider = Post::getDataProvider([
+            'topic_id' => $topic->id,
+            'page' => $page,
+        ]);
+
+        $model = new CreatePostForm();
+        if ($model->load(Yii::$app->getRequest()->post()) && $model->validate()) {
+            if ($model->create($topic->id)) {
+                $this->redirect('');
+            }
+        }
+
+        return $this->render('view', [
+            'dataProvider' => $dataProvider,
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -113,8 +101,6 @@ class DefaultController extends \yii\web\Controller
                 ->orderBy(['t.last_post_created_at' => SORT_DESC]);
         }
 
-
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
@@ -138,7 +124,7 @@ class DefaultController extends \yii\web\Controller
      */
     public function actionCreate()
     {
-        $model = new TopicForm();
+        $model = new CreateTopicForm();
 
         if ($model->load(Yii::$app->getRequest()->post()) && $model->create()) {
             $this->redirect(['/topic/default/view', 'id' => $model->topic->id]);

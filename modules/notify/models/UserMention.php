@@ -73,4 +73,18 @@ class UserMention extends \yii\db\ActiveRecord
             ->where(['mention_user_id' => $id, 'status' => self::MENTION_SATUS_UNVIEWED])
             ->count();
     }
+
+    public static function markAsViewedByTopicID($id)
+    {
+        $models = static::findAll([
+            'topic_id' => $id,
+            'mention_user_id' => Yii::$app->getUser()->getId(),
+            'status' => self::MENTION_SATUS_UNVIEWED,
+        ]);
+
+        foreach ($models as $model) {
+            $model->status = self::MENTION_SATUS_VIEWED;
+            $model->save();
+        }
+    }
 }

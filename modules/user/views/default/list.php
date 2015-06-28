@@ -1,21 +1,15 @@
 <?php
 
-use yii\data\ActiveDataProvider;
-use yii\db\ActiveRecord;
+/* @var \common\components\View $this */
+/* @var \yii\data\ActiveDataProvider $dataProvider */
+/* @var \yii\db\ActiveRecord[] $users */
+/* @var \user\models\User $user */
+/* @var \user\models\SearchUsers $model */
+
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-
-use user\models\User;
-use user\models\SearchUsers;
-use app\widgets\LinkPager;
-
-/* @var \app\components\View $this */
-/* @var ActiveDataProvider $dataProvider */
-/* @var array|ActiveRecord[] $users */
-/* @var User $user */
-/* @var SearchUsers $model */
-
+use common\widgets\LinkPager;
 
 $this->title = \Yii::t('app/userlist', 'Title');
 $this->params['page'] = 'userlist';

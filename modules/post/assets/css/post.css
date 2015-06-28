@@ -1,0 +1,72 @@
+/* Post
+   ========================================================================== */
+.post {
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+.post-container {
+  margin-left: 60px;
+  position: relative;
+  width: 730px;
+}
+.post-avatar {
+  float: left;
+}
+.post-content {
+  border: 1px solid #dfe6ee;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  position: relative;
+}
+.post-header {
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #dfe6ee;
+  color: #999;
+  line-height: 24px;
+  padding: 5px 10px;
+}
+.post-user {
+  border-right: 1px solid #dfe6ee;
+  padding: 10px;
+}
+.post-header-user {
+  font-weight: bold;
+}
+.post-header-count {
+  float: right;
+  padding-top: 2px;
+  padding-left: 10px;
+}
+.post-header-owner {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  float: right;
+  font-size: 12px;
+  margin: 2px 0 0 10px;
+  padding: 4px 8px;
+  line-height: 1;
+}
+.post-body {
+  background-color: #fff;
+  padding: 10px;
+}
+.post-update-formbox {
+  display: none;
+}
+.post-update-formbox .form-group {
+  margin-bottom: 10px;
+}
+.post-update-formbox .form-group:last-child {
+  margin-bottom: 0;
+}
+.post-update-message {
+  background-color: #fafafa;
+  border-color: #ddd;
+  font-size: 14px;
+  display: block;
+  max-width: 100%;
+  min-height: 150px;
+  padding: 6px 10px;
+  resize: vertical;
+  width: 100%;
+}

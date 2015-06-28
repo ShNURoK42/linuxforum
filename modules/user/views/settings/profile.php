@@ -1,10 +1,10 @@
 <?php
 
-use yii\helpers\Html;
-use app\widgets\ActiveForm;
-use user\widgets\SettingsMenu;
-
 /* @var \user\models\User $user */
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+use user\widgets\SettingsMenu;
 ?>
 <div class="columns">
     <div class="column one-fourth">
