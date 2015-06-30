@@ -24,15 +24,17 @@ yii.buttons = (function ($) {
     };
     function preview(btn, textarea) {
         var message = textarea.val();
-        var form = textarea.closest('form');
+        var $form = textarea.closest('form');
+        var $preview = $form.find(css.preview);
         if (btn.hasClass('selected')) {
             $('.btn-group > .btn.btn-sm').each(function(){
                 var btn = $(this);
                 btn.removeClass('disabled');
             });
             btn.removeClass('selected');
-            form.find(css.preview).hide();
-            textarea.show().focus();
+            $preview.hide();
+            textarea.show();
+            textarea.focus();
         } else {
             $('.btn-group > .btn.btn-sm').each(function(){
                 var btn = $(this);
@@ -43,8 +45,9 @@ yii.buttons = (function ($) {
             });
             btn.addClass('selected');
             textarea.hide();
-            form.find('.error-summary').hide();
-            form.find(css.preview).show().html('Загрузка предпросмотра...');
+            $form.find('.error-summary').hide();
+            $preview.show();
+            //$preview.html('Загрузка предпросмотра...');
             $.ajax({
                 url: '/post/preview',
                 type: 'POST',
@@ -52,7 +55,8 @@ yii.buttons = (function ($) {
                 data: {message: message},
                 cache: false,
                 success: function (data) {
-                    form.find(css.preview).show().html(data);
+                    $preview.show();
+                    $preview.html(data);
                 }
             });
         }
