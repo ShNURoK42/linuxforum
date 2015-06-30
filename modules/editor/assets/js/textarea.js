@@ -7,6 +7,35 @@ yii.textarea = (function ($) {
     var pub = {
         isActive: true,
         init: function () {
+            $(css.postlist).mouseup(function (e) {
+                var username = $(e.target).closest('.js-post').find('.post-header-user a').text();
+                var text = $('.js-editor textarea').val();
+                var theSelection = '';
+                if (window.getSelection) {
+                    theSelection = window.getSelection().toString();
+                } else if (document.getSelection) {
+                    theSelection = document.getSelection();
+                } else if (document.selection) {
+                    theSelection = document.selection.createRange().text;
+                }
+
+                $("#addQuote").remove();
+                if (theSelection != false && e.which == 1 && username != false) {
+                    $("body").append('<div id="addQuote" style="left: ' + (e.pageX - 15) + 'px; top: ' + (e.pageY - 50) + 'px;"><span class="fa fa-comments"></span></div>');
+                    $("#addQuote").on('click', function (event) {
+                        var arr = theSelection.split(/\r?\n/);
+                        var result = '';
+                        $.each(arr, function(i, val) {
+                            result = result + ">" + val + "\n";
+                        });
+                        $(css.textarea).val(text + "@" + username + "\n" + result + "\n").focus();
+                        $(this).animate({height:'0', opacity:'0'}, 350, function () {
+                            $(this).remove();
+                        });
+                    });
+                }
+            });
+
             $(document).on('keydown', function(event) {
                 if ((event.keyCode == 10 || event.keyCode == 13) && event.ctrlKey) {
                     event.preventDefault();
@@ -20,7 +49,6 @@ yii.textarea = (function ($) {
         var cachequeryMentions = [];
         var itemsMentions;
         var id = $(css.postlist).attr('data-topic-id');
-        console.log(id);
         $(css.textarea).atwho({
             at: "@",
             callbacks: {

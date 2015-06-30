@@ -16,7 +16,7 @@ $count = ($dataProvider->pagination->page * 15) + $index + 1;
     'post' => $model,
     'count' => $count,
 ]) ?>
-<?php if ($index == 0): ?>
+<?php if ($model->topic->first_post_id == $key): ?>
 <div class="topic-tags">
     <span class="fa fa-tags topic-tags-fa"></span>
     <?php foreach($model->topic->tags as $tag): ?>

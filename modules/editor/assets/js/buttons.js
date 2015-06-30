@@ -3,20 +3,20 @@ yii.buttons = (function ($) {
         panel: '.js-editor-buttons',
         preview: '.js-editor-preview'
     };
-    var $btnPanel = $(css.panel);
     var pub = {
         isActive: true,
         init: function () {
-            $btnPanel.on('click', function (event) {
-                var $btn = $(event.target);
-                var $btnName = $btn.attr('data-editor-btn-panel');
-                var $form = $btn.closest('form');
-                var $textarea = $form.find('textarea');
-                if ($btnName == 'preview') {
+            $('.btn.btn-sm').on('click', function (event) {
+                var $btn = $(this);
+                var btnName = $btn.data('editor-btn-panel');
+                var $textarea = $btn.closest('form').find('textarea');
+                if (btnName == 'preview') {
                     preview($btn, $textarea);
+                    return false;
                 }
-                if (!$btn.hasClass('disabled')) {
-                    markUp($btnName, $textarea);
+                if (!$(this).hasClass('disabled')) {
+                    markUp(btnName, $textarea);
+                    return false;
                 }
                 return false;
             });
@@ -33,8 +33,7 @@ yii.buttons = (function ($) {
             });
             btn.removeClass('selected');
             $preview.hide();
-            textarea.show();
-            textarea.focus();
+            textarea.show().focus();
         } else {
             $('.btn-group > .btn.btn-sm').each(function(){
                 var btn = $(this);
@@ -46,8 +45,7 @@ yii.buttons = (function ($) {
             btn.addClass('selected');
             textarea.hide();
             $form.find('.error-summary').hide();
-            $preview.show();
-            //$preview.html('Загрузка предпросмотра...');
+            $preview.show().html('Загрузка предпросмотра...');
             $.ajax({
                 url: '/post/preview',
                 type: 'POST',
@@ -55,7 +53,6 @@ yii.buttons = (function ($) {
                 data: {message: message},
                 cache: false,
                 success: function (data) {
-                    $preview.show();
                     $preview.html(data);
                 }
             });

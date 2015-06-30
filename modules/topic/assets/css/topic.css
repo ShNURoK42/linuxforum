@@ -86,6 +86,8 @@
   font-weight: 300;
 }
 .question-info .answers {
+  border: 1px solid #ccc;
+  position: relative;
   height: auto;
   padding: 6px;
   display: inline-block;
@@ -95,8 +97,10 @@
   text-align: center;
 }
 .question-info .answers.answered {
-  background-color: #f93;
-  color: #fff;
+  background: #eaf4ef none repeat scroll 0 0;
+  border-color: #99ccb2;
+  color: #396;
+
 }
 .question-info .views {
   color: #777;
@@ -185,18 +189,20 @@
    ========================================================================== */
 .p-topic-create {
 }
+.tc-header {
+  clear: both;
+  margin-bottom: 1em;
+  padding: 0;
+}
+.tc-header h1 {
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 1.35;
+  margin: 0;
+}
 .tc-content {
   float: left;
   width: 790px;
-}
-.tc-header {
-  margin-bottom: 15px;
-}
-.tc-header h1 {
-  color: #222;
-  font-size: 18px;
-  font-weight: normal;
-  margin: 0;
 }
 .tc-editorbox {
 
@@ -218,4 +224,26 @@
 }
 .tc-editorbox textarea {
   min-height: 200px;
+}
+
+
+div#addQuote {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  padding: 4px 10px;
+  background: none #333 no-repeat;
+  color: #ccc;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+}
+div#addQuote:hover {
+  color: #eee;
 }

@@ -11,10 +11,10 @@ use sidebar\Sidebar;
 $this->title = 'Создание новой темы на форуме';
 ?>
 <div class="p-topic-create">
+    <div class="tc-header">
+        <h1><?= $formatter->asText($this->title) ?></h1>
+    </div>
     <div class="tc-content">
-        <div class="tc-header">
-            <h1><?= $this->title ?></h1>
-        </div>
         <div class="tc-editorbox js-editor">
             <div class="tc-editor-formbox">
                 <?php $form = ActiveForm::begin([]) ?>

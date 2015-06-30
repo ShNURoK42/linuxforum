@@ -21,10 +21,10 @@ $this->title = $topic->subject;
 //$this->author = $author;
 ?>
 <div class="p-topic-view">
+    <div class="tc-header">
+        <h1><?= $formatter->asText($this->title) ?></h1>
+    </div>
     <div class="topic-content">
-        <div class="question-header">
-            <h1><?= $formatter->asText($this->title) ?></h1>
-        </div>
         <?= ListView::widget([
             'dataProvider' => $dataProvider,
             'options' => ['class' => 'postlist js-postlist', 'data-topic-id' => $topic->id, 'data-topic-page' => $dataProvider->pagination->page + 1],
