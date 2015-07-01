@@ -23,3 +23,6 @@ composer.phar
 
 # Mac DS_Store Files
 .DS_Store
+
+tests/_output/*
+tests/_output/*
