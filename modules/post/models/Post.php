@@ -67,7 +67,7 @@ class Post extends \yii\db\ActiveRecord
      */
     public function afterSave($insert, $changedAttributes)
     {
-        if ($this->topic_id > 0) {
+        if (!empty($this->topic_id)) {
             /** @var NotifyModule $notify */
             $notify = Yii::$app->getModule('notify');
             $notify->mentionHandler($this);

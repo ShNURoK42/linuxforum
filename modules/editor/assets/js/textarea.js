@@ -4,10 +4,19 @@ yii.textarea = (function ($) {
         textarea: '.js-editor-textarea',
         buttonSubmit: '.js-btn-submit'
     };
+
+    $(document).on('keydown', function(event) {
+        if ((event.keyCode == 10 || event.keyCode == 13) && event.ctrlKey) {
+            event.preventDefault();
+            var $focused = $(':focus');
+            return $focused.closest('form').find('button[type="submit"]').trigger('click');
+        }
+    });
+
     var pub = {
         isActive: true,
         init: function () {
-            $(css.postlist).mouseup(function (e) {
+            $(css.postlist).on('mouseup', function(e) {
                 var username = $(e.target).closest('.js-post').find('.post-header-user a').text();
                 var text = $('.js-editor textarea').val();
                 var theSelection = '';
@@ -33,13 +42,6 @@ yii.textarea = (function ($) {
                             $(this).remove();
                         });
                     });
-                }
-            });
-
-            $(document).on('keydown', function(event) {
-                if ((event.keyCode == 10 || event.keyCode == 13) && event.ctrlKey) {
-                    event.preventDefault();
-                    return $(css.buttonSubmit).trigger('submit');
                 }
             });
             initMention();

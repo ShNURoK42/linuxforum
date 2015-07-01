@@ -10,7 +10,8 @@ yii.topic = (function ($) {
     var pub = {
         isActive: true,
         init: function () {
-            $editor.on('click', css.createSubmit, function () {
+            $editor.on('click', css.createSubmit, function (e) {
+                e.preventDefault();
                 var $btn = $(this);
                 var $form = $btn.closest('form');
                 var topic = $discussion.attr('data-topic-id');

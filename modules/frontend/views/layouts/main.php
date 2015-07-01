@@ -20,7 +20,7 @@ if (!YII_DEBUG) {
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <meta charset="<?= Yii::$app->charset ?>">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <?php if ($this->description): ?>
     <meta name="description" content="<?= $this->description ?>">

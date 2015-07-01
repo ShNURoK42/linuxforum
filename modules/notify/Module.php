@@ -28,24 +28,27 @@ class Module extends \yii\base\Module
         $usernames = MentionHelper::find($post->message);
         if (!empty($usernames)) {
             foreach ($usernames as $username) {
+                $currentUser = Yii::$app->getUser()->getIdentity();
+                if ($username == $currentUser->username) {
+                    continue;
+                }
+
                 /** @var User $mentioned */
                 $mentioned = User::findByUsername($username);
                 if (!$mentioned instanceof User) {
                     continue;
                 }
 
-                $exist = UserMention::find()
+                $query = UserMention::find()
                     ->where([
                         'post_id' => $post->id,
                         'mention_user_id' => $mentioned->id,
                         'status' => UserMention::MENTION_SATUS_UNVIEWED,
-                    ])
-                    ->exists();
-                if ($exist) {
+                    ]);
+                if ($query->exists()) {
                     continue;
                 }
 
-                $currentUser = Yii::$app->getUser()->getIdentity();
                 $model = new UserMention();
                 $model->user_id = $currentUser->id;
                 $model->mention_user_id = $mentioned->id;
@@ -68,10 +71,8 @@ class Module extends \yii\base\Module
                     ->send();
                 }
             }
-
             return true;
         }
-
         return false;
     }
 }

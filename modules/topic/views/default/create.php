@@ -9,6 +9,7 @@ use yii\widgets\ActiveForm;
 use sidebar\Sidebar;
 
 $this->title = 'Создание новой темы на форуме';
+$formatter = Yii::$app->getFormatter();
 ?>
 <div class="p-topic-create">
     <div class="tc-header">

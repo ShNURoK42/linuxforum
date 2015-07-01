@@ -6,23 +6,22 @@ yii.buttons = (function ($) {
     var pub = {
         isActive: true,
         init: function () {
-            $('.btn.btn-sm').on('click', function (event) {
+            $('.btn.btn-sm').on('click', function (e) {
+                e.preventDefault();
                 var $btn = $(this);
                 var btnName = $btn.data('editor-btn-panel');
                 var $textarea = $btn.closest('form').find('textarea');
                 if (btnName == 'preview') {
                     preview($btn, $textarea);
-                    return false;
                 }
-                if (!$(this).hasClass('disabled')) {
+                if (btnName != 'preview' && !$btn.hasClass('disabled')) {
                     markUp(btnName, $textarea);
-                    return false;
                 }
-                return false;
             });
         }
     };
     function preview(btn, textarea) {
+        console.log(btnName);
         var message = textarea.val();
         var $form = textarea.closest('form');
         var $preview = $form.find(css.preview);
