@@ -31,7 +31,7 @@ class CaptchaBehavior extends Behavior
     /**
      * @var integer
      */
-    public $attemptsLimit = 5;
+    public $attemptsLimit = 0;
     /**
      * @var Connection
      */
