@@ -11,7 +11,10 @@
         "bower-asset/rangyinputs": "*",
         "bower-asset/fontawesome": "*",
         "bower-asset/bootstrap-tagsinput": "*",
-        "bower-asset/typeahead.js": "*"
+        "bower-asset/typeahead.js": "*",
+        "codeception/codeception": "2.0.*",
+        "codeception/specify": "*",
+        "codeception/verify": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
