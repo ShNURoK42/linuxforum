@@ -9,7 +9,7 @@
 }
 .question-list-header {
   border-bottom: 1px solid #e0e0e0;
-  height: 33px;
+  height: 34px;
   margin-bottom: 0;
   clear: both;
 }
@@ -93,23 +93,24 @@
   display: inline-block;
   font-size: 11px;
   margin: 0 3px 0 0;
-  min-width: 60px;
+  width: 60px;
   text-align: center;
 }
 .question-info .answers.answered {
-  background: #eaf4ef none repeat scroll 0 0;
-  border-color: #99ccb2;
-  color: #396;
+  background: #f8f8f8 none repeat scroll 0 0;
+  border-color: #e5e5e5;
+  color: #555;
 
 }
 .question-info .views {
+  position: relative;
   color: #777;
   display: inline-block;
   font-size: 11px;
-  height: 38px;
-  margin: 0 7px 0 0;
-  min-width: 40px;
-  padding: 5px 5px 6px;
+  height: auto;
+  margin-right: 7px;
+  padding: 6px;
+  width: 75px;
   text-align: center;
 }
 .question-summary {
@@ -126,7 +127,7 @@
 .question-tags {
   float: left;
   line-height: 18px;
-  width: 450px;
+  width: 320px;
 }
 .question-tags a {
   background: #e4edf4 none repeat scroll 0 0;
@@ -148,13 +149,18 @@
   border: 1px solid #dae6ef;
   color: #3e6d8e;
 }
-.question-author-box {
+.question-author-box,
+.question-author-box2 {
   line-height: inherit;
   white-space: nowrap;
-  width: 165px;
+  width: 140px;
   color: #999;
-  margin-top: -5px;
+  margin-top: 5px;
+  margin-right: 15px;
   float: right;
+}
+.question-author-box2 {
+  margin-right: 0;
 }
 .question-author-avatar {
   float: left;

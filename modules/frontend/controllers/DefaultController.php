@@ -4,7 +4,6 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\web\HttpException;
-use forum\models\Category;
 use frontend\models\FeedbackForm;
 use post\models\Post;
 
@@ -41,9 +40,7 @@ class DefaultController extends \yii\web\Controller
      */
     public function actionIndex()
     {
-        $page = Yii::$app->getRequest()->get('page', 0);
-
-        return $this->run('/topic/default/list', ['page' => $page]);
+        return $this->run('/topic/default/list', ['page' => 0]);
     }
 
     /**

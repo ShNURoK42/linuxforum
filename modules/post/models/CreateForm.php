@@ -36,7 +36,30 @@ class CreateForm extends \yii\base\Model
             ['message', 'required', 'message' => Yii::t('app/form', 'Required message')],
             ['message', 'string', 'min' => 6, 'tooShort' => Yii::t('app/form', 'String short topic message')],
             ['message', 'string', 'max' => 65534, 'tooLong' => Yii::t('app/form', 'String long topic message')],
+            ['message', 'doublePostValidation'],
         ];
+    }
+
+    /**
+     * Validate model for double posting.
+     * @param string $attribute password attribute.
+     */
+    public function doublePostValidation($attribute)
+    {
+        /** @var Post $lastPost */
+        $lastPost = Post::find()
+            ->where(['user_id' => Yii::$app->getUser()->getIdentity()->getId()])
+            ->orderBy('id DESC')
+            ->limit(1)
+            ->one();
+
+        $duration = 15;
+        $time = time();
+        if ($lastPost->created_at > ($time - $duration)) {
+            $left = $duration - ($time - $lastPost->created_at);
+            $this->addError($attribute, 'Для отправки нового сообщения, подождите ' . $left . ' ' . Yii::$app->formatter->numberEnding($left, ['секунда', 'секунды', 'секунд']) . '!');
+            return;
+        }
     }
 
     /**

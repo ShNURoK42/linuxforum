@@ -10,6 +10,7 @@ use captcha\behaviors\CaptchaBehavior;
  * Model of user authorization form.
  *
  * @property boolean $isShow
+ * @property integer $duration
  */
 class LoginForm extends \yii\base\Model
 {
@@ -59,7 +60,7 @@ class LoginForm extends \yii\base\Model
             ['email', 'required', 'message' => Yii::t('app/form', 'Required email')],
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'email', 'enableIDN' => true, 'message' => Yii::t('app/form', 'Valid email')],
-            ['email', 'exist', 'targetClass' => User::className(), 'message' => Yii::t('app/form', 'Exist email')],
+            //['email', 'exist', 'targetClass' => User::className(), 'message' => Yii::t('app/form', 'Exist email')],
 
             ['password', 'trim'],
             ['password', 'required', 'message' => Yii::t('app/form', 'Required password')],
@@ -92,6 +93,7 @@ class LoginForm extends \yii\base\Model
 
         if (!$user || !Yii::$app->security->validatePassword($this->$attribute, $user->password_hash)) {
             $this->addError($attribute, Yii::t('app/form', 'Wrong email/password'));
+            return;
         }
     }
 

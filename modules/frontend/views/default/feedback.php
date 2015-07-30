@@ -13,7 +13,6 @@ $this->subtitle = 'Мы надеемся, что сможем ответить �
 <div class="pfeedback">
     <div class="authbox left">
         <div class="authbox-header">
-            <p>123333123</p>
             <p>Напишите нам письмо на <a href="mailto:<?= Yii::$app->config->get('support_email') ?>"><?= Yii::$app->config->get('support_email') ?></a> или отправьте форму.</p>
         </div>
         <div class="authbox-content">

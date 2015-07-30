@@ -9,8 +9,10 @@ use yii\widgets\ActiveForm;
 use cebe\gravatar\Gravatar;
 
 $formatter = Yii::$app->formatter;
+$dateTimeAgo = new \common\components\DateTimeAgo();
+
 ?>
-<div class="post js-post <?= ($count % 2 == 0) ? 'roweven' : 'rowodd' ?><?= ($count == 1) ? ' firstpost' : '' ?>" id="post<?= $post->id ?>" data-post-id="<?= $post->id ?>">
+<div class="post <?= ($count % 2 == 0) ? 'post-roweven' : 'post-rowodd' ?><?= ($count == 1) ? ' firstpost' : '' ?>  js-post" id="post<?= $post->id ?>" data-post-id="<?= $post->id ?>">
     <div class="post-avatar">
         <?php if (isset($post->user->email)): ?>
         <?= Gravatar::widget([
@@ -29,8 +31,8 @@ $formatter = Yii::$app->formatter;
     <div class="post-container">
         <div class="post-content">
             <div class="post-header">
-                <span class="post-header-user"><a class="muted-link" href="<?= Url::toRoute(['/user/default/view', 'id' => $post->user_id])?>"><?= (isset($post->user->username)) ? $post->user->username : '' ?></a></span> написал
-                <span class="post-header-time"><?= $formatter->asDatetime($post->created_at) ?></span>
+                <span class="post-header-user"><a href="<?= Url::toRoute(['/user/default/view', 'id' => $post->user_id])?>"><?= (isset($post->user->username)) ? $post->user->username : '' ?></a></span> написал
+                <span class="post-header-time"><time is="time-ago" datetime="<?= Yii::$app->formatter->asDatetime($post->created_at, 'php:c') ?>" title="<?= Yii::$app->formatter->asDatetime($post->created_at, 'long') ?>"><?= $dateTimeAgo->get($post->created_at) ?></time>
                 <span class="post-header-count"><a class="muted-link" href="<?= Url::toRoute(['/post/default/view', 'id' => $post->id, '#' => 'post' . $post->id]) ?>">#<?= $count ?></a></span>
                     <?php if ($post->isTopicAuthor): ?>
                     <span class="post-header-owner">Автор</span>

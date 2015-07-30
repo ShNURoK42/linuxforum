@@ -2,7 +2,6 @@
     "minimum-stability": "dev",
     "require": {
         "yiisoft/yii2": "*",
-        "yiisoft/yii2-codeception": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "erusev/parsedown": "*",
         "cebe/yii2-gravatar": "*",
@@ -11,16 +10,11 @@
         "bower-asset/rangyinputs": "*",
         "bower-asset/fontawesome": "*",
         "bower-asset/bootstrap-tagsinput": "*",
-        "bower-asset/typeahead.js": "*",
-        "codeception/codeception": "2.0.*",
-        "codeception/specify": "*",
-        "codeception/verify": "*"
+        "bower-asset/typeahead.js": "*"
     },
     "require-dev": {
-        "yiisoft/yii2-codeception": "*",
         "yiisoft/yii2-gii": "*",
-        "yiisoft/yii2-debug": "*",
-        "yiisoft/yii2-faker": "*"
+        "yiisoft/yii2-debug": "*"
     },
     "scripts": {
         "post-create-project-cmd": [

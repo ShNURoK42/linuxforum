@@ -23,10 +23,12 @@ $formatter = Yii::$app->formatter;
 if ($tagModel instanceof Tag) {
     $this->title = Yii::$app->formatter->asText($tagModel->short_description);
 } else {
-    $this->title = 'Последние темы';
+    $this->title = 'Активные темы';
 }
 
 $item['topic_count'] = 0;
+
+$dateTimeAgo = new \common\components\DateTimeAgo();
 ?>
 <div class="ptagged">
     <div class="question-content">
@@ -41,12 +43,14 @@ $item['topic_count'] = 0;
             <div class="question-row<?= ($topic->sticked) ? ' question-row-sticked' : '' ?><?= ($topic->closed) ? ' question-row-closed' : '' ?>">
                 <div class="question-info">
                     <div class="views">
-                        <div class="mini-counts"><span title="<?= Yii::$app->formatter->asInteger($topic->number_views) ?> просмотров"><?= Yii::$app->formatter->asInteger($topic->number_views) ?></span></div>
-                        <div>просмотров</div>
+                        <div class="mini-counts"><span title="Количество просмотров темы"><?= Yii::$app->formatter->asInteger($topic->number_views) ?></span></div>
+                        <div><?= Yii::$app->formatter->numberEnding($topic->number_views, ['просмотр', 'просмотра', 'просмотров']) ?></div>
                     </div>
                     <div class="answers <?= ($topic->number_posts == 0) ? '' : ' answered' ?>">
-                        <div class="mini-counts"><span title="<?= Yii::$app->formatter->asInteger($topic->number_posts) ?> ответов"><?= Yii::$app->formatter->asInteger($topic->number_posts) ?></span></div>
-                        <div>ответов</div>
+                        <div class="mini-counts">
+                            <span title="Количество ответов в теме"><?= Yii::$app->formatter->asInteger($topic->number_posts) ?></span>
+                        </div>
+                        <div><?= Yii::$app->formatter->numberEnding($topic->number_posts, ['ответ', 'ответа', 'ответов']) ?></div>
                     </div>
                 </div>
                 <div class="question-summary">
@@ -59,7 +63,12 @@ $item['topic_count'] = 0;
                         <a  class="tag-url" title="" href="<?= Url::toRoute(['/topic/default/list', 'name' => $tag->name]) ?>"><?= $tag->name ?></a>
                         <?php endforeach; ?>
                     </div>
-                    <div class="question-author-box">
+                    <div class="question-author-box2">
+                        <div class="question-author-time">ответил
+                            <a class="muted-link" href="<?= Url::toRoute(['/post/default/view', 'id' => $topic->last_post_id, '#' => 'post' . $topic->last_post_id]) ?>">
+                                <time is="time-ago" datetime="<?= Yii::$app->formatter->asDatetime($topic->last_post_created_at, 'php:c') ?>" title="<?= Yii::$app->formatter->asDatetime($topic->last_post_created_at, 'long') ?>"><?= $dateTimeAgo->get($topic->last_post_created_at) ?></time>
+                            </a>
+                        </div>
                         <div class="question-author-avatar">
                             <?= \cebe\gravatar\Gravatar::widget([
                                 'email' => $topic->lastPostUser->email,
@@ -73,11 +82,31 @@ $item['topic_count'] = 0;
                                 'size' => 32
                             ]); ?>
                         </div>
-                        <div class="question-author-time">
-                            <a class="muted-link" href="<?= Url::toRoute(['/post/default/view', 'id' => $topic->last_post_id, '#' => 'post' . $topic->last_post_id]) ?>"><?= Yii::$app->formatter->asDatetime($topic->last_post_created_at) ?></a>
-                        </div>
                         <div class="question-author-info">
                             <a href="<?= Url::toRoute(['/user/default/view', 'id' => $topic->last_post_user_id]) ?>"><?= $formatter->asText($topic->last_post_username) ?></a>
+                        </div>
+                    </div>
+                    <div class="question-author-box">
+                        <div class="question-author-time">создал
+                            <a class="muted-link" href="<?= Url::toRoute(['/post/default/view', 'id' => $topic->first_post_id, '#' => 'post' . $topic->first_post_id]) ?>">
+                                <time is="time-ago" datetime="<?= Yii::$app->formatter->asDatetime($topic->first_post_created_at, 'php:c') ?>" title="<?= Yii::$app->formatter->asDatetime($topic->first_post_created_at, 'long') ?>"><?= $dateTimeAgo->get($topic->first_post_created_at) ?></time>
+                            </a>
+                        </div>
+                        <div class="question-author-avatar">
+                            <?= \cebe\gravatar\Gravatar::widget([
+                                'email' => $topic->firstPostUser->email,
+                                'options' => [
+                                    'alt' => $topic->firstPostUser->username,
+                                    'class' => 'avatar',
+                                    'width' => 32,
+                                    'height' => 32,
+                                ],
+                                'defaultImage' => 'retro',
+                                'size' => 32
+                            ]); ?>
+                        </div>
+                        <div class="question-author-info">
+                            <a href="<?= Url::toRoute(['/user/default/view', 'id' => $topic->first_post_user_id]) ?>"><?= $formatter->asText($topic->first_post_username) ?></a>
                         </div>
                     </div>
                 </div>

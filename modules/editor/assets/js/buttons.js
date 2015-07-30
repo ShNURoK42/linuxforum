@@ -21,7 +21,6 @@ yii.buttons = (function ($) {
         }
     };
     function preview(btn, textarea) {
-        console.log(btnName);
         var message = textarea.val();
         var $form = textarea.closest('form');
         var $preview = $form.find(css.preview);

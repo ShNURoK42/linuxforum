@@ -15,7 +15,7 @@ class Tabs extends \yii\base\Widget
     {
         $sortBy = Yii::$app->request->get('sort_by', 'new');
 
-        $items[] = ['label' => 'Новые', 'url' => Url::current(['sort_by' => 'new']), 'active' => ($sortBy == 'new'), 'options' => [
+        $items[] = ['label' => 'Активные', 'url' => Url::current(['sort_by' => 'new']), 'active' => ($sortBy == 'new'), 'options' => [
             'title' => 'Темы отсортированные по времени последнего сообщения',
         ]];
         $items[] = ['label' => 'Без ответов', 'url' => Url::current(['sort_by' => 'unanwser']), 'active' => ($sortBy == 'unanwser'), 'options' => [
@@ -23,7 +23,7 @@ class Tabs extends \yii\base\Widget
         ]];
 
         if (!Yii::$app->getUser()->getIsGuest()) {
-            $items[] = ['label' => 'Ваши', 'url' => Url::current(['sort_by' => 'own']), 'active' => ($sortBy == 'own'), 'options' => [
+            $items[] = ['label' => 'Мои', 'url' => Url::current(['sort_by' => 'own']), 'active' => ($sortBy == 'own'), 'options' => [
                 'title' => 'Темы отсортированные по времени последнего сообщения и не содержащие ответов',
             ]];
         }
