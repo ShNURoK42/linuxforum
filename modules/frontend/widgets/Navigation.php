@@ -15,37 +15,12 @@ class Navigation extends \yii\base\Widget
     public function run()
     {
         if (strtolower($this->position) == 'header') {
-            if (!Yii::$app->user->isGuest) {
-                $user = Yii::$app->user->identity;
+            $items[] = ['label' => '<i class="fa fa-wrench"></i> Настройки', 'url' => ['/user/identity/registration']];
+            $items[] = ['label' => '<i class="fa fa-bell"></i> Уведомления (1)', 'url' => ['/user/identity/registration'], 'options' => ['class' => 'new']];
+            $items[] = ['label' => '<i class="fa fa-envelope"></i> Сообщения (3)', 'url' => ['/user/identity/registration']];
+            $items[] = ['label' => '<i class="fa fa-users"></i> Пользователи', 'url' => ['/user/identity/registration']];
+            $items[] = ['label' => '<i class="fa fa-question-circle"></i> Помощь', 'url' => ['/user/identity/registration']];
 
-                $avatar = \cebe\gravatar\Gravatar::widget([
-                    'email' => $user->email,
-                    'options' => [
-                        'alt' => '',
-                        'class' => 'avatar',
-                        'width' => 24,
-                        'height' => 24,
-                    ],
-                    'defaultImage' => 'retro',
-                    'size' => 24
-                ]);
-
-                $items[] = [
-                    'label' => $avatar . Yii::$app->user->identity->username,
-                    'url' => ['/user/default/view', 'id' => Yii::$app->user->id],
-                    'options' => [
-                        'class' => 'navbar-nav-profile'
-                    ]
-                ];
-            }
-
-
-            if (Yii::$app->user->isGuest) {
-                $items[] = ['label' => 'Регистрация', 'url' => ['/user/identity/registration']];
-                $items[] = ['label' => 'Вход', 'url' => ['/user/identity/login']];
-            } else {
-                $items[] = ['label' => 'Выход', 'url' => ['/user/identity/logout']];
-            }
 
             return Menu::widget([
                 'items' => $items,
@@ -55,26 +30,11 @@ class Navigation extends \yii\base\Widget
                 ]
             ]);
         } elseif(strtolower($this->position) == 'sub_header') {
-            $items[] = ['label' => 'Последние темы', 'url' => ['/topic/default/list']];
-
-
-            if (!Yii::$app->getUser()->getIsGuest()) {
-                $id = Yii::$app->getUser()->getIdentity()->id;
-                $notifications = UserMention::countByUser($id);
-
-                if ($notifications > 0) {
-                    $items[] = ['label' => 'Уведомления <span class="counter">' . $notifications . '</span>', 'url' => ['/notify/default/view']];
-                } else {
-                    $items[] = ['label' => 'Уведомления', 'url' => ['/notify/default/view']];
-                }
-            }
-
-            $items[] = ['label' => 'Пользователи', 'url' => ['/user/default/list']];
-
-            if (!Yii::$app->getUser()->getIsGuest()) {
-                $items[] = ['label' => 'Создать тему', 'url' => ['/topic/default/create'], 'options' => ['alt' => 'asd']];
-            }
-
+            $items[] = ['label' => 'Лента', 'url' => ['/user/default/list5']];
+            $items[] = ['label' => 'Страницы', 'url' => ['/user/default/list5']];
+            $items[] = ['label' => 'Вопросы', 'url' => ['/topic/default/list1']];
+            $items[] = ['label' => 'Статьи', 'url' => ['/topic/default/list3']];
+            $items[] = ['label' => 'Обсуждения', 'url' => ['/topic/default/list4']];
 
             return Menu::widget([
                 'items' => $items,
@@ -91,6 +51,8 @@ class Navigation extends \yii\base\Widget
             ];
 
             return Menu::widget(['encodeLabels' => false, 'items' => $items]);
+
+
         }
 
         return null;

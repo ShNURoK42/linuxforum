@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'controllerMap' => [
+        'stubs' => [
+            'class' => 'bazilio\stubsgenerator\StubsController',
+        ],
+    ],
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',

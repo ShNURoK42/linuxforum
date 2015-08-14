@@ -5,6 +5,7 @@ html {
 }
 body {
   min-width: 1000px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 .markdown-body {
   font-size: 14px;
@@ -73,36 +74,41 @@ dl.form > dd textarea {
 /* Navbar
    ========================================================================== */
 .navbar {
-  background-color: #333;
+  background-color: #355C7D;
+  color: #fefefe;
 }
 .navbar-brand {
+  font-family: "Source Code Pro",Menlo,Consolas,Monaco,monospace;
   float: left;
   height: 40px;
   padding: 10px 0;
-  font-size: 18px;
+  font-size: 22px;
   line-height: 20px;
-  color: #fbfbfb;
 }
 .navbar-brand > a {
-  color: #fbfbfb;
+  color: inherit;
   text-decoration: none;
 }
 .navbar-brand > a:hover {
-  color: #e5e5e5;
+  color: #fff;
   text-decoration: none;
 }
 .navbar-brand-beta a sup {
-  border: 2px solid #f93;
+  position: relative;
+  right: 10px;
+}
+.navbar-brand-beta a sup {
+  border: 2px solid #FF9900;
   border-radius: 3px;
-  color: #f93;
+  color: #FF9900;
   display: inline-block;
-  font-size: 10px;
+  font-size: 13px;
   font-weight: bold;
   line-height: normal;
   margin-left: 3px;
-  padding: 0 3px 1px;
-  top: -1.5em;
-  transform: rotate(15deg);
+  padding: 0 2px;
+  top: -1.1em;
+  transform: rotate(20deg);
 }
 .navbar-nav {
   float: right;
@@ -115,21 +121,26 @@ dl.form > dd textarea {
   display: block;
   height: 40px;
 }
-.navbar-nav > li.active > a {
-  border-bottom: 4px solid #ffbb44;
-  color: #fff;
+.navbar-nav > li.new > a {
+  color: #ff9900;
+  font-weight: bold;
 }
-.navbar-nav > li.active > a:hover {
-  color: #fff;
+.navbar-nav > li.new > a:hover {
+  color: #ff9900;
 }
 .navbar-nav > li > a {
   position: relative;
   display: block;
   line-height: 20px;
-  padding: 6px 10px;
-  margin-top: 4px;
-  color: #fbfbfb;
+  padding: 10px 5px;
+  color: #fff;
   font-weight: bold;
+}
+.navbar-nav > li:first-child > a {
+  padding-left: 0;
+}
+.navbar-nav > li:last-child > a {
+  padding-right: 0;
 }
 .navbar-nav > li > a img {
   margin-right: 5px;
@@ -150,8 +161,14 @@ dl.form > dd textarea {
 /* Sub-navbar
    ========================================================================== */
 .sub-navbar {
+  background-color: rgba(62, 97, 118, 0.05);
+  border-color: #ccc;
+  border-image: none;
+  border-style: none none solid none;
+  border-width: 1px 0;
+  padding: 4px;
   clear: both;
-  margin: 40px 0;
+  margin-bottom: 15px;
 }
 .sub-navbar-nav {
   float: right;
@@ -160,33 +177,34 @@ dl.form > dd textarea {
 .sub-navbar-nav li {
   float: left;
   display: inline;
-  margin: 0 6px 0 0;
+  margin: 0 15px 0 0;
   padding: 0;
-}
-.sub-navbar-nav li a {
-  background: #858d93;
-  position: relative;
-  color: #fff;
-  font-size: 14px;
-  line-height: 1.3;
-  padding: 4px 10px 5px;
-  text-decoration: none;
-  transition: background 0s ease 0s, all 0.15s ease 0s, all 0s ease 0s;
 }
 .sub-navbar-nav li:last-child {
   margin-right: 0;
 }
-.sub-navbar-nav li:last-child a {
-  background: #6cc644;
-  color: #fff;
+.sub-navbar-nav li a {
+  color: #3a4f6c;
 }
-.sub-navbar-nav li.active a {
-  background: #f93;
-  color: #fff;
+
+/* Errorbar
+   ========================================================================== */
+.errorbar {
+  background: #f4e7ea;
+  border: 1px solid #dfc2c2;
+  margin-bottom: 15px;
+  padding: 10px;
+  color: #000;
+  font-size: 12px;
 }
-.sub-navbar-nav li a:hover {
-  background: #f93;
-  color: #fff;
+.errorbar p {
+  margin: 0;
+}
+
+/* Searchbar
+   ========================================================================== */
+.searchbar {
+
 }
 
 /* Pagehead

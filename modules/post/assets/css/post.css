@@ -2,7 +2,7 @@
    ========================================================================== */
 .post {
   overflow: hidden;
-  padding-bottom: 20px;
+  margin-bottom: 20px;
 }
 .post-container {
   margin-left: 60px;
@@ -19,7 +19,7 @@
   position: relative;
 }
 .post-header {
-  background-color: #f7f7f7;
+  background-color: #f6f7f9;
   border-bottom: 1px solid #eee;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
@@ -35,7 +35,7 @@
   font-weight: bold;
 }
 .post-header-user a {
-  color: #555;
+  color: #333;
   font-weight: bold;
 }
 .post-header-count {

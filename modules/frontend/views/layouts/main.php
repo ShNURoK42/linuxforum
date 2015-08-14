@@ -63,6 +63,18 @@ if (!YII_DEBUG) {
         <?= Navigation::widget(['position' => 'sub_header']); ?>
     </div>
 </div>
+<div class="container">
+    <div class="errorbar">
+        <p>Важная информация</p>
+    </div>
+</div>
+<div class="searchbar">
+    <div class="container">
+        <div class="form-group field-createform-subject required has-error">
+            <input id="createform-subject" class="form-control" type="text" placeholder="Заголовок темы" name="CreateForm[subject]">
+        </div>
+    </div>
+</div>
 <section class="content">
     <div class="pagecontent">
         <div class="container">
