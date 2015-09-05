@@ -1,10 +1,11 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\Url;
-use frontend\GoogleAsset;
 use ad\Ad;
-use frontend\FrontendAsset;
+use frontend\assets\GoogleAsset;
+use frontend\assets\FrontendAsset;
 use frontend\widgets\Navigation;
+use sidebar\Sidebar;
 
 /**
  * @var \common\components\View $this
@@ -25,7 +26,6 @@ if (!YII_DEBUG) {
     <?php else: ?>
         <meta charset="<?= Yii::$app->charset ?>">
     <?php endif ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 <?php if ($this->description): ?>
     <meta name="description" content="<?= $this->description ?>">
 <?php endif; ?>
@@ -35,6 +35,7 @@ if (!YII_DEBUG) {
 <?php if ($this->author): ?>
     <meta name="author" content="<?= $this->author ?>">
 <?php endif; ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
 <?php if (!$this->title): ?>
 <title><?= Yii::$app->config->get('site_title') ?></title>
@@ -46,40 +47,55 @@ if (!YII_DEBUG) {
 </head>
 <body>
 <?php $this->beginBody() ?>
-<nav class="navbar">
-    <div class="container">
-        <div class="navbar-brand">
-            <?php if (Yii::$app->controller->route == 'site/index'): ?>
-            <span><?= Yii::$app->config->get('site_title') ?></span><span class="navbar-brand-beta tooltipped tooltipped-s" aria-label="Сайт находится на стадии разработки"><a href="<?= Url::toRoute(['/forum/default/view', 'id' => 3]) ?>">alpha</a></span>
-            <?php else: ?>
-            <a href="<?= Url::home() ?>"><?= Yii::$app->config->get('site_title') ?></a><span class="navbar-brand-beta"><a href="<?= Url::toRoute(['/topic/default/list', 'name' => 'support']) ?>"><sup>beta</sup></a></span>
-            <?php endif; ?>
-        </div>
-        <?= Navigation::widget(['position' => 'header']); ?>
+<nav class="b-navbar">
+    <div class="l-container">
+        <a class="b-navbar__brand" href="/">linuxforum</a><span class="b-navbar__brand-beta">beta</span>
+        <ul class="m-navbar__menu b-menu">
+            <li class="b-menu__item b-menu__item_active">
+                <a class="b-menu__link b-menu__link-active" href="/registration"><i class="fa fa-bell"></i> Уведомления <span class="b-label b-label-warning b-menu__link-active-label">10</span></a>
+            </li>
+            <li class="b-menu__item">
+                <a class="b-menu__link" href="/registration"><i class="fa fa-wrench"></i> Настройки</a>
+            </li>
+            <li class="b-menu__item">
+                <a class="b-menu__link" href="/registration"><i class="fa fa-question-circle"></i> Помощь</a>
+            </li>
+            <li class="b-menu__item">
+                <a class="b-menu__link" href="/registration"><i class="fa fa-sign-out"></i> Выход</a>
+            </li>
+        </ul>
     </div>
 </nav>
-<div class="sub-navbar">
-    <div class="container">
-        <?= Navigation::widget(['position' => 'sub_header']); ?>
+<nav class="b-sub-navbar">
+    <div class="l-container">
+        <ul class="m-sub-navbar__menu b-menu">
+            <li class="b-menu__item">
+                <div class="b-input-group">
+                    <input type="text" class="b-form-control" placeholder="Поиск по сайту">
+                </div>
+            </li>
+            <li class="b-menu__item">
+                <a class="b-btn b-btn-primary b-menu__btn" href="/user/default/list" title="Вопросы и ответы по ОС linux">questions</a>
+            </li>
+            <li class="b-menu__item">
+                <a class="b-btn b-btn-primary b-menu__btn" href="/topic/default/list4" title="Обсуждение различных тем">forum</a>
+            </li>
+            <li class="b-menu__item">
+                <a class="b-btn b-btn-primary b-menu__btn b-menu__btn_active" href="/user/default/list" title="Список полльзователей сайта">users</a>
+            </li>
+        </ul>
     </div>
-</div>
-<div class="container">
-    <div class="errorbar">
-        <p>Важная информация</p>
-    </div>
-</div>
-<div class="searchbar">
-    <div class="container">
-        <div class="form-group field-createform-subject required has-error">
-            <input id="createform-subject" class="form-control" type="text" placeholder="Заголовок темы" name="CreateForm[subject]">
-        </div>
-    </div>
-</div>
+</nav>
+
+
+
+
 <section class="content">
-    <div class="pagecontent">
-        <div class="container">
+    <div class="l-container">
+        <div class="page-content">
             <?= $content; ?>
         </div>
+        <?= Sidebar::widget() ?>
     </div>
 </section>
 <footer class="footer">

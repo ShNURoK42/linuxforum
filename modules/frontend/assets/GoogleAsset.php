@@ -1,19 +1,13 @@
 <?php
 
-namespace frontend;
+namespace frontend\assets;
 
 class GoogleAsset extends \yii\web\AssetBundle
 {
     /**
      * @inheritdoc
      */
-    public $sourcePath = '@frontend/assets';
-    /**
-     * @inheritdoc
-     */
-    public $jsOptions = [
-        'position' => \yii\web\View::POS_HEAD
-    ];
+    public $sourcePath = '@frontend/assets/source/google';
     /**
      * @inheritdoc
      */

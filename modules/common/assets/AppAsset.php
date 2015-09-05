@@ -1,27 +1,26 @@
 <?php
 
-namespace frontend;
+namespace common\assets;
 
 /**
  * AppAsset represents a collection of asset files, such as CSS, JS, images.
  */
-class FrontendAsset extends \yii\web\AssetBundle
+class AppAsset extends \yii\web\AssetBundle
 {
     /**
      * @inheritdoc
      */
-    public $sourcePath = '@frontend/assets';
+    public $sourcePath = '@common/assets/source/app';
     /**
      * @inheritdoc
      */
     public $css = [
-        'css/main.css',
-        'css/dev.css',
+        'css/app.css',
     ];
     /**
      * @inheritdoc
      */
     public $depends = [
-        'common\assets\PrimerAsset',
+        'common\assets\NormalizeAsset',
     ];
 }

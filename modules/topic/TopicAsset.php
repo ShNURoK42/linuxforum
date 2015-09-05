@@ -25,6 +25,7 @@ class TopicAsset extends \yii\web\AssetBundle
      */
     public $depends = [
         'yii\web\YiiAsset',
+        'common\assets\AppAsset',
         'common\assets\AwesomeAsset',
     ];
 }

@@ -5,6 +5,7 @@
         "yiisoft/yii2-swiftmailer": "*",
         "erusev/parsedown": "*",
         "cebe/yii2-gravatar": "*",
+        "bower-asset/normalize.css": "*",
         "bower-asset/primer-css": "*",
         "bower-asset/jquery.atwho": "*",
         "bower-asset/rangyinputs": "*",
