@@ -17,7 +17,13 @@ class FrontendAsset extends \yii\web\AssetBundle
     /**
      * @inheritdoc
      */
+    public $js = [
+        'js/frontend.js',
+    ];
+    /**
+     * @inheritdoc
+     */
     public $depends = [
-        'common\assets\AppAsset',
+        'common\assets\CommonAsset',
     ];
 }

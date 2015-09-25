@@ -1,27 +1,16 @@
 <?php
-
 use yii\helpers\Url;
-use tag\models\Tag;
-
-/**
- * @var \tag\models\Tag $tagModel
- */
-
 ?>
 <div class="sidebar">
-    <?php if ($tagModel instanceof Tag): ?>
-    <div class="sidebar-module">
-        <div class="summarycount"><?= Yii::$app->formatter->asInteger($tagModel->countTopics) ?></div>
-        <p>топиков отмеченны тегом</p>
-        <a class="tag-url" href="<?= Url::toRoute(['/topic/default/list','name' => $tagModel->name]) ?>"><?= Yii::$app->formatter->asText($tagModel->name) ?></a>
-    </div>
-    <?php endif ?>
-    <div class="sidebar-module">
-        <h4>Список тегов</h4>
-        <div class="interesting-tags">
-            <?php foreach(Tag::getNamesList() as $name): ?>
-                <a class="tag-url" href="<?= Url::toRoute(['/topic/default/list','name' => $name])?>"><?= $name ?></a>
-            <?php endforeach ?>
+    <div class="sidebar-fortuna fortuna">
+        <div class="fortuna__header">
+            <h5>А вы знали, что...</h5>
+        </div>
+        <div class="fortuna__content fortuna__content-text">
+            <p>прочитать руководство к какой-либо программе в linux возможно, набрав в терминале (консоле) комманду: <span class="fortuna__command">man [command]</span></p>
+        </div>
+        <div class="fortuna__footer">
+            <a href="#" class="fortuna__link-add">Предложить</a>
         </div>
     </div>
 </div>

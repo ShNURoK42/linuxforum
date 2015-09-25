@@ -1,0 +1,64 @@
+.sidebar {
+    float: right;
+    margin: 0 0 15px;
+    overflow: hidden;
+    width: 12.5rem;
+}
+.fortuna {
+    background-color: #08b;
+    color: #fff;
+    padding: .325rem;
+}
+.fortuna__header {
+    padding: .325rem;
+    text-align: center;
+}
+.fortuna__content {
+    background-color: #fff;
+    color: #333;
+    padding: .3rem .5rem;
+    font-size: .75rem;
+    text-align: justify;
+}
+.fortuna__content-text p {
+    margin-bottom: 0;
+}
+.fortuna__command {
+    display: block;
+    background-color: #999;
+    color: #fff;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    padding: 0 .2rem .1rem .2rem;
+    margin: .2rem 0;
+}
+.fortuna__command:after {
+    content: "_";
+    font-weight: bold;
+    -webkit-animation: blink 1s linear infinite;
+    -moz-animation: blink 1s linear infinite;
+    -ms-animation: blink 1s linear infinite;
+    -o-animation: blink 1s linear infinite;
+    animation: blink 1s linear infinite;
+}
+@keyframes blink {
+    0% { opacity: 0; }
+    49% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 1; }
+}
+@-webkit-keyframes blink {
+    0% { opacity: 0; }
+    49% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 1; }
+}
+.fortuna__footer {
+    border-top: 1px solid #e0e0e0;
+    background-color: #fff;
+    text-align: right;
+    padding: .2rem .5rem;
+    font-size: .7rem;
+}
+.fortuna__link-add {
+    color: #777;
+}

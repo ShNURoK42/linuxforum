@@ -21,6 +21,7 @@ return [
         '@frontend' => dirname(__DIR__) . '/modules/frontend',
         '@notify' => dirname(__DIR__) . '/modules/notify',
         '@post' => dirname(__DIR__) . '/modules/post',
+        '@qa' => dirname(__DIR__) . '/modules/qa',
         '@role' => dirname(__DIR__) . '/modules/role',
         '@sidebar' => dirname(__DIR__) . '/modules/sidebar',
         '@tag' => dirname(__DIR__) . '/modules/tag',
@@ -60,6 +61,9 @@ return [
         ],
         'post' => [
             'class' => 'post\Module',
+        ],
+        'qa' => [
+            'class' => 'qa\Module',
         ],
         'role' => [
             'class' => 'role\Module',
