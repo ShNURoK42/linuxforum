@@ -3,6 +3,7 @@ namespace sidebar;
 
 use Yii;
 use tag\models\Tag;
+use sidebar\assets\SidebarAsset;
 
 class Sidebar extends \yii\base\Widget
 {
@@ -20,14 +21,6 @@ class Sidebar extends \yii\base\Widget
      */
     public function run()
     {
-        $name = Yii::$app->getRequest()->get('name');
-
-        if ($name !== '') {
-            $tagModel = Tag::findOne(['name' => $name]);
-
-            echo $this->render('sidebar', ['tagModel' => $tagModel]);
-        } else {
-            echo $this->render('sidebar');
-        }
+        echo $this->render('sidebar');
     }
 }

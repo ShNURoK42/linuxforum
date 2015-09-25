@@ -1,13 +1,13 @@
 <?php
 
-namespace sidebar;
+namespace sidebar\assets;
 
 class SidebarAsset extends \yii\web\AssetBundle
 {
     /**
      * @inheritdoc
      */
-    public $sourcePath = '@sidebar/assets';
+    public $sourcePath = '@sidebar/assets/source/sidebar';
     /**
      * @inheritdoc
      */

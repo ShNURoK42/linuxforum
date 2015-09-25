@@ -21,11 +21,7 @@ if (!YII_DEBUG) {
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <?php if (YII_ENV == 'test'): ?>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
-    <?php else: ?>
-        <meta charset="<?= Yii::$app->charset ?>">
-    <?php endif ?>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
 <?php if ($this->description): ?>
     <meta name="description" content="<?= $this->description ?>">
 <?php endif; ?>
@@ -35,7 +31,7 @@ if (!YII_DEBUG) {
 <?php if ($this->author): ?>
     <meta name="author" content="<?= $this->author ?>">
 <?php endif; ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initiascale=1">
     <?= Html::csrfMetaTags() ?>
 <?php if (!$this->title): ?>
 <title><?= Yii::$app->config->get('site_title') ?></title>
@@ -47,51 +43,64 @@ if (!YII_DEBUG) {
 </head>
 <body>
 <?php $this->beginBody() ?>
-<nav class="b-navbar">
-    <div class="l-container">
-        <a class="b-navbar__brand" href="/">linuxforum</a><span class="b-navbar__brand-beta">beta</span>
-        <ul class="m-navbar__menu b-menu">
-            <li class="b-menu__item b-menu__item_active">
-                <a class="b-menu__link b-menu__link-active" href="/registration"><i class="fa fa-bell"></i> Уведомления <span class="b-label b-label-warning b-menu__link-active-label">10</span></a>
+<nav class="navbar">
+    <div class="container">
+        <a class="navbar__brand navbar__brand-current" href="/">linuxforum</a><span class="navbar__brand-beta">beta</span>
+        <ul class="navbar__nav nav">
+            <li class="nav__item nav__item_active">
+                <a class="nav__link nav__link-active" href="/registration"><i class="fa fa-bell"></i> Уведомления <span class="label label-warning nav__link-active-label" title="У вас 10 непросмотренных уведомлений">10</span></a>
             </li>
-            <li class="b-menu__item">
-                <a class="b-menu__link" href="/registration"><i class="fa fa-wrench"></i> Настройки</a>
+            <li class="nav__item">
+                <a class="nav__link" href="/registration"><i class="fa fa-wrench"></i> Настройки</a>
             </li>
-            <li class="b-menu__item">
-                <a class="b-menu__link" href="/registration"><i class="fa fa-question-circle"></i> Помощь</a>
+            <li class="nav__item">
+                <a class="nav__link" href="/registration"><i class="fa fa-question-circle"></i> Помощь</a>
             </li>
-            <li class="b-menu__item">
-                <a class="b-menu__link" href="/registration"><i class="fa fa-sign-out"></i> Выход</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-<nav class="b-sub-navbar">
-    <div class="l-container">
-        <ul class="m-sub-navbar__menu b-menu">
-            <li class="b-menu__item">
-                <div class="b-input-group">
-                    <input type="text" class="b-form-control" placeholder="Поиск по сайту">
-                </div>
-            </li>
-            <li class="b-menu__item">
-                <a class="b-btn b-btn-primary b-menu__btn" href="/user/default/list" title="Вопросы и ответы по ОС linux">questions</a>
-            </li>
-            <li class="b-menu__item">
-                <a class="b-btn b-btn-primary b-menu__btn" href="/topic/default/list4" title="Обсуждение различных тем">forum</a>
-            </li>
-            <li class="b-menu__item">
-                <a class="b-btn b-btn-primary b-menu__btn b-menu__btn_active" href="/user/default/list" title="Список полльзователей сайта">users</a>
+            <li class="nav__item">
+                <a class="nav__link" href="/registration"><i class="fa fa-sign-out"></i> Выход</a>
             </li>
         </ul>
     </div>
 </nav>
-
+<nav class="subnavbar">
+    <div class="container">
+        <div class="site-search">
+            <input type="text" class="form-control site-search__input js-site-search__input">
+            <i class="fa fa-search site-search__icon"></i>
+        </div>
+        <ul class="subnavbar__nav nav">
+            <li class="nav__item">
+                <a class="btn nav__pill" href="/user/default/list" title="Вопросы и ответы по ОС linux">новости</a>
+            </li>
+            <li class="nav__item">
+                <a class="btn nav__pill" href="/user/default/list" title="Вопросы и ответы по ОС linux">блог</a>
+            </li>
+            <li class="nav__item">
+                <a class="btn nav__pill" href="/user/default/list" title="Вопросы и ответы по ОС linux">страницы</a>
+            </li>
+            <li class="nav__item">
+                <a class="btn nav__pill" href="/user/default/list" title="Вопросы и ответы по ОС linux">вопросы</a>
+            </li>
+            <li class="nav__item">
+                <a class="btn nav__pill" href="/topic/default/list4" title="Обсуждение различных тем">форум</a>
+            </li>
+            <li class="nav__item">
+                <a class="btn nav__pill nav__pill_active" href="/user/default/list" title="Список полльзователей сайта">пользователи</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div class="site-message site-message__text">
+        <h5>Добро пожаловать на linuxforum!</h5>
+        <p>Русскоязычный ресурс, посвященный операционной системе linux и свободному программному обеспечению!</p>
+    </div>
+</div>
 
 
 
 <section class="content">
-    <div class="l-container">
+    <div class="container">
         <div class="page-content">
             <?= $content; ?>
         </div>

@@ -1,0 +1,14 @@
+        <ul class="nav-panel__tabs">
+            <li class="nav-panel__item">
+                <a href="#" class="nav-panel__link nav-panel__link-active">Новые</a>
+            </li>
+            <li class="nav-panel__item">
+                <a href="#" class="nav-panel__link">Популярные</a>
+            </li>
+            <li class="nav-panel__item">
+                <a href="#" class="nav-panel__link">Без ответов</a>
+            </li>
+            <li class="nav-panel__item">
+                <a href="#" class="nav-panel__link">Мои</a>
+            </li>
+        </ul>

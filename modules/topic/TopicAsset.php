@@ -24,8 +24,6 @@ class TopicAsset extends \yii\web\AssetBundle
      * @inheritdoc
      */
     public $depends = [
-        'yii\web\YiiAsset',
-        'common\assets\AppAsset',
-        'common\assets\AwesomeAsset',
+        'frontend\assets\FrontendAsset'
     ];
 }
